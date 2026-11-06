@@ -1,0 +1,75 @@
+{
+  "id": "nvidia-week-nov6-v2",
+  "title": "Apple just passed Nvidia: 3 reasons it fell 25%",
+  "structure": "countdown (reasons)",
+  "hookFamily": "contrarian / belief break",
+  "palette": "gold",
+  "scenes": [
+    {
+      "type": "open.logo",
+      "seconds": 2.5,
+      "caption": [{"t": "Apple"}, {"t": "just"}, {"t": "passed"}, {"t": "NVIDIA.", "key": true, "br": true}],
+      "props": {"ticker": "NVDA", "big": "#2", "sub": "behind Apple this week", "tone": "bad"}
+    },
+    {
+      "type": "chapters",
+      "seconds": 2.2,
+      "caption": [{"t": "3 reasons", "key": true}, {"t": "it"}, {"t": "fell", "br": true}, {"t": "25%."}],
+      "props": {"items": ["Data-center pushback", "Pricier money", "Buyers in debt"], "unlocked": 0}
+    },
+    {
+      "type": "causeChain",
+      "seconds": 3.1,
+      "caption": [{"t": "1."}, {"t": "Calls"}, {"t": "to"}, {"t": "HALT", "key": true}, {"t": "data", "br": true}, {"t": "centers."}],
+      "source": "Forbes, Nov 6 2026",
+      "props": {
+        "n": 1,
+        "title": "Data-center pushback",
+        "steps": ["Nov 3 elections", "Some new leaders want to halt new data centers", "Fewer chips needed?"]
+      }
+    },
+    {
+      "type": "causeChain",
+      "seconds": 3.1,
+      "caption": [{"t": "2."}, {"t": "Money"}, {"t": "got"}, {"t": "PRICIER.", "key": true}],
+      "source": "Forbes, Nov 6 2026",
+      "props": {
+        "n": 2,
+        "title": "Financing squeeze",
+        "steps": ["Borrowing costs rising", "Data-center builds could slow", "Fewer chip orders"]
+      }
+    },
+    {
+      "type": "causeChain",
+      "seconds": 3.1,
+      "caption": [{"t": "3."}, {"t": "Its"}, {"t": "buyers"}, {"t": "are"}, {"t": "DEEP", "key": true, "br": true}, {"t": "in"}, {"t": "debt."}],
+      "source": "Forbes, Nov 6 2026",
+      "props": {
+        "n": 3,
+        "title": "Shaky customers",
+        "stat": {"value": "$35B", "label": "CoreWeave's debt"},
+        "steps": ["AI data-center builders burn cash", "Investors punish them", "Nvidia's buyers look shakier"]
+      }
+    },
+    {
+      "type": "scoreboard",
+      "seconds": 3,
+      "caption": [{"t": "But"}, {"t": "Friday,"}, {"t": "chips"}, {"t": "BOUNCED.", "key": true, "br": true}],
+      "source": "Yahoo Finance live, Nov 6 2026",
+      "props": {
+        "title": "Fri, Nov 6 · intraday",
+        "rows": [
+          {"name": "Nvidia", "value": "+6%", "up": true, "hero": true, "logo": "NVDA"},
+          {"name": "Chip index", "value": "+4%", "up": true}
+        ],
+        "footnote": "after a 12% chip plunge on Thursday"
+      }
+    },
+    {
+      "type": "calendarCta",
+      "seconds": 3,
+      "caption": [{"t": "Nov 17"}, {"t": "shows"}, {"t": "if"}, {"t": "ORDERS", "key": true, "br": true}, {"t": "slow."}],
+      "props": {"day": "TUE", "date": "Nov 17", "event": "Nvidia earnings", "cta": "Follow for the earnings →"}
+    }
+  ]
+}

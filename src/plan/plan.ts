@@ -26,6 +26,7 @@ export const planSchema = z.object({
   scenes: z.array(sceneSchema).min(2).max(12),
   audio: z.string().optional(),
   grain: z.boolean().default(true),
+  palette: z.enum(['gold', 'terminal', 'editorial', 'midnight']).default('gold'),
 });
 export type Plan = z.infer<typeof planSchema>;
 

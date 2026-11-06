@@ -6,7 +6,7 @@ Every plan scene has: `type`, `seconds` (1-8), `caption` (words; one or two `key
 
 ## `open.logo`
 
-OPENING. The company logo (by ticker) drops in with a shake and burst, ticker and name under it, then the big move (e.g. "−4.2%"). One-company stories.
+OPENING. The company logo (by ticker) drops in with a punch-in and impact ring, ticker and name under it, then the big move (e.g. "−4.2%"). One-company stories.
 
 Default theme: dark. Source line: not needed.
 
@@ -17,7 +17,7 @@ Default theme: dark. Source line: not needed.
 
 ## `open.burst`
 
-OPENING. Big number/word explodes in with a particle burst and camera shake. Shock stats.
+OPENING. Big number/word slams in with a camera punch, shake and impact rings. Shock stats.
 
 Default theme: dark. Source line: not needed.
 
@@ -66,6 +66,18 @@ Default theme: dark. Source line: not needed.
 - `sub` (optional): string
 - `tone` (optional): "bad" | "good" | "gold", default "bad"
 - `label` (optional): string, default "BREAKING"
+
+## `causeChain`
+
+Numbered reason shown as cause → effect → effect (2-3 steps, last one highlighted), optional stat chip and logo. Use for "why" videos: each reason must say what caused what, not just describe.
+
+Default theme: light. Source line: required.
+
+- `n`: integer
+- `title`: string
+- `steps`: array of string, 2-3 items
+- `stat` (optional): object {`value` string, `label` string}
+- `logo` (optional): string
 
 ## `counter`
 

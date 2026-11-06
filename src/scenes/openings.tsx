@@ -3,10 +3,10 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, random, useCurrentFrame} from 'remotion';
 import {z} from 'zod';
-import {Burst, shakeAt} from '../fx';
+import {Rings, punch, shakeAt} from '../fx';
 import {pop} from '../kit';
 import {Logo, logoName} from '../logo';
-import {FONT, T, fit, toneColor} from '../theme';
+import {FONT, T, fit, mix, toneColor} from '../theme';
 import type {SceneDef} from './types';
 
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
@@ -36,7 +36,7 @@ export const openBurst: SceneDef<Base> = {
   schema: base,
   defaultTheme: 'dark',
   needsSource: false,
-  summary: 'OPENING. Big number/word explodes in with a particle burst and camera shake. Shock stats.',
+  summary: 'OPENING. Big number/word slams in with a camera punch, shake and impact rings. Shock stats.',
   events: (p, dur) => [{kind: 'impact', at: hitAt(dur)}, ...(p.tone === 'bad' ? [{kind: 'fall' as const, at: 0}] : [])],
   Component: ({p, dur}) => {
     const f = useCurrentFrame();
@@ -44,9 +44,9 @@ export const openBurst: SceneDef<Base> = {
     const s = shakeAt(f, at, 26, 14);
     const c = toneColor(p.tone);
     return (
-      <AbsoluteFill style={{translate: `${s.x}px ${s.y}px`}}>
+      <AbsoluteFill style={{translate: `${s.x}px ${s.y}px`, scale: `${punch(f, at)}`}}>
         <Glow color={c} at={at} />
-        <Burst at={at} cx={520} cy={990} colors={[c, T.goldLight, T.paper]} seed={p.big} />
+        <Rings at={at} cx={520} cy={990} color={c} />
         <BigText p={p} at={at} />
       </AbsoluteFill>
     );
@@ -111,8 +111,8 @@ export const openSpotlight: SceneDef<Base> = {
     const r = interpolate(f, [at, at + 10], [300, 520], clamp);
     return (
       <AbsoluteFill>
-        <div style={{position: 'absolute', inset: 0, background: `radial-gradient(circle ${r}px at ${x}px 1000px, rgba(242,194,91,0.22), rgba(12,11,10,0) 70%)`}} />
-        <div style={{position: 'absolute', left: x - 6, top: 0, width: 12, height: 760, background: 'linear-gradient(180deg, rgba(242,194,91,0), rgba(242,194,91,0.35))', filter: 'blur(14px)'}} />
+        <div style={{position: 'absolute', inset: 0, background: `radial-gradient(circle ${r}px at ${x}px 1000px, ${mix(T.goldLight, 0.22)}, ${mix(T.dark, 0)} 70%)`}} />
+        <div style={{position: 'absolute', left: x - 6, top: 0, width: 12, height: 760, background: `linear-gradient(180deg, ${mix(T.goldLight, 0)}, ${mix(T.goldLight, 0.35)})`, filter: 'blur(14px)'}} />
         <div style={{position: 'absolute', inset: 0, WebkitMaskImage: `radial-gradient(circle ${r}px at ${x}px 1000px, #000 55%, transparent 75%)`}}>
           <BigText p={p} at={at - 6} y={890} />
         </div>
@@ -146,9 +146,9 @@ export const openCashRain: SceneDef<Base> = {
             </div>
           );
         })}
-        <div style={{position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50% 52%, rgba(12,11,10,0.85) 0%, rgba(12,11,10,0) 60%)'}} />
+        <div style={{position: 'absolute', inset: 0, background: `radial-gradient(circle at 50% 52%, ${mix(T.dark, 0.85)} 0%, ${mix(T.dark, 0)} 60%)`}} />
         {/* keep the caption zone readable */}
-        <div style={{position: 'absolute', left: 0, right: 0, top: 0, height: 520, background: 'linear-gradient(180deg, rgba(12,11,10,0.97) 0%, rgba(12,11,10,0.92) 70%, rgba(12,11,10,0) 100%)'}} />
+        <div style={{position: 'absolute', left: 0, right: 0, top: 0, height: 520, background: `linear-gradient(180deg, ${mix(T.dark, 0.97)} 0%, ${mix(T.dark, 0.92)} 70%, ${mix(T.dark, 0)} 100%)`}} />
         <Glow color={toneColor(p.tone)} at={at} />
         <BigText p={p} at={at} />
       </AbsoluteFill>
@@ -192,7 +192,7 @@ export const openLogo: SceneDef<z.infer<typeof logoOpenSchema>> = {
   schema: logoOpenSchema,
   defaultTheme: 'dark',
   needsSource: false,
-  summary: 'OPENING. The company logo (by ticker) drops in with a shake and burst, ticker and name under it, then the big move (e.g. "−4.2%"). One-company stories.',
+  summary: 'OPENING. The company logo (by ticker) drops in with a punch-in and impact ring, ticker and name under it, then the big move (e.g. "−4.2%"). One-company stories.',
   events: (p, dur) => [{kind: 'impact', at: 6}, {kind: 'impact', at: hitAt(dur) + 6}, ...(p.tone === 'bad' ? [{kind: 'fall' as const, at: 4}] : [])],
   Component: ({p, dur}) => {
     const f = useCurrentFrame();
@@ -202,13 +202,14 @@ export const openLogo: SceneDef<z.infer<typeof logoOpenSchema>> = {
     const s2 = shakeAt(f, at, 22, 12);
     const c = toneColor(p.tone);
     return (
-      <AbsoluteFill style={{translate: `${s.x + s2.x}px ${s.y + s2.y}px`}}>
+      <AbsoluteFill style={{translate: `${s.x + s2.x}px ${s.y + s2.y}px`, scale: `${punch(f, 6) * punch(f, at)}`}}>
         <Glow color={c} at={at} />
-        <Burst at={6} cx={520} cy={760} colors={[T.goldLight, T.paper, c]} count={70} reach={420} seed={p.ticker} />
+        <Rings at={6} cx={540} cy={760} color={mix(T.paper, 0.7)} from={210} to={420} />
+        <Rings at={at} cx={540} cy={1180} color={c} from={120} to={560} />
         <div style={{position: 'absolute', left: 340, top: 560, translate: `0px ${interpolate(drop, [0, 1], [-260, 0])}px`, scale: `${interpolate(drop, [0, 1], [1.4, 1])}`, opacity: drop}}>
           <Logo ticker={p.ticker} size={400} />
         </div>
-        <div style={{position: 'absolute', left: 90, right: 130, top: 990, textAlign: 'center', fontFamily: FONT, color: 'rgba(244,239,230,0.7)', fontSize: 40, fontWeight: 800, letterSpacing: 6, opacity: interpolate(f, [8, 14], [0, 1], clamp)}}>
+        <div style={{position: 'absolute', left: 90, right: 130, top: 990, textAlign: 'center', fontFamily: FONT, color: `${mix(T.paper, 0.7)}`, fontSize: 40, fontWeight: 800, letterSpacing: 6, opacity: interpolate(f, [8, 14], [0, 1], clamp)}}>
           {p.ticker} · {logoName(p.ticker).toUpperCase()}
         </div>
         <BigText p={p} at={at} y={1080} />

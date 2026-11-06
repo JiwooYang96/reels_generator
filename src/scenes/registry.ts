@@ -1,4 +1,4 @@
-import {barRank, calendarCta, chapters, compareBars, counter, donut, grid100, headline, lineMove, priceSlam, scoreboard, stampList, timeline, versus} from './data';
+import {barRank, calendarCta, causeChain, chapters, compareBars, counter, donut, grid100, headline, lineMove, priceSlam, scoreboard, stampList, timeline, versus} from './data';
 import {openBreaking, openBurst, openCashRain, openLogo, openSpotlight, openTicker} from './openings';
 import type {SceneDef} from './types';
 
@@ -10,6 +10,7 @@ export const SCENES: Record<string, SceneDef> = {
   'open.spotlight': openSpotlight,
   'open.cashRain': openCashRain,
   'open.breaking': openBreaking,
+  causeChain,
   counter,
   priceSlam,
   compareBars,
