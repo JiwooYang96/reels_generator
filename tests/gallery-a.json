@@ -1,0 +1,10 @@
+{"id":"gallery-a","grain":true,"scenes":[
+ {"type":"open.burst","seconds":2,"caption":[{"t":"Only"},{"t":"3"},{"t":"in"},{"t":"100","key":true}],"props":{"big":"3%","sub":"of new apps","tone":"gold"}},
+ {"type":"open.ticker","seconds":2,"caption":[{"t":"Chips"},{"t":"just"},{"t":"CRASHED.","key":true}],"props":{"big":"−8.4%","tone":"bad","tickers":[{"s":"NVDA","v":"-6.1%"},{"s":"AMD","v":"-4.8%"},{"s":"TSM","v":"-3.9%"},{"s":"INTC","v":"+1.2%"},{"s":"AVGO","v":"-5.5%"}]}},
+ {"type":"open.spotlight","seconds":2,"caption":[{"t":"The"},{"t":"number"},{"t":"nobody"},{"t":"SAW.","key":true}],"props":{"big":"$44","sub":"per user per month","tone":"gold"}},
+ {"type":"open.breaking","seconds":2,"caption":[{"t":"Fed"},{"t":"just"},{"t":"BLINKED.","key":true}],"props":{"big":"−0.25%","label":"JUST IN","tone":"good"}},
+ {"type":"counter","seconds":2.5,"source":"demo data","caption":[{"t":"Debt"},{"t":"hit"},{"t":"a"},{"t":"RECORD.","key":true}],"props":{"label":"US national debt","to":38.4,"prefix":"$","suffix":"T","decimals":1,"tone":"bad","sub":"and climbing"}},
+ {"type":"priceSlam","seconds":2.5,"source":"demo data","caption":[{"t":"Eggs"},{"t":"now"},{"t":"cost"},{"t":"DOUBLE.","key":true}],"props":{"label":"DOZEN EGGS","sublabel":"price in January","oldValue":"$3.10","newValue":"$6.20"}},
+ {"type":"compareBars","seconds":2.5,"source":"demo data","caption":[{"t":"Upfront"},{"t":"pays"},{"t":"5x","key":true}],"props":{"title":"Revenue per user / month","bars":[{"label":"Free trial","value":14,"display":"$14"},{"label":"Paywall","value":44,"display":"$44","highlight":true},{"label":"Ads","value":6,"display":"$6"}],"badge":"5x"}},
+ {"type":"stampList","seconds":2.5,"source":"demo data","caption":[{"t":"Three"},{"t":"deals"},{"t":"CANCELLED.","key":true}],"props":{"windowTitle":"deal tracker","rows":[{"name":"Merger A","value":"$12B"},{"name":"Merger B","value":"$4B","stamped":false},{"name":"Merger C","value":"$9B"}],"stamp":"CANCELLED"}}
+]}

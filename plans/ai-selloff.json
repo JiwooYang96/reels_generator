@@ -1,0 +1,42 @@
+{
+  "id": "ai-selloff",
+  "title": "AI stocks lost $5 trillion, but the Dow went up",
+  "structure": "escalation -> rehook -> open loop",
+  "hookFamily": "stakes",
+  "scenes": [
+    {
+      "type": "open.cashRain",
+      "seconds": 2.3,
+      "caption": [{"t": "AI"}, {"t": "stocks"}, {"t": "just"}, {"t": "lost"}, {"t": "$5 TRILLION.", "key": true, "br": true}],
+      "props": {"big": "−$5T", "sub": "in about 3 weeks", "tone": "bad"}
+    },
+    {
+      "type": "lineMove",
+      "seconds": 2.7,
+      "caption": [{"t": "Nasdaq"}, {"t": "100:"}, {"t": "−9%", "key": true}, {"t": "from", "br": true}, {"t": "its"}, {"t": "record."}],
+      "source": "Yahoo Finance, Nov 2 2026",
+      "props": {"title": "Nasdaq 100 · Oct 6 → Oct 30", "startLabel": "Oct 6 record", "direction": "down", "badge": "−9%"}
+    },
+    {
+      "type": "scoreboard",
+      "seconds": 2.5,
+      "caption": [{"t": "But"}, {"t": "on"}, {"t": "Monday,"}, {"t": "the", "br": true}, {"t": "Dow"}, {"t": "went"}, {"t": "UP.", "key": true}],
+      "source": "TheStreet, Nov 2 2026 close",
+      "props": {
+        "title": "Close · Mon, Nov 2",
+        "rows": [
+          {"name": "Dow", "value": "+0.41%", "up": true, "hero": true},
+          {"name": "S&P 500", "value": "−0.51%", "up": false},
+          {"name": "Nasdaq", "value": "−1.07%", "up": false}
+        ],
+        "footnote": "Money moved out of tech, not out of stocks"
+      }
+    },
+    {
+      "type": "calendarCta",
+      "seconds": 2.5,
+      "caption": [{"t": "The"}, {"t": "next"}, {"t": "test"}, {"t": "lands"}, {"t": "FRIDAY.", "key": true, "br": true}],
+      "props": {"day": "FRI", "date": "Nov 6", "event": "October jobs report"}
+    }
+  ]
+}
