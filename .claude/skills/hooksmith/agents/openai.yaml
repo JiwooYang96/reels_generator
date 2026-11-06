@@ -1,0 +1,5 @@
+interface:
+  display_name: "Hooksmith"
+  short_description: "Build Reel hooks that hold attention."
+  default_prompt: "Use hooksmith to build complete hook systems for this Reel idea, including spoken hook, on-screen text, open loop, rehook, visual anchor, and payoff."
+

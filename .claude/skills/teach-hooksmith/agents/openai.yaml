@@ -1,0 +1,4 @@
+interface:
+  display_name: "Teach Hooksmith"
+  short_description: "One-time Hooksmith setup for your niche."
+  default_prompt: "Use teach-hooksmith to set up Hooksmith for my niche: gather my creator context and write HOOKS.md."
