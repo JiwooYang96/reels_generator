@@ -4,6 +4,7 @@ import {interpolate, random, useCurrentFrame} from 'remotion';
 import {z} from 'zod';
 import {Card, ease, fade, pop} from '../kit';
 import {shakeAt} from '../fx';
+import {BRAND} from '../brand';
 import {Logo} from '../logo';
 import {CARD, FONT, T, fit, mix, toneColor} from '../theme';
 import type {SceneDef} from './types';
@@ -343,7 +344,7 @@ export const timeline: SceneDef<z.infer<typeof timelineSchema>> = {
 };
 
 // ---------------------------------------------------------------- calendarCta
-const calSchema = z.object({day: z.string().max(4), date: z.string(), event: z.string(), note: z.string().max(48).optional(), cta: z.string().default('Follow so you see what happens →')});
+const calSchema = z.object({day: z.string().max(4), date: z.string(), event: z.string(), note: z.string().max(48).optional(), cta: z.string().default(`Follow ${BRAND.handle} →`)});
 export const calendarCta: SceneDef<z.infer<typeof calSchema>> = {
   schema: calSchema,
   defaultTheme: 'dark',

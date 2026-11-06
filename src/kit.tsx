@@ -101,4 +101,16 @@ export const Source: React.FC<{text: string; theme: 'dark' | 'light'}> = ({text,
   </div>
 );
 
+// The channel handle, small and steady on every scene (above the source line).
+export const Handle: React.FC<{text: string; theme: 'dark' | 'light'}> = ({text, theme}) => (
+  <div
+    style={{
+      position: 'absolute', top: 1386, left: 0, right: 0, textAlign: 'center', fontFamily: FONT,
+      fontSize: 32, fontWeight: 800, letterSpacing: 0.5, color: theme === 'dark' ? mix(T.goldLight, 0.85) : T.gold,
+    }}
+  >
+    {text}
+  </div>
+);
+
 export const money = (n: number) => '$' + Math.round(n).toLocaleString('en-US');

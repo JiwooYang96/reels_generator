@@ -3,7 +3,7 @@
 import React from 'react';
 import {AbsoluteFill, Audio, Sequence, staticFile} from 'remotion';
 import {Flash, Grain} from '../fx';
-import {Background, Caption, Source} from '../kit';
+import {Background, Caption, Handle, Source} from '../kit';
 import {SCENES} from '../scenes/registry';
 import {T, applyPalette} from '../theme';
 import {type Plan, resolvePlan} from './plan';
@@ -23,6 +23,7 @@ export const PlanVideo: React.FC<Plan> = (plan) => {
             <Visual p={s.props} dur={s.dur} theme={s.theme} />
             <Caption theme={s.theme} words={s.caption.map((w) => ({...w, at: w.at ?? 0}))} />
             {s.source ? <Source theme={s.theme} text={`Source: ${s.source}`} /> : null}
+            <Handle theme={s.theme} text={plan.handle} />
           </Sequence>
         );
       })}
