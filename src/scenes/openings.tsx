@@ -91,7 +91,7 @@ export const openTicker: SceneDef<z.infer<typeof tickerSchema>> = {
           <line x1={-40} y1={down ? 560 : 1150} x2={-40 + 1160 * slash} y2={(down ? 560 : 1150) + (down ? 590 : -590) * slash} stroke={c} strokeWidth={22} strokeLinecap="round" style={{filter: `drop-shadow(0 0 24px ${c})`}} />
         </svg>
         <Glow color={c} at={at} />
-        <BigText p={p} at={at} y={1240} />
+        <BigText p={p} at={at} y={1030} />
       </AbsoluteFill>
     );
   },
