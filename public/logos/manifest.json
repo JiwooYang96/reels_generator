@@ -1184,6 +1184,11 @@
   "tile": "light",
   "source": "nvstly/icons@3ba2624"
  },
+ "IREN": {
+  "name": "IREN",
+  "tile": "dark",
+  "source": "nvstly/icons@main"
+ },
  "IRM": {
   "name": "Iron Mountain",
   "tile": "light",
@@ -1558,6 +1563,11 @@
   "name": "Newmont",
   "tile": "light",
   "source": "nvstly/icons@3ba2624"
+ },
+ "NET": {
+  "name": "NET",
+  "tile": "light",
+  "source": "nvstly/icons@main"
  },
  "NFLX": {
   "name": "Netflix",

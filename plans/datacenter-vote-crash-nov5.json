@@ -1,0 +1,342 @@
+{
+  "id": "datacenter-vote-crash-nov5",
+  "title": "Voters said no to data centers. Chips had their 2nd-worst day ever.",
+  "structure": "timeline",
+  "hookFamily": "unexpected cause",
+  "palette": "gold",
+  "scenes": [
+    {
+      "type": "open.ticker",
+      "seconds": 2.8,
+      "caption": [
+        {
+          "t": "Chips'"
+        },
+        {
+          "t": "2nd-worst"
+        },
+        {
+          "t": "day"
+        },
+        {
+          "t": "EVER.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "props": {
+        "big": "−12%",
+        "sub": "Chip index · Thu, Nov 5",
+        "tone": "bad",
+        "tickers": [
+          {
+            "s": "MU",
+            "v": "−17.5%"
+          },
+          {
+            "s": "AMD",
+            "v": "−17.3%"
+          },
+          {
+            "s": "MRVL",
+            "v": "−16.4%"
+          },
+          {
+            "s": "ARM",
+            "v": "−13.1%"
+          },
+          {
+            "s": "AVGO",
+            "v": "−10.4%"
+          },
+          {
+            "s": "INTC",
+            "v": "−10.3%"
+          },
+          {
+            "s": "QCOM",
+            "v": "−9.5%"
+          },
+          {
+            "s": "NVDA",
+            "v": "−9.3%"
+          }
+        ]
+      }
+    },
+    {
+      "type": "counter",
+      "seconds": 2.5,
+      "caption": [
+        {
+          "t": "$2.3T",
+          "key": true
+        },
+        {
+          "t": "gone"
+        },
+        {
+          "t": "in",
+          "br": true
+        },
+        {
+          "t": "one"
+        },
+        {
+          "t": "day."
+        }
+      ],
+      "source": "24/7 Wall St., Nov 6 2026",
+      "props": {
+        "label": "Nasdaq-100 value erased",
+        "to": 2.3,
+        "decimals": 1,
+        "prefix": "$",
+        "suffix": "T",
+        "sign": "−",
+        "tone": "bad",
+        "sub": "worst day since March 2020"
+      }
+    },
+    {
+      "type": "timeline",
+      "seconds": 3.2,
+      "caption": [
+        {
+          "t": "Vote."
+        },
+        {
+          "t": "Rally."
+        },
+        {
+          "t": "Then",
+          "br": true
+        },
+        {
+          "t": "CRASH.",
+          "key": true
+        }
+      ],
+      "source": "Fortune & 24/7 Wall St., Nov 6 2026",
+      "props": {
+        "items": [
+          {
+            "label": "TUE",
+            "value": "Vote"
+          },
+          {
+            "label": "WED",
+            "value": "Rally"
+          },
+          {
+            "label": "THU",
+            "value": "−6.4%"
+          }
+        ],
+        "note": "Nasdaq-100 on Thursday. Wall St. tied it to the election.",
+        "noteHighlight": "the election"
+      }
+    },
+    {
+      "type": "grid100",
+      "seconds": 3.4,
+      "caption": [
+        {
+          "t": "Towns"
+        },
+        {
+          "t": "voted"
+        },
+        {
+          "t": "NO",
+          "key": true
+        },
+        {
+          "t": "to",
+          "br": true
+        },
+        {
+          "t": "data"
+        },
+        {
+          "t": "centers."
+        }
+      ],
+      "source": "Forbes, Nov 4 2026 · early results",
+      "props": {
+        "highlight": 80,
+        "label": "80%+ of Ashville, OH voted NO",
+        "sub": "Similar measures passed in 10 states",
+        "tone": "bad"
+      }
+    },
+    {
+      "type": "causeChain",
+      "seconds": 3.6,
+      "caption": [
+        {
+          "t": "UBS:"
+        },
+        {
+          "t": "30%",
+          "key": true
+        },
+        {
+          "t": "of"
+        },
+        {
+          "t": "new"
+        },
+        {
+          "t": "builds",
+          "br": true
+        },
+        {
+          "t": "at"
+        },
+        {
+          "t": "risk."
+        }
+      ],
+      "source": "StockTitan & 24/7 Wall St., Nov 5-6 2026",
+      "props": {
+        "n": 1,
+        "title": "Why chips took the hit",
+        "stat": {
+          "value": "30%",
+          "label": "of 2028 US data-center adds at risk (UBS)"
+        },
+        "steps": [
+          "Fewer data centers get built",
+          "Fewer AI chips get bought"
+        ]
+      }
+    },
+    {
+      "type": "barRank",
+      "seconds": 2.8,
+      "caption": [
+        {
+          "t": "Micron,"
+        },
+        {
+          "t": "AMD:"
+        },
+        {
+          "t": "−17%.",
+          "key": true
+        }
+      ],
+      "source": "StockTitan, Nov 5 2026 · at close",
+      "props": {
+        "title": "Thu, Nov 5 · at close",
+        "bars": [
+          {
+            "label": "Micron",
+            "value": -17.46,
+            "display": "−17.5%",
+            "highlight": true,
+            "logo": "MU"
+          },
+          {
+            "label": "AMD",
+            "value": -17.26,
+            "display": "−17.3%",
+            "logo": "AMD"
+          },
+          {
+            "label": "Marvell",
+            "value": -16.43,
+            "display": "−16.4%",
+            "logo": "MRVL"
+          },
+          {
+            "label": "Arm",
+            "value": -13.08,
+            "display": "−13.1%",
+            "logo": "ARM"
+          },
+          {
+            "label": "Nvidia",
+            "value": -9.26,
+            "display": "−9.3%",
+            "logo": "NVDA"
+          }
+        ]
+      }
+    },
+    {
+      "type": "scoreboard",
+      "seconds": 2.8,
+      "caption": [
+        {
+          "t": "But"
+        },
+        {
+          "t": "Friday,"
+        },
+        {
+          "t": "AI"
+        },
+        {
+          "t": "cloud",
+          "br": true
+        },
+        {
+          "t": "BOUNCED.",
+          "key": true
+        }
+      ],
+      "source": "24/7 Wall St., Nov 6 2026 · morning trading",
+      "props": {
+        "title": "Fri, Nov 6 · morning trading",
+        "rows": [
+          {
+            "name": "Cloudflare",
+            "value": "+20%",
+            "up": true,
+            "hero": true,
+            "logo": "NET"
+          },
+          {
+            "name": "IREN",
+            "value": "+15%",
+            "up": true,
+            "logo": "IREN"
+          },
+          {
+            "name": "CoreWeave",
+            "value": "+10%",
+            "up": true
+          }
+        ],
+        "footnote": "after earnings beats · no hyperscaler has cut spending"
+      }
+    },
+    {
+      "type": "calendarCta",
+      "seconds": 3.2,
+      "caption": [
+        {
+          "t": "Real"
+        },
+        {
+          "t": "test:"
+        },
+        {
+          "t": "Nov 17.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "24/7 Wall St., Nov 6 2026",
+      "props": {
+        "day": "TUE",
+        "date": "Nov 17",
+        "event": "Nvidia earnings (expected)",
+        "note": "Key level: QQQ $691.95, its Nov 4 close",
+        "cta": "Follow @tech_stocks_news for Nov 17 →"
+      }
+    }
+  ]
+}

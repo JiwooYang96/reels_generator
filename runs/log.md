@@ -4,6 +4,7 @@ One row per video, newest first. Claude checks the last 5 rows to rotate structu
 
 | Date | Topic | Structure | Hook family | Opening | Main scene | Plan / file |
 | --- | --- | --- | --- | --- | --- | --- |
+| 2026-11-07 | Data-center vote → chips −12% (2nd-worst day ever), $2.3T gone, UBS 30% at risk, Friday AI-cloud bounce, Nov 17 test | timeline | unexpected cause | open.ticker | timeline, grid100, barRank | plans/datacenter-vote-crash-nov5.json |
 | 2026-11-07 | Nvidia's week v3: Apple passed it, −25% / $1.4T, 3 reasons with numbers, Friday bounce, Nov 17 $108B test | countdown (numbers + reasons) | contrarian / belief break | open.logo (NVDA) | versus, counter, causeChain x3 | plans/nvidia-week-nov6-v3.json |
 | 2026-11-07 | Nvidia's week v2: Apple passed it, 3 real reasons for the −25%, Friday bounce, Nov 17 earnings | countdown (reasons) | contrarian / belief break | open.logo (NVDA) | causeChain x3, scoreboard | plans/nvidia-week-nov6-v2.json |
 | 2026-11-07 | Nvidia's week: Apple passed it, −25% from record, Friday bounce, Nov 17 earnings | countdown | contrarian / belief break | open.logo (NVDA) | lineMove, counter, versus | plans/nvidia-week-nov6.json |
