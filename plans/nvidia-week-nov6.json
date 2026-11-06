@@ -1,0 +1,65 @@
+{
+  "id": "nvidia-week-nov6",
+  "title": "Apple just passed Nvidia: 3 numbers from Nvidia's week",
+  "structure": "countdown",
+  "hookFamily": "contrarian / belief break",
+  "scenes": [
+    {
+      "type": "open.logo",
+      "seconds": 2.5,
+      "caption": [{"t": "Apple"}, {"t": "just"}, {"t": "passed"}, {"t": "NVIDIA.", "key": true, "br": true}],
+      "props": {"ticker": "NVDA", "big": "#2", "sub": "behind Apple this week", "tone": "bad"}
+    },
+    {
+      "type": "chapters",
+      "seconds": 2.5,
+      "caption": [{"t": "3 numbers", "key": true}, {"t": "explain"}, {"t": "why."}],
+      "props": {"items": ["Down from its record", "One brutal day", "The new No. 1"], "unlocked": 0}
+    },
+    {
+      "type": "lineMove",
+      "seconds": 3,
+      "caption": [{"t": "1."}, {"t": "Down"}, {"t": "25%", "key": true}, {"t": "from", "br": true}, {"t": "its"}, {"t": "record."}],
+      "source": "Forbes, Nov 6 2026",
+      "props": {"title": "NVDA · Oct 6 → Nov 5", "startLabel": "Oct 6 record", "direction": "down", "badge": "−25%"}
+    },
+    {
+      "type": "counter",
+      "seconds": 3,
+      "caption": [{"t": "2."}, {"t": "−9.3%", "key": true}, {"t": "in"}, {"t": "one", "br": true}, {"t": "day."}],
+      "source": "Forbes, Nov 6 2026",
+      "props": {"label": "NVDA · Thu, Nov 5", "to": 9.3, "sign": "−", "suffix": "%", "decimals": 1, "tone": "bad", "logo": "NVDA", "sub": "$1.4T lost since the peak"}
+    },
+    {
+      "type": "versus",
+      "seconds": 3,
+      "caption": [{"t": "3."}, {"t": "Apple"}, {"t": "took"}, {"t": "the", "br": true}, {"t": "CROWN.", "key": true}],
+      "source": "Yahoo Finance, Nov 5 2026",
+      "props": {
+        "left": {"name": "Apple", "value": "$5.10T", "caption": "market value", "logo": "AAPL"},
+        "right": {"name": "Nvidia", "value": "$4.83T", "caption": "market value", "logo": "NVDA"},
+        "winner": "left"
+      }
+    },
+    {
+      "type": "scoreboard",
+      "seconds": 3,
+      "caption": [{"t": "But"}, {"t": "Friday,"}, {"t": "chips"}, {"t": "BOUNCED.", "key": true, "br": true}],
+      "source": "Yahoo Finance live, Nov 6 2026",
+      "props": {
+        "title": "Fri, Nov 6 · intraday",
+        "rows": [
+          {"name": "Nvidia", "value": "+6%", "up": true, "hero": true, "logo": "NVDA"},
+          {"name": "Chip index", "value": "+4%", "up": true}
+        ],
+        "footnote": "after a 12% chip plunge on Thursday"
+      }
+    },
+    {
+      "type": "calendarCta",
+      "seconds": 3,
+      "caption": [{"t": "The"}, {"t": "real"}, {"t": "test:"}, {"t": "NOV 17.", "key": true, "br": true}],
+      "props": {"day": "TUE", "date": "Nov 17", "event": "Nvidia earnings", "cta": "Follow for the earnings →"}
+    }
+  ]
+}
