@@ -22,7 +22,7 @@ npx remotion studio                      # live preview/editor
 | `src/scenes/` | Scenes: 6 openings (`open.*`) and 15 data scenes, including `causeChain` for reasons |
 | `src/plan/` | Plan format, checks, caption timing, and the `PlanVideo` composition |
 | `src/theme.ts` | Palettes (gold, terminal, editorial, midnight), fonts, safe zone |
-| `src/fx.tsx` | Camera shake, particle burst, film grain, cut flash |
+| `src/fx.tsx` | Camera punch, shake, impact rings, film grain, cut flash |
 | `scripts/make.sh` | Check plan -> sound -> render -> frame sheet |
 | `scripts/prepare.ts` | Plan checks (caption length, sources, keywords, reading speed) |
 | `scripts/sfx.py` | Sound-effects track from scene events |
