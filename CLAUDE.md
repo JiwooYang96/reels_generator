@@ -14,7 +14,8 @@ Versions are pinned (Remotion 4.0.540, zod 4.6.7, skills in `skills-lock.json`).
 1. **Research.** WebSearch the topic's latest news (last 24-48 h). Open at least 2 pages with WebFetch; a snippet is not a source. Pick one fresh, concrete number and a twist.
 2. **Hook.** Use the `hooksmith` skill (`hooksmith generate`) for 3-5 hook options; score them with the `viral-short-form` skill's `assets/hook-checklist.md`. Don't reuse the hook family of the last entry in `runs/log.md`.
 3. **Structure.** Pick one not used in the last 5 entries of `runs/log.md`: countdown, versus, myth vs fact, timeline, what-happens-next, single number, escalation -> rehook -> open loop. Spine: opening (number on screen within 1 s) -> escalation -> rehook ("But...") -> payoff -> open loop / follow CTA. Default 10 s total.
-4. **Plan.** Write `plans/<id>.json` using scenes from `docs/SCENES.md` (see `plans/ai-selloff.json`). Scene 1 is an `open.*` opening (rotate the opening type; `open.logo` for one-company stories). Add company logos per "Logos" below. Captions: max 2 lines of 24 chars, one boxed keyword (`key: true`), `br: true` for line 2, about 2.5 words per second. Every data scene gets a `source` ("Outlet, date").
+   **Reasons must be reasons.** When the video promises "why" or "N reasons", each reason is a `causeChain` scene that states what caused what (cause → effect → effect on the stock), taken from the sources. A description of what happened ("down 25%", "fell 9%") is not a reason; put such numbers in the hook or a stat chip. Give every reason a `stat` (one big sourced number) and 2 short steps (about 5 words each) so it is readable in 3.5 s.
+4. **Plan.** Write `plans/<id>.json` using scenes from `docs/SCENES.md` (see `plans/nvidia-week-nov6-v3.json`). Leave `palette` at the channel default unless the user asks. Scene 1 is an `open.*` opening (rotate the opening type; `open.logo` for one-company stories). Add company logos per "Logos" below. Captions: max 2 lines of 24 chars, one boxed keyword (`key: true`), `br: true` for line 2, about 2.5 words per second. Every data scene gets a `source` ("Outlet, date").
 5. **Make.** `scripts/make.sh plans/<id>.json`. It checks the plan (fix every problem it prints), builds the sound, renders `out/<id>.mp4` and `out/<id>-sheet.png`. About 1 minute.
 6. **Look.** Read `out/<id>-sheet.png`. Check that nothing overlaps or is cut off and that the story reads in order. Adjust the plan and re-run if needed.
 7. **Deliver.** Send the MP4 with a one-line-per-scene summary, caveats (single-source numbers, illustrative chart shapes, numbers that will go stale) and source links. Append a row to `runs/log.md`. Commit the plan and log on a branch and open a PR when the repo is attached.
@@ -36,9 +37,14 @@ The channel covers stock news, and company logos are the hook. 472 logos (448 S&
 - **Missing ticker?** `scripts/make.sh` fails with the fix. Run `python3 scripts/logos.py add TICKER` (fetches from nvstly/icons). If nvstly doesn't have it, drop the `logo` field; never draw or invent a logo.
 - **Ticker != company name.** Use the share class people know (GOOGL for Alphabet, META, BRK.B has no logo). `logoName(ticker)` gives the company name from the manifest.
 
+## Look
+
+- No particle "glitter", sparkles or confetti: they read as AI-made. Impacts use the camera punch, shake and thin rings in `src/fx.tsx`.
+- Palettes live in `src/theme.ts` (`gold`, `terminal`, `editorial`, `midnight`); a plan picks one with `"palette"`. Every colour in scenes comes from the palette tokens (`T`, `mix()`), never hard-coded, so palettes stay switchable. Logo tiles stay neutral white/black in every palette.
+
 ## Variety
 
-Brand stays fixed (`src/theme.ts`). Rotate structure, hook family, opening type and the main data scene; nothing repeats within the last 5 log entries.
+Brand stays fixed (`src/theme.ts`, one palette for the channel). Rotate structure, hook family, opening type and the main data scene; nothing repeats within the last 5 log entries.
 
 ## New scenes
 

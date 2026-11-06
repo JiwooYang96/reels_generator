@@ -4,7 +4,7 @@
 import React from 'react';
 import {Img, staticFile} from 'remotion';
 import manifest from '../public/logos/manifest.json';
-import {FONT, T} from './theme';
+import {FONT, T, mix} from './theme';
 
 type Entry = {name: string; tile: 'light' | 'dark'; source: string};
 const LOGOS = manifest as Record<string, Entry>;
@@ -25,7 +25,7 @@ export const Logo: React.FC<{ticker: string; size: number; style?: React.CSSProp
     );
   }
   return (
-    <div style={{...base, background: e.tile === 'dark' ? '#16130f' : '#ffffff', border: e.tile === 'dark' ? '2px solid rgba(255,255,255,0.12)' : '2px solid rgba(60,45,20,0.08)'}}>
+    <div style={{...base, background: e.tile === 'dark' ? '#121212' : '#ffffff', border: e.tile === 'dark' ? '2px solid rgba(255,255,255,0.12)' : `2px solid ${mix(T.ink, 0.08)}`}}>
       <Img src={staticFile(`logos/${t}.png`)} style={{width: '78%', height: '78%', objectFit: 'contain'}} />
     </div>
   );

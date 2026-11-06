@@ -5,7 +5,7 @@ import {z} from 'zod';
 import {Card, ease, fade, pop} from '../kit';
 import {shakeAt} from '../fx';
 import {Logo} from '../logo';
-import {CARD, FONT, T, fit, toneColor} from '../theme';
+import {CARD, FONT, T, fit, mix, toneColor} from '../theme';
 import type {SceneDef} from './types';
 
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
@@ -24,11 +24,11 @@ const Enter: React.FC<{top?: number; left?: number; width?: number; children: Re
 };
 
 const Kicker: React.FC<{text: string; dark: boolean}> = ({text, dark}) => (
-  <div style={{fontSize: 30, fontWeight: 700, letterSpacing: 4, color: dark ? 'rgba(244,239,230,0.55)' : T.inkSoft, textTransform: 'uppercase'}}>{text}</div>
+  <div style={{fontSize: 30, fontWeight: 700, letterSpacing: 4, color: dark ? `${mix(T.paper, 0.55)}` : T.inkSoft, textTransform: 'uppercase'}}>{text}</div>
 );
 
 const ink = (dark: boolean) => (dark ? T.paper : T.ink);
-const soft = (dark: boolean) => (dark ? 'rgba(244,239,230,0.55)' : T.inkSoft);
+const soft = (dark: boolean) => (dark ? `${mix(T.paper, 0.55)}` : T.inkSoft);
 
 // ---------------------------------------------------------------- counter
 const counterSchema = z.object({
@@ -68,7 +68,7 @@ export const counter: SceneDef<Counter> = {
             {p.logo ? <Logo ticker={p.logo} size={120} style={{margin: '0 auto 24px'}} /> : null}
             <Kicker text={p.label} dark={dark} />
             <div style={{color: p.tone === 'gold' && !dark ? T.gold : c, fontSize: fit(finalText, 720, 200), fontWeight: 900, letterSpacing: -6, marginTop: 16, fontVariantNumeric: 'tabular-nums', whiteSpace: 'nowrap'}}>{text}</div>
-            <div style={{height: 14, borderRadius: 7, background: dark ? 'rgba(255,255,255,0.08)' : 'rgba(60,45,20,0.08)', marginTop: 20, overflow: 'hidden'}}>
+            <div style={{height: 14, borderRadius: 7, background: dark ? 'rgba(255,255,255,0.08)' : `${mix(T.ink, 0.08)}`, marginTop: 20, overflow: 'hidden'}}>
               <div style={{height: 14, width: `${k * 100}%`, background: `linear-gradient(90deg, ${T.goldLight}, ${c})`}} />
             </div>
             {p.sub ? <div style={{color: ink(dark), fontSize: 44, fontWeight: 700, marginTop: 30, opacity: fade(f, end, 8)}}>{p.sub}</div> : null}
@@ -105,7 +105,7 @@ export const priceSlam: SceneDef<z.infer<typeof slamSchema>> = {
               <div style={{color: ink(dark), fontSize: fit(p.oldValue, 640, 180), fontWeight: 800, letterSpacing: -6, opacity: 1 - slam * 0.55, whiteSpace: 'nowrap'}}>{p.oldValue}</div>
               <div style={{position: 'absolute', left: -10, top: '52%', height: 14, borderRadius: 7, background: T.red, width: `${interpolate(f, [at - 6, at + 2], [0, 105], clamp)}%`}} />
             </div>
-            <div style={{position: 'absolute', right: 30, bottom: -60, background: T.goldLight, color: T.ink, borderRadius: 28, padding: '18px 40px', fontSize: fit(p.newValue, 460, 110), fontWeight: 900, letterSpacing: -4, rotate: '8deg', scale: `${slam}`, boxShadow: '0 30px 80px rgba(242,194,91,0.45)', whiteSpace: 'nowrap'}}>
+            <div style={{position: 'absolute', right: 30, bottom: -60, background: T.goldLight, color: T.ink, borderRadius: 28, padding: '18px 40px', fontSize: fit(p.newValue, 460, 110), fontWeight: 900, letterSpacing: -4, rotate: '8deg', scale: `${slam}`, boxShadow: `0 30px 80px ${mix(T.goldLight, 0.45)}`, whiteSpace: 'nowrap'}}>
               {p.newValue}
             </div>
           </Card>
@@ -145,8 +145,8 @@ export const compareBars: SceneDef<z.infer<typeof compareSchema>> = {
               return (
                 <div key={i} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: 200}}>
                   <div style={{fontSize: fit(b.display, 200, 60), fontWeight: 800, color: strong ? (dark ? T.goldLight : T.gold) : soft(dark), letterSpacing: -2, marginBottom: 18, opacity: k, whiteSpace: 'nowrap'}}>{b.display}</div>
-                  <div style={{width: w, height: H, borderRadius: w / 2, background: dark ? 'rgba(255,255,255,0.06)' : 'rgba(60,45,20,0.06)', border: dark ? '3px solid rgba(255,255,255,0.1)' : '3px solid rgba(60,45,20,0.1)', position: 'relative', overflow: 'hidden'}}>
-                    <div style={{position: 'absolute', bottom: 0, left: 0, right: 0, height: (H * b.value * k) / max, borderRadius: w / 2, background: strong ? `linear-gradient(180deg, ${T.goldLight}, ${T.gold})` : 'linear-gradient(180deg, #d9d2c5, #b8afa0)'}} />
+                  <div style={{width: w, height: H, borderRadius: w / 2, background: dark ? 'rgba(255,255,255,0.06)' : `${mix(T.ink, 0.06)}`, border: dark ? '3px solid rgba(255,255,255,0.1)' : `3px solid ${mix(T.ink, 0.1)}`, position: 'relative', overflow: 'hidden'}}>
+                    <div style={{position: 'absolute', bottom: 0, left: 0, right: 0, height: (H * b.value * k) / max, borderRadius: w / 2, background: strong ? `linear-gradient(180deg, ${T.goldLight}, ${T.gold})` : `linear-gradient(180deg, ${mix(T.inkSoft, 0.35)}, ${mix(T.inkSoft, 0.6)})`}} />
                   </div>
                   {b.logo ? <Logo ticker={b.logo} size={72} style={{marginTop: 18}} /> : null}
                   <div style={{fontSize: 32, fontWeight: 700, color: ink(dark), marginTop: b.logo ? 10 : 20, textAlign: 'center'}}>{b.label}</div>
@@ -155,7 +155,7 @@ export const compareBars: SceneDef<z.infer<typeof compareSchema>> = {
             })}
           </div>
           {p.badge ? (
-            <div style={{position: 'absolute', left: '50%', top: 330, translate: '-50% 0', background: dark ? T.goldLight : T.ink, color: dark ? T.ink : T.goldLight, borderRadius: 28, padding: '12px 36px', fontSize: fit(p.badge, 300, 110), fontWeight: 900, letterSpacing: -4, scale: `${pop(f, badgeAt, 12)}`, rotate: '-5deg', boxShadow: '0 30px 70px rgba(25,21,16,0.35)', whiteSpace: 'nowrap'}}>
+            <div style={{position: 'absolute', left: '50%', top: 330, translate: '-50% 0', background: dark ? T.goldLight : T.ink, color: dark ? T.ink : T.goldLight, borderRadius: 28, padding: '12px 36px', fontSize: fit(p.badge, 300, 110), fontWeight: 900, letterSpacing: -4, scale: `${pop(f, badgeAt, 12)}`, rotate: '-5deg', boxShadow: `0 30px 70px ${mix(T.ink, 0.35)}`, whiteSpace: 'nowrap'}}>
               {p.badge}
             </div>
           ) : null}
@@ -200,7 +200,7 @@ export const lineMove: SceneDef<z.infer<typeof lineSchema>> = {
         <Card dark={dark} style={{height: 740, padding: 44, boxSizing: 'border-box', position: 'relative'}}>
           <Kicker text={p.title} dark={dark} />
           <svg width={720} height={420} style={{marginTop: 30, overflow: 'visible'}}>
-            <line x1={0} x2={720} y1={startY} y2={startY} stroke={dark ? 'rgba(255,255,255,0.2)' : 'rgba(60,45,20,0.25)'} strokeWidth={3} strokeDasharray="10 10" />
+            <line x1={0} x2={720} y1={startY} y2={startY} stroke={dark ? 'rgba(255,255,255,0.2)' : `${mix(T.ink, 0.25)}`} strokeWidth={3} strokeDasharray="10 10" />
             <path d={pts.join(' ')} fill="none" stroke={c} strokeWidth={10} strokeLinecap="round" strokeLinejoin="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - draw} />
             <circle cx={40} cy={startY} r={14} fill={T.gold} />
             <text x={62} y={startY - 20} fontFamily={FONT} fontSize={30} fontWeight={700} fill={T.gold}>{p.startLabel}</text>
@@ -237,7 +237,7 @@ export const scoreboard: SceneDef<z.infer<typeof scoreSchema>> = {
             const s = pop(f, 12 + i * 6, 10);
             const c = r.up ? T.green : T.red;
             return (
-              <div key={i} style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 18, padding: '26px 32px', borderRadius: 24, background: r.hero ? (r.up ? 'rgba(47,163,107,0.12)' : 'rgba(224,72,61,0.12)') : dark ? 'rgba(255,255,255,0.04)' : 'rgba(60,45,20,0.04)', border: r.hero ? `4px solid ${c}` : '4px solid transparent', scale: `${0.9 + 0.1 * s}`, opacity: s}}>
+              <div key={i} style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 18, padding: '26px 32px', borderRadius: 24, background: r.hero ? (r.up ? 'rgba(47,163,107,0.12)' : 'rgba(224,72,61,0.12)') : dark ? 'rgba(255,255,255,0.04)' : `${mix(T.ink, 0.04)}`, border: r.hero ? `4px solid ${c}` : '4px solid transparent', scale: `${0.9 + 0.1 * s}`, opacity: s}}>
                 <div style={{display: 'flex', alignItems: 'center', gap: 22}}>
                   {r.logo ? <Logo ticker={r.logo} size={72} /> : null}
                   <div style={{fontSize: fit(r.name, r.logo ? 290 : 380, 56), fontWeight: 800, color: ink(dark), whiteSpace: 'nowrap'}}>{r.name}</div>
@@ -279,14 +279,14 @@ export const stampList: SceneDef<z.infer<typeof stampSchema>> = {
           {p.rows.map((r, i) => {
             const s = r.stamped ? pop(f, 16 + i * 12, 8) : 0;
             return (
-              <div key={i} style={{position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '34px 32px', borderRadius: 24, background: dark ? 'rgba(255,255,255,0.04)' : 'rgba(60,45,20,0.04)', marginTop: 20}}>
+              <div key={i} style={{position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '34px 32px', borderRadius: 24, background: dark ? 'rgba(255,255,255,0.04)' : `${mix(T.ink, 0.04)}`, marginTop: 20}}>
                 <div style={{display: 'flex', alignItems: 'center', gap: 20}}>
                   {r.logo ? <Logo ticker={r.logo} size={64} /> : null}
                   <div style={{fontSize: fit(r.name, r.logo ? 250 : 330, 46), fontWeight: 800, color: ink(dark), whiteSpace: 'nowrap', opacity: 1 - s * 0.6}}>{r.name}</div>
                 </div>
                 <div style={{fontSize: 42, fontWeight: 700, color: soft(dark), opacity: 1 - s * 0.6}}>{r.value}</div>
                 {r.stamped ? (
-                  <div style={{position: 'absolute', right: 14, top: 22, border: `6px solid ${T.red}`, color: T.red, borderRadius: 14, padding: '6px 20px', fontSize: fit(p.stamp, 250, 46), fontWeight: 900, letterSpacing: 4, rotate: '-10deg', scale: `${interpolate(s, [0, 1], [2.2, 1])}`, opacity: s, background: dark ? 'rgba(23,20,15,0.85)' : 'rgba(255,253,248,0.85)', whiteSpace: 'nowrap'}}>
+                  <div style={{position: 'absolute', right: 14, top: 22, border: `6px solid ${T.red}`, color: T.red, borderRadius: 14, padding: '6px 20px', fontSize: fit(p.stamp, 250, 46), fontWeight: 900, letterSpacing: 4, rotate: '-10deg', scale: `${interpolate(s, [0, 1], [2.2, 1])}`, opacity: s, background: dark ? `${mix(T.darkCard, 0.85)}` : `${mix(T.card, 0.85)}`, whiteSpace: 'nowrap'}}>
                     {p.stamp}
                   </div>
                 ) : null}
@@ -319,13 +319,13 @@ export const timeline: SceneDef<z.infer<typeof timelineSchema>> = {
     const parts = p.note && p.noteHighlight ? p.note.split(p.noteHighlight) : null;
     return (
       <div style={{position: 'absolute', left: CARD.x, top: 560, width: CARD.w, fontFamily: FONT}}>
-        <div style={{position: 'absolute', left: 70, right: 70, top: 66, height: 6, background: 'rgba(242,194,91,0.18)', borderRadius: 3}}>
+        <div style={{position: 'absolute', left: 70, right: 70, top: 66, height: 6, background: `${mix(T.goldLight, 0.18)}`, borderRadius: 3}}>
           <div style={{height: 6, borderRadius: 3, background: T.goldLight, width: `${interpolate(f, [6, 26], [0, 100], {...clamp, easing: ease})}%`}} />
         </div>
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
           {p.items.map((it, i) => (
             <div key={i} style={{width: 220, display: 'flex', flexDirection: 'column', alignItems: 'center', scale: `${pop(f, 8 + i * 6, 10)}`}}>
-              <div style={{width: 136, height: 136, borderRadius: '50%', background: dark ? T.darkCard : T.card, border: `5px solid ${T.goldLight}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: dark ? T.goldLight : T.gold, fontSize: 38, fontWeight: 800, boxShadow: '0 0 60px rgba(242,194,91,0.35)'}}>{it.label}</div>
+              <div style={{width: 136, height: 136, borderRadius: '50%', background: dark ? T.darkCard : T.card, border: `5px solid ${T.goldLight}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: dark ? T.goldLight : T.gold, fontSize: 38, fontWeight: 800, boxShadow: `0 0 60px ${mix(T.goldLight, 0.35)}`}}>{it.label}</div>
               <div style={{color: ink(dark), fontSize: fit(it.value, 220, 44), fontWeight: 800, marginTop: 22, whiteSpace: 'nowrap'}}>{it.value}</div>
             </div>
           ))}
@@ -343,12 +343,12 @@ export const timeline: SceneDef<z.infer<typeof timelineSchema>> = {
 };
 
 // ---------------------------------------------------------------- calendarCta
-const calSchema = z.object({day: z.string().max(4), date: z.string(), event: z.string(), cta: z.string().default('Follow so you see what happens →')});
+const calSchema = z.object({day: z.string().max(4), date: z.string(), event: z.string(), note: z.string().max(48).optional(), cta: z.string().default('Follow so you see what happens →')});
 export const calendarCta: SceneDef<z.infer<typeof calSchema>> = {
   schema: calSchema,
   defaultTheme: 'dark',
   needsSource: false,
-  summary: 'Calendar card for an upcoming date + pulsing follow line. Use as the open-loop ending ("the next test lands Friday").',
+  summary: 'Calendar card for an upcoming date, optional one-line fact (`note`) + pulsing follow line. Use as the open-loop ending ("the next test lands Friday").',
   events: (_p, dur) => [{kind: 'impact', at: 4}, {kind: 'click', at: Math.round(dur * 0.45)}],
   Component: ({p, dur, theme}) => {
     const f = useCurrentFrame();
@@ -364,7 +364,8 @@ export const calendarCta: SceneDef<z.infer<typeof calSchema>> = {
             <div style={{color: dark ? T.goldLight : T.gold, fontSize: fit(p.event, 480, 44, 0.55), fontWeight: 800, textAlign: 'center', marginTop: 4, whiteSpace: 'nowrap'}}>{p.event}</div>
           </Card>
         </div>
-        <div style={{position: 'absolute', left: 0, right: 0, top: 1210, textAlign: 'center', fontFamily: FONT, fontSize: fit(p.cta, 820, 50, 0.55), fontWeight: 800, color: ink(dark), opacity: fade(f, ctaAt, 8), scale: `${pulse}`}}>{p.cta}</div>
+        {p.note ? <div style={{position: 'absolute', left: 110, right: 150, top: 1150, textAlign: 'center', fontFamily: FONT, fontSize: fit(p.note, 820, 40, 0.5), fontWeight: 700, color: mix(ink(dark), 0.75), opacity: fade(f, 10, 8)}}>{p.note}</div> : null}
+        <div style={{position: 'absolute', left: 0, right: 0, top: p.note ? 1250 : 1210, textAlign: 'center', fontFamily: FONT, fontSize: fit(p.cta, 820, 50, 0.55), fontWeight: 800, color: ink(dark), opacity: fade(f, ctaAt, 8), scale: `${pulse}`}}>{p.cta}</div>
       </>
     );
   },
@@ -392,14 +393,14 @@ export const barRank: SceneDef<z.infer<typeof rankSchema>> = {
           <Kicker text={p.title} dark={dark} />
           {bars.map((b, i) => {
             const k = interpolate(f, [8 + i * 5, 28 + i * 5], [0, 1], {...clamp, easing: ease});
-            const c = b.value < 0 ? T.red : b.highlight ? T.goldLight : dark ? '#5a5247' : '#cfc6b6';
+            const c = b.value < 0 ? T.red : b.highlight ? T.goldLight : dark ? `${mix(T.paper, 0.3)}` : `${mix(T.inkSoft, 0.4)}`;
             return (
               <div key={i} style={{marginTop: 26}}>
                 <div style={{display: 'flex', justifyContent: 'space-between', fontSize: 34, fontWeight: 800, color: ink(dark)}}>
                   <span style={{whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 14}}>{b.logo ? <Logo ticker={b.logo} size={62} /> : null}{b.label}</span>
                   <span style={{color: b.value < 0 ? T.red : b.highlight ? (dark ? T.goldLight : T.gold) : soft(dark), opacity: k}}>{b.display}</span>
                 </div>
-                <div style={{height: 36, borderRadius: 18, background: dark ? 'rgba(255,255,255,0.05)' : 'rgba(60,45,20,0.05)', marginTop: 10}}>
+                <div style={{height: 36, borderRadius: 18, background: dark ? 'rgba(255,255,255,0.05)' : `${mix(T.ink, 0.05)}`, marginTop: 10}}>
                   <div style={{height: 36, borderRadius: 18, width: `${(Math.abs(b.value) / max) * 100 * k}%`, background: c}} />
                 </div>
               </div>
@@ -431,7 +432,7 @@ export const donut: SceneDef<z.infer<typeof donutSchema>> = {
     const R = 190;
     const circ = 2 * Math.PI * R;
     // Neutral shades for the non-highlighted slices: red/green would read as bad/good news.
-    const palette = dark ? [T.goldLight, '#8d857a', '#5f574c', '#a89f90', '#3c362e'] : [T.goldLight, '#8d857a', '#c9bfae', '#5f574c', '#e2dccf'];
+    const palette = dark ? [T.goldLight, mix(T.paper, 0.55), mix(T.paper, 0.3), mix(T.paper, 0.75), mix(T.paper, 0.15)] : [T.goldLight, T.inkSoft, mix(T.inkSoft, 0.45), mix(T.ink, 0.7), mix(T.inkSoft, 0.2)];
     let acc = 0;
     const draw = interpolate(f, [4, Math.round(dur * 0.5)], [0, 1], {...clamp, easing: ease});
     return (
@@ -489,7 +490,7 @@ export const grid100: SceneDef<z.infer<typeof gridSchema>> = {
             {Array.from({length: 100}).map((_, i) => {
               const appear = fade(f, 4 + (i % 10) + Math.floor(i / 10) * 2, 6);
               const isLit = lit.has(i) && f >= on;
-              return <div key={i} style={{width: 52, height: 52, borderRadius: 12, opacity: appear, background: isLit ? c : dark ? 'rgba(255,255,255,0.08)' : 'rgba(60,45,20,0.08)', scale: isLit ? `${0.8 + 0.2 * pop(f, on, 8)}` : '1', boxShadow: isLit ? `0 0 26px ${c}` : 'none'}} />;
+              return <div key={i} style={{width: 52, height: 52, borderRadius: 12, opacity: appear, background: isLit ? c : dark ? 'rgba(255,255,255,0.08)' : `${mix(T.ink, 0.08)}`, scale: isLit ? `${0.8 + 0.2 * pop(f, on, 8)}` : '1', boxShadow: isLit ? `0 0 26px ${c}` : 'none'}} />;
             })}
           </div>
           <div style={{fontSize: fit(p.label, 720, 64, 0.55), fontWeight: 900, color: ink(dark), marginTop: 36, opacity: fade(f, on, 8), whiteSpace: 'nowrap'}}>{p.label}</div>
@@ -515,7 +516,7 @@ export const versus: SceneDef<z.infer<typeof versusSchema>> = {
     const winAt = Math.round(dur * 0.5);
     const Side: React.FC<{s: z.infer<typeof side>; from: number; win: boolean}> = ({s, from, win}) => (
       <div style={{flex: 1, translate: `${interpolate(f, [0, 12], [from, 0], {...clamp, easing: ease})}px 0px`, opacity: fade(f, 0, 8)}}>
-        <Card dark={dark} style={{height: 560, padding: 36, boxSizing: 'border-box', textAlign: 'center', border: win && f >= winAt ? `5px solid ${T.goldLight}` : undefined, boxShadow: win && f >= winAt ? '0 0 80px rgba(242,194,91,0.45)' : undefined}}>
+        <Card dark={dark} style={{height: 560, padding: 36, boxSizing: 'border-box', textAlign: 'center', border: win && f >= winAt ? `5px solid ${T.goldLight}` : undefined, boxShadow: win && f >= winAt ? `0 0 80px ${mix(T.goldLight, 0.45)}` : undefined}}>
           {s.logo ? <Logo ticker={s.logo} size={150} style={{margin: '0 auto 20px'}} /> : null}
           <div style={{fontSize: fit(s.name, 320, 52), fontWeight: 900, color: ink(dark), whiteSpace: 'nowrap'}}>{s.name}</div>
           <div style={{fontSize: fit(s.value, 320, 110), fontWeight: 900, color: win && f >= winAt ? (dark ? T.goldLight : T.gold) : ink(dark), marginTop: s.logo ? 50 : 120, letterSpacing: -3, whiteSpace: 'nowrap'}}>{s.value}</div>
@@ -547,14 +548,14 @@ export const chapters: SceneDef<z.infer<typeof chaptersSchema>> = {
     return (
       <Enter top={540}>
         <div style={{display: 'flex', gap: 10, marginBottom: 30}}>
-          {p.items.map((_, i) => <div key={i} style={{flex: 1, height: 12, borderRadius: 6, background: i < p.unlocked ? T.goldLight : dark ? 'rgba(255,255,255,0.12)' : 'rgba(60,45,20,0.12)'}} />)}
+          {p.items.map((_, i) => <div key={i} style={{flex: 1, height: 12, borderRadius: 6, background: i < p.unlocked ? T.goldLight : dark ? 'rgba(255,255,255,0.12)' : `${mix(T.ink, 0.12)}`}} />)}
         </div>
         {p.items.map((t, i) => {
           const open = i < p.unlocked;
           return (
             <div key={i} style={{marginTop: 18, opacity: fade(f, 6 + i * 6, 8), translate: `${interpolate(f, [6 + i * 6, 18 + i * 6], [80, 0], {...clamp, easing: ease})}px 0px`}}>
               <Card dark={dark} style={{display: 'flex', alignItems: 'center', gap: 28, padding: '28px 34px'}}>
-                <div style={{width: 76, height: 76, borderRadius: 20, background: open ? T.goldLight : dark ? '#2a251e' : '#ece5d8', color: T.ink, fontSize: 40, fontWeight: 900, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>{i + 1}</div>
+                <div style={{width: 76, height: 76, borderRadius: 20, background: open ? T.goldLight : dark ? `${mix(T.paper, 0.12)}` : `${mix(T.inkSoft, 0.18)}`, color: T.ink, fontSize: 40, fontWeight: 900, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>{i + 1}</div>
                 <div style={{fontSize: fit(t, 520, 44, 0.55), fontWeight: 800, color: open ? ink(dark) : soft(dark), filter: open ? 'none' : 'blur(9px)', whiteSpace: 'nowrap', flex: 1}}>{t}</div>
                 {!open ? (
                   <div style={{position: 'relative', width: 44, height: 52, flexShrink: 0}}>
@@ -591,13 +592,80 @@ export const headline: SceneDef<z.infer<typeof headlineSchema>> = {
             <span>{p.outlet.toUpperCase()}</span>
             <span>{p.date}</span>
           </div>
-          <div style={{height: 3, background: dark ? 'rgba(255,255,255,0.12)' : 'rgba(60,45,20,0.12)', margin: '24px 0 30px'}} />
+          <div style={{height: 3, background: dark ? 'rgba(255,255,255,0.12)' : `${mix(T.ink, 0.12)}`, margin: '24px 0 30px'}} />
           <div style={{fontSize: 60, lineHeight: 1.18, fontWeight: 800, color: ink(dark), letterSpacing: -1}}>
             {parts[0]}
             {p.highlight ? (
               <span style={{backgroundImage: `linear-gradient(${T.goldLight}, ${T.goldLight})`, backgroundSize: `${hl}% 42%`, backgroundPosition: '0 85%', backgroundRepeat: 'no-repeat', color: ink(dark)}}>{p.highlight}</span>
             ) : null}
             {parts.slice(1).join(p.highlight ?? '')}
+          </div>
+        </Card>
+      </Enter>
+    );
+  },
+};
+
+// ---------------------------------------------------------------- causeChain (a reason, not a description)
+const chainSchema = z.object({
+  n: z.number().int().min(1).max(9),
+  title: z.string(),
+  steps: z.array(z.string().max(40)).min(2).max(3), // short, readable lines; 2 steps reads best
+  stat: z.object({value: z.string(), label: z.string()}).optional(),
+  logo,
+});
+export const causeChain: SceneDef<z.infer<typeof chainSchema>> = {
+  schema: chainSchema,
+  defaultTheme: 'light',
+  needsSource: true,
+  summary: 'Numbered reason shown as cause → effect → effect (2-3 steps, last one highlighted), optional stat chip and logo. Use for "why" videos: each reason must say what caused what, not just describe.',
+  events: (p) => [{kind: 'impact', at: 4}, ...p.steps.map((_, i) => ({kind: 'click' as const, at: 12 + i * 12}))],
+  Component: ({p, theme}) => {
+    const f = useCurrentFrame();
+    const dark = theme === 'dark';
+    const accent = dark ? T.goldLight : T.gold;
+    return (
+      <Enter top={470}>
+        <Card dark={dark} style={{padding: 44}}>
+          <div style={{display: 'flex', alignItems: 'center', gap: 26}}>
+            <div style={{width: 96, height: 96, borderRadius: 26, background: T.goldLight, color: T.ink, fontSize: 60, fontWeight: 900, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, scale: `${pop(f, 2, 10)}`}}>{p.n}</div>
+            <div style={{flex: 1}}>
+              <Kicker text={`Reason ${p.n}`} dark={dark} />
+              <div style={{fontSize: fit(p.title, 520, 52, 0.56), fontWeight: 900, color: ink(dark), letterSpacing: -1, whiteSpace: 'nowrap'}}>{p.title}</div>
+            </div>
+            {p.logo ? <Logo ticker={p.logo} size={96} /> : null}
+          </div>
+          {p.stat ? (
+            <div style={{display: 'inline-flex', alignItems: 'baseline', gap: 14, marginTop: 26, padding: '10px 22px', borderRadius: 18, background: mix(T.red, 0.12), opacity: fade(f, 8, 8)}}>
+              <span style={{fontSize: 80, fontWeight: 900, color: T.red, letterSpacing: -2}}>{p.stat.value}</span>
+              <span style={{fontSize: 34, fontWeight: 700, color: soft(dark)}}>{p.stat.label}</span>
+            </div>
+          ) : null}
+          <div style={{marginTop: 30}}>
+            {p.steps.map((s, i) => {
+              const at = 12 + i * 12;
+              const last = i === p.steps.length - 1;
+              const k = fade(f, at, 8);
+              return (
+                <React.Fragment key={i}>
+                  {i > 0 ? (
+                    <div style={{display: 'flex', justifyContent: 'center', height: 54, alignItems: 'center', opacity: k}}>
+                      <svg width={40} height={46}><path d="M20 2 V34 M6 22 L20 38 L34 22" fill="none" stroke={accent} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    </div>
+                  ) : null}
+                  <div
+                    style={{
+                      padding: '24px 30px', borderRadius: 22, opacity: k, translate: `0px ${interpolate(f, [at, at + 10], [24, 0], {...clamp, easing: ease})}px`,
+                      background: last ? mix(T.goldLight, dark ? 0.16 : 0.3) : dark ? mix(T.paper, 0.06) : mix(T.ink, 0.04),
+                      border: last ? `4px solid ${accent}` : '4px solid transparent',
+                      fontSize: p.steps.length === 2 ? 48 : 40, lineHeight: 1.2, fontWeight: last ? 900 : 700, color: ink(dark), textAlign: 'center',
+                    }}
+                  >
+                    {s}
+                  </div>
+                </React.Fragment>
+              );
+            })}
           </div>
         </Card>
       </Enter>

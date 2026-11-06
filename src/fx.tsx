@@ -74,3 +74,30 @@ export const Flash: React.FC = () => {
   const f = useCurrentFrame();
   return <AbsoluteFill style={{background: '#fff', opacity: interpolate(f, [0, 2, 7], [0, 0.75, 0], clamp)}} />;
 };
+
+// Clean impact: two thin rings expand from (cx, cy) and fade. Replaces the particle "glitter".
+export const Rings: React.FC<{at: number; cx: number; cy: number; color: string; from?: number; to?: number}> = ({at, cx, cy, color, from = 180, to = 760}) => {
+  const f = useCurrentFrame() - at;
+  if (f < 0 || f > 30) return null;
+  return (
+    <AbsoluteFill style={{pointerEvents: 'none'}}>
+      {[0, 5].map((delay) => {
+        const k = interpolate(f - delay, [0, 20], [0, 1], {...clamp, easing: (t) => 1 - (1 - t) ** 3});
+        const r = from + (to - from) * k;
+        return (
+          <div
+            key={delay}
+            style={{
+              position: 'absolute', left: cx - r, top: cy - r, width: r * 2, height: r * 2, borderRadius: '50%',
+              border: `${interpolate(k, [0, 1], [10, 1])}px solid ${color}`, opacity: f - delay < 0 ? 0 : interpolate(k, [0, 0.2, 1], [0, 0.85, 0]),
+            }}
+          />
+        );
+      })}
+    </AbsoluteFill>
+  );
+};
+
+// Hard camera punch-in on impact: 6% zoom that settles in ~8 frames.
+export const punch = (frame: number, at: number) =>
+  frame < at ? 1 : interpolate(frame, [at, at + 2, at + 10], [1, 1.06, 1], clamp);

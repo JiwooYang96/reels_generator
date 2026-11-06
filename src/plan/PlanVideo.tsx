@@ -5,10 +5,12 @@ import {AbsoluteFill, Audio, Sequence, staticFile} from 'remotion';
 import {Flash, Grain} from '../fx';
 import {Background, Caption, Source} from '../kit';
 import {SCENES} from '../scenes/registry';
-import {T} from '../theme';
+import {T, applyPalette} from '../theme';
 import {type Plan, resolvePlan} from './plan';
 
 export const PlanVideo: React.FC<Plan> = (plan) => {
+  // Swap the palette in before any scene reads the tokens.
+  applyPalette(plan.palette);
   const scenes = resolvePlan(plan);
   return (
     <AbsoluteFill style={{background: T.dark}}>
