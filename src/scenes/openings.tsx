@@ -5,6 +5,7 @@ import {AbsoluteFill, interpolate, random, useCurrentFrame} from 'remotion';
 import {z} from 'zod';
 import {Burst, shakeAt} from '../fx';
 import {pop} from '../kit';
+import {Logo, logoName} from '../logo';
 import {FONT, T, fit, toneColor} from '../theme';
 import type {SceneDef} from './types';
 
@@ -179,6 +180,38 @@ export const openBreaking: SceneDef<Base & {label: string}> = {
           </div>
         ) : null}
         <div style={{position: 'absolute', left: 120, right: 130, top: 1290, height: 6, background: c, scale: `${interpolate(f, [at, at + 10], [0, 1], clamp)} 1`, transformOrigin: 'left'}} />
+      </AbsoluteFill>
+    );
+  },
+};
+
+// ---------------------------------------------------------------- logo
+// The company's logo slams in with its move. Use when the story is about one company.
+const logoOpenSchema = base.extend({ticker: z.string().regex(/^[A-Z.]{1,6}$/, 'ticker like NVDA')});
+export const openLogo: SceneDef<z.infer<typeof logoOpenSchema>> = {
+  schema: logoOpenSchema,
+  defaultTheme: 'dark',
+  needsSource: false,
+  summary: 'OPENING. The company logo (by ticker) drops in with a shake and burst, ticker and name under it, then the big move (e.g. "−4.2%"). One-company stories.',
+  events: (p, dur) => [{kind: 'impact', at: 6}, {kind: 'impact', at: hitAt(dur) + 6}, ...(p.tone === 'bad' ? [{kind: 'fall' as const, at: 4}] : [])],
+  Component: ({p, dur}) => {
+    const f = useCurrentFrame();
+    const at = hitAt(dur) + 6;
+    const drop = pop(f, 0, 12);
+    const s = shakeAt(f, 6, 18, 12);
+    const s2 = shakeAt(f, at, 22, 12);
+    const c = toneColor(p.tone);
+    return (
+      <AbsoluteFill style={{translate: `${s.x + s2.x}px ${s.y + s2.y}px`}}>
+        <Glow color={c} at={at} />
+        <Burst at={6} cx={520} cy={760} colors={[T.goldLight, T.paper, c]} count={70} reach={420} seed={p.ticker} />
+        <div style={{position: 'absolute', left: 340, top: 560, translate: `0px ${interpolate(drop, [0, 1], [-260, 0])}px`, scale: `${interpolate(drop, [0, 1], [1.4, 1])}`, opacity: drop}}>
+          <Logo ticker={p.ticker} size={400} />
+        </div>
+        <div style={{position: 'absolute', left: 90, right: 130, top: 990, textAlign: 'center', fontFamily: FONT, color: 'rgba(244,239,230,0.7)', fontSize: 40, fontWeight: 800, letterSpacing: 6, opacity: interpolate(f, [8, 14], [0, 1], clamp)}}>
+          {p.ticker} · {logoName(p.ticker).toUpperCase()}
+        </div>
+        <BigText p={p} at={at} y={1080} />
       </AbsoluteFill>
     );
   },

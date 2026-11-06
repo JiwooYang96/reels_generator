@@ -1,6 +1,7 @@
 // The plan format Claude writes for each video, plus validation and timing helpers.
 // Used by the PlanVideo composition (browser) and scripts/prepare.ts (Node).
 import {z} from 'zod';
+import {hasLogo} from '../logo';
 import {SCENES} from '../scenes/registry';
 import type {Ev} from '../scenes/types';
 import {VIDEO} from '../theme';
@@ -74,6 +75,15 @@ export const planEvents = (scenes: ResolvedScene[]): {events: Ev[]; cuts: number
   return {events, cuts: scenes.slice(1).map((s) => s.from)};
 };
 
+// Every ticker used as a logo anywhere in a scene's props.
+export const logoTickers = (props: unknown): string[] => {
+  if (Array.isArray(props)) return props.flatMap(logoTickers);
+  if (props && typeof props === 'object') {
+    return Object.entries(props as Record<string, unknown>).flatMap(([k, v]) => ((k === 'logo' || k === 'ticker') && typeof v === 'string' ? [v] : logoTickers(v)));
+  }
+  return [];
+};
+
 // Checks a human editor would make before rendering. Returns problems; empty = good to render.
 export const checkPlan = (plan: Plan): string[] => {
   const problems: string[] = [];
@@ -100,6 +110,9 @@ export const checkPlan = (plan: Plan): string[] => {
     lines.forEach((l) => {
       if (l.length > 24) problems.push(`${n}: caption line "${l}" is ${l.length} chars; max 24`);
     });
+    for (const t of logoTickers(s.props)) {
+      if (!hasLogo(t)) problems.push(`${n}: no logo for ${t}; run "python3 scripts/logos.py add ${t}" or remove it`);
+    }
     const keys = s.caption.filter((w) => w.key).length;
     if (keys === 0) problems.push(`${n}: caption needs one boxed keyword (key: true)`);
     if (keys > 2) problems.push(`${n}: ${keys} boxed keywords; max 2`);

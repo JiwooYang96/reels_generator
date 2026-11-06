@@ -1,0 +1,2362 @@
+{
+ "A": {
+  "name": "Agilent Technologies",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AAPL": {
+  "name": "Apple Inc.",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ABBV": {
+  "name": "AbbVie",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ABNB": {
+  "name": "Airbnb",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ABT": {
+  "name": "Abbott Laboratories",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ACGL": {
+  "name": "Arch Capital Group",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ACN": {
+  "name": "Accenture",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ADBE": {
+  "name": "Adobe Inc.",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ADI": {
+  "name": "Analog Devices",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ADM": {
+  "name": "Archer Daniels Midland",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ADP": {
+  "name": "Automatic Data Processing",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ADSK": {
+  "name": "Autodesk",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AEE": {
+  "name": "Ameren",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AEP": {
+  "name": "American Electric Power",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AES": {
+  "name": "AES Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AFL": {
+  "name": "Aflac",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AIG": {
+  "name": "American International Group",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AIZ": {
+  "name": "Assurant",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AJG": {
+  "name": "Arthur J. Gallagher & Co.",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AKAM": {
+  "name": "Akamai Technologies",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ALB": {
+  "name": "Albemarle Corporation",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ALGN": {
+  "name": "Align Technology",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ALL": {
+  "name": "Allstate",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ALLE": {
+  "name": "Allegion",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AMAT": {
+  "name": "Applied Materials",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AMC": {
+  "name": "AMC Entertainment",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AMCR": {
+  "name": "Amcor",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AMD": {
+  "name": "Advanced Micro Devices",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AME": {
+  "name": "Ametek",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AMGN": {
+  "name": "Amgen",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AMP": {
+  "name": "Ameriprise Financial",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AMT": {
+  "name": "American Tower",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AMZN": {
+  "name": "Amazon",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ANET": {
+  "name": "Arista Networks",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AON": {
+  "name": "Aon plc",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AOS": {
+  "name": "A. O. Smith",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "APA": {
+  "name": "APA Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "APD": {
+  "name": "Air Products",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "APH": {
+  "name": "Amphenol",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "APO": {
+  "name": "Apollo Global Management",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "APP": {
+  "name": "AppLovin",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "APTV": {
+  "name": "Aptiv",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ARE": {
+  "name": "Alexandria Real Estate Equities",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ARES": {
+  "name": "Ares Management",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ARM": {
+  "name": "Arm Holdings",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ASML": {
+  "name": "ASML",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ATO": {
+  "name": "Atmos Energy",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AVGO": {
+  "name": "Broadcom",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AVY": {
+  "name": "Avery Dennison",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AWK": {
+  "name": "American Water Works",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AXON": {
+  "name": "Axon Enterprise",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AXP": {
+  "name": "American Express",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "AZO": {
+  "name": "AutoZone",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BA": {
+  "name": "Boeing",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BABA": {
+  "name": "Alibaba",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BAC": {
+  "name": "Bank of America",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BAX": {
+  "name": "Baxter International",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BBY": {
+  "name": "Best Buy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BDX": {
+  "name": "Becton Dickinson",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BE": {
+  "name": "Bloom Energy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BEN": {
+  "name": "Franklin Resources",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BG": {
+  "name": "Bunge Global",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BIIB": {
+  "name": "Biogen",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BKNG": {
+  "name": "Booking Holdings",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BKR": {
+  "name": "Baker Hughes",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BLK": {
+  "name": "BlackRock",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BMY": {
+  "name": "Bristol Myers Squibb",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BNY": {
+  "name": "BNY Mellon",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BR": {
+  "name": "Broadridge Financial Solutions",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BRO": {
+  "name": "Brown & Brown",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BSX": {
+  "name": "Boston Scientific",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BX": {
+  "name": "Blackstone Inc.",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "BXP": {
+  "name": "BXP, Inc.",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "C": {
+  "name": "Citigroup",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CAH": {
+  "name": "Cardinal Health",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CARR": {
+  "name": "Carrier Global",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CAT": {
+  "name": "Caterpillar Inc.",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CB": {
+  "name": "Chubb Limited",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CBOE": {
+  "name": "Cboe Global Markets",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CBRE": {
+  "name": "CBRE Group",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CCI": {
+  "name": "Crown Castle",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CCL": {
+  "name": "Carnival Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CDNS": {
+  "name": "Cadence Design Systems",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CDW": {
+  "name": "CDW Corporation",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CEG": {
+  "name": "Constellation Energy",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CF": {
+  "name": "CF Industries",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CFG": {
+  "name": "Citizens Financial Group",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CHD": {
+  "name": "Church & Dwight",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CHTR": {
+  "name": "Charter Communications",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CI": {
+  "name": "Cigna",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CIEN": {
+  "name": "Ciena",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CINF": {
+  "name": "Cincinnati Financial",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CL": {
+  "name": "Colgate-Palmolive",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CLX": {
+  "name": "Clorox",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CMCSA": {
+  "name": "Comcast",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CME": {
+  "name": "CME Group",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CMG": {
+  "name": "Chipotle Mexican Grill",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CMI": {
+  "name": "Cummins",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CMS": {
+  "name": "CMS Energy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CNC": {
+  "name": "Centene Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "COF": {
+  "name": "Capital One",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "COHR": {
+  "name": "Coherent Corp.",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "COIN": {
+  "name": "Coinbase",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "COP": {
+  "name": "ConocoPhillips",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "COR": {
+  "name": "Cencora",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "COST": {
+  "name": "Costco",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CPRT": {
+  "name": "Copart",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CPT": {
+  "name": "Camden Property Trust",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CRH": {
+  "name": "CRH plc",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CRM": {
+  "name": "Salesforce",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CRWD": {
+  "name": "CrowdStrike",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CSCO": {
+  "name": "Cisco",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CSGP": {
+  "name": "CoStar Group",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CSX": {
+  "name": "CSX Corporation",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CTAS": {
+  "name": "Cintas",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CTSH": {
+  "name": "Cognizant",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CVNA": {
+  "name": "Carvana",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CVS": {
+  "name": "CVS Health",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "CVX": {
+  "name": "Chevron Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "D": {
+  "name": "Dominion Energy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DAL": {
+  "name": "Delta Air Lines",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DASH": {
+  "name": "DoorDash",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DD": {
+  "name": "DuPont",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DDOG": {
+  "name": "Datadog",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DE": {
+  "name": "Deere & Company",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DECK": {
+  "name": "Deckers Brands",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DELL": {
+  "name": "Dell Technologies",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DG": {
+  "name": "Dollar General",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DGX": {
+  "name": "Quest Diagnostics",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DHI": {
+  "name": "D. R. Horton",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DHR": {
+  "name": "Danaher Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DIS": {
+  "name": "Walt Disney Company (The)",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DKNG": {
+  "name": "DKNG",
+  "tile": "light",
+  "source": "nvstly/icons@main"
+ },
+ "DLR": {
+  "name": "Digital Realty",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DLTR": {
+  "name": "Dollar Tree",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DOC": {
+  "name": "Healthpeak Properties",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DOV": {
+  "name": "Dover Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DOW": {
+  "name": "Dow Inc.",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DPZ": {
+  "name": "Domino's",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DRI": {
+  "name": "Darden Restaurants",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DTE": {
+  "name": "DTE Energy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DUK": {
+  "name": "Duke Energy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DVA": {
+  "name": "DaVita",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DVN": {
+  "name": "Devon Energy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "DXCM": {
+  "name": "Dexcom",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "EBAY": {
+  "name": "eBay Inc.",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ECHO": {
+  "name": "EchoStar",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ECL": {
+  "name": "Ecolab",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ED": {
+  "name": "Consolidated Edison",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "EFX": {
+  "name": "Equifax",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "EIX": {
+  "name": "Edison International",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "EL": {
+  "name": "Est\u00e9e Lauder Companies (The)",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ELV": {
+  "name": "Elevance Health",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "EME": {
+  "name": "Emcor",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "EMR": {
+  "name": "Emerson Electric",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "EOG": {
+  "name": "EOG Resources",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "EQIX": {
+  "name": "Equinix",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "EQT": {
+  "name": "EQT Corporation",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ERIE": {
+  "name": "Erie Indemnity",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ES": {
+  "name": "Eversource Energy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ESS": {
+  "name": "Essex Property Trust",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ETN": {
+  "name": "Eaton Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ETR": {
+  "name": "Entergy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "EW": {
+  "name": "Edwards Lifesciences",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "EXC": {
+  "name": "Exelon",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "EXE": {
+  "name": "Expand Energy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "EXPD": {
+  "name": "Expeditors International",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "EXPE": {
+  "name": "Expedia Group",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "EXR": {
+  "name": "Extra Space Storage",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "F": {
+  "name": "Ford Motor Company",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FANG": {
+  "name": "Diamondback Energy",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FAST": {
+  "name": "Fastenal",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FCX": {
+  "name": "Freeport-McMoRan",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FDS": {
+  "name": "FactSet",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FDX": {
+  "name": "FedEx",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FE": {
+  "name": "FirstEnergy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FERG": {
+  "name": "Ferguson Enterprises",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FFIV": {
+  "name": "F5, Inc.",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FICO": {
+  "name": "Fair Isaac",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FIS": {
+  "name": "Fidelity National Information Services",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FISV": {
+  "name": "Fiserv",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FITB": {
+  "name": "Fifth Third Bancorp",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FIX": {
+  "name": "Comfort Systems USA",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FLEX": {
+  "name": "Flex Ltd.",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FOX": {
+  "name": "Fox Corporation (Class B)",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FRT": {
+  "name": "Federal Realty Investment Trust",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FSLR": {
+  "name": "First Solar",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FTNT": {
+  "name": "Fortinet",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "FTV": {
+  "name": "Fortive",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GD": {
+  "name": "General Dynamics",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GDDY": {
+  "name": "GoDaddy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GE": {
+  "name": "GE Aerospace",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GEHC": {
+  "name": "GE HealthCare",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GEN": {
+  "name": "Gen Digital",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GEV": {
+  "name": "GE Vernova",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GILD": {
+  "name": "Gilead Sciences",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GIS": {
+  "name": "General Mills",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GL": {
+  "name": "Globe Life",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GLW": {
+  "name": "Corning Inc.",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GM": {
+  "name": "General Motors",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GME": {
+  "name": "GameStop",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GNRC": {
+  "name": "Generac",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GOOG": {
+  "name": "Alphabet Inc. (Class C)",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GOOGL": {
+  "name": "Alphabet Inc. (Class A)",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GPC": {
+  "name": "Genuine Parts Company",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GPN": {
+  "name": "Global Payments",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GRMN": {
+  "name": "Garmin",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "GS": {
+  "name": "Goldman Sachs",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HAL": {
+  "name": "Halliburton",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HAS": {
+  "name": "Hasbro",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HCA": {
+  "name": "HCA Healthcare",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HD": {
+  "name": "Home Depot (The)",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HIG": {
+  "name": "Hartford (The)",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HII": {
+  "name": "Huntington Ingalls Industries",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HLT": {
+  "name": "Hilton Worldwide",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HON": {
+  "name": "Honeywell Technologies",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HOOD": {
+  "name": "Robinhood",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HPE": {
+  "name": "Hewlett Packard Enterprise",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HPQ": {
+  "name": "HP Inc.",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HRL": {
+  "name": "Hormel Foods",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HST": {
+  "name": "Host Hotels & Resorts",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HSY": {
+  "name": "Hershey Company (The)",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HUBB": {
+  "name": "Hubbell Incorporated",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HUM": {
+  "name": "Humana",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "HWM": {
+  "name": "Howmet Aerospace",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "IBKR": {
+  "name": "Interactive Brokers",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "IBM": {
+  "name": "IBM",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ICE": {
+  "name": "Intercontinental Exchange",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "IEX": {
+  "name": "IDEX Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "IFF": {
+  "name": "International Flavors & Fragrances",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ILMN": {
+  "name": "Illumina, Inc.",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "INCY": {
+  "name": "Incyte",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "INTC": {
+  "name": "Intel",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "INTU": {
+  "name": "Intuit",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "INVH": {
+  "name": "Invitation Homes",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "IP": {
+  "name": "International Paper",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "IQV": {
+  "name": "IQVIA",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "IRM": {
+  "name": "Iron Mountain",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ISRG": {
+  "name": "Intuitive Surgical",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ITW": {
+  "name": "Illinois Tool Works",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "IVZ": {
+  "name": "Invesco",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "J": {
+  "name": "Jacobs Solutions",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "JBHT": {
+  "name": "J.B. Hunt",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "JBL": {
+  "name": "Jabil",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "JCI": {
+  "name": "Johnson Controls",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "JD": {
+  "name": "JD.com",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "JNJ": {
+  "name": "Johnson & Johnson",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "JPM": {
+  "name": "JPMorgan Chase",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "KDP": {
+  "name": "Keurig Dr Pepper",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "KEY": {
+  "name": "KeyCorp",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "KEYS": {
+  "name": "Keysight Technologies",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "KHC": {
+  "name": "Kraft Heinz",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "KIM": {
+  "name": "Kimco Realty",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "KKR": {
+  "name": "KKR & Co.",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "KLAC": {
+  "name": "KLA Corporation",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "KMB": {
+  "name": "Kimberly-Clark",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "KMI": {
+  "name": "Kinder Morgan",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "KO": {
+  "name": "Coca-Cola Company (The)",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "KR": {
+  "name": "Kroger",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "L": {
+  "name": "Loews Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LCID": {
+  "name": "Lucid",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LDOS": {
+  "name": "Leidos",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LEN": {
+  "name": "Lennar",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LH": {
+  "name": "Labcorp",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LHX": {
+  "name": "L3Harris",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LII": {
+  "name": "Lennox International",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LIN": {
+  "name": "Linde plc",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LITE": {
+  "name": "Lumentum",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LLY": {
+  "name": "Lilly (Eli)",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LMT": {
+  "name": "Lockheed Martin",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LNT": {
+  "name": "Alliant Energy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LOW": {
+  "name": "Lowe's",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LRCX": {
+  "name": "Lam Research",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LULU": {
+  "name": "Lululemon Athletica",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LUV": {
+  "name": "Southwest Airlines",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LVS": {
+  "name": "Las Vegas Sands",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LYB": {
+  "name": "LyondellBasell",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "LYV": {
+  "name": "Live Nation Entertainment",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MA": {
+  "name": "Mastercard",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MAR": {
+  "name": "Marriott International",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MCD": {
+  "name": "McDonald's",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MCHP": {
+  "name": "Microchip Technology",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MCK": {
+  "name": "McKesson",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MCO": {
+  "name": "Moody's Corporation",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MDLZ": {
+  "name": "Mondelez International",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MDT": {
+  "name": "Medtronic",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MET": {
+  "name": "MetLife",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "META": {
+  "name": "Meta Platforms",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MGM": {
+  "name": "MGM Resorts",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MKC": {
+  "name": "McCormick & Company",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MLM": {
+  "name": "Martin Marietta Materials",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MMM": {
+  "name": "3M",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MNST": {
+  "name": "Monster Beverage",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MO": {
+  "name": "Altria",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MOS": {
+  "name": "Mosaic Company (The)",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MPC": {
+  "name": "Marathon Petroleum",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MRK": {
+  "name": "Merck & Co.",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MRNA": {
+  "name": "Moderna",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MRVL": {
+  "name": "Marvell Technology",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MS": {
+  "name": "Morgan Stanley",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MSCI": {
+  "name": "MSCI",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MSFT": {
+  "name": "Microsoft",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MSI": {
+  "name": "Motorola Solutions",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MSTR": {
+  "name": "Strategy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MTB": {
+  "name": "M&T Bank",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MTD": {
+  "name": "Mettler Toledo",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "MU": {
+  "name": "Micron Technology",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NCLH": {
+  "name": "Norwegian Cruise Line Holdings",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NDAQ": {
+  "name": "Nasdaq, Inc.",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NDSN": {
+  "name": "Nordson Corporation",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NEE": {
+  "name": "NextEra Energy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NEM": {
+  "name": "Newmont",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NFLX": {
+  "name": "Netflix",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NI": {
+  "name": "NiSource",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NIO": {
+  "name": "NIO",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NKE": {
+  "name": "Nike, Inc.",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NOC": {
+  "name": "Northrop Grumman",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NOW": {
+  "name": "ServiceNow",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NRG": {
+  "name": "NRG Energy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NSC": {
+  "name": "Norfolk Southern",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NTAP": {
+  "name": "NetApp",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NTRS": {
+  "name": "Northern Trust",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NUE": {
+  "name": "Nucor",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NVDA": {
+  "name": "Nvidia",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NVO": {
+  "name": "Novo Nordisk",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NWS": {
+  "name": "News Corp (Class B)",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NWSA": {
+  "name": "News Corp (Class A)",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "NXPI": {
+  "name": "NXP Semiconductors",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "O": {
+  "name": "Realty Income",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ODFL": {
+  "name": "Old Dominion",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "OKE": {
+  "name": "Oneok",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "OKTA": {
+  "name": "Okta, Inc.",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "OMC": {
+  "name": "Omnicom Group",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ON": {
+  "name": "ON Semiconductor",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ORCL": {
+  "name": "Oracle Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ORLY": {
+  "name": "O'Reilly Automotive",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "OTIS": {
+  "name": "Otis Worldwide",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "OXY": {
+  "name": "Occidental Petroleum",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PANW": {
+  "name": "Palo Alto Networks",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PAYX": {
+  "name": "Paychex",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PCAR": {
+  "name": "Paccar",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PCG": {
+  "name": "PG&E Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PDD": {
+  "name": "PDD Holdings",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PEG": {
+  "name": "Public Service Enterprise Group",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PEP": {
+  "name": "PepsiCo",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PFE": {
+  "name": "Pfizer",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PFG": {
+  "name": "Principal Financial Group",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PG": {
+  "name": "Procter & Gamble",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PGR": {
+  "name": "Progressive Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PH": {
+  "name": "Parker Hannifin",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PHM": {
+  "name": "PulteGroup",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PKG": {
+  "name": "Packaging Corporation of America",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PLD": {
+  "name": "Prologis",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PLTR": {
+  "name": "Palantir Technologies",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PM": {
+  "name": "Philip Morris International",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PNC": {
+  "name": "PNC Financial Services",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PNW": {
+  "name": "Pinnacle West Capital",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PODD": {
+  "name": "Insulet Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PPG": {
+  "name": "PPG Industries",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PPL": {
+  "name": "PPL Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PRU": {
+  "name": "Prudential Financial",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PSX": {
+  "name": "Phillips 66",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "PYPL": {
+  "name": "PayPal",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "QCOM": {
+  "name": "Qualcomm",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "RBLX": {
+  "name": "Roblox",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "RCL": {
+  "name": "Royal Caribbean Group",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "RDDT": {
+  "name": "Reddit",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "REG": {
+  "name": "Regency Centers",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "REGN": {
+  "name": "Regeneron Pharmaceuticals",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "RF": {
+  "name": "Regions Financial Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "RIVN": {
+  "name": "Rivian",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "RJF": {
+  "name": "Raymond James Financial",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "RKLB": {
+  "name": "Rocket Lab",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "RL": {
+  "name": "Ralph Lauren Corporation",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "RMD": {
+  "name": "ResMed",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ROK": {
+  "name": "Rockwell Automation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ROL": {
+  "name": "Rollins, Inc.",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ROP": {
+  "name": "Roper Technologies",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ROST": {
+  "name": "Ross Stores",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "RSG": {
+  "name": "Republic Services",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "RTX": {
+  "name": "RTX Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SAP": {
+  "name": "SAP",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SBAC": {
+  "name": "SBA Communications",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SBUX": {
+  "name": "Starbucks",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SCHW": {
+  "name": "Charles Schwab Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SHOP": {
+  "name": "Shopify",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SHW": {
+  "name": "Sherwin-Williams",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SJM": {
+  "name": "J.M. Smucker Company (The)",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SLB": {
+  "name": "Schlumberger",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SMCI": {
+  "name": "Super Micro Computer",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SNA": {
+  "name": "Snap-on",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SNOW": {
+  "name": "Snowflake",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SNPS": {
+  "name": "Synopsys",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SO": {
+  "name": "Southern Company",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SOFI": {
+  "name": "SoFi",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SOLV": {
+  "name": "Solventum",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SONY": {
+  "name": "Sony",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SPG": {
+  "name": "Simon Property Group",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SPGI": {
+  "name": "S&P Global",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SPOT": {
+  "name": "Spotify",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SRE": {
+  "name": "Sempra",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "STE": {
+  "name": "Steris",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "STLD": {
+  "name": "Steel Dynamics",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "STT": {
+  "name": "State Street Corporation",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "STX": {
+  "name": "Seagate Technology",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "STZ": {
+  "name": "Constellation Brands",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SWK": {
+  "name": "Stanley Black & Decker",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SWKS": {
+  "name": "Skyworks Solutions",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SYF": {
+  "name": "Synchrony Financial",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SYK": {
+  "name": "Stryker Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "SYY": {
+  "name": "Sysco",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "T": {
+  "name": "AT&T",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TDG": {
+  "name": "TransDigm Group",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TDY": {
+  "name": "Teledyne Technologies",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TECH": {
+  "name": "Bio-Techne",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TEL": {
+  "name": "TE Connectivity",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TER": {
+  "name": "Teradyne",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TFC": {
+  "name": "Truist Financial",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TGT": {
+  "name": "Target Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TJX": {
+  "name": "TJX Companies",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TM": {
+  "name": "Toyota",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TMO": {
+  "name": "Thermo Fisher Scientific",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TMUS": {
+  "name": "T-Mobile US",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TPL": {
+  "name": "Texas Pacific Land Corporation",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TROW": {
+  "name": "T. Rowe Price",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TRV": {
+  "name": "Travelers Companies (The)",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TSCO": {
+  "name": "Tractor Supply",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TSLA": {
+  "name": "Tesla, Inc.",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TSM": {
+  "name": "TSMC",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TSN": {
+  "name": "Tyson Foods",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TT": {
+  "name": "Trane Technologies",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TTWO": {
+  "name": "Take-Two Interactive",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TWLO": {
+  "name": "Twilio",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TXN": {
+  "name": "Texas Instruments",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "TXT": {
+  "name": "Textron",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "U": {
+  "name": "Unity",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "UAL": {
+  "name": "United Airlines Holdings",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "UBER": {
+  "name": "Uber",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "UHS": {
+  "name": "Universal Health Services",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ULTA": {
+  "name": "Ulta Beauty",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "UNH": {
+  "name": "UnitedHealth Group",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "UNP": {
+  "name": "Union Pacific Corporation",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "UPS": {
+  "name": "United Parcel Service",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "USB": {
+  "name": "U.S. Bancorp",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "V": {
+  "name": "Visa Inc.",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "VEEV": {
+  "name": "Veeva Systems",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "VICI": {
+  "name": "Vici Properties",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "VLO": {
+  "name": "Valero Energy",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "VRSK": {
+  "name": "Verisk Analytics",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "VRT": {
+  "name": "Vertiv",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "VRTX": {
+  "name": "Vertex Pharmaceuticals",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "VST": {
+  "name": "Vistra Corp.",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "VTRS": {
+  "name": "Viatris",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "VZ": {
+  "name": "Verizon",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "WAB": {
+  "name": "Wabtec",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "WDAY": {
+  "name": "Workday, Inc.",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "WDC": {
+  "name": "Western Digital",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "WEC": {
+  "name": "WEC Energy Group",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "WELL": {
+  "name": "Welltower",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "WFC": {
+  "name": "Wells Fargo",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "WM": {
+  "name": "Waste Management",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "WMB": {
+  "name": "Williams Companies",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "WMT": {
+  "name": "Walmart",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "WRB": {
+  "name": "W. R. Berkley Corporation",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "WSM": {
+  "name": "Williams-Sonoma, Inc.",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "WST": {
+  "name": "West Pharmaceutical Services",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "WYNN": {
+  "name": "Wynn Resorts",
+  "tile": "dark",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "XOM": {
+  "name": "ExxonMobil",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "XYL": {
+  "name": "Xylem Inc.",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "XYZ": {
+  "name": "Block",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ZBH": {
+  "name": "Zimmer Biomet",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ },
+ "ZTS": {
+  "name": "Zoetis",
+  "tile": "light",
+  "source": "nvstly/icons@3ba2624"
+ }
+}
