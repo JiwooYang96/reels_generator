@@ -163,13 +163,14 @@ Default theme: dark. Source line: required.
 
 ## `calendarCta`
 
-Calendar card for an upcoming date + pulsing follow line. Use as the open-loop ending ("the next test lands Friday").
+Calendar card for an upcoming date, optional one-line fact (`note`) + pulsing follow line. Use as the open-loop ending ("the next test lands Friday").
 
 Default theme: dark. Source line: not needed.
 
 - `day`: string, max 4 chars
 - `date`: string
 - `event`: string
+- `note` (optional): string, max 48 chars
 - `cta` (optional): string, default "Follow so you see what happens →"
 
 ## `barRank`

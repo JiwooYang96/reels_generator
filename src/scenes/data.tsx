@@ -343,12 +343,12 @@ export const timeline: SceneDef<z.infer<typeof timelineSchema>> = {
 };
 
 // ---------------------------------------------------------------- calendarCta
-const calSchema = z.object({day: z.string().max(4), date: z.string(), event: z.string(), cta: z.string().default('Follow so you see what happens →')});
+const calSchema = z.object({day: z.string().max(4), date: z.string(), event: z.string(), note: z.string().max(48).optional(), cta: z.string().default('Follow so you see what happens →')});
 export const calendarCta: SceneDef<z.infer<typeof calSchema>> = {
   schema: calSchema,
   defaultTheme: 'dark',
   needsSource: false,
-  summary: 'Calendar card for an upcoming date + pulsing follow line. Use as the open-loop ending ("the next test lands Friday").',
+  summary: 'Calendar card for an upcoming date, optional one-line fact (`note`) + pulsing follow line. Use as the open-loop ending ("the next test lands Friday").',
   events: (_p, dur) => [{kind: 'impact', at: 4}, {kind: 'click', at: Math.round(dur * 0.45)}],
   Component: ({p, dur, theme}) => {
     const f = useCurrentFrame();
@@ -364,7 +364,8 @@ export const calendarCta: SceneDef<z.infer<typeof calSchema>> = {
             <div style={{color: dark ? T.goldLight : T.gold, fontSize: fit(p.event, 480, 44, 0.55), fontWeight: 800, textAlign: 'center', marginTop: 4, whiteSpace: 'nowrap'}}>{p.event}</div>
           </Card>
         </div>
-        <div style={{position: 'absolute', left: 0, right: 0, top: 1210, textAlign: 'center', fontFamily: FONT, fontSize: fit(p.cta, 820, 50, 0.55), fontWeight: 800, color: ink(dark), opacity: fade(f, ctaAt, 8), scale: `${pulse}`}}>{p.cta}</div>
+        {p.note ? <div style={{position: 'absolute', left: 110, right: 150, top: 1150, textAlign: 'center', fontFamily: FONT, fontSize: fit(p.note, 820, 40, 0.5), fontWeight: 700, color: mix(ink(dark), 0.75), opacity: fade(f, 10, 8)}}>{p.note}</div> : null}
+        <div style={{position: 'absolute', left: 0, right: 0, top: p.note ? 1250 : 1210, textAlign: 'center', fontFamily: FONT, fontSize: fit(p.cta, 820, 50, 0.55), fontWeight: 800, color: ink(dark), opacity: fade(f, ctaAt, 8), scale: `${pulse}`}}>{p.cta}</div>
       </>
     );
   },
@@ -609,7 +610,7 @@ export const headline: SceneDef<z.infer<typeof headlineSchema>> = {
 const chainSchema = z.object({
   n: z.number().int().min(1).max(9),
   title: z.string(),
-  steps: z.array(z.string().max(48)).min(2).max(3),
+  steps: z.array(z.string().max(40)).min(2).max(3), // short, readable lines; 2 steps reads best
   stat: z.object({value: z.string(), label: z.string()}).optional(),
   logo,
 });
@@ -636,8 +637,8 @@ export const causeChain: SceneDef<z.infer<typeof chainSchema>> = {
           </div>
           {p.stat ? (
             <div style={{display: 'inline-flex', alignItems: 'baseline', gap: 14, marginTop: 26, padding: '10px 22px', borderRadius: 18, background: mix(T.red, 0.12), opacity: fade(f, 8, 8)}}>
-              <span style={{fontSize: 54, fontWeight: 900, color: T.red, letterSpacing: -1}}>{p.stat.value}</span>
-              <span style={{fontSize: 30, fontWeight: 700, color: soft(dark)}}>{p.stat.label}</span>
+              <span style={{fontSize: 80, fontWeight: 900, color: T.red, letterSpacing: -2}}>{p.stat.value}</span>
+              <span style={{fontSize: 34, fontWeight: 700, color: soft(dark)}}>{p.stat.label}</span>
             </div>
           ) : null}
           <div style={{marginTop: 30}}>
@@ -657,7 +658,7 @@ export const causeChain: SceneDef<z.infer<typeof chainSchema>> = {
                       padding: '24px 30px', borderRadius: 22, opacity: k, translate: `0px ${interpolate(f, [at, at + 10], [24, 0], {...clamp, easing: ease})}px`,
                       background: last ? mix(T.goldLight, dark ? 0.16 : 0.3) : dark ? mix(T.paper, 0.06) : mix(T.ink, 0.04),
                       border: last ? `4px solid ${accent}` : '4px solid transparent',
-                      fontSize: 40, lineHeight: 1.2, fontWeight: last ? 900 : 700, color: ink(dark), textAlign: 'center',
+                      fontSize: p.steps.length === 2 ? 48 : 40, lineHeight: 1.2, fontWeight: last ? 900 : 700, color: ink(dark), textAlign: 'center',
                     }}
                   >
                     {s}
