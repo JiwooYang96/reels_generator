@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Render a composition to out/<name>.mp4 and build a QA contact sheet.
-# Usage: scripts/render.sh <CompositionId> <output-name>
+# Usage: scripts/render.sh <CompositionId> <output-name> [extra remotion args...]
 set -euo pipefail
-ID="$1"; NAME="$2"
+ID="$1"; NAME="$2"; shift 2
 mkdir -p out
 
 # Remotion can't download its own browser in the cloud workspace; use the pre-installed one.
@@ -10,7 +10,7 @@ BROWSER="${REMOTION_BROWSER:-$(ls -d /opt/pw-browsers/chromium_headless_shell*/*
 ARGS=()
 if [ -n "$BROWSER" ]; then ARGS+=(--browser-executable="$BROWSER"); fi
 
-npx remotion render src/index.ts "$ID" "out/$NAME.mp4" "${ARGS[@]}" --log=error
+npx remotion render src/index.ts "$ID" "out/$NAME.mp4" "${ARGS[@]}" "$@" --log=error
 
 # Contact sheet: 8 evenly spaced frames, 4x2.
 FRAMES=$(ffprobe -v error -count_packets -select_streams v:0 -show_entries stream=nb_read_packets -of default=nk=1:nw=1 "out/$NAME.mp4" | head -1 | tr -dc '0-9')
