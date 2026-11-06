@@ -1,6 +1,7 @@
 // The plan format Claude writes for each video, plus validation and timing helpers.
 // Used by the PlanVideo composition (browser) and scripts/prepare.ts (Node).
 import {z} from 'zod';
+import {BRAND} from '../brand';
 import {hasLogo} from '../logo';
 import {SCENES} from '../scenes/registry';
 import type {Ev} from '../scenes/types';
@@ -26,6 +27,7 @@ export const planSchema = z.object({
   scenes: z.array(sceneSchema).min(2).max(12),
   audio: z.string().optional(),
   grain: z.boolean().default(true),
+  handle: z.string().regex(/^@\w+$/).default(BRAND.handle),
   palette: z.enum(['gold', 'terminal', 'editorial', 'midnight']).default('gold'),
 });
 export type Plan = z.infer<typeof planSchema>;
@@ -119,6 +121,21 @@ export const checkPlan = (plan: Plan): string[] => {
     if (keys > 2) problems.push(`${n}: ${keys} boxed keywords; max 2`);
     const wps = s.caption.length / s.seconds;
     if (wps > 3.2) problems.push(`${n}: ${wps.toFixed(1)} words per second is too fast to read; max 3.2`);
+  });
+  // Channel: the closing scene must send viewers to the account.
+  const last = plan.scenes[plan.scenes.length - 1];
+  const lastText = JSON.stringify(last.props) + JSON.stringify(last.caption);
+  const defaultsToHandle = last.type === 'calendarCta' && !('cta' in last.props);
+  if (!defaultsToHandle && !lastText.includes(plan.handle)) problems.push(`last scene: end with a follow CTA that names ${plan.handle}`);
+
+  // Balance: numbers hook, explanations inform. Most scenes carry a number; longer videos explain at least once.
+  const body = plan.scenes.slice(1).filter((s) => s.type !== 'chapters');
+  const withNumber = body.filter((s) => /\d/.test(JSON.stringify(s.props) + JSON.stringify(s.caption))).length;
+  if (body.length && withNumber / body.length < 0.7) problems.push(`only ${withNumber} of ${body.length} scenes show a number; aim for at least 70% so every beat has a hook`);
+  const explains = plan.scenes.filter((s) => ['causeChain', 'headline', 'timeline'].includes(s.type)).length;
+  if (plan.scenes.length >= 5 && explains === 0) problems.push('no explanation scene: add a causeChain (or headline/timeline) so the video informs, not just teases');
+  plan.scenes.forEach((s, i) => {
+    if (s.type === 'causeChain' && !s.props.stat) problems.push(`scene ${i + 1} (causeChain): add a stat (one big sourced number) to the reason`);
   });
   return problems;
 };
