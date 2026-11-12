@@ -53,9 +53,10 @@ Rules: one highlighter per screen. Red/green only for direction. Never hard-code
 
 ## Sound
 
-- A calm, credible newsreader voice (ElevenLabs "Daniel") reads one natural sentence per scene. The voice tells
-  the story; captions show the short version. No hype words, no shouting.
-- Newsroom effects, all from the generated library: sting at the open, paper whoosh on cuts, boom + stamp on
+- A calm British newsreader voice (Kokoro `bm_george`) reads one plain sentence per scene. The voice tells the
+  story; captions show the short version. Hook in the first line, then facts with attribution. No hype words,
+  no shouting, no advice.
+- Newsroom effects from our library: sting at the open, paper whoosh on cuts, one paper rip, boom + stamp on
   the big number, typewriter ticks on counters. The underscore sits low under the voice.
 
 ## Layout

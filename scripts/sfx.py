@@ -14,8 +14,8 @@ events.json example (times in seconds = frame / 30):
 - fall:    falling-pitch tension tone (bad-news hooks)
 A soft 120 bpm kick/hat bed and a low drone always play.
 
-When the ElevenLabs library exists (public/sfx/lib/*.mp3, made by scripts/sfxlib.py), its sounds replace the
-synthesized ones: a news sting on the first frame, paper whooshes on cuts, boom + stamp on impacts, typewriter
+When the newsroom library exists (public/sfx/lib: *.wav from scripts/sfxsynth.py, or ElevenLabs *.mp3 from
+scripts/sfxlib.py, which win), its sounds replace the inline ones: a news sting on the first frame, paper whooshes on cuts, boom + stamp on impacts, typewriter
 ticks, a falling tone, and a low news underscore as the bed. "voice": true (set by prepare.ts when there is
 narration) turns the bed down so the voice sits on top.
 """
@@ -32,9 +32,10 @@ LIB = Path(__file__).resolve().parent.parent / "public/sfx/lib"
 
 
 def load(name):
-    """Decode public/sfx/lib/<name>.mp3 to mono float samples, or None when it isn't there."""
-    f = LIB / f"{name}.mp3"
-    if not f.exists():
+    """Decode public/sfx/lib/<name>.mp3 (ElevenLabs, preferred) or .wav (scripts/sfxsynth.py) to mono float
+    samples, or None when neither is there."""
+    f = next((LIB / f"{name}.{ext}" for ext in ("mp3", "wav") if (LIB / f"{name}.{ext}").exists()), None)
+    if f is None:
         return None
     raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(f), "-ac", "1", "-ar", str(SR), "-f", "s16le", "-"],
                          capture_output=True, check=True).stdout

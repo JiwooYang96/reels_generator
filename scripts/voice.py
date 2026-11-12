@@ -1,50 +1,100 @@
-"""Narration for a plan with ElevenLabs text-to-speech: one clip per scene.
+"""Narration for a plan: one clip per scene, read by an open-source voice model (free, no API key).
 
 Usage: python3 scripts/voice.py plans/<id>.json
 
-Writes public/vo/<id>/<n>.mp3 and out/<id>/vo.json ([{i, src, dur}]); scripts/prepare.ts then stretches
+Writes public/vo/<id>/<n>.wav and out/<id>/vo.json ([{i, src, dur}]); scripts/prepare.ts then stretches
 each scene to fit its line and places the clips. Each scene says its `voice` text, or its caption words.
 
-Env: ELEVENLABS_API_KEY (skips quietly when missing, so local preview renders still work),
-     ELEVEN_VOICE_ID (default: Daniel, a steady British newsreader voice), ELEVEN_MODEL.
+Engines (the ones VoiceStudio / OmniVoice Studio bundles, run directly so they work headless on GitHub):
+  kokoro     (default) Kokoro-82M, Apache-2.0 weights, so it is fine for a paid product. British newsreader
+             voice "bm_george" (set VOICE_NAME to change, e.g. bm_lewis, bm_daniel). Fast on a CPU.
+  omnivoice  k2-fsa OmniVoice with voice design from VOICE_INSTRUCT. Its official weights are CC-BY-NC
+             (non-commercial), so only use it if that licence fits.
+  elevenlabs paid API, used only when VOICE_ENGINE=elevenlabs and ELEVENLABS_API_KEY are set.
+Set VOICE_ENGINE=none (or leave the engine uninstalled) for a silent preview render.
 """
 import json
 import os
 import re
 import subprocess
 import sys
-import urllib.error
 import urllib.request
 from pathlib import Path
 
-API = "https://api.elevenlabs.io/v1/text-to-speech/{voice}?output_format=mp3_44100_128"
-VOICE = os.environ.get("ELEVEN_VOICE_ID", "onwK4e9ZLuTAKqWW03F9")  # Daniel (premade)
-MODEL = os.environ.get("ELEVEN_MODEL", "eleven_multilingual_v2")
+ENGINE = os.environ.get("VOICE_ENGINE", "kokoro").lower()
+VOICE_NAME = os.environ.get("VOICE_NAME", "bm_george")
+VOICE_SPEED = float(os.environ.get("VOICE_SPEED", "1.0"))
+VOICE_INSTRUCT = os.environ.get("VOICE_INSTRUCT", "male, british accent, middle-aged, calm, news presenter")
 
 
 def spoken(scene):
     """The line to read: the scene's `voice`, else its caption, cleaned up for speech."""
     text = scene.get("voice") or " ".join(w["t"] for w in scene["caption"])
-    text = text.replace("−", "minus ").replace("→", "").replace("·", ",")
-    # ALL-CAPS emphasis words read better in normal case ("NVIDIA" -> "Nvidia"), tickers of 4 letters or fewer stay.
+    text = text.replace("−", "minus ").replace("→", "").replace("·", ",").replace("&", "and")
+    # ALL-CAPS emphasis words read better in normal case ("NVIDIA" -> "Nvidia"); short tickers stay.
     text = re.sub(r"\b([A-Z]{5,})\b", lambda m: m.group(1).capitalize(), text)
-    text = re.sub(r"\s+", " ", text).strip()
-    return text
+    return re.sub(r"\s+", " ", text).strip()
 
 
-def tts(text, key):
-    body = json.dumps({
-        "text": text,
-        "model_id": MODEL,
-        "voice_settings": {"stability": 0.45, "similarity_boost": 0.8, "style": 0.25, "use_speaker_boost": True},
-    }).encode()
-    req = urllib.request.Request(API.format(voice=VOICE), data=body, method="POST",
-                                 headers={"xi-api-key": key, "Content-Type": "application/json", "Accept": "audio/mpeg"})
-    try:
+def write_wav(path, audio, sr):
+    import numpy as np
+    import soundfile as sf
+
+    audio = np.asarray(audio, dtype="float32").reshape(-1)
+    peak = float(np.max(np.abs(audio))) or 1.0
+    sf.write(str(path), audio / peak * 0.9, sr)
+
+
+def kokoro_engine():
+    import numpy as np
+    from kokoro import KPipeline
+
+    pipe = KPipeline(lang_code="b" if VOICE_NAME.startswith("b") else "a")
+
+    def say(text, path):
+        chunks = [np.asarray(audio) for _, _, audio in pipe(text, voice=VOICE_NAME, speed=VOICE_SPEED)]
+        write_wav(path, np.concatenate(chunks), 24000)
+    return say
+
+
+def omnivoice_engine():
+    import torch
+    from omnivoice import OmniVoice
+
+    model = OmniVoice.from_pretrained("k2-fsa/OmniVoice", dtype=torch.float32)
+
+    def say(text, path):
+        audio = model.generate(text=text, instruct=VOICE_INSTRUCT)
+        write_wav(path, audio[0] if isinstance(audio, (list, tuple)) else audio, 24000)
+    return say
+
+
+def elevenlabs_engine():
+    key = os.environ["ELEVENLABS_API_KEY"]
+    voice = os.environ.get("ELEVEN_VOICE_ID", "onwK4e9ZLuTAKqWW03F9")
+
+    def say(text, path):
+        body = json.dumps({"text": text, "model_id": "eleven_multilingual_v2",
+                           "voice_settings": {"stability": 0.5, "similarity_boost": 0.8}}).encode()
+        req = urllib.request.Request(f"https://api.elevenlabs.io/v1/text-to-speech/{voice}?output_format=mp3_44100_128",
+                                     data=body, method="POST",
+                                     headers={"xi-api-key": key, "Content-Type": "application/json"})
+        mp3 = path.with_suffix(".mp3")
         with urllib.request.urlopen(req, timeout=120) as r:
-            return r.read()
-    except urllib.error.HTTPError as err:
-        sys.exit(f"ElevenLabs refused the narration ({err.code}): {err.read().decode(errors='replace')[:300]}")
+            mp3.write_bytes(r.read())
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(mp3), str(path)], check=True)
+        mp3.unlink()
+    return say
+
+
+def load_engine():
+    if ENGINE in ("", "none", "off"):
+        return None
+    try:
+        return {"kokoro": kokoro_engine, "omnivoice": omnivoice_engine, "elevenlabs": elevenlabs_engine}[ENGINE]()
+    except (ImportError, KeyError) as err:
+        print(f"Voice engine '{ENGINE}' is not available here ({err}); silent preview.")
+        return None
 
 
 def duration(path):
@@ -54,11 +104,11 @@ def duration(path):
 
 
 def main(plan_path):
-    key = os.environ.get("ELEVENLABS_API_KEY", "").strip()
     plan = json.loads(Path(plan_path).read_text())
     vo_json = Path("out") / plan["id"] / "vo.json"
-    if not key:
-        print("ELEVENLABS_API_KEY not set: no narration (preview render).")
+    vo_json.parent.mkdir(parents=True, exist_ok=True)
+    say = load_engine()
+    if say is None:
         vo_json.unlink(missing_ok=True)
         return
     out_dir = Path("public/vo") / plan["id"]
@@ -68,13 +118,12 @@ def main(plan_path):
         text = spoken(scene)
         if not text:
             continue
-        path = out_dir / f"{i + 1}.mp3"
-        path.write_bytes(tts(text, key))
-        clips.append({"i": i, "src": f"vo/{plan['id']}/{i + 1}.mp3", "dur": duration(path)})
+        path = out_dir / f"{i + 1}.wav"
+        say(text, path)
+        clips.append({"i": i, "src": f"vo/{plan['id']}/{i + 1}.wav", "dur": duration(path)})
         print(f"  scene {i + 1}: {clips[-1]['dur']:.1f}s  {text}")
-    vo_json.parent.mkdir(parents=True, exist_ok=True)
     vo_json.write_text(json.dumps(clips, indent=2))
-    print(f"narration: {len(clips)} clips, {sum(c['dur'] for c in clips):.1f}s")
+    print(f"narration ({ENGINE}): {len(clips)} clips, {sum(c['dur'] for c in clips):.1f}s")
 
 
 if __name__ == "__main__":

@@ -93,6 +93,13 @@ export const logoTickers = (props: unknown): string[] => {
   return [];
 };
 
+// Words that make a finance video look like hype or advice; trust is the product, so they never appear.
+export const HYPE = [
+  'insane', 'crazy', 'shocking', "you won't believe", 'to the moon', 'guaranteed', 'must buy', 'buy now',
+  'sell now', 'explode', 'skyrocket', 'secret', 'get rich', 'millionaire', 'act now', 'free money', 'can\'t lose',
+  'next nvidia', '100x', 'huge gains', 'easy money',
+];
+
 // Checks a human editor would make before rendering. Returns problems; empty = good to render.
 export const checkPlan = (plan: Plan): string[] => {
   const problems: string[] = [];
@@ -127,7 +134,20 @@ export const checkPlan = (plan: Plan): string[] => {
     if (keys > 2) problems.push(`${n}: ${keys} boxed keywords; max 2`);
     const wps = s.caption.length / s.seconds;
     if (wps > 3.2) problems.push(`${n}: ${wps.toFixed(1)} words per second is too fast to read; max 3.2`);
+    // Narration: a calm newsreader pace (a line that's too long makes the scene drag once it stretches to fit).
+    if (s.voice) {
+      const vw = s.voice.trim().split(/\s+/).length;
+      if (vw / s.seconds > 3.4) problems.push(`${n}: voice line has ${vw} words for ${s.seconds} s; keep it under ${Math.floor(s.seconds * 3)} words`);
+    }
+    const said = `${s.voice ?? ''} ${s.caption.map((w) => w.t).join(' ')}`.toLowerCase();
+    for (const h of HYPE) if (said.includes(h)) problems.push(`${n}: "${h}" reads as hype or advice; say what happened instead`);
   });
+  // Narration is all or nothing, and the hook line must land inside the opening.
+  const voiced = plan.scenes.filter((s) => s.voice).length;
+  if (voiced && voiced < plan.scenes.length) problems.push(`${plan.scenes.length - voiced} scene(s) have no "voice" line; narrate every scene or none`);
+  const hookWords = plan.scenes[0].voice ? plan.scenes[0].voice.trim().split(/\s+/).length : 0;
+  if (hookWords > 9) problems.push(`opening voice line has ${hookWords} words; the hook must land in under 3 s (max 9 words)`);
+  if (plan.post && !/sources?:/i.test(plan.post.caption)) problems.push('post.caption needs a "Sources:" list');
   // Channel: the closing scene must send viewers to the account.
   const last = plan.scenes[plan.scenes.length - 1];
   const lastText = JSON.stringify(last.props) + JSON.stringify(last.caption);

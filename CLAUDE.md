@@ -35,15 +35,15 @@ Every trading day after the New York close a scheduled task makes one reel about
 2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook
    and plan as usual. Length 12-18 s. Write the plan to `plans/daily/<date>.json` (date = the New York trading
    day) and give it:
-   - `voice` on each scene: the narrator's line, a natural spoken sentence of about 2.5 words per second of the
-     scene (`seconds` x 2.5 words). It carries the story; the caption stays the short on-screen version.
-     Say numbers the way a newsreader would ("down eight point eight percent", "a hundred and ninety-two
-     billion dollars"). The first line is the hook and must land in under 3 seconds.
+   - `voice` on each scene: the narrator's line, about 2.5-3 words per second of the scene (raise `seconds`
+     if a line needs it). It carries the story; the caption stays the short on-screen version. Say numbers
+     the way a newsreader would ("down eight point eight percent", "a hundred and ninety-two billion
+     dollars"). See "Voice: hooking and trustworthy" below; the plan check enforces the limits.
    - `post.caption`: the Instagram caption. 2-3 lines, 3-5 hashtags, a "Sources:" list, no links.
-3. `scripts/make.sh plans/daily/<date>.json` for a silent preview (no ElevenLabs key here), read the sheet,
-   fix until clean.
-4. Commit the plan and the `runs/log.md` row straight to main and push. GitHub (`render-reel.yml`) then adds the
-   ElevenLabs narration and sound effects, renders, and queues the reel in FiveBeforeMonday `reels/<date>.*`;
+3. `scripts/make.sh plans/daily/<date>.json` for a preview (it is silent here: the voice model runs on
+   GitHub), read the sheet, fix until clean. GitHub refuses a plan that fails the check.
+4. Commit the plan and the `runs/log.md` row straight to main and push. GitHub (`render-reel.yml`) then narrates it,
+   mixes the sound, renders, and queues the reel in FiveBeforeMonday `reels/<date>.*`;
    `post-reel.yml` there posts it at 6:31pm New York time.
 5. Wait for it: pull FiveBeforeMonday every minute for up to 20 minutes until `reels/<date>.mp4` appears,
    then send that MP4 and the caption to the user. If it doesn't appear, check the run
@@ -53,13 +53,26 @@ Every trading day after the New York close a scheduled task makes one reel about
 
 ## Sound
 
-- Narration: ElevenLabs text-to-speech, one clip per scene from its `voice` line (`scripts/voice.py`, voice
-  "Daniel", a steady British newsreader; override with the `ELEVEN_VOICE_ID` repo variable). Scenes stretch
-  to fit their line. Runs where `ELEVENLABS_API_KEY` is set (GitHub Actions); local renders stay silent.
-- Effects: an ElevenLabs-generated newsroom library in `public/sfx/lib` (`scripts/sfxlib.py`, made once):
-  a sting on the first frame, paper whooshes on cuts (a paper rip on the middle cut), boom + stamp on number
-  reveals, typewriter ticks on counters, a falling tone on bad-news hooks, a low news underscore that ducks
-  under the voice. Scenes trigger these through their events; nothing to do in the plan.
+- **Narration** (`scripts/voice.py`): one clip per scene from its `voice` line, read by Kokoro (open-source,
+  Apache-2.0, free, runs on GitHub's CPU; the engine VoiceStudio / OmniVoice Studio bundles). Voice
+  `bm_george`, a calm British male newsreader; change it with the `VOICE_NAME` repo variable (`bm_lewis`,
+  `bm_daniel`, `bf_emma`). `VOICE_ENGINE=omnivoice` switches to OmniVoice voice design (its official weights
+  are non-commercial, so not for this channel as-is); `elevenlabs` uses the paid API if a key is set.
+  Scenes stretch to fit their line. Local renders are silent previews.
+- **Effects** (`scripts/sfxsynth.py`, our own, in `public/sfx/lib`): a news sting on the first frame, paper
+  whooshes on cuts and one paper rip on the middle cut, boom + stamp on number reveals, typewriter ticks on
+  counters, a falling tone on bad-news hooks, and a low news underscore that drops under the voice. Scenes
+  trigger them through their events; nothing to do in the plan.
+
+### Voice: hooking and trustworthy
+
+- Line 1 is the hook, 9 words max, landing inside the opening: the concrete event and the number
+  ("Apple just passed Nvidia." / "Microsoft lost two hundred billion today.").
+- Then plain newsreader sentences: what happened, why (from the sources), what's next. No questions to the
+  viewer, no "you", no "guys", no hype ("insane", "skyrocket", "to the moon", "must buy"; the check blocks
+  these), no advice or predictions.
+- Attribute anything that isn't a market price: "Reuters reports...", "according to the company".
+- End on the dated next event and the follow line.
 
 ## Accuracy
 
