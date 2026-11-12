@@ -28,7 +28,7 @@ export const planSchema = z.object({
   audio: z.string().optional(),
   grain: z.boolean().default(true),
   handle: z.string().regex(/^@\w+$/).default(BRAND.handle),
-  palette: z.enum(['gold', 'terminal', 'editorial', 'midnight']).default('gold'),
+  palette: z.enum(['broadsheet', 'gold', 'terminal', 'editorial', 'midnight']).default('broadsheet'),
 });
 export type Plan = z.infer<typeof planSchema>;
 

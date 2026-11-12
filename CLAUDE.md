@@ -6,7 +6,7 @@ The user gives a topic; you return a finished vertical news short (MP4) with sou
 
 - Account: **@tech_stocks_news** (`src/brand.ts`). Every scene shows the handle automatically; the last scene must be a follow CTA that names it (calendarCta's default CTA does). The plan check enforces this.
 - **Balance numbers and information.** Numbers are the hook, explanations are the value. Alternate them: hook number → proof number → reasons (each a `causeChain` with a big `stat` and 2 short steps) → twist number → dated next event. At least 70% of scenes after the opening show a number, and any video of 5+ scenes explains at least once (`causeChain`, `headline` or `timeline`). The plan check enforces both.
-- Channel palette: `gold`. Typical length 20-26 s for a full story, 10 s for a single-number update.
+- Channel palette: `broadsheet` (the default; newspaper paper texture, Instrument Serif headlines, highlighter keywords, navy dark scenes, colour accents). Plans leave `palette` out. **Read `docs/STYLE.md` before planning or adding a scene**: it is the house style (colour meanings, type sizes, motion, sources) and every video must match it. Typical length 20-26 s for a full story, 10 s for a single-number update.
 
 ## Setup (fresh session)
 
@@ -17,19 +17,38 @@ Versions are pinned (Remotion 4.0.540, zod 4.6.7, skills in `skills-lock.json`).
 
 ## Topic -> video
 
-1. **Research.** WebSearch the topic's latest news (last 24-48 h). Open at least 2 pages with WebFetch; a snippet is not a source. Pick one fresh, concrete number and a twist.
+1. **Research.** WebSearch the topic's latest news (last 24-48 h). Open at least 2 pages with WebFetch; a snippet is not a source. **Find the real story first**: search the company by name in plain words ("why <company> stock fell today") and go with the reason the coverage gives: earnings or guidance, a deal, an analyst call, a product, regulation, rates or data, occasionally people news. Don't assume a kind of story. Name the concrete event in the hook rather than an abstraction. Check the news hit the market in the window you're covering. Pick one fresh, concrete number and a twist.
 2. **Hook.** Use the `hooksmith` skill (`hooksmith generate`) for 3-5 hook options; score them with the `viral-short-form` skill's `assets/hook-checklist.md`. Don't reuse the hook family of the last entry in `runs/log.md`.
 3. **Structure.** Pick one not used in the last 5 entries of `runs/log.md`: countdown, versus, myth vs fact, timeline, what-happens-next, single number, escalation -> rehook -> open loop. Spine: opening (number on screen within 1 s) -> escalation -> rehook ("But...") -> payoff -> open loop / follow CTA. Default 10 s total.
    **Reasons must be reasons.** When the video promises "why" or "N reasons", each reason is a `causeChain` scene that states what caused what (cause → effect → effect on the stock), taken from the sources. A description of what happened ("down 25%", "fell 9%") is not a reason; put such numbers in the hook or a stat chip. Give every reason a `stat` (one big sourced number) and 2 short steps (about 5 words each) so it is readable in 3.5 s.
-4. **Plan.** Write `plans/<id>.json` using scenes from `docs/SCENES.md` (see `plans/nvidia-week-nov6-v3.json`). Leave `palette` at the channel default unless the user asks. Scene 1 is an `open.*` opening (rotate the opening type; `open.logo` for one-company stories). Add company logos per "Logos" below. Captions: max 2 lines of 24 chars, one boxed keyword (`key: true`), `br: true` for line 2, about 2.5 words per second. Every data scene gets a `source` ("Outlet, date").
+4. **Plan.** Write `plans/<id>.json` using scenes from `docs/SCENES.md` (see `plans/nvidia-week-nov6-broadsheet.json`). Leave `palette` at the channel default unless the user asks. Scene 1 is an `open.*` opening (rotate the opening type; `open.logo` for one-company stories). Add company logos per "Logos" below. Captions: max 2 lines of 24 chars, one boxed keyword (`key: true`), `br: true` for line 2, about 2.5 words per second. Every data scene gets a `source` ("Outlet, date").
 5. **Make.** `scripts/make.sh plans/<id>.json`. It checks the plan (fix every problem it prints), builds the sound, renders `out/<id>.mp4` and `out/<id>-sheet.png`. About 1 minute.
 6. **Look.** Read `out/<id>-sheet.png`. Check that nothing overlaps or is cut off and that the story reads in order. Adjust the plan and re-run if needed.
 7. **Deliver.** Send the MP4 with a one-line-per-scene summary, caveats (single-source numbers, illustrative chart shapes, numbers that will go stale) and source links. Append a row to `runs/log.md`. Commit the plan and log on a branch and open a PR when the repo is attached.
+
+## Daily reel (scheduled)
+
+Every trading day after the New York close a scheduled task makes one reel about the day's hottest move:
+
+1. Find the day's movers: search "stock market today" and the biggest big-tech movers, and confirm each
+   closing move on Yahoo Finance or a major outlet.
+2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook,
+   plan, make and look as usual. Length 12-18 s.
+3. Queue it for Instagram: compress (`ffmpeg -i out/<id>.mp4 -c:v libx264 -preset veryfast -crf 24 -pix_fmt yuv420p
+   -c:a aac -b:a 128k -movflags +faststart`) to FiveBeforeMonday `reels/<date>.mp4`, and write `reels/<date>.json`:
+   `{"video": "reels/<date>.mp4", "caption": "...", "posted": null}`. Caption: 2-3 lines, 3-5 hashtags, a
+   "Sources:" list, no links (Instagram doesn't make them clickable). Commit both there and push to main;
+   GitHub posts it at 6:31pm New York time.
+4. Also send the MP4 and caption to the user, so they see what goes out.
+5. Commit `plans/<id>.json` and the `runs/log.md` row straight to main here (no PR).
+6. Write the day's note to FiveBeforeMonday `engine/data/daily/<date>.json` (format in that folder's README)
+   and push it to main there, so the weekly issue leads with the right story.
 
 ## Accuracy
 
 - Every on-screen number comes from a page actually opened, and its scene shows the source.
 - Say what a number is: "street price", "reported", "at Monday's close". `lineMove` shapes are illustrative and say so on screen.
+- Sensitive stories (investigations, lawsuits, people news): only what outlets report, allegations attributed ("US officials suspect..."), no speculation or judgement, no images of the people involved.
 - Politics: neutral wording, no realistic depictions of real politicians, no invented quotes. Outlet names as plain text, never logos.
 
 ## Logos
@@ -46,7 +65,7 @@ The channel covers stock news, and company logos are the hook. 472 logos (448 S&
 ## Look
 
 - No particle "glitter", sparkles or confetti: they read as AI-made. Impacts use the camera punch, shake and thin rings in `src/fx.tsx`.
-- Palettes live in `src/theme.ts` (`gold`, `terminal`, `editorial`, `midnight`); a plan picks one with `"palette"`. Every colour in scenes comes from the palette tokens (`T`, `mix()`), never hard-coded, so palettes stay switchable. Logo tiles stay neutral white/black in every palette.
+- Palettes live in `src/theme.ts` (`broadsheet` default, plus `gold`, `terminal`, `editorial`, `midnight`); a plan picks one with `"palette"`. Big numbers and headlines spread `...HEAVY` (serif in broadsheet, heavy Inter otherwise) instead of `fontWeight: 900`. Fonts are bundled in `public/fonts` and loaded by `src/fonts.ts`; paper textures in `public/textures` come from Paper Shaders (Apache-2.0, `PaperStill` composition). Every colour in scenes comes from the palette tokens (`T`, `mix()`), never hard-coded, so palettes stay switchable. Logo tiles stay neutral white/black in every palette.
 
 ## Variety
 
