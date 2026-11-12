@@ -6,7 +6,7 @@ The user gives a topic; you return a finished vertical news short (MP4) with sou
 
 - Account: **@tech_stocks_news** (`src/brand.ts`). Every scene shows the handle automatically; the last scene must be a follow CTA that names it (calendarCta's default CTA does). The plan check enforces this.
 - **Balance numbers and information.** Numbers are the hook, explanations are the value. Alternate them: hook number → proof number → reasons (each a `causeChain` with a big `stat` and 2 short steps) → twist number → dated next event. At least 70% of scenes after the opening show a number, and any video of 5+ scenes explains at least once (`causeChain`, `headline` or `timeline`). The plan check enforces both.
-- Channel palette: `broadsheet` (the default; newspaper paper texture, Instrument Serif headlines, highlighter keywords, navy dark scenes, colour accents). Plans leave `palette` out. Typical length 20-26 s for a full story, 10 s for a single-number update.
+- Channel palette: `broadsheet` (the default; newspaper paper texture, Instrument Serif headlines, highlighter keywords, navy dark scenes, colour accents). Plans leave `palette` out. **Read `docs/STYLE.md` before planning or adding a scene**: it is the house style (colour meanings, type sizes, motion, sources) and every video must match it. Typical length 20-26 s for a full story, 10 s for a single-number update.
 
 ## Setup (fresh session)
 
@@ -17,19 +17,33 @@ Versions are pinned (Remotion 4.0.540, zod 4.6.7, skills in `skills-lock.json`).
 
 ## Topic -> video
 
-1. **Research.** WebSearch the topic's latest news (last 24-48 h). Open at least 2 pages with WebFetch; a snippet is not a source. Pick one fresh, concrete number and a twist.
+1. **Research.** WebSearch the topic's latest news (last 24-48 h). Open at least 2 pages with WebFetch; a snippet is not a source. **Find the real story first**: search the company and its CEO by name in plain words ("why <company> stock fell today", "<CEO name>", "<company> investigation"). The driver people talk about is often human or company-specific (a CEO scandal, a probe, a lawsuit, a deal); lead with it and name it in the hook. Generic macro reasons only lead when no company story exists. Check the news hit the market in the window you're covering. Pick one fresh, concrete number and a twist.
 2. **Hook.** Use the `hooksmith` skill (`hooksmith generate`) for 3-5 hook options; score them with the `viral-short-form` skill's `assets/hook-checklist.md`. Don't reuse the hook family of the last entry in `runs/log.md`.
 3. **Structure.** Pick one not used in the last 5 entries of `runs/log.md`: countdown, versus, myth vs fact, timeline, what-happens-next, single number, escalation -> rehook -> open loop. Spine: opening (number on screen within 1 s) -> escalation -> rehook ("But...") -> payoff -> open loop / follow CTA. Default 10 s total.
    **Reasons must be reasons.** When the video promises "why" or "N reasons", each reason is a `causeChain` scene that states what caused what (cause → effect → effect on the stock), taken from the sources. A description of what happened ("down 25%", "fell 9%") is not a reason; put such numbers in the hook or a stat chip. Give every reason a `stat` (one big sourced number) and 2 short steps (about 5 words each) so it is readable in 3.5 s.
-4. **Plan.** Write `plans/<id>.json` using scenes from `docs/SCENES.md` (see `plans/nvidia-week-nov6-v3.json`). Leave `palette` at the channel default unless the user asks. Scene 1 is an `open.*` opening (rotate the opening type; `open.logo` for one-company stories). Add company logos per "Logos" below. Captions: max 2 lines of 24 chars, one boxed keyword (`key: true`), `br: true` for line 2, about 2.5 words per second. Every data scene gets a `source` ("Outlet, date").
+4. **Plan.** Write `plans/<id>.json` using scenes from `docs/SCENES.md` (see `plans/nvidia-week-nov6-broadsheet.json`). Leave `palette` at the channel default unless the user asks. Scene 1 is an `open.*` opening (rotate the opening type; `open.logo` for one-company stories). Add company logos per "Logos" below. Captions: max 2 lines of 24 chars, one boxed keyword (`key: true`), `br: true` for line 2, about 2.5 words per second. Every data scene gets a `source` ("Outlet, date").
 5. **Make.** `scripts/make.sh plans/<id>.json`. It checks the plan (fix every problem it prints), builds the sound, renders `out/<id>.mp4` and `out/<id>-sheet.png`. About 1 minute.
 6. **Look.** Read `out/<id>-sheet.png`. Check that nothing overlaps or is cut off and that the story reads in order. Adjust the plan and re-run if needed.
 7. **Deliver.** Send the MP4 with a one-line-per-scene summary, caveats (single-source numbers, illustrative chart shapes, numbers that will go stale) and source links. Append a row to `runs/log.md`. Commit the plan and log on a branch and open a PR when the repo is attached.
+
+## Daily reel (scheduled)
+
+Every trading day after the New York close a scheduled task makes one reel about the day's hottest move:
+
+1. Pull closing moves: `python3 engine/collect.py --day` in the FiveBeforeMonday repo is not needed; search
+   "stock market today" plus the biggest tech movers, and confirm the move on Yahoo Finance or a major outlet.
+2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook,
+   plan, make and look as usual. Length 12-18 s.
+3. Deliver: send the MP4 and the post caption (2-3 lines + 3-5 hashtags + "Sources:" list) to the user.
+   Commit `plans/<id>.json` and the `runs/log.md` row on branch `reels/<date>` and open a PR.
+4. Write the day's note to FiveBeforeMonday `engine/data/daily/<date>.json` (format in that folder's README)
+   and push it to main there, so the weekly issue leads with the right story.
 
 ## Accuracy
 
 - Every on-screen number comes from a page actually opened, and its scene shows the source.
 - Say what a number is: "street price", "reported", "at Monday's close". `lineMove` shapes are illustrative and say so on screen.
+- Sensitive stories (scandals, investigations, lawsuits): only what outlets report, allegations attributed ("US officials suspect..."), no speculation or judgement, no images of the people involved.
 - Politics: neutral wording, no realistic depictions of real politicians, no invented quotes. Outlet names as plain text, never logos.
 
 ## Logos
