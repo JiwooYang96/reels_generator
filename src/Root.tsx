@@ -1,6 +1,7 @@
 import {Composition} from 'remotion';
 import {NvidiaShort} from './NvidiaShort';
 import {StockShort} from './StockShort';
+import {BroadsheetSample, BROADSHEET_FRAMES} from './broadsheet/BroadsheetSample';
 import {PlanVideo} from './plan/PlanVideo';
 import {type Plan, planSchema, totalFrames} from './plan/plan';
 import samplePlan from '../plans/ai-selloff.json';
@@ -18,6 +19,8 @@ export const Root: React.FC = () => (
       defaultProps={planSchema.parse(samplePlan) as Plan}
       calculateMetadata={({props}: {props: Plan}) => ({durationInFrames: totalFrames(props)})}
     />
+    {/* Style test: newspaper look with a paper-rip transition. */}
+    <Composition id="BroadsheetSample" component={BroadsheetSample} durationInFrames={BROADSHEET_FRAMES} fps={30} width={1080} height={1920} />
     {/* Hand-coded examples kept for reference. */}
     <Composition id="StockShort" component={StockShort} durationInFrames={300} fps={30} width={1080} height={1920} />
     <Composition id="NvidiaShort" component={NvidiaShort} durationInFrames={300} fps={30} width={1080} height={1920} />
