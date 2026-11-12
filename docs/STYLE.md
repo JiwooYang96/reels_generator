@@ -51,6 +51,13 @@ Rules: one highlighter per screen. Red/green only for direction. Never hard-code
   at most once per video, on the biggest turn of the story ("But...").
 - No particles, sparkles or confetti. Everything is driven by `useCurrentFrame()`.
 
+## Sound
+
+- A calm, credible newsreader voice (ElevenLabs "Daniel") reads one natural sentence per scene. The voice tells
+  the story; captions show the short version. No hype words, no shouting.
+- Newsroom effects, all from the generated library: sting at the open, paper whoosh on cuts, boom + stamp on
+  the big number, typewriter ticks on counters. The underscore sits low under the voice.
+
 ## Layout
 
 - Content stays inside x 90-950, y 180-1500 (`SAFE`). Caption at the top, the visual in the middle, handle and

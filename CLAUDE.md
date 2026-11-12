@@ -32,17 +32,34 @@ Every trading day after the New York close a scheduled task makes one reel about
 
 1. Find the day's movers: search "stock market today" and the biggest big-tech movers, and confirm each
    closing move on Yahoo Finance or a major outlet.
-2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook,
-   plan, make and look as usual. Length 12-18 s.
-3. Queue it for Instagram: compress (`ffmpeg -i out/<id>.mp4 -c:v libx264 -preset veryfast -crf 24 -pix_fmt yuv420p
-   -c:a aac -b:a 128k -movflags +faststart`) to FiveBeforeMonday `reels/<date>.mp4`, and write `reels/<date>.json`:
-   `{"video": "reels/<date>.mp4", "caption": "...", "posted": null}`. Caption: 2-3 lines, 3-5 hashtags, a
-   "Sources:" list, no links (Instagram doesn't make them clickable). Commit both there and push to main;
-   GitHub posts it at 6:31pm New York time.
-4. Also send the MP4 and caption to the user, so they see what goes out.
-5. Commit `plans/<id>.json` and the `runs/log.md` row straight to main here (no PR).
+2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook
+   and plan as usual. Length 12-18 s. Write the plan to `plans/daily/<date>.json` (date = the New York trading
+   day) and give it:
+   - `voice` on each scene: the narrator's line, a natural spoken sentence of about 2.5 words per second of the
+     scene (`seconds` x 2.5 words). It carries the story; the caption stays the short on-screen version.
+     Say numbers the way a newsreader would ("down eight point eight percent", "a hundred and ninety-two
+     billion dollars"). The first line is the hook and must land in under 3 seconds.
+   - `post.caption`: the Instagram caption. 2-3 lines, 3-5 hashtags, a "Sources:" list, no links.
+3. `scripts/make.sh plans/daily/<date>.json` for a silent preview (no ElevenLabs key here), read the sheet,
+   fix until clean.
+4. Commit the plan and the `runs/log.md` row straight to main and push. GitHub (`render-reel.yml`) then adds the
+   ElevenLabs narration and sound effects, renders, and queues the reel in FiveBeforeMonday `reels/<date>.*`;
+   `post-reel.yml` there posts it at 6:31pm New York time.
+5. Wait for it: pull FiveBeforeMonday every minute for up to 20 minutes until `reels/<date>.mp4` appears,
+   then send that MP4 and the caption to the user. If it doesn't appear, check the run
+   (`gh run list -R JiwooYang96/reels_generator -w render-reel.yml`) and report what failed.
 6. Write the day's note to FiveBeforeMonday `engine/data/daily/<date>.json` (format in that folder's README)
    and push it to main there, so the weekly issue leads with the right story.
+
+## Sound
+
+- Narration: ElevenLabs text-to-speech, one clip per scene from its `voice` line (`scripts/voice.py`, voice
+  "Daniel", a steady British newsreader; override with the `ELEVEN_VOICE_ID` repo variable). Scenes stretch
+  to fit their line. Runs where `ELEVENLABS_API_KEY` is set (GitHub Actions); local renders stay silent.
+- Effects: an ElevenLabs-generated newsroom library in `public/sfx/lib` (`scripts/sfxlib.py`, made once):
+  a sting on the first frame, paper whooshes on cuts (a paper rip on the middle cut), boom + stamp on number
+  reveals, typewriter ticks on counters, a falling tone on bad-news hooks, a low news underscore that ducks
+  under the voice. Scenes trigger these through their events; nothing to do in the plan.
 
 ## Accuracy
 

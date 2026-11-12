@@ -19,11 +19,20 @@ if (!parsed.success) {
   process.exit(1);
 }
 const plan = parsed.data;
+
 const problems = checkPlan(plan);
 if (problems.length) {
   console.error(`PLAN CHECK: ${problems.length} problem(s)`);
   for (const p of problems) console.error(`  - ${p}`);
   if (!force) process.exit(1);
+}
+
+// Narration (after the pacing check, which judges the planned timing) (scripts/voice.py writes out/<id>/vo.json): stretch each scene to fit its line, then place the clips.
+const voPath = path.join('out', plan.id, 'vo.json');
+const vo: {i: number; src: string; dur: number}[] = fs.existsSync(voPath) ? JSON.parse(fs.readFileSync(voPath, 'utf8')) : [];
+for (const v of vo) {
+  const sc = plan.scenes[v.i];
+  if (sc) sc.seconds = Math.min(8, Math.max(sc.seconds, +(v.dur + 0.45).toFixed(2)));
 }
 
 const scenes = resolvePlan(plan);
@@ -40,8 +49,12 @@ const sfx = {
 
 const outDir = path.join('out', plan.id);
 fs.mkdirSync(outDir, {recursive: true});
+const voiceover = vo
+  .filter((v) => scenes[v.i])
+  .map((v) => ({src: v.src, at: scenes[v.i].from + 5}));
+(sfx as Record<string, unknown>).voice = voiceover.length > 0;
 fs.writeFileSync(path.join(outDir, 'sfx.json'), JSON.stringify(sfx, null, 2));
-fs.writeFileSync(path.join(outDir, 'props.json'), JSON.stringify({...plan, audio: `sfx/${plan.id}.wav`}, null, 2));
+fs.writeFileSync(path.join(outDir, 'props.json'), JSON.stringify({...plan, audio: `sfx/${plan.id}.wav`, voiceover}, null, 2));
 
 console.log(`plan ok: ${plan.id}, ${scenes.length} scenes, ${sfx.duration.toFixed(1)} s`);
 for (const s of scenes) console.log(`  ${String(s.from).padStart(4)}f  ${s.type.padEnd(16)} ${(s.dur / 30).toFixed(1)} s  ${s.theme}`);

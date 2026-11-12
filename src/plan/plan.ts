@@ -16,6 +16,8 @@ export const sceneSchema = z.object({
   theme: z.enum(['dark', 'light']).optional(),
   caption: z.array(wordSchema).min(1),
   source: z.string().optional(),
+  // What the narrator says over this scene. Defaults to the caption words.
+  voice: z.string().optional(),
   props: z.record(z.string(), z.any()),
 });
 
@@ -26,6 +28,10 @@ export const planSchema = z.object({
   hookFamily: z.string().optional(),
   scenes: z.array(sceneSchema).min(2).max(12),
   audio: z.string().optional(),
+  // Filled in by scripts/prepare.ts from the ElevenLabs narration (scripts/voice.py): one clip per scene.
+  voiceover: z.array(z.object({src: z.string(), at: z.number().int().nonnegative()})).optional(),
+  // The Instagram post for this reel (daily reels).
+  post: z.object({caption: z.string().min(10)}).optional(),
   grain: z.boolean().default(true),
   handle: z.string().regex(/^@\w+$/).default(BRAND.handle),
   palette: z.enum(['broadsheet', 'gold', 'terminal', 'editorial', 'midnight']).default('broadsheet'),
