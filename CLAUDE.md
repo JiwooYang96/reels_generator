@@ -17,7 +17,7 @@ Versions are pinned (Remotion 4.0.540, zod 4.6.7, skills in `skills-lock.json`).
 
 ## Topic -> video
 
-1. **Research.** WebSearch the topic's latest news (last 24-48 h). Open at least 2 pages with WebFetch; a snippet is not a source. **Find the real story first**: search the company and its CEO by name in plain words ("why <company> stock fell today", "<CEO name>", "<company> investigation"). The driver people talk about is often human or company-specific (a CEO scandal, a probe, a lawsuit, a deal); lead with it and name it in the hook. Generic macro reasons only lead when no company story exists. Check the news hit the market in the window you're covering. Pick one fresh, concrete number and a twist.
+1. **Research.** WebSearch the topic's latest news (last 24-48 h). Open at least 2 pages with WebFetch; a snippet is not a source. **Find the real story first**: search the company by name in plain words ("why <company> stock fell today") and go with the reason the coverage gives: earnings or guidance, a deal, an analyst call, a product, regulation, rates or data, occasionally people news. Don't assume a kind of story. Name the concrete event in the hook rather than an abstraction. Check the news hit the market in the window you're covering. Pick one fresh, concrete number and a twist.
 2. **Hook.** Use the `hooksmith` skill (`hooksmith generate`) for 3-5 hook options; score them with the `viral-short-form` skill's `assets/hook-checklist.md`. Don't reuse the hook family of the last entry in `runs/log.md`.
 3. **Structure.** Pick one not used in the last 5 entries of `runs/log.md`: countdown, versus, myth vs fact, timeline, what-happens-next, single number, escalation -> rehook -> open loop. Spine: opening (number on screen within 1 s) -> escalation -> rehook ("But...") -> payoff -> open loop / follow CTA. Default 10 s total.
    **Reasons must be reasons.** When the video promises "why" or "N reasons", each reason is a `causeChain` scene that states what caused what (cause → effect → effect on the stock), taken from the sources. A description of what happened ("down 25%", "fell 9%") is not a reason; put such numbers in the hook or a stat chip. Give every reason a `stat` (one big sourced number) and 2 short steps (about 5 words each) so it is readable in 3.5 s.
@@ -34,16 +34,21 @@ Every trading day after the New York close a scheduled task makes one reel about
    closing move on Yahoo Finance or a major outlet.
 2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook,
    plan, make and look as usual. Length 12-18 s.
-3. Deliver: send the MP4 and the post caption (2-3 lines + 3-5 hashtags + "Sources:" list) to the user.
-   Commit `plans/<id>.json` and the `runs/log.md` row on branch `reels/<date>` and open a PR.
-4. Write the day's note to FiveBeforeMonday `engine/data/daily/<date>.json` (format in that folder's README)
+3. Queue it for Instagram: compress (`ffmpeg -i out/<id>.mp4 -c:v libx264 -preset veryfast -crf 24 -pix_fmt yuv420p
+   -c:a aac -b:a 128k -movflags +faststart`) to FiveBeforeMonday `reels/<date>.mp4`, and write `reels/<date>.json`:
+   `{"video": "reels/<date>.mp4", "caption": "...", "posted": null}`. Caption: 2-3 lines, 3-5 hashtags, a
+   "Sources:" list, no links (Instagram doesn't make them clickable). Commit both there and push to main;
+   GitHub posts it at 6:31pm New York time.
+4. Also send the MP4 and caption to the user, so they see what goes out.
+5. Commit `plans/<id>.json` and the `runs/log.md` row straight to main here (no PR).
+6. Write the day's note to FiveBeforeMonday `engine/data/daily/<date>.json` (format in that folder's README)
    and push it to main there, so the weekly issue leads with the right story.
 
 ## Accuracy
 
 - Every on-screen number comes from a page actually opened, and its scene shows the source.
 - Say what a number is: "street price", "reported", "at Monday's close". `lineMove` shapes are illustrative and say so on screen.
-- Sensitive stories (scandals, investigations, lawsuits): only what outlets report, allegations attributed ("US officials suspect..."), no speculation or judgement, no images of the people involved.
+- Sensitive stories (investigations, lawsuits, people news): only what outlets report, allegations attributed ("US officials suspect..."), no speculation or judgement, no images of the people involved.
 - Politics: neutral wording, no realistic depictions of real politicians, no invented quotes. Outlet names as plain text, never logos.
 
 ## Logos

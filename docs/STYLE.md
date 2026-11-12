@@ -65,8 +65,9 @@ the hook. Don't enlarge it, and don't put it on the opening or the CTA.
 
 ## Story (what makes it enticing)
 
-- Lead with the **real** story: the one everyone is talking about, usually human or company-specific (a CEO,
-  an investigation, a lawsuit, a deal). Name the person or event in the hook, then show the number it cost.
+- Lead with the **real** story: the reason the coverage actually gives for the move (earnings, guidance, a deal,
+  an analyst call, regulation, data; rarely people news). Name the concrete event in the hook, then show the
+  number it moved.
 - Number on screen within 1 second. Escalate, then rehook with "But...", then pay off, then a dated next event.
 - Sensitive stories: report what outlets report, attribute allegations, no speculation, no realistic depictions
   of real people (logos only for companies).
