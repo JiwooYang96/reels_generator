@@ -5,7 +5,6 @@
 // Type: Instrument Serif (titles), Source Serif 4 (body), Source Sans 3 (labels), all OFL.
 import React from 'react';
 import {AbsoluteFill, Easing, Img, Sequence, interpolate, random, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
-import {loadFont} from '@remotion/fonts';
 
 const INK = '#16130f';
 const SOFT = '#5d564b';
@@ -18,17 +17,7 @@ const DISPLAY = fam('Instrument Serif', 'Georgia, serif');
 const BODY = fam('Source Serif 4', 'Georgia, serif');
 const LABEL = fam('Source Sans 3', 'Helvetica, sans-serif');
 
-for (const [family, file, weight, style] of [
-  ['Instrument Serif', 'instrument-serif-latin-400-normal', '400', 'normal'],
-  ['Instrument Serif', 'instrument-serif-latin-400-italic', '400', 'italic'],
-  ['Source Serif 4', 'source-serif-4-latin-400-normal', '400', 'normal'],
-  ['Source Serif 4', 'source-serif-4-latin-400-italic', '400', 'italic'],
-  ['Source Serif 4', 'source-serif-4-latin-700-normal', '700', 'normal'],
-  ['Source Sans 3', 'source-sans-3-latin-600-normal', '600', 'normal'],
-  ['Source Sans 3', 'source-sans-3-latin-700-normal', '700', 'normal'],
-] as const) {
-  loadFont({family, url: staticFile(`fonts/${file}.woff2`), weight, style});
-}
+import '../fonts';
 
 const ease = Easing.bezier(0.2, 0.8, 0.2, 1);
 const prog = (f: number, a: number, len: number, e = ease) =>

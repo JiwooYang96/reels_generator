@@ -6,7 +6,7 @@ The user gives a topic; you return a finished vertical news short (MP4) with sou
 
 - Account: **@tech_stocks_news** (`src/brand.ts`). Every scene shows the handle automatically; the last scene must be a follow CTA that names it (calendarCta's default CTA does). The plan check enforces this.
 - **Balance numbers and information.** Numbers are the hook, explanations are the value. Alternate them: hook number → proof number → reasons (each a `causeChain` with a big `stat` and 2 short steps) → twist number → dated next event. At least 70% of scenes after the opening show a number, and any video of 5+ scenes explains at least once (`causeChain`, `headline` or `timeline`). The plan check enforces both.
-- Channel palette: `gold`. Typical length 20-26 s for a full story, 10 s for a single-number update.
+- Channel palette: `broadsheet` (the default; newspaper paper texture, Instrument Serif headlines, highlighter keywords, navy dark scenes, colour accents). Plans leave `palette` out. Typical length 20-26 s for a full story, 10 s for a single-number update.
 
 ## Setup (fresh session)
 
@@ -46,7 +46,7 @@ The channel covers stock news, and company logos are the hook. 472 logos (448 S&
 ## Look
 
 - No particle "glitter", sparkles or confetti: they read as AI-made. Impacts use the camera punch, shake and thin rings in `src/fx.tsx`.
-- Palettes live in `src/theme.ts` (`gold`, `terminal`, `editorial`, `midnight`); a plan picks one with `"palette"`. Every colour in scenes comes from the palette tokens (`T`, `mix()`), never hard-coded, so palettes stay switchable. Logo tiles stay neutral white/black in every palette.
+- Palettes live in `src/theme.ts` (`broadsheet` default, plus `gold`, `terminal`, `editorial`, `midnight`); a plan picks one with `"palette"`. Big numbers and headlines spread `...HEAVY` (serif in broadsheet, heavy Inter otherwise) instead of `fontWeight: 900`. Fonts are bundled in `public/fonts` and loaded by `src/fonts.ts`; paper textures in `public/textures` come from Paper Shaders (Apache-2.0, `PaperStill` composition). Every colour in scenes comes from the palette tokens (`T`, `mix()`), never hard-coded, so palettes stay switchable. Logo tiles stay neutral white/black in every palette.
 
 ## Variety
 

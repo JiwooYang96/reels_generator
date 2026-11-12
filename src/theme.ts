@@ -1,3 +1,6 @@
+import type React from 'react';
+import {SANS_LABEL, SERIF_DISPLAY} from './fonts';
+
 // Brand tokens shared by every scene. A plan picks a palette with "palette": "<name>";
 // PlanVideo applies it before any scene renders, so every component reads the same tokens from T.
 export type Palette = {
@@ -14,9 +17,19 @@ export type Palette = {
   green: string; // up / good
   darkGrid: string;
   creamGrid: string;
+  // Optional newspaper look: paper texture backgrounds, serif headlines, highlighter keywords.
+  broadsheet?: boolean;
+  blue?: string; // extra accent for charts and labels (broadsheet)
 };
 
 export const PALETTES: Record<string, Palette> = {
+  // Channel default. Printed-newspaper look with colour: paper and ink, cobalt and highlighter-yellow
+  // accents, loud red/green for moves, deep navy for dark scenes.
+  broadsheet: {
+    dark: '#14233b', darkCard: '#1c2f4d', cream: '#f1ead9', card: '#fbf7ee', gold: '#1d4f91', goldLight: '#ffd23f',
+    ink: '#16130f', inkSoft: '#5d564b', paper: '#f6f0e2', red: '#c8372d', green: '#1f8a57',
+    darkGrid: 'rgba(246,240,226,0.05)', creamGrid: 'rgba(22,19,15,0.05)', broadsheet: true, blue: '#1d4f91',
+  },
   // Warm luxury explainer, matching the reference reel.
   gold: {
     dark: '#0c0b0a', darkCard: '#17140f', cream: '#f5f0e6', card: '#fffdf8', gold: '#c98a1e', goldLight: '#f2c25b',
@@ -45,16 +58,30 @@ export const PALETTES: Record<string, Palette> = {
 
 export type PaletteName = keyof typeof PALETTES;
 
-// The live tokens. Starts as "gold"; applyPalette swaps them in place.
-export const T: Palette = {...PALETTES.gold};
-export const applyPalette = (name: string = 'gold') => {
-  Object.assign(T, PALETTES[name] ?? PALETTES.gold);
+export const DEFAULT_PALETTE = 'broadsheet';
+
+// Body/label font and heavy display style. These are live bindings: applyPalette reassigns them, and
+// components read them at render time. Broadsheet swaps Inter for serif headlines and sans labels.
+const INTER = 'Inter, "Inter Display", sans-serif';
+export let FONT = SANS_LABEL;
+// Spread into a style for big numbers and headlines: {...HEAVY}.
+export let HEAVY: React.CSSProperties = {fontFamily: SERIF_DISPLAY, fontWeight: 400, lineHeight: 1};
+export let DISPLAY = SERIF_DISPLAY;
+
+// The live tokens. Starts as the channel default; applyPalette swaps them in place.
+export const T: Palette = {...PALETTES[DEFAULT_PALETTE]};
+export const applyPalette = (name: string = DEFAULT_PALETTE) => {
+  const p = PALETTES[name] ?? PALETTES[DEFAULT_PALETTE];
+  for (const k of Object.keys(T)) delete (T as Record<string, unknown>)[k];
+  Object.assign(T, p);
+  FONT = p.broadsheet ? SANS_LABEL : INTER;
+  DISPLAY = p.broadsheet ? SERIF_DISPLAY : INTER;
+  HEAVY = p.broadsheet ? {fontFamily: SERIF_DISPLAY, fontWeight: 400, lineHeight: 1} : {fontWeight: 900};
 };
 
 // Mix a token with transparency, e.g. mix(T.ink, 0.06) for a faint line.
 export const mix = (color: string, alpha: number) => `color-mix(in srgb, ${color} ${Math.round(alpha * 100)}%, transparent)`;
 
-export const FONT = 'Inter, "Inter Display", sans-serif';
 
 export const VIDEO = {width: 1080, height: 1920, fps: 30};
 

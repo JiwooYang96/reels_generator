@@ -6,7 +6,7 @@ import {z} from 'zod';
 import {Rings, punch, shakeAt} from '../fx';
 import {pop} from '../kit';
 import {Logo, logoName} from '../logo';
-import {FONT, T, fit, mix, toneColor} from '../theme';
+import {FONT, HEAVY, T, fit, mix, toneColor} from '../theme';
 import type {SceneDef} from './types';
 
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
@@ -20,7 +20,7 @@ const BigText: React.FC<{p: Base; at: number; y?: number}> = ({p, at, y = 880}) 
   const s = pop(f, at, 10);
   return (
     <div style={{position: 'absolute', left: 90, right: 130, top: y, textAlign: 'center', fontFamily: FONT}}>
-      <div style={{fontSize: fit(p.big, 820, 230), fontWeight: 900, letterSpacing: -8, color: c, scale: `${interpolate(s, [0, 1], [2.4, 1])}`, opacity: s, textShadow: `0 0 60px ${c}66`, whiteSpace: 'nowrap'}}>{p.big}</div>
+      <div style={{fontSize: fit(p.big, 820, 230), ...HEAVY, letterSpacing: -8, color: c, scale: `${interpolate(s, [0, 1], [2.4, 1])}`, opacity: s, textShadow: `0 0 60px ${c}66`, whiteSpace: 'nowrap'}}>{p.big}</div>
       {p.sub ? <div style={{fontSize: 46, fontWeight: 800, color: T.paper, marginTop: 10, opacity: interpolate(f, [at + 8, at + 16], [0, 1], clamp)}}>{p.sub}</div> : null}
     </div>
   );
@@ -141,7 +141,7 @@ export const openCashRain: SceneDef<Base> = {
           const y = -200 + ((f * (14 + r2 * 16) + r2 * 2200) % 2300);
           const burn = bad ? interpolate(f, [at, at + 20], [0, 1], clamp) * (r > 0.4 ? 1 : 0) : 0;
           return (
-            <div key={i} style={{position: 'absolute', left: x, top: y, width: 150, height: 70, rotate: `${(r - 0.5) * 120 + f * (r2 - 0.5) * 6}deg`, borderRadius: 8, background: burn > 0 ? `linear-gradient(90deg, #3f6b45 ${100 - burn * 100}%, ${T.red} ${100 - burn * 100}%, #1a0d0b)` : '#3f6b45', border: '3px solid #a8c79a', opacity: 0.55 + r2 * 0.35 - burn * 0.3, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#d8ead0', fontFamily: FONT, fontWeight: 900, fontSize: 36}}>
+            <div key={i} style={{position: 'absolute', left: x, top: y, width: 150, height: 70, rotate: `${(r - 0.5) * 120 + f * (r2 - 0.5) * 6}deg`, borderRadius: 8, background: burn > 0 ? `linear-gradient(90deg, #3f6b45 ${100 - burn * 100}%, ${T.red} ${100 - burn * 100}%, #1a0d0b)` : '#3f6b45', border: '3px solid #a8c79a', opacity: 0.55 + r2 * 0.35 - burn * 0.3, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#d8ead0', fontFamily: FONT, ...HEAVY, fontSize: 36}}>
               $
             </div>
           );
@@ -171,7 +171,7 @@ export const openBreaking: SceneDef<Base & {label: string}> = {
     const c = toneColor(p.tone);
     return (
       <AbsoluteFill>
-        <div style={{position: 'absolute', left: 0, top: 640, height: 120, width: `${band * 100}%`, background: T.red, display: 'flex', alignItems: 'center', paddingLeft: 120, boxSizing: 'border-box', fontFamily: FONT, fontSize: 64, fontWeight: 900, letterSpacing: 10, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden'}}>
+        <div style={{position: 'absolute', left: 0, top: 640, height: 120, width: `${band * 100}%`, background: T.red, display: 'flex', alignItems: 'center', paddingLeft: 120, boxSizing: 'border-box', fontFamily: FONT, fontSize: 64, ...HEAVY, letterSpacing: 10, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden'}}>
           {p.label}
         </div>
         {f >= at ? (
