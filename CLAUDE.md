@@ -30,8 +30,8 @@ Versions are pinned (Remotion 4.0.540, zod 4.6.7, skills in `skills-lock.json`).
 
 Every trading day after the New York close a scheduled task makes one reel about the day's hottest move:
 
-1. Pull closing moves: `python3 engine/collect.py --day` in the FiveBeforeMonday repo is not needed; search
-   "stock market today" plus the biggest tech movers, and confirm the move on Yahoo Finance or a major outlet.
+1. Find the day's movers: search "stock market today" and the biggest big-tech movers, and confirm each
+   closing move on Yahoo Finance or a major outlet.
 2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook,
    plan, make and look as usual. Length 12-18 s.
 3. Deliver: send the MP4 and the post caption (2-3 lines + 3-5 hashtags + "Sources:" list) to the user.
