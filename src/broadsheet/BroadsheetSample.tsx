@@ -89,24 +89,45 @@ const Rule: React.FC<{f: number; at: number; w?: number; double?: boolean}> = ({
   </div>
 );
 
-const Masthead: React.FC<{f: number; section: string}> = ({f, section}) => (
-  <div style={{padding: '182px 70px 0'}}>
-    <div style={{display: 'flex', justifyContent: 'space-between', fontFamily: LABEL, fontWeight: 600, fontSize: 25,
-      letterSpacing: 2.5, color: SOFT, textTransform: 'uppercase', ...rise(f, 0, 10, 14)}}>
-      <span>Friday, Nov 13, 2026</span>
-      <span style={{textTransform: 'none', letterSpacing: 0.5}}>@tech_stocks_news</span>
+// Compact masthead: brand and date stay readable, but leave the screen to the story.
+const Masthead: React.FC<{f: number}> = ({f}) => (
+  <div style={{padding: '176px 70px 0'}}>
+    <div style={{display: 'flex', justifyContent: 'space-between', fontFamily: LABEL, fontWeight: 700, fontSize: 30,
+      letterSpacing: 2, color: SOFT, textTransform: 'uppercase'}}>
+      <span>Fri, Nov 13</span>
+      <span style={{textTransform: 'none', letterSpacing: 0}}>@tech_stocks_news</span>
     </div>
-    <div style={{margin: '16px 0 4px'}}><Rule f={f} at={2} w={3} /></div>
-    <div style={{fontFamily: DISPLAY, fontSize: 132, lineHeight: 1, textAlign: 'center', color: INK, letterSpacing: -1,
-      padding: '10px 0 2px', ...settle(f, 2, 16)}}>
-      Five Before Monday
-    </div>
-    <Rule f={f} at={6} w={2} double />
-    <div style={{display: 'flex', justifyContent: 'center', gap: 26, fontFamily: LABEL, fontWeight: 700, fontSize: 23,
-      letterSpacing: 3.5, color: INK, textTransform: 'uppercase', padding: '14px 0 0', ...rise(f, 8, 10, 12)}}>
-      <span>Markets</span><span style={{color: GOLD}}>&#9670;</span><span>{section}</span><span style={{color: GOLD}}>&#9670;</span><span>Big Tech</span>
-    </div>
+    <div style={{margin: '12px 0 2px'}}><Rule f={f} at={0} w={3} /></div>
+    <div style={{fontFamily: DISPLAY, fontSize: 104, lineHeight: 1, textAlign: 'center', color: INK, letterSpacing: -1,
+      padding: '8px 0 4px'}}>Five Before Monday</div>
+    <Rule f={f} at={0} w={2} double />
   </div>
+);
+
+// A figure that lands like a rubber stamp: overshoot, a tiny skew, ink spreading for a frame or two.
+const stamp = (f: number, a: number) => {
+  const p = prog(f, a, 9, Easing.out(Easing.back(1.6)));
+  const ink = prog(f, a, 5);
+  return {
+    opacity: ink, transform: `scale(${1.5 - 0.5 * p}) rotate(${(1 - p) * -3}deg)`,
+    filter: `blur(${(1 - ink) * 8}px)`,
+  };
+};
+
+// Red marker underline that swipes in under a word.
+const Underline: React.FC<{f: number; at: number; width: number}> = ({f, at, width}) => {
+  const p = prog(f, at, 8, Easing.out(Easing.cubic));
+  return (
+    <svg width={width} height={44} style={{display: 'block', overflow: 'visible'}}>
+      <path d={`M6 26 C ${width * 0.3} 12, ${width * 0.6} 34, ${width - 8} 18`} fill="none" stroke={RED} strokeWidth={16}
+        strokeLinecap="round" strokeDasharray={width * 1.2} strokeDashoffset={width * 1.2 * (1 - p)} opacity={0.85} />
+    </svg>
+  );
+};
+
+const Kicker: React.FC<{f: number; at: number; children: React.ReactNode}> = ({f, at, children}) => (
+  <div style={{fontFamily: LABEL, fontWeight: 700, fontSize: 36, letterSpacing: 5, color: GOLD,
+    textTransform: 'uppercase', ...rise(f, at, 8, 14)}}>{children}</div>
 );
 
 // A page that sits slightly loose on the desk: a slow drift and a hair of rotation.
@@ -125,128 +146,117 @@ const Sheet: React.FC<{children: React.ReactNode; paper: string}> = ({children, 
   );
 };
 
-// ---------- scene A: the front page ----------
+// ---------- scene A: the shock ----------
 
-const TABLE = [
-  ['Nvidia', '−7.8%'], ['Broadcom', '−6.1%'], ['Chip index', '−5.4%'], ['Nasdaq-100', '−2.9%'],
-];
-
-const FrontPage: React.FC = () => {
+const ShockPage: React.FC = () => {
   const f = useCurrentFrame();
-  const headline = ['Chip Stocks Shed', '$400 Billion in a', 'Single Session'];
+  const n = Math.round(interpolate(f, [2, 16], [0, 400], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)}));
   return (
     <Sheet paper="paper-front.png">
-      <Masthead f={f} section="Chips" />
-      <div style={{padding: '44px 70px 0'}}>
-        <div style={{fontFamily: LABEL, fontWeight: 700, fontSize: 26, letterSpacing: 4, color: GOLD,
-          textTransform: 'uppercase', ...rise(f, 10, 10, 12)}}>Semiconductors</div>
-        <div style={{marginTop: 8}}>
-          {headline.map((line, i) => (
-            <div key={line} style={{overflow: 'hidden', paddingBottom: 6}}>
-              <div style={{fontFamily: DISPLAY, fontSize: 138, lineHeight: 0.98, color: INK, letterSpacing: -1.5,
-                ...rise(f, 12 + i * 4, 14, 120)}}>{line}</div>
-            </div>
-          ))}
-        </div>
-        <div style={{fontFamily: DISPLAY, fontStyle: 'italic', fontSize: 50, lineHeight: 1.16, color: SOFT, marginTop: 18,
-          ...settle(f, 26)}}>
-          Nvidia led Thursday's slide as investors asked how many more data centers the world will need.
-        </div>
-      </div>
-      <div style={{display: 'flex', gap: 44, padding: '34px 70px 0'}}>
-        <div style={{flex: 1, fontFamily: BODY, fontSize: 31, lineHeight: 1.42, color: INK, textAlign: 'left',
-          ...settle(f, 32, 16)}}>
-          <span style={{float: 'left', fontFamily: DISPLAY, fontSize: 142, lineHeight: 0.8, padding: '8px 12px 0 0',
-            color: INK}}>C</span>
-          hipmakers had their worst day since April. Nvidia fell 7.8%, Broadcom dropped 6.1% and the chip index closed
-          5.4% lower, wiping roughly $400 billion off the sector before a partial rebound on Friday.
-        </div>
-        <div style={{width: 1, background: HAIR, ...settle(f, 34)}} />
-        <div style={{flex: '0 0 330px', ...settle(f, 36, 16)}}>
-          <div style={{fontFamily: LABEL, fontWeight: 700, fontSize: 22, letterSpacing: 3, textTransform: 'uppercase',
-            color: INK, paddingBottom: 10, borderBottom: `3px solid ${INK}`}}>Thursday's close</div>
-          {TABLE.map(([name, chg], i) => (
-            <div key={name} style={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
-              padding: '13px 0', borderBottom: `1px solid ${HAIR}`, ...rise(f, 38 + i * 3, 10, 10)}}>
-              <span style={{fontFamily: BODY, fontSize: 30, color: INK}}>{name}</span>
-              <span style={{fontFamily: DISPLAY, fontSize: 50, lineHeight: 1, color: RED}}>{chg}</span>
-            </div>
-          ))}
-          <div style={{fontFamily: LABEL, fontWeight: 600, fontSize: 19, color: SOFT, marginTop: 12, letterSpacing: 0.5}}>
-            Sample figures for a style test
+      <Masthead f={f} />
+      <div style={{padding: '46px 70px 0'}}>
+        <Kicker f={f} at={0}>Chip stocks · Thursday</Kicker>
+        <div style={{transformOrigin: '0% 50%', ...stamp(f, 1)}}>
+          <div style={{fontFamily: DISPLAY, fontSize: 450, lineHeight: 0.86, color: INK, letterSpacing: -9, marginTop: 18}}>
+            ${n}
           </div>
+          <div style={{fontFamily: DISPLAY, fontStyle: 'italic', fontSize: 190, lineHeight: 0.9, color: INK, marginTop: -6,
+            marginLeft: 8}}>billion</div>
+        </div>
+        <div style={{marginTop: 6, marginLeft: 4}}><Underline f={f} at={14} width={620} /></div>
+        <div style={{fontFamily: DISPLAY, fontSize: 104, lineHeight: 1, color: INK, marginTop: 22, ...rise(f, 18, 10, 30)}}>
+          wiped off chip stocks<br />in a single day
+        </div>
+        <div style={{fontFamily: DISPLAY, fontStyle: 'italic', fontSize: 72, color: RED, marginTop: 26, ...rise(f, 34, 10, 20)}}>
+          Their worst session since April.
         </div>
       </div>
     </Sheet>
   );
 };
 
-// ---------- scene B: the chart page ----------
+// ---------- scene B: the biggest loser ----------
 
 const DAYS = [
   {d: 'Fri', v: 202.4}, {d: 'Mon', v: 199.0}, {d: 'Tue', v: 197.2}, {d: 'Wed', v: 195.6}, {d: 'Thu', v: 180.3}, {d: 'Fri', v: 186.6},
 ];
 
-const ChartPage: React.FC = () => {
+const LoserPage: React.FC = () => {
   const f = useCurrentFrame();
-  const W = 940, H = 600, padL = 92, padR = 36, padT = 30, padB = 84;
-  const lo = 176, hi = 206;
+  const W = 940, H = 640, padL = 30, padR = 60, padT = 40, padB = 80;
+  const lo = 177, hi = 205;
   const x = (i: number) => padL + (i * (W - padL - padR)) / (DAYS.length - 1);
   const y = (v: number) => padT + ((hi - v) / (hi - lo)) * (H - padT - padB);
   const path = DAYS.map((p, i) => `${i ? 'L' : 'M'}${x(i)} ${y(p.v)}`).join(' ');
-  const draw = prog(f, 14, 46, Easing.inOut(Easing.cubic));
-  const len = 1400;
+  const draw = prog(f, 10, 34, Easing.inOut(Easing.cubic));
+  const len = 1300;
   const thu = 4;
-  const note = prog(f, 56, 12);
+  const note = prog(f, 38, 8);
   return (
     <Sheet paper="paper-chart.png">
-      <Masthead f={60} section="The Chart" />
-      <div style={{padding: '40px 70px 0'}}>
-        <div style={{fontFamily: LABEL, fontWeight: 700, fontSize: 26, letterSpacing: 4, color: GOLD,
-          textTransform: 'uppercase', ...rise(f, 2, 10, 12)}}>The week in one line</div>
-        <div style={{fontFamily: DISPLAY, fontSize: 138, lineHeight: 1, color: INK, letterSpacing: -1.5, marginTop: 6,
-          ...rise(f, 4, 14, 60)}}>Nvidia's Rough Week</div>
-        <div style={{fontFamily: DISPLAY, fontStyle: 'italic', fontSize: 48, color: SOFT, marginTop: 12, ...settle(f, 10)}}>
-          Four losing sessions, then a Friday bounce.
+      <Masthead f={60} />
+      <div style={{padding: '46px 70px 0'}}>
+        <Kicker f={f} at={0}>The biggest loser</Kicker>
+        <div style={{display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginTop: 10}}>
+          <div style={{fontFamily: DISPLAY, fontSize: 168, lineHeight: 1, color: INK, letterSpacing: -3, ...rise(f, 2, 10, 40)}}>Nvidia</div>
+          <div style={{fontFamily: DISPLAY, fontSize: 200, lineHeight: 1, color: RED, letterSpacing: -5, transformOrigin: '80% 70%',
+            ...stamp(f, 6)}}>−7.8%</div>
+        </div>
+        <div style={{fontFamily: DISPLAY, fontStyle: 'italic', fontSize: 62, lineHeight: 1.05, color: SOFT, marginTop: 6, ...rise(f, 8, 10, 16)}}>
+          on Thursday alone
         </div>
       </div>
-      <svg width={W} height={H} style={{margin: '26px 70px 0', overflow: 'visible'}}>
-        {[180, 190, 200].map((v) => (
-          <g key={v} opacity={prog(f, 8, 10)}>
-            <line x1={padL} x2={W - padR} y1={y(v)} y2={y(v)} stroke={HAIR} strokeWidth={2} strokeDasharray="2 9" />
-            <text x={padL - 18} y={y(v) + 11} textAnchor="end" fontFamily={BODY} fontSize={30} fill={SOFT}>${v}</text>
-          </g>
-        ))}
-        <line x1={padL} x2={W - padR} y1={H - padB} y2={H - padB} stroke={INK} strokeWidth={3} />
+      <svg width={W} height={H} style={{margin: '24px 70px 0', overflow: 'visible'}}>
+        <line x1={padL} x2={W - padR} y1={H - padB} y2={H - padB} stroke={INK} strokeWidth={4} />
         {DAYS.map((p, i) => (
-          <text key={i} x={x(i)} y={H - padB + 46} textAnchor="middle" fontFamily={LABEL} fontWeight={700} fontSize={26}
-            letterSpacing={2.5} fill={i === thu ? INK : SOFT}>{p.d.toUpperCase()}</text>
+          <text key={i} x={x(i)} y={H - padB + 54} textAnchor="middle" fontFamily={LABEL} fontWeight={700} fontSize={38}
+            letterSpacing={1} fill={i === thu ? RED : SOFT}>{p.d.toUpperCase()}</text>
         ))}
-        <path d={path} fill="none" stroke={INK} strokeWidth={6} strokeLinejoin="round" strokeLinecap="round"
+        <path d={path} fill="none" stroke={INK} strokeWidth={10} strokeLinejoin="round" strokeLinecap="round"
           strokeDasharray={len} strokeDashoffset={len * (1 - draw)} />
-        {DAYS.map((p, i) => (draw >= i / (DAYS.length - 1) - 0.001
-          ? <circle key={i} cx={x(i)} cy={y(p.v)} r={i === thu ? 15 : 8} fill={i === thu ? RED : '#efe7d6'}
-            stroke={i === thu ? RED : INK} strokeWidth={4} />
-          : null))}
-        <g opacity={note} transform={`translate(0 ${(1 - note) * 16})`}>
-          <line x1={padL + 360} x2={x(thu) - 18} y1={y(185.2)} y2={y(DAYS[thu].v) - 6} stroke={RED} strokeWidth={2.5} />
-          <text x={padL + 14} y={y(184.6) - 8} fontFamily={DISPLAY} fontSize={58} fill={INK}>Thursday, −7.8%</text>
-          <text x={padL + 14} y={y(184.6) + 32} fontFamily={DISPLAY} fontStyle="italic" fontSize={36} fill={SOFT}>its worst day in months</text>
+        {draw > 0.79 ? <circle cx={x(thu)} cy={y(DAYS[thu].v)} r={24 * prog(f, 36, 6, Easing.out(Easing.back(2)))} fill={RED} /> : null}
+        <g opacity={note}>
+          <text x={x(thu) - 40} y={y(DAYS[thu].v) + 10} textAnchor="end" fontFamily={DISPLAY} fontSize={84} fill={RED}>Thursday</text>
         </g>
       </svg>
-      <div style={{margin: '14px 70px 0', fontFamily: BODY, fontSize: 30, lineHeight: 1.42, color: INK, ...settle(f, 64)}}>
-        Shares closed the week 7.8% lower at $186.60, after Friday recovered a third of Thursday's drop.
-      </div>
-      <div style={{margin: '26px 70px 0', ...settle(f, 74)}}>
-        <Rule f={f} at={74} w={3} />
-        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 16}}>
-          <div style={{fontFamily: DISPLAY, fontSize: 56, color: INK}}>Why it fell, in Sunday's report</div>
-          <div style={{fontFamily: DISPLAY, fontSize: 56, color: GOLD}}>&#8594;</div>
-        </div>
-        <div style={{fontFamily: LABEL, fontWeight: 600, fontSize: 19, color: SOFT, marginTop: 6, letterSpacing: 1.5,
-          textTransform: 'uppercase'}}>Sample · illustrative figures, not real prices</div>
+      <div style={{margin: '18px 70px 0', fontFamily: LABEL, fontWeight: 600, fontSize: 28, color: SOFT, letterSpacing: 1}}>
+        SAMPLE · illustrative figures for a style test
       </div>
     </Sheet>
+  );
+};
+
+// ---------- scene C: the open question ----------
+
+const QuestionPage: React.FC = () => {
+  const f = useCurrentFrame();
+  return (
+    <Sheet paper="paper-front.png">
+      <Masthead f={60} />
+      <div style={{padding: '70px 70px 0'}}>
+        <div style={{fontFamily: DISPLAY, fontSize: 230, lineHeight: 0.92, color: INK, letterSpacing: -4, transformOrigin: '0% 50%', ...stamp(f, 0)}}>
+          So why<br />did it fall?
+        </div>
+        <div style={{marginTop: 26}}><Rule f={f} at={8} w={4} /></div>
+        <div style={{fontFamily: DISPLAY, fontStyle: 'italic', fontSize: 104, lineHeight: 1.02, color: INK, marginTop: 30,
+          ...rise(f, 10, 10, 24)}}>
+          3 reasons, in<br />Sunday's report <span style={{color: GOLD, fontStyle: 'normal'}}>&#8594;</span>
+        </div>
+        <div style={{fontFamily: LABEL, fontWeight: 700, fontSize: 52, lineHeight: 1.25, color: INK, marginTop: 60, ...rise(f, 18, 10, 16)}}>
+          Follow <span style={{color: GOLD}}>@tech_stocks_news</span><br />for the daily move
+        </div>
+      </div>
+    </Sheet>
+  );
+};
+
+// Ink wipe: the next page slides in from the right edge with a hard shadow, like a page laid on top.
+const LayOn: React.FC<{start: number; children: React.ReactNode}> = ({start, children}) => {
+  const f = useCurrentFrame();
+  const p = prog(f, start, 10, Easing.out(Easing.cubic));
+  return (
+    <AbsoluteFill style={{transform: `translateX(${(1 - p) * 110}%) rotate(${(1 - p) * 4}deg)`, transformOrigin: '0% 100%',
+      filter: 'drop-shadow(-18px 0 28px rgba(30,20,8,0.45))'}}>{children}</AbsoluteFill>
   );
 };
 
@@ -313,18 +323,24 @@ const PaperRip: React.FC<{start: number; duration: number; children: React.React
 // ---------- composition ----------
 
 export const BROADSHEET_FRAMES = 210;
-const RIP_AT = 92;
-const RIP_LEN = 22;
+const RIP_AT = 72;
+const RIP_LEN = 20;
+const CLOSE_AT = 150;
 
 export const BroadsheetSample: React.FC = () => (
   <AbsoluteFill style={{background: '#2b241b'}}>
-    <Sequence from={RIP_AT}>
-      <ChartPage />
+    <Sequence from={RIP_AT} durationInFrames={CLOSE_AT + 12 - RIP_AT}>
+      <LoserPage />
     </Sequence>
     <Sequence durationInFrames={RIP_AT + RIP_LEN}>
       <PaperRip start={RIP_AT} duration={RIP_LEN}>
-        <FrontPage />
+        <ShockPage />
       </PaperRip>
+    </Sequence>
+    <Sequence from={CLOSE_AT}>
+      <LayOn start={0}>
+        <QuestionPage />
+      </LayOn>
     </Sequence>
   </AbsoluteFill>
 );
