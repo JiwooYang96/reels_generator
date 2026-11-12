@@ -10,3 +10,4 @@ One row per video, newest first. Claude checks the last 5 rows to rotate structu
 | 2026-11-07 | AI stock sell-off: $5T lost, Dow up (plan version) | escalation -> rehook -> open loop | stakes | open.cashRain | lineMove, scoreboard | plans/ai-selloff.json |
 | 2026-11-03 | AI stock sell-off: $5T lost, Dow up | escalation -> rehook -> open loop | stakes | hand-coded counter | scoreboard | examples/stock-short.mp4 |
 | 2026-11-03 | RTX 5080 street price 2.2x MSRP | single number + pattern | stakes | hand-coded price slam | compare bars | examples/nvidia-short.mp4 |
+| 2026-11-12 | Nvidia CEO Jensen Huang resigns: −14% at the open, −4.3% close ($166.19), Bernstein $400→$200, Nov 17 earnings | timeline | stakes / open loop | open.breaking | headline, timeline, priceSlam | plans/nvidia-ceo-exit-nov12.json |
