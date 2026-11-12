@@ -171,7 +171,7 @@ Default theme: dark. Source line: not needed.
 - `date`: string
 - `event`: string
 - `note` (optional): string, max 48 chars
-- `cta` (optional): string, default "Follow @tech_stocks_news →"
+- `cta` (optional): string, default "Follow @fivebeforemonday →"
 
 ## `barRank`
 

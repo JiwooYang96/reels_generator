@@ -1,7 +1,7 @@
 # Hooksmith Context
 
 ## Creator
-@tech_stocks_news (faceless stock-news channel)
+@fivebeforemonday (faceless stock-news channel)
 
 ## Niche
 Latest US stock-market news about well-known companies (S&P 500 and popular tickers), told in 10-30 s with the company's logo up front.
@@ -19,7 +19,7 @@ Plain, punchy, neutral. Facts first, no hype adjectives the numbers don't suppor
 Caption-led motion-graphics Reels / TikTok / Shorts, no voice-over, 9:16, word-by-word captions with one boxed keyword per line.
 
 ## CTA Rules
-Open-loop follow CTA tied to a dated next event, always naming the account ("Follow @tech_stocks_news for Nov 17"). Comment prompts allowed ("Buying the dip or waiting?"). No DM funnels, no links.
+Open-loop follow CTA tied to a dated next event, always naming the account ("Follow @fivebeforemonday for Nov 17"). Comment prompts allowed ("Buying the dip or waiting?"). No DM funnels, no links.
 
 ## Forbidden Claims
 No investment advice or price predictions presented as fact ("will hit $300"). No "guaranteed", "secret", "nobody is talking about" unless literally true. No fabricated quotes. No invented urgency. Analyst targets only when attributed.

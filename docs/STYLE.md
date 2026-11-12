@@ -1,6 +1,6 @@
 # House style: Broadsheet
 
-The look of every @tech_stocks_news reel. It is the `broadsheet` palette in `src/theme.ts` and the default for
+The look of every @fivebeforemonday reel. It is the `broadsheet` palette in `src/theme.ts` and the default for
 every plan, so following the plan rules gets you this look for free. This page records *why* it looks the way it
 does, so new scenes and new videos stay in the same world. Approved sample: `plans/nvidia-week-nov6-broadsheet.json`.
 
