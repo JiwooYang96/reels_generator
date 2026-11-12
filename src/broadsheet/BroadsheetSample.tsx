@@ -1,151 +1,183 @@
-// Broadsheet style sample: a newspaper front page that tears open onto a chart page.
-// 7 seconds, 1080x1920. Numbers are invented for the style test and labelled as a sample.
+// Broadsheet style sample: a printed front page that tears open onto a chart page.
+// 7 s, 1080x1920. Figures are invented for the style test and labelled as a sample.
+//
+// Paper: still frames rendered from Paper Shaders' PaperTexture (Apache-2.0), see PaperStill.tsx.
+// Type: Instrument Serif (titles), Source Serif 4 (body), Source Sans 3 (labels), all OFL.
 import React from 'react';
-import {
-  AbsoluteFill, Easing, Sequence, interpolate, random, staticFile, useCurrentFrame, useVideoConfig,
-} from 'remotion';
+import {AbsoluteFill, Easing, Img, Sequence, interpolate, random, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import {loadFont} from '@remotion/fonts';
 
-const B = {
-  paper: '#f3eee3', paperLight: '#fbf8f1', ink: '#151311', soft: '#6b655c', rule: '#2a2622',
-  hair: 'rgba(21,19,17,0.22)', gold: '#a8730f', red: '#a8231b',
-};
-// Family names starting a word with a digit must be quoted in CSS, or the browser falls back.
-const SERIF_NAME = 'Source Serif 4';
-const SANS_NAME = 'Source Sans 3';
-const MONO_NAME = 'IBM Plex Mono';
-const SERIF = `'${SERIF_NAME}', Georgia, serif`;
-const SANS = `'${SANS_NAME}', Helvetica, sans-serif`;
-const MONO = `'${MONO_NAME}', monospace`;
+const INK = '#16130f';
+const SOFT = '#5d564b';
+const GOLD = '#9a6a12';
+const RED = '#9e2016';
+const HAIR = 'rgba(22,19,15,0.35)';
+
+const fam = (name: string, fallback: string) => `'${name}', ${fallback}`;
+const DISPLAY = fam('Instrument Serif', 'Georgia, serif');
+const BODY = fam('Source Serif 4', 'Georgia, serif');
+const LABEL = fam('Source Sans 3', 'Helvetica, sans-serif');
 
 for (const [family, file, weight, style] of [
-  [SERIF_NAME, 'source-serif-4-latin-400-normal', '400', 'normal'],
-  [SERIF_NAME, 'source-serif-4-latin-400-italic', '400', 'italic'],
-  [SERIF_NAME, 'source-serif-4-latin-700-normal', '700', 'normal'],
-  [SERIF_NAME, 'source-serif-4-latin-900-normal', '900', 'normal'],
-  [SANS_NAME, 'source-sans-3-latin-600-normal', '600', 'normal'],
-  [SANS_NAME, 'source-sans-3-latin-700-normal', '700', 'normal'],
-  [MONO_NAME, 'ibm-plex-mono-latin-600-normal', '600', 'normal'],
+  ['Instrument Serif', 'instrument-serif-latin-400-normal', '400', 'normal'],
+  ['Instrument Serif', 'instrument-serif-latin-400-italic', '400', 'italic'],
+  ['Source Serif 4', 'source-serif-4-latin-400-normal', '400', 'normal'],
+  ['Source Serif 4', 'source-serif-4-latin-400-italic', '400', 'italic'],
+  ['Source Serif 4', 'source-serif-4-latin-700-normal', '700', 'normal'],
+  ['Source Sans 3', 'source-sans-3-latin-600-normal', '600', 'normal'],
+  ['Source Sans 3', 'source-sans-3-latin-700-normal', '700', 'normal'],
 ] as const) {
   loadFont({family, url: staticFile(`fonts/${file}.woff2`), weight, style});
 }
 
 const ease = Easing.bezier(0.2, 0.8, 0.2, 1);
-const rise = (f: number, start: number, len = 10) => {
-  const p = interpolate(f, [start, start + len], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease});
-  return {opacity: p, transform: `translateY(${(1 - p) * 40}px)`};
+const prog = (f: number, a: number, len: number, e = ease) =>
+  interpolate(f, [a, a + len], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: e});
+const rise = (f: number, a: number, len = 12, dist = 34) => {
+  const p = prog(f, a, len);
+  return {opacity: p, transform: `translateY(${(1 - p) * dist}px)`};
+};
+// Ink that settles onto the page: fades in from a slight blur, like a print coming up.
+const settle = (f: number, a: number, len = 14) => {
+  const p = prog(f, a, len);
+  return {opacity: p, filter: `blur(${(1 - p) * 6}px)`, transform: `translateY(${(1 - p) * 18}px)`};
 };
 
-// ---------- paper ----------
+// ---------- surfaces ----------
 
-const PaperTexture: React.FC<{seed?: number}> = ({seed = 3}) => (
-  <AbsoluteFill style={{pointerEvents: 'none'}}>
-    <svg width="100%" height="100%" style={{position: 'absolute', inset: 0, mixBlendMode: 'multiply', opacity: 0.55}}>
-      <filter id={`grain-${seed}`}>
-        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves={2} seed={seed} />
-        <feColorMatrix type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.40  0 0 0 0 0.33  0 0 0 0.22 0" />
-      </filter>
-      <filter id={`fibre-${seed}`}>
-        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.25" numOctaves={3} seed={seed + 7} />
-        <feColorMatrix type="matrix" values="0 0 0 0 0.5  0 0 0 0 0.45  0 0 0 0 0.38  0 0 0 0.10 0" />
-      </filter>
-      <rect width="100%" height="100%" filter={`url(#fibre-${seed})`} />
-      <rect width="100%" height="100%" filter={`url(#grain-${seed})`} />
-    </svg>
-    <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(60,45,25,0.16) 100%)'}} />
-  </AbsoluteFill>
-);
-
-const Rule: React.FC<{f: number; at: number; weight?: number; double?: boolean}> = ({f, at, weight = 2, double}) => {
-  const w = interpolate(f, [at, at + 12], [0, 100], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease});
+const Paper: React.FC<{src: string}> = ({src}) => {
+  const f = useCurrentFrame();
+  const s = 1.07 - f * 0.00012;
   return (
-    <div style={{width: `${w}%`, margin: '0 auto'}}>
-      <div style={{borderTop: `${weight}px solid ${B.rule}`}} />
-      {double ? <div style={{borderTop: `1px solid ${B.rule}`, marginTop: 5}} /> : null}
-    </div>
+    <AbsoluteFill style={{overflow: 'hidden'}}>
+      <Img src={staticFile(`textures/${src}`)} style={{
+        width: '100%', height: '100%', objectFit: 'cover',
+        transform: `scale(${s}) translate(${Math.sin(f / 60) * 6}px, ${f * 0.05}px)`,
+        filter: 'brightness(1.16) contrast(0.9) saturate(0.88)',
+      }} />
+    </AbsoluteFill>
   );
 };
 
-// Grey bars that read as set type at a glance, for column texture.
-const ColumnText: React.FC<{lines: number; seed: number; f: number; at: number}> = ({lines, seed, f, at}) => (
-  <div style={{opacity: interpolate(f, [at, at + 12], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})}}>
-    {Array.from({length: lines}).map((_, i) => (
-      <div key={i} style={{
-        height: 9, margin: '0 0 13px', background: B.hair, borderRadius: 2,
-        width: `${i === lines - 1 ? 45 + random(`${seed}-${i}`) * 30 : 88 + random(`${seed}-${i}`) * 12}%`,
-      }} />
-    ))}
+// Film grain that changes every other frame, plus a soft vignette.
+const Grain: React.FC = () => {
+  const f = useCurrentFrame();
+  const seed = Math.floor(f / 2) % 24;
+  return (
+    <AbsoluteFill style={{pointerEvents: 'none'}}>
+      <svg width="100%" height="100%" style={{position: 'absolute', inset: 0, mixBlendMode: 'multiply', opacity: 0.5}}>
+        <filter id={`g${seed}`}>
+          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves={2} seed={seed} stitchTiles="stitch" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.3  0 0 0 0 0.24  0 0 0 0.16 0" />
+        </filter>
+        <rect width="100%" height="100%" filter={`url(#g${seed})`} />
+      </svg>
+      <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 42%, transparent 58%, rgba(45,32,15,0.28) 100%)'}} />
+    </AbsoluteFill>
+  );
+};
+
+// Everything printed sits in a multiply layer so the paper's folds show through the ink.
+const Ink: React.FC<{children: React.ReactNode}> = ({children}) => (
+  <AbsoluteFill style={{mixBlendMode: 'multiply'}}>{children}</AbsoluteFill>
+);
+
+const Rule: React.FC<{f: number; at: number; w?: number; double?: boolean}> = ({f, at, w = 2, double}) => (
+  <div style={{width: `${prog(f, at, 14) * 100}%`, margin: '0 auto'}}>
+    <div style={{borderTop: `${w}px solid ${INK}`}} />
+    {double ? <div style={{borderTop: `1px solid ${INK}`, marginTop: 6}} /> : null}
   </div>
 );
 
 const Masthead: React.FC<{f: number; section: string}> = ({f, section}) => (
-  <div style={{padding: '184px 64px 0'}}>
-    <div style={{display: 'flex', justifyContent: 'space-between', fontFamily: SANS, fontWeight: 600, fontSize: 26,
-      letterSpacing: 2, color: B.soft, textTransform: 'uppercase', ...rise(f, 0, 8)}}>
-      <span>Friday, Nov 13, 2026</span><span style={{textTransform: 'none', letterSpacing: 0.5}}>@tech_stocks_news</span>
+  <div style={{padding: '182px 70px 0'}}>
+    <div style={{display: 'flex', justifyContent: 'space-between', fontFamily: LABEL, fontWeight: 600, fontSize: 25,
+      letterSpacing: 2.5, color: SOFT, textTransform: 'uppercase', ...rise(f, 0, 10, 14)}}>
+      <span>Friday, Nov 13, 2026</span>
+      <span style={{textTransform: 'none', letterSpacing: 0.5}}>@tech_stocks_news</span>
     </div>
-    <div style={{margin: '18px 0 14px'}}><Rule f={f} at={2} weight={3} /></div>
-    <div style={{fontFamily: SERIF, fontWeight: 900, fontSize: 88, textAlign: 'center', color: B.ink,
-      letterSpacing: 1, lineHeight: 1, ...rise(f, 3, 10)}}>
+    <div style={{margin: '16px 0 4px'}}><Rule f={f} at={2} w={3} /></div>
+    <div style={{fontFamily: DISPLAY, fontSize: 132, lineHeight: 1, textAlign: 'center', color: INK, letterSpacing: -1,
+      padding: '10px 0 2px', ...settle(f, 2, 16)}}>
       Five Before Monday
     </div>
-    <div style={{margin: '18px 0 0'}}><Rule f={f} at={6} weight={2} double /></div>
-    <div style={{display: 'flex', justifyContent: 'center', gap: 28, fontFamily: SANS, fontWeight: 700, fontSize: 24,
-      letterSpacing: 3, color: B.ink, textTransform: 'uppercase', padding: '14px 0 0', ...rise(f, 8, 8)}}>
-      <span>Markets</span><span style={{color: B.gold}}>◆</span><span>{section}</span><span style={{color: B.gold}}>◆</span><span>Big Tech</span>
+    <Rule f={f} at={6} w={2} double />
+    <div style={{display: 'flex', justifyContent: 'center', gap: 26, fontFamily: LABEL, fontWeight: 700, fontSize: 23,
+      letterSpacing: 3.5, color: INK, textTransform: 'uppercase', padding: '14px 0 0', ...rise(f, 8, 10, 12)}}>
+      <span>Markets</span><span style={{color: GOLD}}>&#9670;</span><span>{section}</span><span style={{color: GOLD}}>&#9670;</span><span>Big Tech</span>
     </div>
   </div>
 );
 
+// A page that sits slightly loose on the desk: a slow drift and a hair of rotation.
+const Sheet: React.FC<{children: React.ReactNode; paper: string}> = ({children, paper}) => {
+  const f = useCurrentFrame();
+  const r = Math.sin(f / 45) * 0.18;
+  const push = interpolate(f, [0, 130], [1.035, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.quad)});
+  return (
+    <AbsoluteFill style={{background: '#2b241b'}}>
+      <AbsoluteFill style={{transform: `scale(${push}) rotate(${r}deg)`}}>
+        <Paper src={paper} />
+        <Ink>{children}</Ink>
+        <Grain />
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
 // ---------- scene A: the front page ----------
+
+const TABLE = [
+  ['Nvidia', '−7.8%'], ['Broadcom', '−6.1%'], ['Chip index', '−5.4%'], ['Nasdaq-100', '−2.9%'],
+];
 
 const FrontPage: React.FC = () => {
   const f = useCurrentFrame();
-  const push = interpolate(f, [0, 110], [1, 1.045], {extrapolateRight: 'clamp'});
-  const value = interpolate(f, [30, 54], [0, 7.8], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease});
-  const headline = ['Chip Stocks Lose', '$400 Billion in a', 'Single Session'];
+  const headline = ['Chip Stocks Shed', '$400 Billion in a', 'Single Session'];
   return (
-    <AbsoluteFill style={{background: B.paper, transform: `scale(${push})`}}>
+    <Sheet paper="paper-front.png">
       <Masthead f={f} section="Chips" />
-      <div style={{padding: '48px 64px 0'}}>
-        <div style={{fontFamily: SANS, fontWeight: 700, fontSize: 28, letterSpacing: 4, color: B.gold,
-          textTransform: 'uppercase', ...rise(f, 10, 8)}}>Semiconductors</div>
-        <div style={{marginTop: 14}}>
+      <div style={{padding: '44px 70px 0'}}>
+        <div style={{fontFamily: LABEL, fontWeight: 700, fontSize: 26, letterSpacing: 4, color: GOLD,
+          textTransform: 'uppercase', ...rise(f, 10, 10, 12)}}>Semiconductors</div>
+        <div style={{marginTop: 8}}>
           {headline.map((line, i) => (
-            <div key={line} style={{overflow: 'hidden'}}>
-              <div style={{fontFamily: SERIF, fontWeight: 700, fontSize: 112, lineHeight: 1.04, color: B.ink,
-                letterSpacing: -1.5, ...rise(f, 12 + i * 4, 10)}}>{line}</div>
+            <div key={line} style={{overflow: 'hidden', paddingBottom: 6}}>
+              <div style={{fontFamily: DISPLAY, fontSize: 138, lineHeight: 0.98, color: INK, letterSpacing: -1.5,
+                ...rise(f, 12 + i * 4, 14, 120)}}>{line}</div>
             </div>
           ))}
         </div>
-        <div style={{fontFamily: SERIF, fontStyle: 'italic', fontSize: 40, lineHeight: 1.35, color: B.soft,
-          marginTop: 26, maxWidth: 900, ...rise(f, 24, 10)}}>
-          Nvidia led the slide as buyers questioned how many more data centers the world needs.
+        <div style={{fontFamily: DISPLAY, fontStyle: 'italic', fontSize: 50, lineHeight: 1.16, color: SOFT, marginTop: 18,
+          ...settle(f, 26)}}>
+          Nvidia led Thursday's slide as investors asked how many more data centers the world will need.
         </div>
       </div>
-      <div style={{display: 'flex', gap: 40, padding: '56px 64px 0', alignItems: 'flex-start'}}>
-        <div style={{flex: '0 0 470px', position: 'relative', border: `3px solid ${B.ink}`, padding: '26px 28px 30px',
-          ...rise(f, 28, 10)}}>
-          <div style={{position: 'absolute', inset: 0, opacity: 0.18,
-            backgroundImage: `radial-gradient(${B.ink} 2.2px, transparent 2.6px)`, backgroundSize: '12px 12px'}} />
-          <div style={{position: 'relative', fontFamily: SANS, fontWeight: 700, fontSize: 24, letterSpacing: 3,
-            textTransform: 'uppercase', color: B.ink}}>Nvidia, this week</div>
-          <div style={{position: 'relative', fontFamily: SERIF, fontWeight: 900, fontSize: 156, lineHeight: 1,
-            color: B.red, marginTop: 14, letterSpacing: -3, fontVariantNumeric: 'tabular-nums'}}>−{value.toFixed(1)}%</div>
-          <div style={{position: 'relative', fontFamily: SANS, fontWeight: 600, fontSize: 22, color: B.soft,
-            marginTop: 14}}>Sample figure, not real data</div>
+      <div style={{display: 'flex', gap: 44, padding: '34px 70px 0'}}>
+        <div style={{flex: 1, fontFamily: BODY, fontSize: 31, lineHeight: 1.42, color: INK, textAlign: 'left',
+          ...settle(f, 32, 16)}}>
+          <span style={{float: 'left', fontFamily: DISPLAY, fontSize: 142, lineHeight: 0.8, padding: '8px 12px 0 0',
+            color: INK}}>C</span>
+          hipmakers had their worst day since April. Nvidia fell 7.8%, Broadcom dropped 6.1% and the chip index closed
+          5.4% lower, wiping roughly $400 billion off the sector before a partial rebound on Friday.
         </div>
-        <div style={{flex: 1, paddingTop: 6}}>
-          <ColumnText lines={13} seed={1} f={f} at={34} />
+        <div style={{width: 1, background: HAIR, ...settle(f, 34)}} />
+        <div style={{flex: '0 0 330px', ...settle(f, 36, 16)}}>
+          <div style={{fontFamily: LABEL, fontWeight: 700, fontSize: 22, letterSpacing: 3, textTransform: 'uppercase',
+            color: INK, paddingBottom: 10, borderBottom: `3px solid ${INK}`}}>Thursday's close</div>
+          {TABLE.map(([name, chg], i) => (
+            <div key={name} style={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
+              padding: '13px 0', borderBottom: `1px solid ${HAIR}`, ...rise(f, 38 + i * 3, 10, 10)}}>
+              <span style={{fontFamily: BODY, fontSize: 30, color: INK}}>{name}</span>
+              <span style={{fontFamily: DISPLAY, fontSize: 50, lineHeight: 1, color: RED}}>{chg}</span>
+            </div>
+          ))}
+          <div style={{fontFamily: LABEL, fontWeight: 600, fontSize: 19, color: SOFT, marginTop: 12, letterSpacing: 0.5}}>
+            Sample figures for a style test
+          </div>
         </div>
       </div>
-      <div style={{display: 'flex', gap: 40, padding: '40px 64px 0'}}>
-        <div style={{flex: 1}}><ColumnText lines={6} seed={2} f={f} at={38} /></div>
-        <div style={{width: 1, background: B.hair}} />
-        <div style={{flex: 1}}><ColumnText lines={6} seed={3} f={f} at={40} /></div>
-      </div>
-      <PaperTexture seed={3} />
-    </AbsoluteFill>
+    </Sheet>
   );
 };
 
@@ -157,107 +189,120 @@ const DAYS = [
 
 const ChartPage: React.FC = () => {
   const f = useCurrentFrame();
-  const W = 952, H = 640, padL = 96, padR = 40, padT = 40, padB = 90;
+  const W = 940, H = 600, padL = 92, padR = 36, padT = 30, padB = 84;
   const lo = 176, hi = 206;
   const x = (i: number) => padL + (i * (W - padL - padR)) / (DAYS.length - 1);
   const y = (v: number) => padT + ((hi - v) / (hi - lo)) * (H - padT - padB);
   const path = DAYS.map((p, i) => `${i ? 'L' : 'M'}${x(i)} ${y(p.v)}`).join(' ');
-  const draw = interpolate(f, [16, 62], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic)});
-  const len = 1500;
+  const draw = prog(f, 14, 46, Easing.inOut(Easing.cubic));
+  const len = 1400;
   const thu = 4;
-  const note = interpolate(f, [58, 68], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease});
+  const note = prog(f, 56, 12);
   return (
-    <AbsoluteFill style={{background: B.paper}}>
-      <Masthead f={40} section="The Chart" />
-      <div style={{padding: '44px 64px 0'}}>
-        <div style={{fontFamily: SANS, fontWeight: 700, fontSize: 28, letterSpacing: 4, color: B.gold,
-          textTransform: 'uppercase', ...rise(f, 4, 8)}}>The week in one line</div>
-        <div style={{fontFamily: SERIF, fontWeight: 700, fontSize: 84, lineHeight: 1.05, color: B.ink, marginTop: 12,
-          letterSpacing: -1, whiteSpace: 'nowrap', ...rise(f, 7, 10)}}>Nvidia's Rough Week</div>
-        <div style={{fontFamily: SERIF, fontStyle: 'italic', fontSize: 36, color: B.soft, marginTop: 14, ...rise(f, 12, 10)}}>
-          Closing price, dollars per share
+    <Sheet paper="paper-chart.png">
+      <Masthead f={60} section="The Chart" />
+      <div style={{padding: '40px 70px 0'}}>
+        <div style={{fontFamily: LABEL, fontWeight: 700, fontSize: 26, letterSpacing: 4, color: GOLD,
+          textTransform: 'uppercase', ...rise(f, 2, 10, 12)}}>The week in one line</div>
+        <div style={{fontFamily: DISPLAY, fontSize: 138, lineHeight: 1, color: INK, letterSpacing: -1.5, marginTop: 6,
+          ...rise(f, 4, 14, 60)}}>Nvidia's Rough Week</div>
+        <div style={{fontFamily: DISPLAY, fontStyle: 'italic', fontSize: 48, color: SOFT, marginTop: 12, ...settle(f, 10)}}>
+          Four losing sessions, then a Friday bounce.
         </div>
       </div>
-      <svg width={W} height={H} style={{margin: '36px 64px 0'}}>
+      <svg width={W} height={H} style={{margin: '26px 70px 0', overflow: 'visible'}}>
         {[180, 190, 200].map((v) => (
-          <g key={v}>
-            <line x1={padL} x2={W - padR} y1={y(v)} y2={y(v)} stroke={B.hair} strokeWidth={2} strokeDasharray="2 8" />
-            <text x={padL - 18} y={y(v) + 10} textAnchor="end" fontFamily={MONO} fontWeight={600} fontSize={28} fill={B.soft}>{v}</text>
+          <g key={v} opacity={prog(f, 8, 10)}>
+            <line x1={padL} x2={W - padR} y1={y(v)} y2={y(v)} stroke={HAIR} strokeWidth={2} strokeDasharray="2 9" />
+            <text x={padL - 18} y={y(v) + 11} textAnchor="end" fontFamily={BODY} fontSize={30} fill={SOFT}>${v}</text>
           </g>
         ))}
-        <line x1={padL} x2={W - padR} y1={H - padB} y2={H - padB} stroke={B.rule} strokeWidth={3} />
+        <line x1={padL} x2={W - padR} y1={H - padB} y2={H - padB} stroke={INK} strokeWidth={3} />
         {DAYS.map((p, i) => (
-          <text key={i} x={x(i)} y={H - padB + 48} textAnchor="middle" fontFamily={SANS} fontWeight={700} fontSize={28}
-            letterSpacing={2} fill={i === thu ? B.ink : B.soft}>{p.d.toUpperCase()}</text>
+          <text key={i} x={x(i)} y={H - padB + 46} textAnchor="middle" fontFamily={LABEL} fontWeight={700} fontSize={26}
+            letterSpacing={2.5} fill={i === thu ? INK : SOFT}>{p.d.toUpperCase()}</text>
         ))}
-        <path d={path} fill="none" stroke={B.ink} strokeWidth={7} strokeLinejoin="round" strokeLinecap="round"
+        <path d={path} fill="none" stroke={INK} strokeWidth={6} strokeLinejoin="round" strokeLinecap="round"
           strokeDasharray={len} strokeDashoffset={len * (1 - draw)} />
-        {DAYS.map((p, i) => {
-          const shown = draw >= i / (DAYS.length - 1) - 0.001;
-          return shown ? <circle key={i} cx={x(i)} cy={y(p.v)} r={i === thu ? 16 : 9} fill={i === thu ? B.red : B.paper}
-            stroke={i === thu ? B.red : B.ink} strokeWidth={5} /> : null;
-        })}
-        <g opacity={note} transform={`translate(0 ${(1 - note) * 20})`}>
-          <line x1={padL + 330} x2={x(thu) - 18} y1={y(184.5)} y2={y(DAYS[thu].v) - 6} stroke={B.red} strokeWidth={3} />
-          <text x={padL + 10} y={y(184) - 10} fontFamily={SERIF} fontWeight={700} fontSize={44} fill={B.ink}>Thursday: −7.8%</text>
-          <text x={padL + 10} y={y(184) + 34} fontFamily={SERIF} fontStyle="italic" fontSize={32} fill={B.soft}>its worst day in months</text>
+        {DAYS.map((p, i) => (draw >= i / (DAYS.length - 1) - 0.001
+          ? <circle key={i} cx={x(i)} cy={y(p.v)} r={i === thu ? 15 : 8} fill={i === thu ? RED : '#efe7d6'}
+            stroke={i === thu ? RED : INK} strokeWidth={4} />
+          : null))}
+        <g opacity={note} transform={`translate(0 ${(1 - note) * 16})`}>
+          <line x1={padL + 360} x2={x(thu) - 18} y1={y(185.2)} y2={y(DAYS[thu].v) - 6} stroke={RED} strokeWidth={2.5} />
+          <text x={padL + 14} y={y(184.6) - 8} fontFamily={DISPLAY} fontSize={58} fill={INK}>Thursday, −7.8%</text>
+          <text x={padL + 14} y={y(184.6) + 32} fontFamily={DISPLAY} fontStyle="italic" fontSize={36} fill={SOFT}>its worst day in months</text>
         </g>
       </svg>
-      <div style={{margin: '28px 64px 0', ...rise(f, 72, 10)}}>
-        <Rule f={f} at={72} weight={3} />
-        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 22}}>
-          <div style={{fontFamily: SERIF, fontWeight: 700, fontSize: 44, color: B.ink}}>Why it fell: Sunday's report</div>
-          <div style={{fontFamily: SANS, fontWeight: 700, fontSize: 40, color: B.gold}}>→</div>
-        </div>
-        <div style={{fontFamily: SANS, fontWeight: 600, fontSize: 24, color: B.soft, marginTop: 12, letterSpacing: 1}}>
-          SAMPLE · ILLUSTRATIVE DATA, NOT REAL PRICES
-        </div>
+      <div style={{margin: '14px 70px 0', fontFamily: BODY, fontSize: 30, lineHeight: 1.42, color: INK, ...settle(f, 64)}}>
+        Shares closed the week 7.8% lower at $186.60, after Friday recovered a third of Thursday's drop.
       </div>
-      <PaperTexture seed={9} />
-    </AbsoluteFill>
+      <div style={{margin: '26px 70px 0', ...settle(f, 74)}}>
+        <Rule f={f} at={74} w={3} />
+        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 16}}>
+          <div style={{fontFamily: DISPLAY, fontSize: 56, color: INK}}>Why it fell, in Sunday's report</div>
+          <div style={{fontFamily: DISPLAY, fontSize: 56, color: GOLD}}>&#8594;</div>
+        </div>
+        <div style={{fontFamily: LABEL, fontWeight: 600, fontSize: 19, color: SOFT, marginTop: 6, letterSpacing: 1.5,
+          textTransform: 'uppercase'}}>Sample · illustrative figures, not real prices</div>
+      </div>
+    </Sheet>
   );
 };
 
 // ---------- the paper rip ----------
 
-// A jagged tear line across the frame: fine teeth on top of slow waves, seeded so it renders the same every frame.
 const tearEdge = (seed: string, w: number, mid: number, amp: number, offset = 0) => {
   const pts: [number, number][] = [];
-  for (let xx = -20, i = 0; xx <= w + 20; xx += 14, i++) {
-    const wave = Math.sin(xx / 170 + random(`${seed}-p`) * 6) * amp * 0.9 + Math.sin(xx / 61 + 1.3) * amp * 0.35;
-    const tooth = (random(`${seed}-${i}`) - 0.5) * amp * 0.9;
+  for (let xx = -20, i = 0; xx <= w + 20; xx += 9, i++) {
+    const wave = Math.sin(xx / 190 + random(`${seed}-p`) * 6) * amp * 0.9 + Math.sin(xx / 53 + 1.3) * amp * 0.3;
+    const tooth = (random(`${seed}-${i}`) - 0.5) * amp * (random(`${seed}-k${i}`) > 0.85 ? 1.6 : 0.7);
     pts.push([xx, mid + wave + tooth + offset]);
   }
   return pts;
 };
 const toPath = (edge: [number, number][], closeY: number, w: number) =>
-  `M-20 ${closeY} ` + edge.map(([px, py]) => `L${px} ${py}`).join(' ') + ` L${w + 20} ${closeY} Z`;
+  `M-20 ${closeY} ` + edge.map(([px, py]) => `L${px.toFixed(1)} ${py.toFixed(1)}`).join(' ') + ` L${w + 20} ${closeY} Z`;
+
+// The torn-off core of the sheet: the same paper, much lighter, so the fibres still show.
+const CoreFill: React.FC<{id: string; w: number; h: number}> = ({id, w, h}) => (
+  <defs>
+    <pattern id={id} patternUnits="userSpaceOnUse" width={w} height={h}>
+      <image href={staticFile('textures/paper-chart.png')} width={w} height={h} preserveAspectRatio="xMidYMid slice" />
+      <rect width={w} height={h} fill="#fcf9f2" opacity={0.72} />
+    </pattern>
+  </defs>
+);
 
 const PaperRip: React.FC<{start: number; duration: number; children: React.ReactNode}> = ({start, duration, children}) => {
   const f = useCurrentFrame();
   const {width: w, height: h} = useVideoConfig();
   if (f < start) return <AbsoluteFill>{children}</AbsoluteFill>;
-  // A short crack first, then the halves fly apart.
   const t = (f - start) / duration;
-  const crack = interpolate(t, [0, 0.25], [0, 26], {extrapolateRight: 'clamp', easing: Easing.out(Easing.quad)});
-  const fly = interpolate(t, [0.2, 1], [0, h * 0.62], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.in(Easing.cubic)});
+  // A beat of strain, a crack, then the halves are pulled away.
+  const strain = Math.sin(Math.min(t / 0.15, 1) * Math.PI) * 5;
+  const crack = interpolate(t, [0.1, 0.3], [0, 30], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.quad)});
+  const fly = interpolate(t, [0.28, 1], [0, h * 0.66], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.in(Easing.cubic)});
   const sep = crack + fly;
-  const mid = h * 0.52;
-  const edge = tearEdge('rip', w, mid, 34);
-  const topFringe = tearEdge('rip-top', w, mid, 34, 12); // paper core showing below the top half's print
-  const botFringe = tearEdge('rip-bot', w, mid, 34, -12);
-  const shadow = 'drop-shadow(0 10px 18px rgba(40,28,10,0.45))';
+  const mid = h * 0.5;
+  const edge = tearEdge('rip', w, mid, 30);
+  const topCore = tearEdge('rip-top', w, mid, 30, 14); // white paper core exposed along the tear
+  const botCore = tearEdge('rip-bot', w, mid, 30, -14);
+  const shadow = 'drop-shadow(0 14px 22px rgba(30,20,8,0.5))';
+  const fibres = 'drop-shadow(0 0 1.5px rgba(255,255,255,0.9))';
   return (
     <AbsoluteFill>
-      <AbsoluteFill style={{transform: `translateY(${-sep}px) rotate(${-t * 2.2}deg)`, transformOrigin: '50% 0%', filter: shadow}}>
-        <svg width={w} height={h} style={{position: 'absolute'}}>
-          <path d={toPath(topFringe, -20, w)} fill={B.paperLight} />
+      <AbsoluteFill style={{transform: `translateY(${-sep - strain}px) rotate(${-t * 2.6}deg)`, transformOrigin: '20% 0%', filter: shadow}}>
+        <svg width={w} height={h} style={{position: 'absolute', filter: fibres}}>
+          <CoreFill id="core-top" w={w} h={h} />
+          <path d={toPath(topCore, -20, w)} fill="url(#core-top)" />
         </svg>
         <AbsoluteFill style={{clipPath: `path('${toPath(edge, -20, w)}')`}}>{children}</AbsoluteFill>
       </AbsoluteFill>
-      <AbsoluteFill style={{transform: `translateY(${sep}px) rotate(${t * 1.6}deg)`, transformOrigin: '50% 100%', filter: shadow}}>
-        <svg width={w} height={h} style={{position: 'absolute'}}>
-          <path d={toPath(botFringe, h + 20, w)} fill={B.paperLight} />
+      <AbsoluteFill style={{transform: `translateY(${sep + strain}px) rotate(${t * 1.8}deg)`, transformOrigin: '80% 100%', filter: shadow}}>
+        <svg width={w} height={h} style={{position: 'absolute', filter: fibres}}>
+          <CoreFill id="core-bot" w={w} h={h} />
+          <path d={toPath(botCore, h + 20, w)} fill="url(#core-bot)" />
         </svg>
         <AbsoluteFill style={{clipPath: `path('${toPath(edge, h + 20, w)}')`}}>{children}</AbsoluteFill>
       </AbsoluteFill>
@@ -268,12 +313,12 @@ const PaperRip: React.FC<{start: number; duration: number; children: React.React
 // ---------- composition ----------
 
 export const BROADSHEET_FRAMES = 210;
-const RIP_AT = 86;
-const RIP_LEN = 20;
+const RIP_AT = 92;
+const RIP_LEN = 22;
 
 export const BroadsheetSample: React.FC = () => (
-  <AbsoluteFill style={{background: '#2b2620'}}>
-    <Sequence from={RIP_AT - 2}>
+  <AbsoluteFill style={{background: '#2b241b'}}>
+    <Sequence from={RIP_AT}>
       <ChartPage />
     </Sequence>
     <Sequence durationInFrames={RIP_AT + RIP_LEN}>
