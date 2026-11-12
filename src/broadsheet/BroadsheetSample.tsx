@@ -84,7 +84,7 @@ const Masthead: React.FC<{f: number}> = ({f}) => (
     <div style={{display: 'flex', justifyContent: 'space-between', fontFamily: LABEL, fontWeight: 700, fontSize: 30,
       letterSpacing: 2, color: SOFT, textTransform: 'uppercase'}}>
       <span>Fri, Nov 13</span>
-      <span style={{textTransform: 'none', letterSpacing: 0}}>@tech_stocks_news</span>
+      <span style={{textTransform: 'none', letterSpacing: 0}}>@fivebeforemonday</span>
     </div>
     <div style={{margin: '12px 0 2px'}}><Rule f={f} at={0} w={3} /></div>
     <div style={{fontFamily: DISPLAY, fontSize: 104, lineHeight: 1, textAlign: 'center', color: INK, letterSpacing: -1,
@@ -232,7 +232,7 @@ const QuestionPage: React.FC = () => {
           3 reasons, in<br />Sunday's report <span style={{color: GOLD, fontStyle: 'normal'}}>&#8594;</span>
         </div>
         <div style={{fontFamily: LABEL, fontWeight: 700, fontSize: 52, lineHeight: 1.25, color: INK, marginTop: 60, ...rise(f, 18, 10, 16)}}>
-          Follow <span style={{color: GOLD}}>@tech_stocks_news</span><br />for the daily move
+          Follow <span style={{color: GOLD}}>@fivebeforemonday</span><br />for the daily move
         </div>
       </div>
     </Sheet>
