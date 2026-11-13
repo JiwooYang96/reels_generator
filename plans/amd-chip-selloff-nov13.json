@@ -1,0 +1,76 @@
+{
+  "id": "amd-chip-selloff-nov13",
+  "title": "Nvidia's CEO left. AMD fell 4x harder.",
+  "structure": "versus",
+  "hookFamily": "contrarian / irony",
+  "scenes": [
+    {
+      "type": "open.ticker",
+      "seconds": 2.6,
+      "caption": [{"t": "AMD"}, {"t": "just"}, {"t": "CRASHED.", "key": true, "br": true}],
+      "props": {
+        "big": "−8.75%",
+        "sub": "AMD at Friday's close, $534.06",
+        "tone": "bad",
+        "tickers": [
+          {"s": "AMD", "v": "−8.75%"},
+          {"s": "NVDA", "v": "−2.01%"},
+          {"s": "INTC", "v": "−2.52%"},
+          {"s": "S&P 500", "v": "−0.40%"},
+          {"s": "NASDAQ", "v": "−0.91%"},
+          {"s": "DOW", "v": "+0.10%"}
+        ]
+      }
+    },
+    {
+      "type": "versus",
+      "seconds": 2.8,
+      "caption": [{"t": "Nvidia's"}, {"t": "mess."}, {"t": "AMD"}, {"t": "PAID.", "key": true, "br": true}],
+      "source": "Motley Fool & Investing.com, Nov 13 2026",
+      "props": {
+        "left": {"name": "AMD", "value": "−8.75%", "caption": "close $534.06", "logo": "AMD"},
+        "right": {"name": "Nvidia", "value": "−2.01%", "caption": "close $162.85", "logo": "NVDA"},
+        "winner": "left"
+      }
+    },
+    {
+      "type": "causeChain",
+      "seconds": 3.6,
+      "caption": [{"t": "First,"}, {"t": "AMD"}, {"t": "RALLIED.", "key": true, "br": true}],
+      "source": "Motley Fool, Nov 13 2026",
+      "props": {
+        "n": 1,
+        "title": "The rival bet",
+        "stat": {"value": "+5.9%", "label": "AMD Thursday · BofA target $700"},
+        "steps": ["Nvidia's CEO resigns", "Orders may shift to rivals"],
+        "logo": "AMD"
+      }
+    },
+    {
+      "type": "causeChain",
+      "seconds": 3.6,
+      "caption": [{"t": "But"}, {"t": "Friday"}, {"t": "it"}, {"t": "FLIPPED.", "key": true, "br": true}],
+      "source": "Motley Fool, Nov 13 2026",
+      "props": {
+        "n": 2,
+        "title": "Sector risk",
+        "stat": {"value": "2x", "label": "normal volume · 48.6M shares"},
+        "steps": ["Scandal seen as chip-wide risk", "Traders took rally profits"],
+        "logo": "AMD"
+      }
+    },
+    {
+      "type": "calendarCta",
+      "seconds": 3.2,
+      "caption": [{"t": "Next"}, {"t": "test:"}, {"t": "NOV 17.", "key": true, "br": true}],
+      "source": "Tech Times, Nov 12 2026",
+      "props": {
+        "day": "TUE",
+        "date": "Nov 17",
+        "event": "Nvidia Q3 earnings",
+        "note": "AMD still 2.8x its 52-week low ($188)",
+        "cta": "Follow @fivebeforemonday for Nov 17 →"
+      }
+    }
+  ]
+}
