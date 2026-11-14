@@ -74,30 +74,37 @@ def draw(subject, style="pencil", seed=None):
     out = CACHE / f"{key}.jpg"
     if out.exists():
         return out
-    acct, token = os.environ.get("CF_ACCOUNT_ID"), os.environ.get("CF_API_TOKEN")
-    if not (acct and token):
+    # Accounts in order: CF_ACCOUNT_ID/CF_API_TOKEN, then CF_ACCOUNT_ID_2/CF_API_TOKEN_2 when the first is out of
+    # its daily free allowance (HTTP 429) or fails.
+    accounts = [(os.environ.get(f"CF_ACCOUNT_ID{x}"), os.environ.get(f"CF_API_TOKEN{x}")) for x in ("", "_2")]
+    accounts = [a for a in accounts if a[0] and a[1]]
+    if not accounts:
         print("illustrate: CF_ACCOUNT_ID / CF_API_TOKEN not set; skipping")
         return None
     # The model takes only prompt and steps (no seed); `seed` just varies the cache key for a fresh draw.
-    body = {"prompt": p, "steps": 4}  # schnell is distilled for 4 steps; 8 costs twice the free quota
-    req = urllib.request.Request(f"https://api.cloudflare.com/client/v4/accounts/{acct}/ai/run/{MODEL}",
-                                 data=json.dumps(body).encode(), method="POST",
-                                 headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"})
-    for attempt in range(3):
-        try:
-            with urllib.request.urlopen(req, timeout=120) as r:
-                data = json.load(r)
-            img = data.get("result", {}).get("image")
-            if not img:
-                raise RuntimeError(f"no image in response: {str(data)[:200]}")
-            CACHE.mkdir(parents=True, exist_ok=True)
-            out.write_bytes(base64.b64decode(img))
-            print(f"illustrate: drew {out.name}  ({subject[:60]})")
-            return out
-        except Exception as err:  # noqa: BLE001
-            detail = err.read().decode(errors="replace")[:300] if hasattr(err, "read") else ""
-            print(f"illustrate: attempt {attempt + 1} failed: {err} {detail}")
-            time.sleep(3 * (attempt + 1))
+    body = json.dumps({"prompt": p, "steps": 4}).encode()  # schnell is distilled for 4 steps; 8 costs twice the quota
+    for n, (acct, token) in enumerate(accounts, 1):
+        req = urllib.request.Request(f"https://api.cloudflare.com/client/v4/accounts/{acct}/ai/run/{MODEL}",
+                                     data=body, method="POST",
+                                     headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"})
+        for attempt in range(2):
+            try:
+                with urllib.request.urlopen(req, timeout=120) as r:
+                    data = json.load(r)
+                img = data.get("result", {}).get("image")
+                if not img:
+                    raise RuntimeError(f"no image in response: {str(data)[:200]}")
+                CACHE.mkdir(parents=True, exist_ok=True)
+                out.write_bytes(base64.b64decode(img))
+                print(f"illustrate: drew {out.name} on account {n}  ({subject[:60]})")
+                return out
+            except Exception as err:  # noqa: BLE001
+                code = getattr(err, "code", None)
+                detail = err.read().decode(errors="replace")[:160] if hasattr(err, "read") else ""
+                print(f"illustrate: account {n} attempt {attempt + 1} failed: {err} {detail}")
+                if code == 429:
+                    break  # out of quota on this account: try the next one
+                time.sleep(3 * (attempt + 1))
     return None
 
 

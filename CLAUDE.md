@@ -115,7 +115,7 @@ Every trading day after the New York close a scheduled task makes one reel about
 ## Illustrations
 
 Hand-drawn-look clippings: `scripts/illustrate.py` draws the scene's `subject` with FLUX.1 [schnell] on
-Cloudflare Workers AI (free tier; secrets `CF_ACCOUNT_ID`, `CF_API_TOKEN` on GitHub) and `scripts/tornpaper.py`
+Cloudflare Workers AI (free tier; secrets `CF_ACCOUNT_ID`, `CF_API_TOKEN` on GitHub, with `CF_ACCOUNT_ID_2` / `CF_API_TOKEN_2` as the backup account when the first is out of quota) and `scripts/tornpaper.py`
 tears it out like a magazine clipping. Scenes: `open.illustration` (hook) and `illustration` (story beat).
 Styles: `pencil` (house, weekdays), `riso` (bold two-colour, weekend specials), `hatch` (engraving, history).
 Locally there is no key, so previews show a placeholder sheet; GitHub draws the real one.

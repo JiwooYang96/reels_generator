@@ -21,6 +21,8 @@ jobs:
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID_2: ${{ secrets.CF_ACCOUNT_ID_2 }}
+          CF_API_TOKEN_2: ${{ secrets.CF_API_TOKEN_2 }}
         run: |
           [ -n "$CF_ACCOUNT_ID" ] && [ -n "$CF_API_TOKEN" ] || { echo "CF_ACCOUNT_ID / CF_API_TOKEN missing"; exit 1; }
           python3 lab/promptlab.py /tmp/ill
