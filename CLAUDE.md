@@ -56,7 +56,9 @@ Every trading day after the New York close a scheduled task makes one reel about
    closing move on Yahoo Finance or a major outlet.
 2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook
    and plan as usual. Length 30-40 s (the check allows 28-45), in this order: hook -> what happened ->
-   2-3 reasons (each sourced) -> what's next, with a date -> `endCard`. Do the hook and script pass in step 2
+   2-3 reasons (each sourced) -> what's next, with a date -> `endCard`. Use 1-2 drawings (see "Illustrations"):
+   usually `open.illustration` as the hook (a metaphor for the story + the big number + the company logo pinned
+   on) and/or one `illustration` beat. Do the hook and script pass in step 2
    above properly every day; only a reel that `reelscore.py` approves (85+/85+) goes out. Set `music` by the move's direction. Write the plan to `plans/daily/<date>.json` (date = the New York trading
    day) and give it:
    - `voice` on each scene: the narrator's line, 7-10 words, about 3.3 words per second (the scene length is
@@ -109,6 +111,21 @@ Every trading day after the New York close a scheduled task makes one reel about
   these), no advice or predictions.
 - Attribute anything that isn't a market price: "Reuters reports...", "according to the company".
 - End on the dated next event and the follow line.
+
+## Illustrations
+
+Hand-drawn-look clippings: `scripts/illustrate.py` draws the scene's `subject` with FLUX.1 [schnell] on
+Cloudflare Workers AI (free tier; secrets `CF_ACCOUNT_ID`, `CF_API_TOKEN` on GitHub) and `scripts/tornpaper.py`
+tears it out like a magazine clipping. Scenes: `open.illustration` (hook) and `illustration` (story beat).
+Styles: `pencil` (house, weekdays), `riso` (bold two-colour, weekend specials), `hatch` (engraving, history).
+Locally there is no key, so previews show a placeholder sheet; GitHub draws the real one.
+
+- `subject` = a thing, place, scene or metaphor in plain words ("a tall stack of gold coins toppling over",
+  "an empty leather executive chair pushed back from a desk", "a small paper boat tilting on rough waves").
+- Never a real person, face, name, logo or text; the check refuses them. Portraits only come from the user as files.
+- Avoid signs, screens, labels, newspapers and documents: the model invents fake text on them.
+- Describe what you want; never write "no X" (FLUX has no negative prompt and tends to draw what you name).
+- Weekday reels 1-2 drawings, weekend specials 3-5. Numbers and charts stay in our data scenes.
 
 ## Accuracy
 
