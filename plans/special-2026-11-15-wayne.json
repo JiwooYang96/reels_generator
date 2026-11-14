@@ -108,8 +108,8 @@
         "note": "1976: Jobs and Wozniak held 45% each",
         "noteHighlight": "45%"
       },
-      "voice": "He co-founded Apple in 1976. Twelve days later, quit.",
-      "seconds": 3.2
+      "voice": "Twelve days after co-founding Apple, he quit.",
+      "seconds": 2.6
     },
     {
       "type": "causeChain",
@@ -214,8 +214,8 @@
         "oldValue": "$500",
         "newValue": "$1.6M"
       },
-      "voice": "His $500 contract copy later fetched $1.6 million.",
-      "seconds": 2.9
+      "voice": "Even his contract copy later sold for $1.6 million.",
+      "seconds": 3.2
     },
     {
       "type": "counter",
