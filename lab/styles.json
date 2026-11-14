@@ -1,0 +1,14 @@
+{
+  "subjects": [
+    "an empty leather executive chair pushed back from a wooden desk",
+    "a single tulip in a tall glass vase, its petals beginning to droop",
+    "a 1920s brass stock ticker machine on a wooden stand, a long curl of blank paper tape on the floor"
+  ],
+  "styles": {
+    "A_engraving": "Vintage editorial newspaper illustration of {s}. Fine crosshatched black ink linework with soft hand-colored washes of faded oxblood red and warm sepia, like a hand-tinted engraving. Centered on blank cream paper with wide empty margins, quiet and detailed.",
+    "B_pencil": "{S}, drawn in colored pencil over loose black ink cross-hatching, warm hand-shaded tones of rust, ochre and charcoal, visible directional pencil strokes and paper tooth. Magazine portrait-illustration style, single subject centered on plain unmarked cream paper.",
+    "C_stipple": "{S}, rendered as a newspaper hedcut: dense black ink stippling and fine hatching, with a single soft wash of faded red. Crisp editorial line art, single subject centered on plain unmarked cream paper.",
+    "D_riso": "{S}, as a two-color risograph print in deep navy blue and warm red ink, grainy halftone texture, slight misregistration, bold simple shapes. Single subject centered on plain unmarked cream paper.",
+    "E_gouache": "{S}, painted in gouache and ink in a mid-century editorial magazine style, muted palette of navy, brick red, mustard and cream, confident brush texture with fine ink outlines. Single subject centered on plain unmarked cream paper."
+  }
+}
