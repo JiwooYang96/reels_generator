@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["scripts/illustrate.py", "lab/**", ".github/workflows/illustration-test.yml"]
+    paths: ["lab/**"]
 
 permissions:
   contents: write
