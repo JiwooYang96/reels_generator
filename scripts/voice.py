@@ -24,7 +24,7 @@ from pathlib import Path
 
 ENGINE = os.environ.get("VOICE_ENGINE", "kokoro").lower()
 VOICE_NAME = os.environ.get("VOICE_NAME", "af_heart")
-VOICE_SPEED = float(os.environ.get("VOICE_SPEED", "1.22"))  # brisk: short-form pace, still clear
+VOICE_SPEED = float(os.environ.get("VOICE_SPEED", "1.28"))  # brisk: short-form pace, still clear
 VOICE_INSTRUCT = os.environ.get("VOICE_INSTRUCT", "male, british accent, middle-aged, calm, news presenter")
 
 
@@ -43,6 +43,11 @@ def write_wav(path, audio, sr):
 
     audio = np.asarray(audio, dtype="float32").reshape(-1)
     peak = float(np.max(np.abs(audio))) or 1.0
+    # Trim the model's leading/trailing silence (keep 40 ms): dead air is what makes a reel feel slow.
+    loud = np.flatnonzero(np.abs(audio) > peak * 0.02)
+    if loud.size:
+        pad = int(sr * 0.04)
+        audio = audio[max(0, loud[0] - pad):loud[-1] + pad]
     sf.write(str(path), audio / peak * 0.9, sr)
 
 

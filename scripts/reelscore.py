@@ -25,9 +25,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / ".claude/skills/
 from hookscore import run  # noqa: E402
 
 REHOOK = re.compile(r"^\s*(but|not|turns out|here'?s|the catch|except|instead|yet|and it wasn'?t|only)\b", re.I)
-FILLER = re.compile(r"^\s*(and then|also|next|so basically|basically|now)\b", re.I)
+FILLER = re.compile(r"^\s*(and then|also|so basically|basically|anyway)\b", re.I)
 ASK = re.compile(r"\b(follow|comment|link in bio|subscribe|sign up|newsletter)\b", re.I)
-WPS = 3.3  # Kokoro af_heart at speed 1.22 reads about 3.3 words per second
+WPS = 3.0  # Kokoro af_heart at speed 1.28, silence trimmed: about 3 words per second (measured)
 
 
 def words(s):
@@ -55,10 +55,13 @@ def script_score(plan):
           f"on-screen hook \"{cap}\" ({len(cw)} words; want 3-6 with a number, not the spoken line)")
     award(15, any(REHOOK.search(s.get("voice", "")) for s in sc[1:3]), "rehook in scene 2 or 3 (But / Not / Turns out...)")
 
-    # Pace: the scene lengths the voice will give them (line / WPS + 0.25 s), as prepare.ts sets them.
-    lens = [max(1.8, len(words(s.get("voice"))) / WPS + 0.25) for s in story]
+    # Pace: the real narration when it exists (out/<id>/vo.json, after voice.py), else the estimate; each scene
+    # lasts its line + 0.25 s, as prepare.ts sets it.
+    vo = Path("out") / plan["id"] / "vo.json"
+    real = {v["i"]: v["dur"] for v in json.load(open(vo))} if vo.exists() else {}
+    lens = [max(1.8, real.get(i, len(words(s.get("voice"))) / WPS) + 0.25) for i, s in enumerate(story)]
     slow = [i + 1 for i, d in enumerate(lens) if d > 3.5]
-    award(20, not slow, "every story scene <= 3.5 s" + (f" (too long: scenes {slow})" if slow else ""))
+    award(20, not slow, ("narrated" if real else "estimated") + " story scenes all <= 3.5 s" + (f" (too long: scenes {slow})" if slow else ""))
     lazy = [i + 1 for i, s in enumerate(sc) if FILLER.search(s.get("voice", ""))]
     award(10, not lazy, "beats joined by but/therefore, not \"and then\"" + (f" (scenes {lazy})" if lazy else ""))
 

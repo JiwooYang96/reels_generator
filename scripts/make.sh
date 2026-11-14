@@ -11,6 +11,8 @@ ID=$(node -e "console.log(require('./$PLAN').id)")
 
 python3 scripts/reelscore.py "$PLAN"
 python3 scripts/voice.py "$PLAN"
+# Score again with the real narration lengths: the pace must hold once it is read aloud.
+[ -s "out/$ID/vo.json" ] && python3 scripts/reelscore.py "$PLAN"
 npx tsx scripts/prepare.ts "$PLAN" "$@"
 mkdir -p public/sfx
 # Music: composed to the reel's cuts (skipped when the plan says "music": "none" or fluidsynth is missing).
