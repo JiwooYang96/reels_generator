@@ -33,13 +33,19 @@ Every trading day after the New York close a scheduled task makes one reel about
 1. Find the day's movers: search "stock market today" and the biggest big-tech movers, and confirm each
    closing move on Yahoo Finance or a major outlet.
 2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook
-   and plan as usual. Length 12-18 s. Write the plan to `plans/daily/<date>.json` (date = the New York trading
+   and plan as usual. Length 30-40 s (the check allows 28-45), in this order: hook -> what happened ->
+   2-3 reasons (each sourced) -> what's next, with a date -> `endCard`. Write the plan to `plans/daily/<date>.json` (date = the New York trading
    day) and give it:
    - `voice` on each scene: the narrator's line, about 2.5-3 words per second of the scene (raise `seconds`
      if a line needs it). It carries the story; the caption stays the short on-screen version. Say numbers
      the way a newsreader would ("down eight point eight percent", "a hundred and ninety-two billion
      dollars"). See "Voice: hooking and trustworthy" below; the plan check enforces the limits.
-   - `post.caption`: the Instagram caption. 2-3 lines, 3-5 hashtags, a "Sources:" list, no links.
+   - `post.caption`: the Instagram caption. 2-3 lines, then "Get this week's five, free every Saturday ->
+     link in bio.", 3-5 hashtags, a "Sources:" list, "Not investment advice." No links.
+   - Last scene `endCard` (6 s, theme light, no caption) with `variant` by New York weekday: Mon/Thu `free`,
+     Tue `free-alt`, Wed/Fri `paid`. Its `voice` is exactly `END_VOICE[variant]` from
+     `src/scenes/endcard.tsx`. Never: "smash", "don't miss", "before it's too late", "guaranteed", made-up
+     subscriber counts or deadlines.
 3. `scripts/make.sh plans/daily/<date>.json` for a preview (it is silent here: the voice model runs on
    GitHub), read the sheet, fix until clean. GitHub refuses a plan that fails the check.
 4. Commit the plan and the `runs/log.md` row straight to main and push. GitHub (`render-reel.yml`) then narrates it,

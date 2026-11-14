@@ -233,3 +233,12 @@ Default theme: light. Source line: required.
 - `date`: string
 - `text`: string
 - `highlight` (optional): string
+
+## `endCard`
+
+Closing promo card (required last scene of daily reels): logo, benefit line, site, "link in bio". `variant`: free (default) | free-alt | paid.
+
+Default theme: light. Source line: not needed.
+
+- `variant` (optional): "free" | "free-alt" | "paid", default "free"
+- `url` (optional): string, default "fivebeforemonday.com"

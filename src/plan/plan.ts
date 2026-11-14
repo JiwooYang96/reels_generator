@@ -151,8 +151,14 @@ export const checkPlan = (plan: Plan): string[] => {
   // Channel: the closing scene must send viewers to the account.
   const last = plan.scenes[plan.scenes.length - 1];
   const lastText = JSON.stringify(last.props) + JSON.stringify(last.caption);
-  const defaultsToHandle = last.type === 'calendarCta' && !('cta' in last.props);
+  const defaultsToHandle = (last.type === 'calendarCta' && !('cta' in last.props)) || last.type === 'endCard';
   if (!defaultsToHandle && !lastText.includes(plan.handle)) problems.push(`last scene: end with a follow CTA that names ${plan.handle}`);
+  // Daily reels (they carry an Instagram post) close on the promo end card and run 28-45 s.
+  if (plan.post) {
+    if (last.type !== 'endCard') problems.push('daily reels must end with an endCard scene (see docs/STYLE.md "End card")');
+    if (plan.scenes.filter((s) => s.type === 'endCard').length > 1) problems.push('only one endCard, at the end');
+    if (total < 28 || total > 45) problems.push(`daily reel is ${total.toFixed(1)} s; plan 30-40 s (allowed 28-45)`);
+  }
 
   // Balance: numbers hook, explanations inform. Most scenes carry a number; longer videos explain at least once.
   const body = plan.scenes.slice(1).filter((s) => s.type !== 'chapters');

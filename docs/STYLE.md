@@ -80,6 +80,13 @@ the hook. Don't enlarge it, and don't put it on the opening or the CTA.
 - Sensitive stories: report what outlets report, attribute allegations, no speculation, no realistic depictions
   of real people (logos only for companies).
 
+## End card (every daily reel)
+
+The last 6 s promote the newsletter, calmly: logo lockup, one specific benefit line, the highlighted
+"Free every Saturday" (or the founding price on paid days), the red url pill and "LINK IN BIO". No caption
+on top, no hype, no fake urgency. Copy lives in `END_COPY`/`END_VOICE` in `src/scenes/endcard.tsx`;
+change it there, not in plans. Variants: `free` (default), `free-alt` (A/B test), `paid` (Wed/Fri).
+
 ## Checklist before delivering
 
 1. Read `out/<id>-sheet.png`: nothing overlaps, nothing cut off, every caption readable at phone size.
