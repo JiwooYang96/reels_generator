@@ -79,7 +79,7 @@ def draw(subject, style="pencil", seed=None):
         print("illustrate: CF_ACCOUNT_ID / CF_API_TOKEN not set; skipping")
         return None
     # The model takes only prompt and steps (no seed); `seed` just varies the cache key for a fresh draw.
-    body = {"prompt": p, "steps": 8}
+    body = {"prompt": p, "steps": 4}  # schnell is distilled for 4 steps; 8 costs twice the free quota
     req = urllib.request.Request(f"https://api.cloudflare.com/client/v4/accounts/{acct}/ai/run/{MODEL}",
                                  data=json.dumps(body).encode(), method="POST",
                                  headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"})
@@ -127,7 +127,11 @@ def run_plan(path):
     out = ROOT / "out" / plan["id"]
     out.mkdir(parents=True, exist_ok=True)
     (out / "illustrations.json").write_text(json.dumps(srcs))
-    print(f"illustrate: {len(srcs)} illustration(s) ready")
+    want = sum(1 for s in plan["scenes"] if s["type"] in ILLUSTRATED)
+    print(f"illustrate: {len(srcs)} of {want} illustration(s) ready")
+    if want and len(srcs) < want and os.environ.get("GITHUB_STEP_SUMMARY"):
+        with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as fh:
+            fh.write(f"Illustrations: {len(srcs)} of {want} drawn (free quota or API error); the rest use the no-drawing fallback.\n")
 
 
 def run_test(outdir):

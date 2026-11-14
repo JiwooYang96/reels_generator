@@ -20,8 +20,9 @@ const drawing = {
 };
 
 // The torn sheet: falls onto the page with a small rotation and a paper slap, then drifts.
-const Sheet: React.FC<{src?: string | null; subject: string; seed: string; top: number; size: number; at?: number}> = ({src, subject, seed, top, size, at = 0}) => {
+const Sheet: React.FC<{src?: string | null; subject: string; seed: string; top: number; size: number; at?: number}> = ({src, seed, top, size, at = 0}) => {
   const f = useCurrentFrame();
+  if (!src) return null;
   const s = pop(f, at, 9);
   const tilt = (random(`tilt-${seed}`) - 0.5) * 6;
   const drift = interpolate(f, [at, at + 150], [0, 1], clamp);
@@ -29,14 +30,18 @@ const Sheet: React.FC<{src?: string | null; subject: string; seed: string; top: 
   const scale = interpolate(s, [0, 1], [1.25, 1]) * (1 + drift * 0.04);
   return (
     <div style={{position: 'absolute', left: (1080 - size) / 2, top: top + drift * -12, width: size, height: size, opacity: s, rotate: `${rot}deg`, scale: `${scale}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-      {src ? (
-        <Img src={staticFile(src)} style={{maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', filter: 'drop-shadow(0 18px 30px rgba(0,0,0,0.28))'}} />
-      ) : (
-        <div style={{width: '82%', height: '82%', background: T.card, borderRadius: 18, boxShadow: '0 18px 40px rgba(0,0,0,0.28)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 60, textAlign: 'center', fontFamily: FONT, fontStyle: 'italic', fontSize: 38, color: T.inkSoft}}>
-          {subject}
-        </div>
-      )}
+      <Img src={staticFile(src as string)} style={{maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', filter: 'drop-shadow(0 18px 30px rgba(0,0,0,0.28))'}} />
     </div>
+  );
+};
+
+const PullCard: React.FC<{theme: string}> = ({theme}) => {
+  const f = useCurrentFrame();
+  const s = pop(f, 0, 9);
+  const dark = theme === 'dark';
+  return (
+    <div style={{position: 'absolute', left: 150, right: 150, top: 620, height: 520, opacity: s, rotate: `${interpolate(s, [0, 1], [-6, -1.5])}deg`, background: dark ? mix(T.paper, 0.08) : T.card, border: `3px solid ${dark ? mix(T.paper, 0.5) : T.ink}`, borderRadius: 10, boxShadow: '0 18px 40px rgba(0,0,0,0.22)',
+      backgroundImage: `repeating-linear-gradient(135deg, ${mix(dark ? T.paper : T.ink, 0.07)} 0 2px, transparent 2px 14px)`}} />
   );
 };
 
@@ -48,7 +53,9 @@ export const illustration: SceneDef<z.infer<typeof illSchema>> = {
   needsSource: false,
   summary: 'A hand-drawn illustration (colored pencil / riso / ink, made by the pipeline) torn out like a magazine clipping and slapped onto the page, then drifting. For the "why" beat or a weekend story beat. `subject` is a thing, place or metaphor, never a person, logo or text. Max 2 per weekday reel.',
   events: () => [{kind: 'impact', at: 4}],
-  Component: ({p}) => <Sheet src={p.src} subject={p.subject} seed={String(p.seed ?? p.subject)} top={430} size={900} />,
+  // Without a drawing (no key, or the free quota is used up) the beat still works: its number or words as a big
+  // serif pull line on a torn card, so a reel never ships with a placeholder.
+  Component: ({p, theme}) => p.src ? <Sheet src={p.src} subject={p.subject} seed={String(p.seed ?? p.subject)} top={430} size={900} /> : <PullCard theme={theme} />,
 };
 
 // ---------------------------------------------------------------- opening
@@ -75,7 +82,12 @@ export const openIllustration: SceneDef<z.infer<typeof openIllSchema>> = {
     return (
       <div style={{position: 'absolute', inset: 0, translate: `${sh.x}px ${sh.y}px`, scale: `${punch(f, at)}`}}>
         <Sheet src={p.src} subject={p.subject} seed={String(p.seed ?? p.subject)} top={380} size={680} />
-        {p.ticker ? (
+        {!p.src && p.ticker ? (
+          <div style={{position: 'absolute', left: 340, top: 520, opacity: lg, scale: `${interpolate(lg, [0, 1], [1.4, 1])}`}}>
+            <Logo ticker={p.ticker} size={400} />
+          </div>
+        ) : null}
+        {p.src && p.ticker ? (
           <div style={{position: 'absolute', left: 740, top: 400, opacity: lg, rotate: `${interpolate(lg, [0, 1], [-30, 8])}deg`, scale: `${interpolate(lg, [0, 1], [1.6, 1])}`}}>
             <Logo ticker={p.ticker} size={130} />
           </div>
