@@ -33,7 +33,12 @@ export const PlanVideo: React.FC<Plan> = (plan) => {
         </Sequence>
       ))}
       {plan.grain ? <Grain /> : null}
-      {plan.audio ? <Audio src={staticFile(plan.audio)} /> : null}
+      {plan.audio ? <Audio src={staticFile(plan.audio)} volume={plan.voiceover?.length ? 0.55 : 1} /> : null}
+      {(plan.voiceover ?? []).map((v) => (
+        <Sequence key={v.src} from={v.at} name={`voice ${v.src}`}>
+          <Audio src={staticFile(v.src)} volume={1} />
+        </Sequence>
+      ))}
     </AbsoluteFill>
   );
 };
