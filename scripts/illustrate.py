@@ -27,13 +27,21 @@ ROOT = Path(__file__).resolve().parent.parent
 CACHE = ROOT / "public/illustrations"
 MODEL = "@cf/black-forest-labs/flux-1-schnell"
 
-# FLUX schnell has no negative prompt: naming "text" or "pencils" tends to draw them, so the style says only
-# what we want, and subjects avoid signs and labels.
-STYLE = ("Vintage editorial newspaper illustration of {subject}. Fine crosshatched black ink linework with soft "
-         "hand-colored washes of {accent} and warm sepia, like a hand-tinted engraving. Centered on blank cream "
-         "paper with wide empty margins, quiet and detailed.")
-ACCENTS = {"red": "faded oxblood red", "gold": "mustard gold", "teal": "faded teal", "blue": "faded navy blue",
-           "green": "sage green", "violet": "dusty violet"}
+# Styles found by trial (lab/styles.json, Nov 15): FLUX schnell has no negative prompt, so each style says only
+# what we want. Subjects avoid signs, screens and labels (the model invents text on them). `pencil` is the house
+# style (closest to the hand-drawn reference, in the brand palette); `riso` is bolder for special editions;
+# `hatch` is the newspaper-engraving look.
+STYLES = {
+    "pencil": "{S}, drawn in colored pencil over loose black ink cross-hatching, palette of deep navy blue, brick red, "
+              "mustard yellow and warm cream, visible directional pencil strokes and paper tooth. Magazine editorial "
+              "illustration, single subject centered on plain unmarked cream paper.",
+    "riso": "{S}, as a risograph print in deep navy blue and brick red ink with small touches of mustard yellow, grainy "
+            "halftone texture, slight misregistration, bold simple shapes. Single subject centered on plain unmarked "
+            "cream paper.",
+    "hatch": "{S}, fine black ink cross-hatching and stippling like a newspaper engraving, hand-tinted with soft washes "
+             "of brick red, navy blue and mustard yellow. Single subject centered on plain unmarked cream paper.",
+}
+STYLE = None  # lab/promptlab.py sets this to try a new template
 
 BANNED = re.compile(r"\b(portrait|face|faces|selfie|person|people|man|woman|ceo|founder|logo|brand|text|"
                     r"headline|signature|celebrity)\b", re.I)
@@ -49,13 +57,16 @@ def problems(subject):
     return out
 
 
-def prompt(subject, accent="red"):
-    return STYLE.format(subject=subject.strip().rstrip("."), accent=ACCENTS.get(accent, accent))
+def prompt(subject, style="pencil"):
+    if STYLE:
+        return STYLE
+    s = subject.strip().rstrip(".")
+    return STYLES[style].replace("{S}", s[0].upper() + s[1:])
 
 
-def draw(subject, accent="red", seed=None):
+def draw(subject, style="pencil", seed=None):
     """Return the cached or freshly drawn JPEG path for a subject."""
-    p = prompt(subject, accent)
+    p = prompt(subject, style)
     key = hashlib.sha1(f"{p}|{seed}".encode()).hexdigest()[:16]
     out = CACHE / f"{key}.jpg"
     if out.exists():
@@ -100,7 +111,7 @@ def run_plan(path):
         sys.exit(1)
     for s in plan["scenes"]:
         if s["type"] == "illustration":
-            f = draw(s["props"]["subject"], s["props"].get("accent", "red"), s["props"].get("seed"))
+            f = draw(s["props"]["subject"], s["props"].get("style", "pencil"), s["props"].get("seed"))
             s["props"]["src"] = f"illustrations/{f.name}" if f else None
     # Hand the resolved image paths to prepare.ts.
     out = ROOT / "out" / plan["id"]
@@ -116,8 +127,8 @@ def run_test(outdir):
         ("a 1920s brass stock ticker machine on a wooden stand, a long curl of blank paper tape spilling onto the floor", "gold"),
         ("a round silicon wafer covered in tiny square chips, split by a jagged crack across the middle", "teal"),
     ]
-    for n, (subj, acc) in enumerate(tests, 1):
-        f = draw(subj, acc, seed=n)
+    for n, (subj, _) in enumerate(tests, 1):
+        f = draw(subj, "pencil", seed=n)
         if f:
             (Path(outdir) / f"test-{n}.jpg").write_bytes(f.read_bytes())
 

@@ -11,7 +11,7 @@ out = Path(sys.argv[1])
 out.mkdir(parents=True, exist_ok=True)
 for name, tmpl in cfg["styles"].items():
     for n, s in enumerate(cfg["subjects"], 1):
-        illustrate.STYLE = tmpl.replace("{S}", s[0].upper() + s[1:]).replace("{s}", s).replace("{subject}", s)
-        f = illustrate.draw("", "red", seed=f"{name}-{n}")
+        illustrate.STYLE = tmpl.replace("{S}", s[0].upper() + s[1:]).replace("{s}", s)
+        f = illustrate.draw(s, seed=f"{name}-{n}")
         if f:
             (out / f"{name}-{n}.jpg").write_bytes(f.read_bytes())

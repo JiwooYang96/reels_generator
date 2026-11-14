@@ -92,3 +92,16 @@ change it there, not in plans. Variants: `free` (default), `free-alt` (A/B test)
 1. Read `out/<id>-sheet.png`: nothing overlaps, nothing cut off, every caption readable at phone size.
 2. One highlighter per screen, red/green match the direction of each move.
 3. Every number has its source on that scene.
+
+## Illustrations (scripts/illustrate.py + scripts/tornpaper.py)
+
+Drawn by FLUX.1 [schnell] on Cloudflare Workers AI (free tier), then cut out as torn magazine paper with a pale
+fibrous rim and a soft shadow. House style `pencil`: colored pencil over loose ink cross-hatching in navy, brick
+red, mustard and cream. `riso` (two-colour risograph, bolder) for special editions; `hatch` (newspaper engraving)
+for history. Styles were picked by trial in `lab/` (Nov 15).
+
+- Subjects are things, places, scenes and metaphors (an empty chair, toppling coins, a paper boat in a storm).
+  Never real people, faces, names or logos (the check refuses them); portraits come only from the user.
+- Avoid subjects with signs, screens or labels: the model invents text on them. Say what you want, never "no X".
+- Weekday reels: 1-2 illustrations (opening, maybe the "why"). Weekend specials: 3-5, one per story beat.
+- Numbers and charts stay in our scenes; an illustration never carries data.
