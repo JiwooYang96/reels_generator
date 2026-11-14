@@ -81,7 +81,8 @@ def draw(subject, accent="red", seed=None):
             print(f"illustrate: drew {out.name}  ({subject[:60]})")
             return out
         except Exception as err:  # noqa: BLE001
-            print(f"illustrate: attempt {attempt + 1} failed: {err}")
+            detail = err.read().decode(errors="replace")[:300] if hasattr(err, "read") else ""
+            print(f"illustrate: attempt {attempt + 1} failed: {err} {detail}")
             time.sleep(3 * (attempt + 1))
     return None
 
