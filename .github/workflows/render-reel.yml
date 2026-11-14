@@ -91,6 +91,18 @@ jobs:
             out/reel.mp4
             out/${{ steps.plan.outputs.id }}-sheet.png
 
+      - name: Test render to the samples branch
+        if: github.event_name == 'pull_request'
+        run: |
+          cp out/reel.mp4 /tmp/test-reel.mp4
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch -q origin samples && git checkout -q -B samples origin/samples || git checkout -q --orphan samples
+          git rm -rq --cached . 2>/dev/null || true
+          mkdir -p samples && cp /tmp/test-reel.mp4 samples/test-reel.mp4
+          git add samples/test-reel.mp4 && git commit -qm "Test render ${{ github.sha }}" && \
+            git push -q origin HEAD:samples || git push -q -f origin HEAD:samples
+
       - name: Queue for Instagram
         if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.queue)
         env:
