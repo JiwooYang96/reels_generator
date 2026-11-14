@@ -114,6 +114,11 @@ def run_plan(path):
     for i, s in enumerate(plan["scenes"]):
         if s["type"] not in ILLUSTRATED:
             continue
+        if s["props"].get("file"):
+            # User-supplied portrait: must be one of their files in public/portraits; never generated.
+            if not (ROOT / "public" / s["props"]["file"]).exists():
+                bad.append(f"scene {i + 1}: {s['props']['file']} not found in public/")
+            continue
         subj = s["props"]["subject"]
         bad += [f"scene {i + 1}: {p}" for p in problems(subj)]
     if bad:
@@ -122,6 +127,9 @@ def run_plan(path):
     srcs = {}
     for i, s in enumerate(plan["scenes"]):
         if s["type"] not in ILLUSTRATED:
+            continue
+        if s["props"].get("file"):
+            srcs[i] = s["props"]["file"]
             continue
         f = draw(s["props"]["subject"], s["props"].get("style", "pencil"), s["props"].get("seed"))
         if f:

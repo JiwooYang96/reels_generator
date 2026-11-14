@@ -13,10 +13,12 @@ import type {SceneDef} from './types';
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 const drawing = {
   // What to draw: a thing, place, scene or metaphor. Never a real person, face, name, logo or text.
-  subject: z.string().min(8),
+  subject: z.string().min(3),
   style: z.enum(['pencil', 'riso', 'hatch']).default('pencil'),
   seed: z.union([z.string(), z.number()]).optional(),
   src: z.string().nullable().optional(), // set by the pipeline
+  // A user-supplied image instead of a drawing (portraits): a path under public/portraits/, used as is.
+  file: z.string().regex(/^portraits\/[\w.-]+\.(png|jpg|webp)$/, 'file is portraits/<name>.png').optional(),
 };
 
 // The torn sheet: falls onto the page with a small rotation and a paper slap, then drifts.
@@ -81,7 +83,7 @@ export const openIllustration: SceneDef<z.infer<typeof openIllSchema>> = {
     const lg = pop(f, 8, 10);
     return (
       <div style={{position: 'absolute', inset: 0, translate: `${sh.x}px ${sh.y}px`, scale: `${punch(f, at)}`}}>
-        <Sheet src={p.src} subject={p.subject} seed={String(p.seed ?? p.subject)} top={380} size={680} />
+        <Sheet src={p.src} subject={p.subject} seed={String(p.seed ?? p.subject)} top={400} size={630} />
         {!p.src && p.ticker ? (
           <div style={{position: 'absolute', left: 340, top: 520, opacity: lg, scale: `${interpolate(lg, [0, 1], [1.4, 1])}`}}>
             <Logo ticker={p.ticker} size={400} />

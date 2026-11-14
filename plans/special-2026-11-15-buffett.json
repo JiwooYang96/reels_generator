@@ -1,0 +1,329 @@
+{
+  "id": "special-2026-11-15-buffett",
+  "title": "Sunday special: Buffett's $200 billion insult",
+  "structure": "story (special edition)",
+  "hookFamily": "identity / empathy",
+  "music": "neutral",
+  "post": {
+    "caption": "In 1964 a textile-mill boss shaved an eighth of a dollar off a promised buyback. Warren Buffett was so annoyed he bought the whole failing mill, which he later called his dumbest stock ever and, by his own estimate, a $200 billion mistake. The twist: the mill's name became Berkshire Hathaway.\n\nSunday special. Get this week's five, free every Saturday → link in bio.\n\n#WarrenBuffett #BerkshireHathaway #investing #stockmarket #history\n\nSources: CNBC (Oct 18 2010, Mar 2 2023), Fox Business, NPR Planet Money, AP (Sep 18 2026). Illustrated portrait. Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "12.5¢"
+        },
+        {
+          "t": "snub."
+        },
+        {
+          "t": "$200B",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "mistake."
+        }
+      ],
+      "props": {
+        "file": "portraits/warren-buffett.png",
+        "subject": "portrait",
+        "big": "$200B",
+        "sub": "his own estimate of one mistake",
+        "tone": "bad"
+      },
+      "voice": "A 12-cent snub cost Buffett $200 billion. You'd bite.",
+      "seconds": 3.2
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "It"
+        },
+        {
+          "t": "started"
+        },
+        {
+          "t": "with"
+        },
+        {
+          "t": "1/8",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "of"
+        },
+        {
+          "t": "a"
+        },
+        {
+          "t": "dollar."
+        }
+      ],
+      "props": {
+        "subject": "a single old silver coin spinning on a dark wooden table",
+        "style": "riso"
+      },
+      "voice": "But it started with an eighth of a dollar.",
+      "seconds": 3.2
+    },
+    {
+      "type": "timeline",
+      "caption": [
+        {
+          "t": "A"
+        },
+        {
+          "t": "cheap"
+        },
+        {
+          "t": "mill,"
+        },
+        {
+          "t": "1962.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "CNBC, Mar 2 2023",
+      "props": {
+        "items": [
+          {
+            "label": "1962",
+            "value": "Buys cheap shares"
+          },
+          {
+            "label": "1964",
+            "value": "Offer cut by 1/8"
+          },
+          {
+            "label": "THEN",
+            "value": "Buys the company"
+          }
+        ],
+        "note": "Berkshire Hathaway: a failing textile mill",
+        "noteHighlight": "failing"
+      },
+      "voice": "In 1962, he bought into a failing textile mill.",
+      "seconds": 3.2
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "Agreed:"
+        },
+        {
+          "t": "$11.50."
+        },
+        {
+          "t": "Offered:",
+          "br": true
+        },
+        {
+          "t": "$11.375.",
+          "key": true
+        }
+      ],
+      "source": "CNBC, Mar 2 2023",
+      "props": {
+        "label": "Buyback price per share, 1964",
+        "sublabel": "agreed in person vs. the letter",
+        "oldValue": "$11.50",
+        "newValue": "$11.375"
+      },
+      "voice": "The boss agreed eleven fifty, then mailed less.",
+      "seconds": 2.9
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "So"
+        },
+        {
+          "t": "he"
+        },
+        {
+          "t": "bought"
+        },
+        {
+          "t": "the"
+        },
+        {
+          "t": "whole",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "mill."
+        }
+      ],
+      "props": {
+        "subject": "an old red brick textile mill beside a river with tall smokestacks under a gray winter sky",
+        "style": "hatch"
+      },
+      "voice": "So he bought the mill and fired its boss.",
+      "seconds": 3.2
+    },
+    {
+      "type": "headline",
+      "caption": [
+        {
+          "t": "His"
+        },
+        {
+          "t": "dumbest",
+          "key": true
+        },
+        {
+          "t": "stock",
+          "br": true
+        },
+        {
+          "t": "ever."
+        }
+      ],
+      "source": "CNBC, Oct 18 2010",
+      "props": {
+        "outlet": "CNBC",
+        "date": "Oct 18, 2010",
+        "text": "Warren Buffett says Berkshire Hathaway is the “dumbest” stock he ever bought.",
+        "highlight": "dumbest"
+      },
+      "voice": "Decades later, he called it his dumbest stock ever.",
+      "seconds": 3.2
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "His"
+        },
+        {
+          "t": "own"
+        },
+        {
+          "t": "price",
+          "key": true
+        },
+        {
+          "t": "tag."
+        }
+      ],
+      "source": "CNBC, Oct 18 2010",
+      "props": {
+        "label": "Buffett's estimate of the cost",
+        "to": 200,
+        "prefix": "$",
+        "suffix": "B",
+        "tone": "bad",
+        "sub": "vs. buying an insurer instead"
+      },
+      "voice": "His own price tag: two hundred billion dollars.",
+      "seconds": 2.9
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Why"
+        },
+        {
+          "t": "so",
+          "key": true
+        },
+        {
+          "t": "much?"
+        }
+      ],
+      "source": "CNBC, Oct 18 2010",
+      "props": {
+        "n": 1,
+        "title": "Money in the wrong place",
+        "stat": {
+          "value": "20 yrs",
+          "label": "of dying mills"
+        },
+        "steps": [
+          "Cash sunk into textiles",
+          "Not into insurance"
+        ]
+      },
+      "voice": "That money should have gone into insurance, he said.",
+      "seconds": 3.2
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "The"
+        },
+        {
+          "t": "twist:"
+        },
+        {
+          "t": "$1T",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "today."
+        }
+      ],
+      "source": "AP, Sep 18 2026",
+      "props": {
+        "label": "Berkshire Hathaway today",
+        "to": 1,
+        "prefix": "$",
+        "suffix": "T",
+        "tone": "good",
+        "sub": "the mill's name, now a conglomerate"
+      },
+      "voice": "The twist: that mill's name became a trillion-dollar company.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "The"
+        },
+        {
+          "t": "$200B",
+          "key": true
+        },
+        {
+          "t": "lesson."
+        }
+      ],
+      "source": "NPR & CNBC",
+      "props": {
+        "n": 2,
+        "title": "The lesson",
+        "stat": {
+          "value": "$200B",
+          "label": "tuition, by his estimate"
+        },
+        "steps": [
+          "Pride is expensive",
+          "Never buy out of spite"
+        ]
+      },
+      "voice": "Pride is expensive. His lesson cost two hundred billion.",
+      "seconds": 3.2
+    },
+    {
+      "type": "endCard",
+      "seconds": 6,
+      "theme": "light",
+      "props": {
+        "variant": "paid"
+      },
+      "voice": "The full why, with charts, lands Sunday for members. Founding price: seventy-nine dollars a year. Link in bio."
+    }
+  ]
+}
