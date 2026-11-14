@@ -1,0 +1,321 @@
+{
+  "id": "special-2026-11-15-wayne",
+  "title": "Sunday special: the Apple co-founder who sold 10% for $800",
+  "structure": "myth vs fact (special edition)",
+  "hookFamily": "identity / belief break",
+  "music": "neutral",
+  "post": {
+    "caption": "In April 1976 Ron Wayne co-founded Apple with Steve Jobs and Steve Wozniak for a 10% stake. Twelve days later he sold it back for $800. It wasn't a dumb move: Apple was a partnership, its debts were his debts, and he was the one with a house to lose. He says he has no regrets.\n\nSunday special. Get this week's five, free every Saturday → link in bio.\n\n#Apple #investing #stockmarket #history #startups\n\nSources: Fortune, Yahoo Finance, Outlook Business, Cult of Mac, 24/7 Wall St. (Apple value at the Nov 9, 2026 close). 10% of today's value ignores dilution. Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "10%"
+        },
+        {
+          "t": "of"
+        },
+        {
+          "t": "Apple."
+        },
+        {
+          "t": "$800.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "props": {
+        "subject": "a red apple cut into ten equal slices on a wooden cutting board, one slice pushed aside on its own",
+        "style": "riso",
+        "big": "$800",
+        "sub": "for 10% of Apple, in 1976",
+        "tone": "bad",
+        "ticker": "AAPL"
+      },
+      "voice": "He quit Apple for $800. You'd have quit too.",
+      "seconds": 3.2
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "He"
+        },
+        {
+          "t": "had"
+        },
+        {
+          "t": "a"
+        },
+        {
+          "t": "house",
+          "key": true
+        },
+        {
+          "t": "to",
+          "br": true
+        },
+        {
+          "t": "lose."
+        }
+      ],
+      "props": {
+        "subject": "a small suburban house with a car parked in the driveway at dusk",
+        "style": "riso"
+      },
+      "voice": "Not foolish, though. He had a house to lose.",
+      "seconds": 3.2
+    },
+    {
+      "type": "timeline",
+      "caption": [
+        {
+          "t": "In"
+        },
+        {
+          "t": "and"
+        },
+        {
+          "t": "out:"
+        },
+        {
+          "t": "12",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "days."
+        }
+      ],
+      "source": "Fortune & Yahoo Finance",
+      "props": {
+        "items": [
+          {
+            "label": "4/1",
+            "value": "Co-founds Apple (10%)"
+          },
+          {
+            "label": "4/12",
+            "value": "Sells back for $800"
+          },
+          {
+            "label": "1977",
+            "value": "Takes $1,500 more"
+          }
+        ],
+        "note": "1976: Jobs and Wozniak held 45% each",
+        "noteHighlight": "45%"
+      },
+      "voice": "He co-founded Apple in 1976. Twelve days later, quit.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Its"
+        },
+        {
+          "t": "debts"
+        },
+        {
+          "t": "were"
+        },
+        {
+          "t": "HIS",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "debts."
+        }
+      ],
+      "source": "Outlook Business & Fortune",
+      "props": {
+        "n": 1,
+        "title": "A partnership, not a company",
+        "stat": {
+          "value": "$15K",
+          "label": "Jobs borrowed for one order"
+        },
+        "steps": [
+          "Partners owed debts personally",
+          "He owned a house and a car"
+        ]
+      },
+      "voice": "Apple was a partnership. Its debts were his debts.",
+      "seconds": 3.2
+    },
+    {
+      "type": "versus",
+      "caption": [
+        {
+          "t": "Nothing"
+        },
+        {
+          "t": "to"
+        },
+        {
+          "t": "lose"
+        },
+        {
+          "t": "vs.",
+          "br": true
+        },
+        {
+          "t": "everything.",
+          "key": true
+        }
+      ],
+      "source": "Fortune",
+      "props": {
+        "left": {
+          "name": "Jobs + Wozniak",
+          "value": "90%",
+          "caption": "young, nothing to lose"
+        },
+        "right": {
+          "name": "Ron Wayne",
+          "value": "10%",
+          "caption": "a house on the line"
+        },
+        "winner": "none"
+      },
+      "voice": "Jobs and Wozniak had nothing to lose. He did.",
+      "seconds": 3.2
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "Even"
+        },
+        {
+          "t": "the"
+        },
+        {
+          "t": "contract",
+          "key": true
+        },
+        {
+          "t": "slipped",
+          "br": true
+        },
+        {
+          "t": "away."
+        }
+      ],
+      "source": "Cult of Mac",
+      "props": {
+        "label": "His copy of Apple's founding contract",
+        "sublabel": "sold in the 1990s vs. auctioned in 2011",
+        "oldValue": "$500",
+        "newValue": "$1.6M"
+      },
+      "voice": "His $500 contract copy later fetched $1.6 million.",
+      "seconds": 2.9
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "10%"
+        },
+        {
+          "t": "of"
+        },
+        {
+          "t": "Apple"
+        },
+        {
+          "t": "today:",
+          "br": true
+        },
+        {
+          "t": "~$510B.",
+          "key": true
+        }
+      ],
+      "source": "24/7 Wall St., Nov 10 2026",
+      "props": {
+        "label": "10% of Apple's value, Nov 9 close",
+        "to": 510,
+        "prefix": "$",
+        "suffix": "B",
+        "tone": "gold",
+        "sub": "before dilution, which would cut it a lot",
+        "logo": "AAPL"
+      },
+      "voice": "Ten percent of Apple today: about five hundred billion.",
+      "seconds": 3.2
+    },
+    {
+      "type": "headline",
+      "caption": [
+        {
+          "t": "His"
+        },
+        {
+          "t": "verdict:"
+        },
+        {
+          "t": "no",
+          "key": true
+        },
+        {
+          "t": "regrets."
+        }
+      ],
+      "source": "Yahoo Finance, Apr 30 2026",
+      "props": {
+        "outlet": "Yahoo Finance",
+        "date": "Apr 30, 2026",
+        "text": "Apple co-founder says he doesn’t regret selling his stake for $800",
+        "highlight": "doesn’t regret"
+      },
+      "voice": "Asked about it, he says he has no regrets.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "The"
+        },
+        {
+          "t": "$800",
+          "key": true
+        },
+        {
+          "t": "lesson."
+        }
+      ],
+      "source": "Fortune",
+      "props": {
+        "n": 2,
+        "title": "Same bet, different risk",
+        "stat": {
+          "value": "$800",
+          "label": "his exit price"
+        },
+        "steps": [
+          "Same bet, different stakes",
+          "He had more to lose"
+        ]
+      },
+      "voice": "Same bet, different risk. That's the $800 lesson.",
+      "seconds": 2.9
+    },
+    {
+      "type": "endCard",
+      "seconds": 6,
+      "theme": "light",
+      "props": {
+        "variant": "free"
+      },
+      "voice": "That's one of this week's five numbers. Get all five, free, every Saturday. Link in bio."
+    }
+  ]
+}
