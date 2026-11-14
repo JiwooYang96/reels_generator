@@ -1,0 +1,409 @@
+{
+  "id": "illustration-test",
+  "title": "The $3 trillion day: what broke on Nov 5 and what's next",
+  "structure": "what-happens-next",
+  "hookFamily": "viewer stake / number",
+  "music": "tense",
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "−$3T",
+          "key": true
+        },
+        {
+          "t": "in"
+        },
+        {
+          "t": "one",
+          "br": true
+        },
+        {
+          "t": "day."
+        }
+      ],
+      "props": {
+        "subject": "a tall stack of gold coins toppling over, coins tumbling through the air",
+        "style": "pencil",
+        "big": "−$3T",
+        "sub": "S&P 500 value, Thu Nov 5",
+        "tone": "bad"
+      },
+      "voice": "One day. Three trillion lost. Your index fund paid.",
+      "seconds": 3.2
+    },
+    {
+      "type": "headline",
+      "caption": [
+        {
+          "t": "Not"
+        },
+        {
+          "t": "a"
+        },
+        {
+          "t": "recession.",
+          "key": true
+        },
+        {
+          "t": "An",
+          "br": true
+        },
+        {
+          "t": "AI"
+        },
+        {
+          "t": "sell-off."
+        }
+      ],
+      "source": "AP, Nov 5 2026",
+      "props": {
+        "outlet": "Associated Press",
+        "date": "Nov 5, 2026",
+        "text": "A brutal sell-off for AI stocks sends Wall Street reeling",
+        "highlight": "AI stocks"
+      },
+      "voice": "But the economy looked fine. AI stocks broke.",
+      "seconds": 2.9
+    },
+    {
+      "type": "scoreboard",
+      "caption": [
+        {
+          "t": "Worst"
+        },
+        {
+          "t": "day"
+        },
+        {
+          "t": "since"
+        },
+        {
+          "t": "April",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "2025."
+        }
+      ],
+      "source": "AP, Nov 5 2026",
+      "props": {
+        "title": "Thu, Nov 5 · close",
+        "rows": [
+          {
+            "name": "Nasdaq",
+            "value": "−5.5%",
+            "up": false
+          },
+          {
+            "name": "S&P 500",
+            "value": "−4.4%",
+            "up": false,
+            "hero": true
+          },
+          {
+            "name": "Dow",
+            "value": "−3.4%",
+            "up": false
+          }
+        ],
+        "footnote": "Nasdaq 11.9% off its high: a correction"
+      },
+      "voice": "The S&P's worst day since April twenty twenty-five.",
+      "seconds": 2.9
+    },
+    {
+      "type": "barRank",
+      "caption": [
+        {
+          "t": "Chips"
+        },
+        {
+          "t": "fell"
+        },
+        {
+          "t": "hardest.",
+          "key": true
+        }
+      ],
+      "source": "AP & Thrive in Markets, Nov 5 2026",
+      "props": {
+        "title": "Thu, Nov 5 · one-day move",
+        "bars": [
+          {
+            "label": "AMD",
+            "value": -17.3,
+            "display": "−17.3%",
+            "logo": "AMD"
+          },
+          {
+            "label": "Chip index",
+            "value": -12,
+            "display": "−12%",
+            "highlight": true
+          },
+          {
+            "label": "CoreWeave",
+            "value": -9.8,
+            "display": "−9.8%"
+          },
+          {
+            "label": "Nvidia",
+            "value": -9.3,
+            "display": "−9.3%",
+            "logo": "NVDA"
+          }
+        ]
+      },
+      "voice": "Chips led it: AMD down seventeen, Nvidia down nine.",
+      "seconds": 3.2
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "3"
+        },
+        {
+          "t": "fears",
+          "key": true
+        },
+        {
+          "t": "at"
+        },
+        {
+          "t": "once."
+        }
+      ],
+      "props": {
+        "subject": "a small paper boat tilting on rough dark waves",
+        "style": "pencil"
+      },
+      "voice": "Three fears hit at once.",
+      "seconds": 1.9
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "1."
+        },
+        {
+          "t": "Money"
+        },
+        {
+          "t": "got"
+        },
+        {
+          "t": "PRICIER.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "AP, Nov 5 2026",
+      "props": {
+        "n": 1,
+        "title": "Pricier money",
+        "stat": {
+          "value": "5.3%",
+          "label": "10-yr yield last month"
+        },
+        "steps": [
+          "Borrowing costs rose",
+          "AI data centers may slow"
+        ]
+      },
+      "voice": "First: costlier borrowing could slow data-center building.",
+      "seconds": 2.6
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "2."
+        },
+        {
+          "t": "Data"
+        },
+        {
+          "t": "centers"
+        },
+        {
+          "t": "on",
+          "br": true
+        },
+        {
+          "t": "PAUSE?",
+          "key": true
+        }
+      ],
+      "source": "AP, Nov 5 2026",
+      "props": {
+        "n": 2,
+        "title": "Data-center pauses",
+        "stat": {
+          "value": "Nov 3",
+          "label": "midterm elections"
+        },
+        "steps": [
+          "Voters wary of power bills",
+          "Pause talk hits chip demand"
+        ]
+      },
+      "voice": "Second: midterm results raised talk of data-center pauses.",
+      "seconds": 2.9
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "3."
+        },
+        {
+          "t": "One"
+        },
+        {
+          "t": "stock,"
+        },
+        {
+          "t": "$450B.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "iTiger & AP, Nov 5-6 2026",
+      "props": {
+        "n": 3,
+        "title": "Too big to ignore",
+        "stat": {
+          "value": "$450B",
+          "label": "Nvidia's one-day loss"
+        },
+        "steps": [
+          "Chips are the biggest stocks",
+          "Their fall drags the index"
+        ],
+        "logo": "NVDA"
+      },
+      "voice": "Third: Nvidia alone shed about four hundred fifty billion.",
+      "seconds": 3.2
+    },
+    {
+      "type": "scoreboard",
+      "caption": [
+        {
+          "t": "A"
+        },
+        {
+          "t": "week"
+        },
+        {
+          "t": "later:"
+        },
+        {
+          "t": "BOUNCED.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Bull Bear Report, Nov 13 2026",
+      "props": {
+        "title": "Week to Fri, Nov 13",
+        "rows": [
+          {
+            "name": "S&P 500",
+            "value": "+2.5%",
+            "up": true,
+            "hero": true
+          },
+          {
+            "name": "Nasdaq",
+            "value": "+2.3%",
+            "up": true
+          },
+          {
+            "name": "Dow",
+            "value": "+2.1%",
+            "up": true
+          }
+        ],
+        "footnote": "Monday alone: +2.35%"
+      },
+      "voice": "A week later, most of it came back.",
+      "seconds": 2.9
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Still"
+        },
+        {
+          "t": "3.3%",
+          "key": true
+        },
+        {
+          "t": "below",
+          "br": true
+        },
+        {
+          "t": "the"
+        },
+        {
+          "t": "record."
+        }
+      ],
+      "source": "Bull Bear Report, Nov 13 2026",
+      "props": {
+        "label": "S&P 500 vs its Oct 6 record",
+        "to": 3.3,
+        "decimals": 1,
+        "sign": "−",
+        "suffix": "%",
+        "tone": "bad",
+        "sub": "7,561.67 vs 7,818.93"
+      },
+      "voice": "It still sits about three percent below its record.",
+      "seconds": 3.2
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "The"
+        },
+        {
+          "t": "$3T",
+          "key": true
+        },
+        {
+          "t": "test:"
+        },
+        {
+          "t": "Tuesday.",
+          "br": true
+        }
+      ],
+      "source": "Bull Bear Report, Nov 13 2026",
+      "props": {
+        "day": "TUE",
+        "date": "Nov 17",
+        "event": "Nvidia earnings · ~$109B expected",
+        "cta": "After the bell"
+      },
+      "voice": "The three trillion dollar test: Nvidia reports Tuesday.",
+      "seconds": 2.9
+    },
+    {
+      "type": "endCard",
+      "seconds": 6,
+      "theme": "light",
+      "props": {
+        "variant": "free"
+      },
+      "voice": "That's one of this week's five numbers. Get all five, free, every Saturday. Link in bio."
+    }
+  ]
+}

@@ -79,6 +79,32 @@ Default theme: dark. Source line: not needed.
 - `ticker`: string
 - `plate` (optional): string, default "CEO", max 10 chars
 
+## `open.illustration`
+
+OPENING. A torn-paper illustration slaps onto the page with a shake (optional company logo pinned to its corner), then the big number lands under it. The magazine-cover hook.
+
+Default theme: dark. Source line: not needed.
+
+- `subject`: string
+- `style` (optional): "pencil" | "riso" | "hatch", default "pencil"
+- `seed` (optional): string,number
+- `src` (optional): string,null
+- `big`: string
+- `sub` (optional): string
+- `tone` (optional): "bad" | "good" | "gold", default "bad"
+- `ticker` (optional): string
+
+## `illustration`
+
+A hand-drawn illustration (colored pencil / riso / ink, made by the pipeline) torn out like a magazine clipping and slapped onto the page, then drifting. For the "why" beat or a weekend story beat. `subject` is a thing, place or metaphor, never a person, logo or text. Max 2 per weekday reel.
+
+Default theme: light. Source line: not needed.
+
+- `subject`: string
+- `style` (optional): "pencil" | "riso" | "hatch", default "pencil"
+- `seed` (optional): string,number
+- `src` (optional): string,null
+
 ## `causeChain`
 
 Numbered reason shown as cause → effect → effect (2-3 steps, last one highlighted), optional stat chip and logo. Use for "why" videos: each reason must say what caused what, not just describe.

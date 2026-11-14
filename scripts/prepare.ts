@@ -37,6 +37,14 @@ for (const v of vo) {
   else if (sc) sc.seconds = Math.max(sc.seconds, +(v.dur + 0.4).toFixed(2));
 }
 
+// Illustrations (scripts/illustrate.py writes out/<id>/illustrations.json: scene index -> torn-paper PNG).
+const illPath = path.join('out', plan.id, 'illustrations.json');
+const ill: Record<string, string> = fs.existsSync(illPath) ? JSON.parse(fs.readFileSync(illPath, 'utf8')) : {};
+for (const [i, src] of Object.entries(ill)) {
+  const sc = plan.scenes[Number(i)];
+  if (sc) (sc.props as Record<string, unknown>).src = src;
+}
+
 const scenes = resolvePlan(plan);
 const {events, cuts} = planEvents(scenes);
 const sec = (f: number) => +(f / 30).toFixed(3);

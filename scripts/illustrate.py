@@ -23,9 +23,12 @@ import time
 import urllib.request
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 ROOT = Path(__file__).resolve().parent.parent
 CACHE = ROOT / "public/illustrations"
 MODEL = "@cf/black-forest-labs/flux-1-schnell"
+ILLUSTRATED = {"illustration", "open.illustration"}
 
 # Styles found by trial (lab/styles.json, Nov 15): FLUX schnell has no negative prompt, so each style says only
 # what we want. Subjects avoid signs, screens and labels (the model invents text on them). `pencil` is the house
@@ -102,22 +105,29 @@ def run_plan(path):
     plan = json.load(open(path))
     bad = []
     for i, s in enumerate(plan["scenes"]):
-        if s["type"] != "illustration":
+        if s["type"] not in ILLUSTRATED:
             continue
         subj = s["props"]["subject"]
         bad += [f"scene {i + 1}: {p}" for p in problems(subj)]
     if bad:
         print("ILLUSTRATION CHECK:\n  - " + "\n  - ".join(bad))
         sys.exit(1)
-    for s in plan["scenes"]:
-        if s["type"] == "illustration":
-            f = draw(s["props"]["subject"], s["props"].get("style", "pencil"), s["props"].get("seed"))
-            s["props"]["src"] = f"illustrations/{f.name}" if f else None
-    # Hand the resolved image paths to prepare.ts.
+    srcs = {}
+    for i, s in enumerate(plan["scenes"]):
+        if s["type"] not in ILLUSTRATED:
+            continue
+        f = draw(s["props"]["subject"], s["props"].get("style", "pencil"), s["props"].get("seed"))
+        if f:
+            png = f.with_suffix(".png")
+            if not png.exists():
+                from tornpaper import torn
+                torn(str(f), str(png), seed=int(hashlib.sha1(f.name.encode()).hexdigest()[:6], 16) % 1000)
+            srcs[i] = f"illustrations/{png.name}"
+    # Hand the torn-paper cutouts to prepare.ts, which puts them in the scenes' props.
     out = ROOT / "out" / plan["id"]
     out.mkdir(parents=True, exist_ok=True)
-    srcs = {i: s["props"].get("src") for i, s in enumerate(plan["scenes"]) if s["type"] == "illustration"}
     (out / "illustrations.json").write_text(json.dumps(srcs))
+    print(f"illustrate: {len(srcs)} illustration(s) ready")
 
 
 def run_test(outdir):
