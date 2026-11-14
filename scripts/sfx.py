@@ -87,8 +87,22 @@ def main(out_path: str, events_path: str) -> None:
     voiced = bool(ev.get("voice"))
     g = lambda name, a: None if lib.get(name) is None else a * lib[name]  # noqa: E731
 
+    # Music (scripts/music.py, passed as "music": path) replaces the bed. It dips about 9 dB while the narrator
+    # speaks (fast 0.12 s ramps, so it breathes back up between lines).
+    music = ev.get("music")
+    if music and Path(music).exists():
+        raw = subprocess.run(["ffmpeg", "-v", "error", "-i", music, "-ac", "1", "-ar", str(SR), "-f", "s16le", "-"],
+                             capture_output=True, check=True).stdout
+        m = np.frombuffer(raw, dtype=np.int16).astype(np.float64) / 32768
+        m = m[:n] / (np.max(np.abs(m)) or 1)
+        gain = np.ones(len(m))
+        for a, b in ev.get("vo", []):
+            gain[int(a * SR):int(b * SR)] = 0.35
+        k = int(SR * 0.12)
+        gain = np.convolve(gain, np.ones(k) / k, "same")
+        out[:len(m)] += m * gain * (0.55 if voiced else 0.8)
     # Bed: the ElevenLabs underscore looped, or the synthesized kick/hat pattern.
-    if lib["bed"] is not None:
+    elif lib["bed"] is not None:
         bed = lib["bed"] * (0.16 if voiced else 0.3)
         fade = int(SR * 0.25)
         bed[:fade] *= np.linspace(0, 1, fade)
@@ -104,9 +118,17 @@ def main(out_path: str, events_path: str) -> None:
 
     if lib["sting"] is not None:
         add(0.6 * lib["sting"], 0)
-    for k, c in enumerate(ev.get("cuts", [])):
-        s_ = g("rip", 0.45) if k == len(ev.get("cuts", [])) // 2 and lib["rip"] is not None else g("whoosh", 0.4)
-        add(s_ if s_ is not None else whoosh(), max(0, c - 0.25))
+    # The paper rip goes on the rehook tear when there is one (it rips about 0.25 s after the cut), else on the
+    # middle cut; whooshes on the other cuts.
+    cuts = ev.get("cuts", [])
+    tear = ev.get("tear")
+    rip_k = min(range(len(cuts)), key=lambda k: abs(cuts[k] + 0.25 - tear)) if tear and cuts else len(cuts) // 2
+    for k, c in enumerate(cuts):
+        if k == rip_k and lib["rip"] is not None:
+            add(0.55 * lib["rip"], max(0, c + (0.0 if tear else -0.25)))
+        else:
+            s_ = g("whoosh", 0.4)
+            add(s_ if s_ is not None else whoosh(), max(0, c - 0.25))
     for s in ev.get("fall", []):
         add(g("fall", 0.35) if lib["fall"] is not None else fall(), s)
     for start, end, step in ev.get("ticks", []):

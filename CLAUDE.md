@@ -6,20 +6,42 @@ The user gives a topic; you return a finished vertical news short (MP4) with sou
 
 - Account: **@fivebeforemonday** (`src/brand.ts`). Every scene shows the handle automatically; the last scene must be a follow CTA that names it (calendarCta's default CTA does). The plan check enforces this.
 - **Balance numbers and information.** Numbers are the hook, explanations are the value. Alternate them: hook number → proof number → reasons (each a `causeChain` with a big `stat` and 2 short steps) → twist number → dated next event. At least 70% of scenes after the opening show a number, and any video of 5+ scenes explains at least once (`causeChain`, `headline` or `timeline`). The plan check enforces both.
-- Channel palette: `broadsheet` (the default; newspaper paper texture, Instrument Serif headlines, highlighter keywords, navy dark scenes, colour accents). Plans leave `palette` out. **Read `docs/STYLE.md` before planning or adding a scene**: it is the house style (colour meanings, type sizes, motion, sources) and every video must match it. Typical length 20-26 s for a full story, 10 s for a single-number update.
+- Channel palette: `broadsheet` (the default; newspaper paper texture, Instrument Serif headlines, highlighter keywords, navy dark scenes, colour accents). Plans leave `palette` out. **Read `docs/STYLE.md` before planning or adding a scene**: it is the house style (colour meanings, type sizes, motion, sources) and every video must match it. Daily reels run 30-40 s (see "Daily reel"); one-off updates can be shorter.
 
 ## Setup (fresh session)
 
 ```bash
 npm ci
+sudo apt-get install -y fluidsynth fluid-soundfont-gm && pip install --break-system-packages mido   # music
+mkdir -p ~/.claude/instagram && cp docs/voice.md ~/.claude/instagram/voice.md                    # ig-* skills
 ```
 Versions are pinned (Remotion 4.0.540, zod 4.6.7, skills in `skills-lock.json`). Don't upgrade unless the user asks.
 
 ## Topic -> video
 
 1. **Research.** WebSearch the topic's latest news (last 24-48 h). Open at least 2 pages with WebFetch; a snippet is not a source. **Find the real story first**: search the company by name in plain words ("why <company> stock fell today") and go with the reason the coverage gives: earnings or guidance, a deal, an analyst call, a product, regulation, rates or data, occasionally people news. Don't assume a kind of story. Name the concrete event in the hook rather than an abstraction. Check the news hit the market in the window you're covering. Pick one fresh, concrete number and a twist.
-2. **Hook.** Use the `hooksmith` skill (`hooksmith generate`) for 3-5 hook options; score them with the `viral-short-form` skill's `assets/hook-checklist.md`. Don't reuse the hook family of the last entry in `runs/log.md`.
-3. **Structure.** Pick one not used in the last 5 entries of `runs/log.md`: countdown, versus, myth vs fact, timeline, what-happens-next, single number, escalation -> rehook -> open loop. Spine: opening (number on screen within 1 s) -> escalation -> rehook ("But...") -> payoff -> open loop / follow CTA. Default 10 s total.
+2. **Hook and script.** Most reels are won or lost here. `HOOKS.md` is the channel context; the skills are in
+   `.claude/skills` (see `VENDOR.md`).
+   - **Hooks:** `hooksmith generate` for 3-5 complete hook systems from different families (number + stake,
+     contradiction, belief break, versus flip, viewer callout). Upgrade each with the `viral-hooks` tactics
+     (`references/hook-tactics.md`): a specific number, a power verb, the exact viewer, cut the first three words,
+     a shaped curiosity gap. Two short sentences beat one long one ("Nvidia lost a trillion dollars. Your index
+     fund didn't escape.").
+   - **Score:** `python3 .claude/skills/ig-reel/hookscore.py hooks.txt`. Keep 85+, then pick with `hooksmith audit`
+     (35+/50). Honest only: the viewer stake must be true (index funds do hold the megacaps), no advice, no fake
+     urgency, no number you can't source.
+   - **On-screen hook:** 3-6 words with the number, compressed from the voice, never the same words
+     (`viral-instagram-reels` reels-hook): "−$1T in 30 days."
+   - **Rehook:** scene 2 or 3 opens with a turn ("But the twist:", "Not...", "Turns out..."). The cut tears the page.
+   - **Pace:** one beat per scene, about 3.3 spoken words per second, 7-10 words per line, every story scene 3.5 s
+     or shorter (a change every 2-4 s), beats joined by "but/therefore", never "and then". More scenes, not
+     longer ones: 9-11 story scenes plus the end card make 30-40 s.
+   - **Payoff:** the last story scene echoes the hook's number or subject and closes its loop.
+   - **Gate:** `python3 scripts/reelscore.py plans/<id>.json` scores the HOOK (hookscore) and the SCRIPT (on-screen
+     hook, rehook, pace, but/therefore, payoff loop, numbers, length, one ask) out of 100. A reel is approved only
+     when both are 85+; make.sh and GitHub refuse it otherwise. Report both scores with the reel. Don't reuse the
+     hook family of the last entry in `runs/log.md`.
+3. **Structure.** Pick one not used in the last 5 entries of `runs/log.md`: countdown, versus, myth vs fact, timeline, what-happens-next, single number, escalation -> rehook -> open loop. Spine: opening (number on screen within 1 s) -> escalation -> rehook ("But...") -> payoff -> open loop / follow CTA. Daily reels 30-40 s.
    **Reasons must be reasons.** When the video promises "why" or "N reasons", each reason is a `causeChain` scene that states what caused what (cause → effect → effect on the stock), taken from the sources. A description of what happened ("down 25%", "fell 9%") is not a reason; put such numbers in the hook or a stat chip. Give every reason a `stat` (one big sourced number) and 2 short steps (about 5 words each) so it is readable in 3.5 s.
 4. **Plan.** Write `plans/<id>.json` using scenes from `docs/SCENES.md` (see `plans/nvidia-week-nov6-broadsheet.json`). Leave `palette` at the channel default unless the user asks. Scene 1 is an `open.*` opening (rotate the opening type; `open.logo` for one-company stories). Add company logos per "Logos" below. Captions: max 2 lines of 24 chars, one boxed keyword (`key: true`), `br: true` for line 2, about 2.5 words per second. Every data scene gets a `source` ("Outlet, date").
 5. **Make.** `scripts/make.sh plans/<id>.json`. It checks the plan (fix every problem it prints), builds the sound, renders `out/<id>.mp4` and `out/<id>-sheet.png`. About 1 minute.
@@ -33,13 +55,20 @@ Every trading day after the New York close a scheduled task makes one reel about
 1. Find the day's movers: search "stock market today" and the biggest big-tech movers, and confirm each
    closing move on Yahoo Finance or a major outlet.
 2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook
-   and plan as usual. Length 12-18 s. Write the plan to `plans/daily/<date>.json` (date = the New York trading
+   and plan as usual. Length 30-40 s (the check allows 28-45), in this order: hook -> what happened ->
+   2-3 reasons (each sourced) -> what's next, with a date -> `endCard`. Do the hook and script pass in step 2
+   above properly every day; only a reel that `reelscore.py` approves (85+/85+) goes out. Set `music` by the move's direction. Write the plan to `plans/daily/<date>.json` (date = the New York trading
    day) and give it:
-   - `voice` on each scene: the narrator's line, about 2.5-3 words per second of the scene (raise `seconds`
-     if a line needs it). It carries the story; the caption stays the short on-screen version. Say numbers
+   - `voice` on each scene: the narrator's line, 7-10 words, about 3.3 words per second (the scene length is
+     set from the narrated line). It carries the story; the caption stays the short on-screen version. Say numbers
      the way a newsreader would ("down eight point eight percent", "a hundred and ninety-two billion
      dollars"). See "Voice: hooking and trustworthy" below; the plan check enforces the limits.
-   - `post.caption`: the Instagram caption. 2-3 lines, 3-5 hashtags, a "Sources:" list, no links.
+   - `post.caption`: the Instagram caption. 2-3 lines, then "Get this week's five, free every Saturday ->
+     link in bio.", 3-5 hashtags, a "Sources:" list, "Not investment advice." No links.
+   - Last scene `endCard` (6 s, theme light, no caption) with `variant` by New York weekday: Mon/Thu `free`,
+     Tue `free-alt`, Wed/Fri `paid`. Its `voice` is exactly `END_VOICE[variant]` from
+     `src/scenes/endcard.tsx`. Never: "smash", "don't miss", "before it's too late", "guaranteed", made-up
+     subscriber counts or deadlines.
 3. `scripts/make.sh plans/daily/<date>.json` for a preview (it is silent here: the voice model runs on
    GitHub), read the sheet, fix until clean. GitHub refuses a plan that fails the check.
 4. Commit the plan and the `runs/log.md` row straight to main and push. GitHub (`render-reel.yml`) then narrates it,
@@ -54,11 +83,17 @@ Every trading day after the New York close a scheduled task makes one reel about
 ## Sound
 
 - **Narration** (`scripts/voice.py`): one clip per scene from its `voice` line, read by Kokoro (open-source,
-  Apache-2.0, free, runs on GitHub's CPU; the engine VoiceStudio / OmniVoice Studio bundles). Voice
-  `bm_george`, a calm British male newsreader; change it with the `VOICE_NAME` repo variable (`bm_lewis`,
-  `bm_daniel`, `bf_emma`). `VOICE_ENGINE=omnivoice` switches to OmniVoice voice design (its official weights
+  Apache-2.0, free, runs on GitHub's CPU) or Chatterbox (MIT, more expressive). Repo variables pick it:
+  `VOICE_ENGINE` (`kokoro` / `chatterbox`), `VOICE_NAME` for Kokoro (channel voice `af_heart`, picked by ear; others `am_michael`, `bm_george`...),
+  `VOICE_EXAGGERATION` / `VOICE_CFG` for Chatterbox. `.github/workflows/voice-samples.yml` renders the
+  candidates side by side. `VOICE_ENGINE=omnivoice` switches to OmniVoice voice design (its official weights
   are non-commercial, so not for this channel as-is); `elevenlabs` uses the paid API if a key is set.
-  Scenes stretch to fit their line. Local renders are silent previews.
+  Speed 1.22 (brisk). Each scene lasts its line plus 0.25 s. Local renders are silent previews.
+- **Music** (`scripts/music.py`): original music composed per reel to its cuts and played with the
+  FluidR3 GM soundfont (MIT), so nothing to license or get flagged: a hit under the hook, a newsroom pulse
+  through the story, one bar of drop at the middle (an attention reset), and a resolve on the end card. It
+  ducks about 9 dB under the narrator. Plan field `music`: `tense` (stock fell, default), `lift` (rose),
+  `neutral`, or `none`.
 - **Effects** (`scripts/sfxsynth.py`, our own, in `public/sfx/lib`): a news sting on the first frame, paper
   whooshes on cuts and one paper rip on the middle cut, boom + stamp on number reveals, typewriter ticks on
   counters, a falling tone on bad-news hooks, and a low news underscore that drops under the voice. Scenes
@@ -66,10 +101,11 @@ Every trading day after the New York close a scheduled task makes one reel about
 
 ### Voice: hooking and trustworthy
 
-- Line 1 is the hook, 9 words max, landing inside the opening: the concrete event and the number
-  ("Apple just passed Nvidia." / "Microsoft lost two hundred billion today.").
+- Line 1 is the hook, 10 words max, landing inside the opening: the concrete event, the number and the
+  tension ("Nvidia lost a trillion dollars in a month. Not on earnings."). "You/your" is fine in the hook when
+  it names the viewer's real stake ("If you own an index fund..."), never as advice.
 - Then plain newsreader sentences: what happened, why (from the sources), what's next. No questions to the
-  viewer, no "you", no "guys", no hype ("insane", "skyrocket", "to the moon", "must buy"; the check blocks
+  viewer, no "guys", no hype ("insane", "skyrocket", "to the moon", "must buy"; the check blocks
   these), no advice or predictions.
 - Attribute anything that isn't a market price: "Reuters reports...", "according to the company".
 - End on the dated next event and the follow line.

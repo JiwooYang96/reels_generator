@@ -6,8 +6,9 @@ Writes public/vo/<id>/<n>.wav and out/<id>/vo.json ([{i, src, dur}]); scripts/pr
 each scene to fit its line and places the clips. Each scene says its `voice` text, or its caption words.
 
 Engines (the ones VoiceStudio / OmniVoice Studio bundles, run directly so they work headless on GitHub):
-  kokoro     (default) Kokoro-82M, Apache-2.0 weights, so it is fine for a paid product. British newsreader
-             voice "bm_george" (set VOICE_NAME to change, e.g. bm_lewis, bm_daniel). Fast on a CPU.
+  kokoro     (default) Kokoro-82M, Apache-2.0 weights, so it is fine for a paid product. Voice
+             "af_heart", the channel voice (set VOICE_NAME to change, e.g. am_michael, bm_george). Fast on a CPU.
+  chatterbox Resemble AI Chatterbox (MIT), expressive; VOICE_EXAGGERATION / VOICE_CFG tune the delivery.
   omnivoice  k2-fsa OmniVoice with voice design from VOICE_INSTRUCT. Its official weights are CC-BY-NC
              (non-commercial), so only use it if that licence fits.
   elevenlabs paid API, used only when VOICE_ENGINE=elevenlabs and ELEVENLABS_API_KEY are set.
@@ -22,8 +23,8 @@ import urllib.request
 from pathlib import Path
 
 ENGINE = os.environ.get("VOICE_ENGINE", "kokoro").lower()
-VOICE_NAME = os.environ.get("VOICE_NAME", "bm_george")
-VOICE_SPEED = float(os.environ.get("VOICE_SPEED", "1.12"))  # a brisk newsreader pace
+VOICE_NAME = os.environ.get("VOICE_NAME", "af_heart")
+VOICE_SPEED = float(os.environ.get("VOICE_SPEED", "1.28"))  # brisk: short-form pace, still clear
 VOICE_INSTRUCT = os.environ.get("VOICE_INSTRUCT", "male, british accent, middle-aged, calm, news presenter")
 
 
@@ -42,6 +43,11 @@ def write_wav(path, audio, sr):
 
     audio = np.asarray(audio, dtype="float32").reshape(-1)
     peak = float(np.max(np.abs(audio))) or 1.0
+    # Trim the model's leading/trailing silence (keep 40 ms): dead air is what makes a reel feel slow.
+    loud = np.flatnonzero(np.abs(audio) > peak * 0.02)
+    if loud.size:
+        pad = int(sr * 0.04)
+        audio = audio[max(0, loud[0] - pad):loud[-1] + pad]
     sf.write(str(path), audio / peak * 0.9, sr)
 
 
@@ -69,6 +75,20 @@ def omnivoice_engine():
     return say
 
 
+def chatterbox_engine():
+    # Resemble AI Chatterbox (MIT): more expressive than Kokoro. VOICE_EXAGGERATION 0.5 is calm, 0.7+ punchy;
+    # a lower VOICE_CFG slows and steadies the delivery. Its output carries Resemble's inaudible watermark.
+    from chatterbox.tts import ChatterboxTTS
+
+    model = ChatterboxTTS.from_pretrained(device="cpu")
+    ex = float(os.environ.get("VOICE_EXAGGERATION", "0.5"))
+    cfg = float(os.environ.get("VOICE_CFG", "0.5"))
+
+    def say(text, path):
+        write_wav(path, model.generate(text, exaggeration=ex, cfg_weight=cfg).squeeze(0).numpy(), model.sr)
+    return say
+
+
 def elevenlabs_engine():
     key = os.environ["ELEVENLABS_API_KEY"]
     voice = os.environ.get("ELEVEN_VOICE_ID", "onwK4e9ZLuTAKqWW03F9")
@@ -91,7 +111,8 @@ def load_engine():
     if ENGINE in ("", "none", "off"):
         return None
     try:
-        return {"kokoro": kokoro_engine, "omnivoice": omnivoice_engine, "elevenlabs": elevenlabs_engine}[ENGINE]()
+        return {"kokoro": kokoro_engine, "chatterbox": chatterbox_engine, "omnivoice": omnivoice_engine,
+                "elevenlabs": elevenlabs_engine}[ENGINE]()
     except (ImportError, KeyError) as err:
         print(f"Voice engine '{ENGINE}' is not available here ({err}); silent preview.")
         return None

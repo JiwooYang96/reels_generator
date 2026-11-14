@@ -53,7 +53,7 @@ Rules: one highlighter per screen. Red/green only for direction. Never hard-code
 
 ## Sound
 
-- A calm British newsreader voice (Kokoro `bm_george`) reads one plain sentence per scene. The voice tells the
+- A warm, clear US female newsreader voice (Kokoro `af_heart`) reads one plain sentence per scene. The voice tells the
   story; captions show the short version. Hook in the first line, then facts with attribution. No hype words,
   no shouting, no advice.
 - Newsroom effects from our library: sting at the open, paper whoosh on cuts, one paper rip, boom + stamp on
@@ -79,6 +79,13 @@ the hook. Don't enlarge it, and don't put it on the opening or the CTA.
 - Number on screen within 1 second. Escalate, then rehook with "But...", then pay off, then a dated next event.
 - Sensitive stories: report what outlets report, attribute allegations, no speculation, no realistic depictions
   of real people (logos only for companies).
+
+## End card (every daily reel)
+
+The last 6 s promote the newsletter, calmly: logo lockup, one specific benefit line, the highlighted
+"Free every Saturday" (or the founding price on paid days), the red url pill and "LINK IN BIO". No caption
+on top, no hype, no fake urgency. Copy lives in `END_COPY`/`END_VOICE` in `src/scenes/endcard.tsx`;
+change it there, not in plans. Variants: `free` (default), `free-alt` (A/B test), `paid` (Wed/Fri).
 
 ## Checklist before delivering
 

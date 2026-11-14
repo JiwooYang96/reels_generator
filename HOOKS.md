@@ -1,28 +1,37 @@
 # Hooksmith Context
 
 ## Creator
-@fivebeforemonday (faceless stock-news channel)
+Five Before Monday (@fivebeforemonday), fivebeforemonday.com
 
 ## Niche
-Latest US stock-market news about well-known companies (S&P 500 and popular tickers), told in 10-30 s with the company's logo up front.
+Big-tech stock news: the day's biggest move in the largest US tech names, and why it happened.
 
 ## Viewer
-Retail investors and curious followers of big tech and market headlines who recognise the logos (Nvidia, Apple, Tesla...). They want to know in seconds what just happened to a stock they care about, why, and what comes next. Pain: headlines are noisy and long; they don't want to miss a big move or misread it.
+Retail investors and people who own index funds or big-tech shares, 20-45, who check their portfolio on the
+phone and want to know in 30 seconds why a stock they hold moved. Pain: headlines without the reason, hype
+accounts, noise. Desire: the real reason, sourced, fast, before the next open.
 
 ## Proof Allowed
-Only numbers and facts from news pages actually opened for that video, shown with an on-screen source line ("Outlet, date"). No personal track record, no portfolio results, no follower counts.
+Only market data and reporting from pages actually opened that day (prices, % moves, market values, reported
+figures), each with its source on screen. No follower counts, no track record claims, no predictions.
 
 ## Voice
-Plain, punchy, neutral. Facts first, no hype adjectives the numbers don't support. Never tells the viewer to buy or sell.
+Calm newsreader with an edge: short declarative sentences, numbers said out loud, contradiction over
+adjectives. Never hype ("insane", "skyrocket"), never advice ("buy", "sell", "should").
 
 ## Formats
-Caption-led motion-graphics Reels / TikTok / Shorts, no voice-over, 9:16, word-by-word captions with one boxed keyword per line.
+Faceless B-roll text Reel: broadsheet newspaper motion graphics, narration, music, captions. 30-40 s.
 
 ## CTA Rules
-Open-loop follow CTA tied to a dated next event, always naming the account ("Follow @fivebeforemonday for Nov 17"). Comment prompts allowed ("Buying the dip or waiting?"). No DM funnels, no links.
+One ask, on the end card only: the free Saturday brief (link in bio); the paid Sunday report on Wed/Fri.
+No comment-bait, no fake urgency.
 
 ## Forbidden Claims
-No investment advice or price predictions presented as fact ("will hit $300"). No "guaranteed", "secret", "nobody is talking about" unless literally true. No fabricated quotes. No invented urgency. Analyst targets only when attributed.
+Price targets, predictions, "guaranteed", made-up numbers, unattributed allegations, anything about a
+person's private life beyond what major outlets report. Never say the content is AI-made or human-written.
 
 ## Winning Patterns
-Reference reel (vibe-coded apps): question about money + a shocking stat in the first second, a visible numbered open loop (4 locked findings with a progress bar), a concrete comparison per point, a scene change every 0.5-1.5 s.
+- Number + contradiction: "Nvidia lost a trillion dollars in a month. Not on earnings."
+- Belief break: "Record profits. The stock still fell nine percent."
+- Viewer stake: "If you own an index fund, this was your money."
+- Versus flip: "Apple is worth more than Nvidia again. Here's what changed."

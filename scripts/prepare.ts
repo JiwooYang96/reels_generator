@@ -2,7 +2,7 @@
 // Usage: npx tsx scripts/prepare.ts plans/<id>.json [--force]
 import fs from 'node:fs';
 import path from 'node:path';
-import {checkPlan, planEvents, planSchema, resolvePlan, totalFrames} from '../src/plan/plan';
+import {checkPlan, planEvents, planSchema, rehookIndex, resolvePlan, totalFrames} from '../src/plan/plan';
 
 const file = process.argv[2];
 const force = process.argv.includes('--force');
@@ -32,7 +32,9 @@ const voPath = path.join('out', plan.id, 'vo.json');
 const vo: {i: number; src: string; dur: number}[] = fs.existsSync(voPath) ? JSON.parse(fs.readFileSync(voPath, 'utf8')) : [];
 for (const v of vo) {
   const sc = plan.scenes[v.i];
-  if (sc) sc.seconds = Math.min(8, Math.max(sc.seconds, +(v.dur + 0.45).toFixed(2)));
+  // The voice sets the pace: each scene lasts its line plus a 0.25 s beat (no dead air), 1.8-6 s; the end card keeps its length.
+  if (sc && sc.type !== 'endCard') sc.seconds = Math.min(6, Math.max(1.8, +(v.dur + 0.25).toFixed(2)));
+  else if (sc) sc.seconds = Math.max(sc.seconds, +(v.dur + 0.4).toFixed(2));
 }
 
 const scenes = resolvePlan(plan);
@@ -53,6 +55,14 @@ const voiceover = vo
   .filter((v) => scenes[v.i])
   .map((v) => ({src: v.src, at: scenes[v.i].from + 5}));
 (sfx as Record<string, unknown>).voice = voiceover.length > 0;
+// For the music: its mood, where the end card starts (it resolves there), and when the narrator speaks (it ducks).
+const end = scenes.find((s) => s.type === 'endCard');
+Object.assign(sfx, {
+  mood: plan.music,
+  ...(rehookIndex(plan) !== null ? {tear: +(sec(scenes[rehookIndex(plan)!].from) + 0.25).toFixed(3)} : {}),
+  ...(end ? {endCard: sec(end.from)} : {}),
+  vo: vo.filter((v) => scenes[v.i]).map((v) => [sec(scenes[v.i].from + 5), +(sec(scenes[v.i].from + 5) + v.dur).toFixed(3)]),
+});
 fs.writeFileSync(path.join(outDir, 'sfx.json'), JSON.stringify(sfx, null, 2));
 fs.writeFileSync(path.join(outDir, 'props.json'), JSON.stringify({...plan, audio: `sfx/${plan.id}.wav`, voiceover}, null, 2));
 

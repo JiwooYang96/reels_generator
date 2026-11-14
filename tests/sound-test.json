@@ -6,45 +6,53 @@
   "scenes": [
     {
       "type": "open.logo",
-      "seconds": 2.5,
+      "seconds": 3.2,
+      "caption": [
+        {
+          "t": "−$1T",
+          "key": true
+        },
+        {
+          "t": "in"
+        },
+        {
+          "t": "30"
+        },
+        {
+          "t": "days."
+        }
+      ],
+      "props": {
+        "ticker": "NVDA",
+        "big": "−$1T",
+        "sub": "market value, in a month",
+        "tone": "bad"
+      },
+      "voice": "Nvidia lost a trillion. Your index fund didn't escape."
+    },
+    {
+      "type": "versus",
+      "seconds": 2.9,
       "caption": [
         {
           "t": "Apple"
         },
         {
-          "t": "just"
+          "t": "is"
         },
         {
-          "t": "passed"
+          "t": "now"
         },
         {
-          "t": "NVIDIA.",
-          "key": true,
-          "br": true
-        }
-      ],
-      "props": {
-        "ticker": "NVDA",
-        "big": "#2",
-        "sub": "behind Apple this week",
-        "tone": "bad"
-      },
-      "voice": "Apple just passed Nvidia."
-    },
-    {
-      "type": "versus",
-      "seconds": 3.2,
-      "caption": [
-        {
-          "t": "Apple:"
-        },
-        {
-          "t": "$5.10T.",
+          "t": "#1.",
           "key": true
         },
         {
-          "t": "Nvidia:",
+          "t": "$5.10T",
           "br": true
+        },
+        {
+          "t": "vs"
         },
         {
           "t": "$4.83T."
@@ -66,11 +74,11 @@
         },
         "winner": "left"
       },
-      "voice": "Apple, five point one trillion. Nvidia, four point eight."
+      "voice": "But the twist: Apple is now worth more."
     },
     {
       "type": "counter",
-      "seconds": 3.0,
+      "seconds": 3.2,
       "caption": [
         {
           "t": "Down"
@@ -100,7 +108,7 @@
         "logo": "NVDA",
         "sub": "$1.4T in market value gone"
       },
-      "voice": "Nvidia: down twenty-five percent from its record."
+      "voice": "Nvidia is down a quarter since its October record."
     },
     {
       "type": "chapters",
@@ -122,11 +130,11 @@
         ],
         "unlocked": 0
       },
-      "voice": "Three reasons why."
+      "voice": "Three things did it."
     },
     {
       "type": "causeChain",
-      "seconds": 3.6,
+      "seconds": 2.6,
       "caption": [
         {
           "t": "1."
@@ -166,7 +174,7 @@
     },
     {
       "type": "causeChain",
-      "seconds": 3.6,
+      "seconds": 2.6,
       "caption": [
         {
           "t": "2."
@@ -195,11 +203,11 @@
           "Data-center builds could slow"
         ]
       },
-      "voice": "Second: strong jobs data revived rate-hike fears."
+      "voice": "Second: hot jobs data revived rate-hike fears."
     },
     {
       "type": "causeChain",
-      "seconds": 3.6,
+      "seconds": 2.9,
       "caption": [
         {
           "t": "3."
@@ -238,11 +246,11 @@
           "Nvidia's buyers look shakier"
         ]
       },
-      "voice": "Third: Nvidia's biggest buyers carry heavy debt."
+      "voice": "Third: its biggest buyers are deep in debt."
     },
     {
       "type": "scoreboard",
-      "seconds": 3.0,
+      "seconds": 2.6,
       "caption": [
         {
           "t": "But"
@@ -281,24 +289,58 @@
       "voice": "But on Friday, Nvidia bounced six percent."
     },
     {
-      "type": "calendarCta",
-      "seconds": 3.4,
+      "type": "counter",
+      "seconds": 3.2,
       "caption": [
         {
-          "t": "Nov 17:"
+          "t": "Fell"
         },
         {
-          "t": "can"
+          "t": "after"
         },
         {
-          "t": "it"
+          "t": "6",
+          "key": true
         },
         {
-          "t": "hit"
+          "t": "of"
         },
         {
-          "t": "$108B?",
-          "key": true,
+          "t": "10",
+          "br": true
+        },
+        {
+          "t": "reports."
+        }
+      ],
+      "source": "Forbes, Nov 6 2026",
+      "props": {
+        "label": "NVDA after its last 10 earnings reports",
+        "to": 6,
+        "suffix": " of 10",
+        "tone": "bad",
+        "logo": "NVDA",
+        "sub": "times the stock fell"
+      },
+      "voice": "It fell after six of its last ten reports."
+    },
+    {
+      "type": "calendarCta",
+      "seconds": 2.2,
+      "caption": [
+        {
+          "t": "The"
+        },
+        {
+          "t": "$1T",
+          "key": true
+        },
+        {
+          "t": "test:",
+          "br": false
+        },
+        {
+          "t": "Nov 17",
           "br": true
         }
       ],
@@ -307,13 +349,22 @@
         "day": "TUE",
         "date": "Nov 17",
         "event": "Earnings · $108B guide",
-        "note": "Stock fell after 6 of its last 10 reports",
-        "cta": "Follow @fivebeforemonday for Nov 17 →"
+        "cta": "Results: Nov 17, after the bell"
       },
-      "voice": "Next test: earnings, November seventeenth. Follow for it."
+      "voice": "Next test: Nvidia reports November seventeenth."
+    },
+    {
+      "type": "endCard",
+      "seconds": 6,
+      "theme": "light",
+      "voice": "That's one of this week's five numbers. Get all five, free, every Saturday. Link in bio.",
+      "props": {
+        "variant": "free"
+      }
     }
   ],
   "post": {
-    "caption": "Apple passed Nvidia this week. Three reasons the chip giant slipped, and the date that decides what's next.\n\n#Nvidia #Apple #stocks #investing\n\nSources: Yahoo Finance, Forbes (Nov 5-6, 2026)"
-  }
+    "caption": "Apple passed Nvidia this week, and Nvidia is 25% off its record. Three reasons why, and the date that decides what's next.\n\nGet this week's five, free every Saturday → link in bio.\n\n#Nvidia #Apple #stocks #investing #bigtech\n\nSources: Yahoo Finance, Forbes (Nov 5-6, 2026). Not investment advice."
+  },
+  "music": "tense"
 }

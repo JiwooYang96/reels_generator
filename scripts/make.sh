@@ -9,8 +9,17 @@ set -euo pipefail
 PLAN="$1"; shift || true
 ID=$(node -e "console.log(require('./$PLAN').id)")
 
+python3 scripts/reelscore.py "$PLAN"
 python3 scripts/voice.py "$PLAN"
+# Score again with the real narration lengths: the pace must hold once it is read aloud.
+[ -s "out/$ID/vo.json" ] && python3 scripts/reelscore.py "$PLAN"
 npx tsx scripts/prepare.ts "$PLAN" "$@"
 mkdir -p public/sfx
+# Music: composed to the reel's cuts (skipped when the plan says "music": "none" or fluidsynth is missing).
+MOOD=$(node -e "console.log(require('./out/$ID/sfx.json').mood || 'tense')")
+if [ "$MOOD" != none ] && command -v fluidsynth >/dev/null; then
+  python3 scripts/music.py "out/$ID/music.wav" "out/$ID/sfx.json" "$MOOD"
+  node -e "const f='out/$ID/sfx.json',j=require('./'+f);j.music='out/$ID/music.wav';require('fs').writeFileSync(f,JSON.stringify(j,null,2))"
+fi
 python3 scripts/sfx.py "public/sfx/$ID.wav" "out/$ID/sfx.json"
 scripts/render.sh PlanVideo "$ID" --props="out/$ID/props.json"

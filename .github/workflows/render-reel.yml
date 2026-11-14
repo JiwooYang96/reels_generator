@@ -43,12 +43,17 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/huggingface
-          key: hf-kokoro-v1
+          key: hf-${{ vars.VOICE_ENGINE || 'kokoro' }}-v1
       - name: Install
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg espeak-ng
-          pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
-          pip install --quiet numpy soundfile "kokoro>=0.9"
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg espeak-ng fluidsynth fluid-soundfont-gm
+          if [ "${{ vars.VOICE_ENGINE }}" = chatterbox ]; then
+            pip install --quiet torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+            pip install --quiet chatterbox-tts numpy soundfile mido
+          else
+            pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+            pip install --quiet numpy soundfile mido "kokoro>=0.9"
+          fi
           npm ci
 
       - name: Which plan
@@ -67,7 +72,9 @@ jobs:
       - name: Narrate and render
         env:
           VOICE_ENGINE: ${{ vars.VOICE_ENGINE || 'kokoro' }}
-          VOICE_NAME: ${{ vars.VOICE_NAME || 'bm_george' }}
+          VOICE_NAME: ${{ vars.VOICE_NAME || 'af_heart' }}
+          VOICE_EXAGGERATION: ${{ vars.VOICE_EXAGGERATION || '0.5' }}
+          VOICE_CFG: ${{ vars.VOICE_CFG || '0.5' }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
         run: |
           [ -f public/sfx/lib/sting.wav ] || python3 scripts/sfxsynth.py
@@ -83,6 +90,18 @@ jobs:
           path: |
             out/reel.mp4
             out/${{ steps.plan.outputs.id }}-sheet.png
+
+      - name: Test render to the samples branch
+        if: github.event_name == 'pull_request'
+        run: |
+          cp out/reel.mp4 /tmp/test-reel.mp4
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git fetch -q origin samples; then git checkout -q -f -B samples origin/samples
+          else git checkout -q --orphan samples && git rm -rq --cached .; fi
+          mkdir -p samples && cp /tmp/test-reel.mp4 samples/test-reel.mp4
+          git add samples/test-reel.mp4 && git commit -qm "Test render ${{ github.sha }}" && \
+            git push -q origin HEAD:samples || git push -q -f origin HEAD:samples
 
       - name: Queue for Instagram
         if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.queue)
