@@ -6,8 +6,8 @@ Writes public/vo/<id>/<n>.wav and out/<id>/vo.json ([{i, src, dur}]); scripts/pr
 each scene to fit its line and places the clips. Each scene says its `voice` text, or its caption words.
 
 Engines (the ones VoiceStudio / OmniVoice Studio bundles, run directly so they work headless on GitHub):
-  kokoro     (default) Kokoro-82M, Apache-2.0 weights, so it is fine for a paid product. British newsreader
-             voice "bm_george" (set VOICE_NAME to change, e.g. bm_lewis, bm_daniel). Fast on a CPU.
+  kokoro     (default) Kokoro-82M, Apache-2.0 weights, so it is fine for a paid product. Voice
+             "af_heart", the channel voice (set VOICE_NAME to change, e.g. am_michael, bm_george). Fast on a CPU.
   chatterbox Resemble AI Chatterbox (MIT), expressive; VOICE_EXAGGERATION / VOICE_CFG tune the delivery.
   omnivoice  k2-fsa OmniVoice with voice design from VOICE_INSTRUCT. Its official weights are CC-BY-NC
              (non-commercial), so only use it if that licence fits.
@@ -23,7 +23,7 @@ import urllib.request
 from pathlib import Path
 
 ENGINE = os.environ.get("VOICE_ENGINE", "kokoro").lower()
-VOICE_NAME = os.environ.get("VOICE_NAME", "bm_george")
+VOICE_NAME = os.environ.get("VOICE_NAME", "af_heart")
 VOICE_SPEED = float(os.environ.get("VOICE_SPEED", "1.12"))  # a brisk newsreader pace
 VOICE_INSTRUCT = os.environ.get("VOICE_INSTRUCT", "male, british accent, middle-aged, calm, news presenter")
 

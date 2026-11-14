@@ -78,7 +78,7 @@ Every trading day after the New York close a scheduled task makes one reel about
 
 - **Narration** (`scripts/voice.py`): one clip per scene from its `voice` line, read by Kokoro (open-source,
   Apache-2.0, free, runs on GitHub's CPU) or Chatterbox (MIT, more expressive). Repo variables pick it:
-  `VOICE_ENGINE` (`kokoro` / `chatterbox`), `VOICE_NAME` for Kokoro (`am_michael`, `af_heart`, `bm_george`...),
+  `VOICE_ENGINE` (`kokoro` / `chatterbox`), `VOICE_NAME` for Kokoro (channel voice `af_heart`, picked by ear; others `am_michael`, `bm_george`...),
   `VOICE_EXAGGERATION` / `VOICE_CFG` for Chatterbox. `.github/workflows/voice-samples.yml` renders the
   candidates side by side. `VOICE_ENGINE=omnivoice` switches to OmniVoice voice design (its official weights
   are non-commercial, so not for this channel as-is); `elevenlabs` uses the paid API if a key is set.

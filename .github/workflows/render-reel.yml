@@ -72,7 +72,7 @@ jobs:
       - name: Narrate and render
         env:
           VOICE_ENGINE: ${{ vars.VOICE_ENGINE || 'kokoro' }}
-          VOICE_NAME: ${{ vars.VOICE_NAME || 'bm_george' }}
+          VOICE_NAME: ${{ vars.VOICE_NAME || 'af_heart' }}
           VOICE_EXAGGERATION: ${{ vars.VOICE_EXAGGERATION || '0.5' }}
           VOICE_CFG: ${{ vars.VOICE_CFG || '0.5' }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
