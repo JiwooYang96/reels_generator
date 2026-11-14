@@ -218,3 +218,58 @@ export const openLogo: SceneDef<z.infer<typeof logoOpenSchema>> = {
     );
   },
 };
+
+// ---------------------------------------------------------------- chair
+// An empty executive chair behind the desk, the company's logo on the desk and a nameplate that tips over:
+// a leader is gone, said without showing any person. Use for CEO exits and leadership stories.
+const chairSchema = base.extend({
+  ticker: z.string().regex(/^[A-Z.]{1,6}$/, 'ticker like NVDA'),
+  plate: z.string().max(10).default('CEO'),
+});
+export const openChair: SceneDef<z.infer<typeof chairSchema>> = {
+  schema: chairSchema,
+  defaultTheme: 'dark',
+  needsSource: false,
+  summary: 'OPENING. An empty executive chair still swaying behind a desk with the company logo; the CEO nameplate tips over and the big number slams in. Leadership exits, without showing any person.',
+  events: (p, dur) => [{kind: 'impact', at: hitAt(dur)}, ...(p.tone === 'bad' ? [{kind: 'fall' as const, at: 2}] : [])],
+  Component: ({p, dur}) => {
+    const f = useCurrentFrame();
+    const at = hitAt(dur);
+    const s = shakeAt(f, at, 22, 12);
+    // The chair is still turning a little, as if someone just got up: a decaying swivel.
+    const swivel = Math.sin(f / 7) * 5 * Math.exp(-f / 40);
+    const roll = interpolate(f, [0, 40], [0, -14], clamp);
+    const desk = pop(f, 0, 10);
+    const logo = pop(f, 4, 10);
+    const tip = interpolate(f, [at - 2, at + 6], [0, 1], {...clamp});
+    const ink = mix(T.paper, 0.9);
+    return (
+      <AbsoluteFill style={{translate: `${s.x}px ${s.y}px`, scale: `${punch(f, at)}`}}>
+        <Glow color={toneColor(p.tone)} at={at} />
+        <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+          <g transform="translate(0 70)">
+          <g transform={`translate(540 ${770 + roll}) rotate(${swivel}) translate(-540 -770)`} opacity={desk}>
+            <path d="M400 470 Q400 400 470 400 L610 400 Q680 400 680 470 L680 760 L400 760 Z" fill={mix(T.paper, 0.06)} stroke={ink} strokeWidth={7} />
+            <path d="M430 470 L650 470 M430 560 L650 560 M430 650 L650 650" stroke={mix(T.paper, 0.25)} strokeWidth={3} strokeDasharray="10 12" />
+            <path d="M360 760 L720 760 L700 820 L380 820 Z" fill={mix(T.paper, 0.08)} stroke={ink} strokeWidth={7} />
+            <path d="M372 600 L372 760 M708 600 L708 760" stroke={ink} strokeWidth={7} strokeLinecap="round" />
+          </g>
+          <g opacity={desk} transform={`translate(0 ${interpolate(desk, [0, 1], [40, 0])})`}>
+            <rect x={110} y={880} width={860} height={44} rx={6} fill={T.paper} />
+            <rect x={140} y={924} width={30} height={90} fill={T.paper} />
+            <rect x={910} y={924} width={30} height={90} fill={T.paper} />
+            <g transform={`rotate(${tip * 14} 640 880) translate(0 ${tip * 6})`}>
+              <path d="M560 880 L580 820 L720 820 L740 880 Z" fill={T.red} />
+              <text x={650} y={866} textAnchor="middle" fontFamily={FONT} fontSize={34} fontWeight={800} letterSpacing={8} fill={T.paper}>{p.plate}</text>
+            </g>
+          </g>
+          </g>
+        </svg>
+        <div style={{position: 'absolute', left: 190, top: 812, opacity: logo, scale: `${interpolate(logo, [0, 1], [1.3, 1])}`}}>
+          <Logo ticker={p.ticker} size={136} />
+        </div>
+        <BigText p={p} at={at} y={1040} />
+      </AbsoluteFill>
+    );
+  },
+};

@@ -92,7 +92,7 @@ Every trading day after the New York close a scheduled task makes one reel about
 - **Music** (`scripts/music.py`): original music composed per reel to its cuts and played with the
   FluidR3 GM soundfont (MIT), so nothing to license or get flagged: a hit under the hook, a newsroom pulse
   through the story, one bar of drop at the middle (an attention reset), and a resolve on the end card. It
-  ducks about 9 dB under the narrator. Plan field `music`: `tense` (stock fell, default), `lift` (rose),
+  ducks about 6 dB under the narrator (louder bed since Nov 14). Plan field `music`: `tense` (stock fell, default), `lift` (rose),
   `neutral`, or `none`.
 - **Effects** (`scripts/sfxsynth.py`, our own, in `public/sfx/lib`): a news sting on the first frame, paper
   whooshes on cuts and one paper rip on the middle cut, boom + stamp on number reveals, typewriter ticks on

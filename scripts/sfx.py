@@ -87,7 +87,7 @@ def main(out_path: str, events_path: str) -> None:
     voiced = bool(ev.get("voice"))
     g = lambda name, a: None if lib.get(name) is None else a * lib[name]  # noqa: E731
 
-    # Music (scripts/music.py, passed as "music": path) replaces the bed. It dips about 9 dB while the narrator
+    # Music (scripts/music.py, passed as "music": path) replaces the bed. It dips about 6 dB while the narrator
     # speaks (fast 0.12 s ramps, so it breathes back up between lines).
     music = ev.get("music")
     if music and Path(music).exists():
@@ -97,10 +97,10 @@ def main(out_path: str, events_path: str) -> None:
         m = m[:n] / (np.max(np.abs(m)) or 1)
         gain = np.ones(len(m))
         for a, b in ev.get("vo", []):
-            gain[int(a * SR):int(b * SR)] = 0.35
+            gain[int(a * SR):int(b * SR)] = 0.5
         k = int(SR * 0.12)
         gain = np.convolve(gain, np.ones(k) / k, "same")
-        out[:len(m)] += m * gain * (0.55 if voiced else 0.8)
+        out[:len(m)] += m * gain * (0.9 if voiced else 1.0)
     # Bed: the ElevenLabs underscore looped, or the synthesized kick/hat pattern.
     elif lib["bed"] is not None:
         bed = lib["bed"] * (0.16 if voiced else 0.3)

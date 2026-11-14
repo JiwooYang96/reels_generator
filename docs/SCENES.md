@@ -67,6 +67,18 @@ Default theme: dark. Source line: not needed.
 - `tone` (optional): "bad" | "good" | "gold", default "bad"
 - `label` (optional): string, default "BREAKING"
 
+## `open.chair`
+
+OPENING. An empty executive chair still swaying behind a desk with the company logo; the CEO nameplate tips over and the big number slams in. Leadership exits, without showing any person.
+
+Default theme: dark. Source line: not needed.
+
+- `big`: string
+- `sub` (optional): string
+- `tone` (optional): "bad" | "good" | "gold", default "bad"
+- `ticker`: string
+- `plate` (optional): string, default "CEO", max 10 chars
+
 ## `causeChain`
 
 Numbered reason shown as cause → effect → effect (2-3 steps, last one highlighted), optional stat chip and logo. Use for "why" videos: each reason must say what caused what, not just describe.

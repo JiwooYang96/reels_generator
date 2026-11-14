@@ -1,0 +1,348 @@
+{
+  "id": "daily-2026-11-14b",
+  "title": "Nvidia's CEO is out: why an affair ended a 33-year run",
+  "structure": "countdown (3 reasons)",
+  "hookFamily": "stake + open loop",
+  "music": "tense",
+  "post": {
+    "caption": "Jensen Huang ran Nvidia for 33 years. Four days after a staff memo admitting an affair, he resigned. The affair itself was not the main issue: national-security questions, a reported relationship with an executive who reported to him, and a company built around one man. Nvidia reports Tuesday, its first results without him.\n\nGet this week's five, free every Saturday → link in bio.\n\n#Nvidia #JensenHuang #stockmarket #AI #investing\n\nSources: Nvidia 8-K (Nov 12), CNBC, The New York Times via StockAnalysis, TweakTown, ABC News, Bernstein via News Tribune, Bull Bear Report (Nov 8-14, 2026). Allegations are reported, not proven. Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.chair",
+      "caption": [
+        {
+          "t": "33"
+        },
+        {
+          "t": "years."
+        },
+        {
+          "t": "Out",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "in"
+        },
+        {
+          "t": "4"
+        },
+        {
+          "t": "days."
+        }
+      ],
+      "props": {
+        "ticker": "NVDA",
+        "big": "4 days",
+        "sub": "from staff memo to resignation",
+        "tone": "bad",
+        "plate": "CEO"
+      },
+      "voice": "Nvidia's CEO quit after 33 years. Your fund paid.",
+      "seconds": 3.2
+    },
+    {
+      "type": "headline",
+      "caption": [
+        {
+          "t": "Not"
+        },
+        {
+          "t": "just"
+        },
+        {
+          "t": "an"
+        },
+        {
+          "t": "AFFAIR.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Huang's staff memo via CNBC, Nov 8 2026",
+      "props": {
+        "outlet": "Nvidia staff memo",
+        "date": "Nov 8, 2026",
+        "text": "“I was unfaithful to my wife.”",
+        "highlight": "unfaithful"
+      },
+      "voice": "But the affair wasn't the real problem.",
+      "seconds": 2.6
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "1."
+        },
+        {
+          "t": "A"
+        },
+        {
+          "t": "suspected"
+        },
+        {
+          "t": "SPY.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "TweakTown & ABC News, Nov 9-14 2026",
+      "props": {
+        "n": 1,
+        "title": "A suspected spy",
+        "stat": {
+          "value": "3",
+          "label": "House committees want answers"
+        },
+        "steps": [
+          "US officials reportedly suspect her",
+          "AI chips are a security issue"
+        ]
+      },
+      "voice": "First: US officials reportedly suspect she spied for China.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "2."
+        },
+        {
+          "t": "His"
+        },
+        {
+          "t": "own"
+        },
+        {
+          "t": "EXECUTIVE.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "NYT via StockAnalysis, Nov 11 2026",
+      "props": {
+        "n": 2,
+        "title": "A direct report",
+        "stat": {
+          "value": "Nov 11",
+          "label": "second affair reported"
+        },
+        "steps": [
+          "A second relationship reported",
+          "She reported to him"
+        ]
+      },
+      "voice": "Second: a reported affair with an executive under him.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "3."
+        },
+        {
+          "t": "No"
+        },
+        {
+          "t": "SUCCESSOR.",
+          "key": true
+        }
+      ],
+      "source": "Bernstein via News Tribune, Nov 10 2026",
+      "props": {
+        "n": 3,
+        "title": "A one-man company",
+        "stat": {
+          "value": "60",
+          "label": "direct reports"
+        },
+        "steps": [
+          "He ran nearly everything",
+          "No clear successor"
+        ],
+        "logo": "NVDA"
+      },
+      "voice": "Third: sixty people reported to him. No successor.",
+      "seconds": 2.9
+    },
+    {
+      "type": "timeline",
+      "caption": [
+        {
+          "t": "Memo"
+        },
+        {
+          "t": "to"
+        },
+        {
+          "t": "exit:"
+        },
+        {
+          "t": "4",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "days."
+        }
+      ],
+      "source": "SEC 8-K & CNBC, Nov 8-12 2026",
+      "props": {
+        "items": [
+          {
+            "label": "SUN",
+            "value": "Nov 8: admits affair"
+          },
+          {
+            "label": "WED",
+            "value": "Nov 11: 2nd report"
+          },
+          {
+            "label": "THU",
+            "value": "Nov 12: exit announced"
+          }
+        ],
+        "note": "The board opened a probe on Nov 8",
+        "noteHighlight": "probe"
+      },
+      "voice": "Four days from memo to resignation.",
+      "seconds": 2.2
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "New"
+        },
+        {
+          "t": "boss:"
+        },
+        {
+          "t": "interim.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Nvidia 8-K, Nov 12 2026",
+      "props": {
+        "label": "Nvidia CEO",
+        "sublabel": "CFO since 2013, now interim CEO",
+        "oldValue": "Jensen Huang",
+        "newValue": "Colette Kress",
+        "logo": "NVDA"
+      },
+      "voice": "CFO Colette Kress now runs it, for now.",
+      "seconds": 2.9
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "−32%",
+          "key": true
+        },
+        {
+          "t": "from"
+        },
+        {
+          "t": "its",
+          "br": true
+        },
+        {
+          "t": "record."
+        }
+      ],
+      "source": "Bull Bear Report, Nov 13 2026",
+      "props": {
+        "label": "NVDA vs its Oct 6 record",
+        "to": 32,
+        "sign": "−",
+        "suffix": "%",
+        "tone": "bad",
+        "logo": "NVDA",
+        "sub": "$162.85 at Friday's close"
+      },
+      "voice": "The stock sits thirty-two percent below its record.",
+      "seconds": 2.9
+    },
+    {
+      "type": "stampList",
+      "caption": [
+        {
+          "t": "Still"
+        },
+        {
+          "t": "OPEN.",
+          "key": true
+        }
+      ],
+      "source": "ABC News, Nov 14 2026",
+      "props": {
+        "windowTitle": "Open questions",
+        "rows": [
+          {
+            "name": "Board probe",
+            "value": "ongoing",
+            "stamped": true
+          },
+          {
+            "name": "Justice Dept.",
+            "value": "no conclusion"
+          },
+          {
+            "name": "Congress interviews",
+            "value": "Dec 1-2",
+            "stamped": true
+          }
+        ],
+        "stamp": "OPEN"
+      },
+      "voice": "Still open: Congress wants answers December first.",
+      "seconds": 2.6
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "First"
+        },
+        {
+          "t": "report"
+        },
+        {
+          "t": "without",
+          "br": true
+        },
+        {
+          "t": "him:"
+        },
+        {
+          "t": "Tue.",
+          "key": true
+        }
+      ],
+      "source": "Bull Bear Report, Nov 13 2026",
+      "props": {
+        "day": "TUE",
+        "date": "Nov 17",
+        "event": "Earnings · ~$109B expected",
+        "cta": "After the bell"
+      },
+      "voice": "Tuesday, Nvidia reports without its CEO of 33 years.",
+      "seconds": 3.2
+    },
+    {
+      "type": "endCard",
+      "seconds": 6,
+      "theme": "light",
+      "props": {
+        "variant": "free-alt"
+      },
+      "voice": "Five numbers, sourced, before Monday's open. Free at five before monday dot com."
+    }
+  ]
+}
