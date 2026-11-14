@@ -1,0 +1,35 @@
+name: Illustration test
+
+# Draws three sample illustrations with FLUX.1 [schnell] on Cloudflare Workers AI and pushes them to the
+# `samples` branch (samples/illustrations/), so the style can be judged before it goes into reels.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scripts/illustrate.py", ".github/workflows/illustration-test.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Draw
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          [ -n "$CF_ACCOUNT_ID" ] && [ -n "$CF_API_TOKEN" ] || { echo "CF_ACCOUNT_ID / CF_API_TOKEN missing"; exit 1; }
+          python3 scripts/illustrate.py test /tmp/ill
+          ls -la /tmp/ill
+          test -s /tmp/ill/test-1.jpg
+      - name: Push to the samples branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch -q origin samples && git checkout -q -f -B samples origin/samples
+          mkdir -p samples/illustrations && cp /tmp/ill/*.jpg samples/illustrations/
+          git add samples/illustrations && git commit -qm "Illustration test" && git push -q origin HEAD:samples
