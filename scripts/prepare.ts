@@ -32,7 +32,9 @@ const voPath = path.join('out', plan.id, 'vo.json');
 const vo: {i: number; src: string; dur: number}[] = fs.existsSync(voPath) ? JSON.parse(fs.readFileSync(voPath, 'utf8')) : [];
 for (const v of vo) {
   const sc = plan.scenes[v.i];
-  if (sc) sc.seconds = Math.min(8, Math.max(sc.seconds, +(v.dur + 0.45).toFixed(2)));
+  // The voice sets the pace: each scene lasts its line plus a 0.25 s beat (no dead air), 1.8-6 s; the end card keeps its length.
+  if (sc && sc.type !== 'endCard') sc.seconds = Math.min(6, Math.max(1.8, +(v.dur + 0.25).toFixed(2)));
+  else if (sc) sc.seconds = Math.max(sc.seconds, +(v.dur + 0.4).toFixed(2));
 }
 
 const scenes = resolvePlan(plan);

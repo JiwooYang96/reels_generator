@@ -24,7 +24,7 @@ from pathlib import Path
 
 ENGINE = os.environ.get("VOICE_ENGINE", "kokoro").lower()
 VOICE_NAME = os.environ.get("VOICE_NAME", "af_heart")
-VOICE_SPEED = float(os.environ.get("VOICE_SPEED", "1.12"))  # a brisk newsreader pace
+VOICE_SPEED = float(os.environ.get("VOICE_SPEED", "1.22"))  # brisk: short-form pace, still clear
 VOICE_INSTRUCT = os.environ.get("VOICE_INSTRUCT", "male, british accent, middle-aged, calm, news presenter")
 
 

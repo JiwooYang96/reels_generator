@@ -172,7 +172,8 @@ def check_frontload(text):
     penalty = 0
     hit_opener = None
     for weak in WEAK_OPENERS:
-        if opener.startswith(weak) or low[0] == weak:
+        # Whole words only: "your" is not the opener "yo", "some" is not "so" (local fix, see VENDOR.md).
+        if opener == weak or opener.startswith(weak + " ") or low[0] == weak:
             penalty, hit_opener = 30, weak
             break
     payload = None

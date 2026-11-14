@@ -9,21 +9,17 @@
       "seconds": 3.3,
       "caption": [
         {
-          "t": "−$1"
-        },
-        {
-          "t": "TRILLION",
+          "t": "−$1T",
           "key": true
         },
         {
-          "t": "in",
-          "br": true
+          "t": "in"
         },
         {
-          "t": "one"
+          "t": "30"
         },
         {
-          "t": "month."
+          "t": "days."
         }
       ],
       "props": {
@@ -32,11 +28,11 @@
         "sub": "market value, in a month",
         "tone": "bad"
       },
-      "voice": "Nvidia lost a trillion dollars in a month. Not on earnings."
+      "voice": "Nvidia lost a trillion dollars. Your index fund didn't escape."
     },
     {
       "type": "versus",
-      "seconds": 3.2,
+      "seconds": 2.7,
       "caption": [
         {
           "t": "Apple"
@@ -78,7 +74,7 @@
         },
         "winner": "left"
       },
-      "voice": "But here's the twist: Apple is now worth more."
+      "voice": "But the twist: Apple is now worth more."
     },
     {
       "type": "counter",
@@ -112,7 +108,7 @@
         "logo": "NVDA",
         "sub": "$1.4T in market value gone"
       },
-      "voice": "Nvidia sits twenty-five percent below its record."
+      "voice": "Since its October record, Nvidia is down twenty-five percent."
     },
     {
       "type": "chapters",
@@ -138,7 +134,7 @@
     },
     {
       "type": "causeChain",
-      "seconds": 3.6,
+      "seconds": 3.3,
       "caption": [
         {
           "t": "1."
@@ -174,11 +170,11 @@
           "Fewer chips needed?"
         ]
       },
-      "voice": "First: calls to halt new data centers."
+      "voice": "First: calls to halt new data centers, so fewer chips."
     },
     {
       "type": "causeChain",
-      "seconds": 3.6,
+      "seconds": 3.3,
       "caption": [
         {
           "t": "2."
@@ -207,11 +203,11 @@
           "Data-center builds could slow"
         ]
       },
-      "voice": "Second: strong jobs data revived rate-hike fears."
+      "voice": "Second: hot jobs data put rate hikes back in play."
     },
     {
       "type": "causeChain",
-      "seconds": 3.6,
+      "seconds": 3.0,
       "caption": [
         {
           "t": "3."
@@ -250,11 +246,11 @@
           "Nvidia's buyers look shakier"
         ]
       },
-      "voice": "Third: Nvidia's biggest buyers carry heavy debt."
+      "voice": "Third: its biggest buyers, like CoreWeave, carry heavy debt."
     },
     {
       "type": "scoreboard",
-      "seconds": 3.0,
+      "seconds": 2.4,
       "caption": [
         {
           "t": "But"
@@ -294,23 +290,21 @@
     },
     {
       "type": "calendarCta",
-      "seconds": 3.4,
+      "seconds": 2.4,
       "caption": [
         {
-          "t": "Nov 17:"
+          "t": "The"
         },
         {
-          "t": "can"
+          "t": "$1T",
+          "key": true
         },
         {
-          "t": "it"
+          "t": "test:",
+          "br": false
         },
         {
-          "t": "hit"
-        },
-        {
-          "t": "$108B?",
-          "key": true,
+          "t": "Nov 17",
           "br": true
         }
       ],
@@ -322,7 +316,7 @@
         "note": "Stock fell after 6 of its last 10 reports",
         "cta": "Results: Nov 17, after the bell"
       },
-      "voice": "The next test: Nvidia reports on November seventeenth."
+      "voice": "The trillion-dollar test: Nvidia reports November seventeenth."
     },
     {
       "type": "endCard",

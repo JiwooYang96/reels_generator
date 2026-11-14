@@ -20,21 +20,27 @@ Versions are pinned (Remotion 4.0.540, zod 4.6.7, skills in `skills-lock.json`).
 ## Topic -> video
 
 1. **Research.** WebSearch the topic's latest news (last 24-48 h). Open at least 2 pages with WebFetch; a snippet is not a source. **Find the real story first**: search the company by name in plain words ("why <company> stock fell today") and go with the reason the coverage gives: earnings or guidance, a deal, an analyst call, a product, regulation, rates or data, occasionally people news. Don't assume a kind of story. Name the concrete event in the hook rather than an abstraction. Check the news hit the market in the window you're covering. Pick one fresh, concrete number and a twist.
-2. **Hook.** The hook decides the reel, so it gets its own pass with two skills (`HOOKS.md` is the channel context):
-   - `hooksmith generate` (`.claude/skills/hooksmith`): 3-5 complete hook systems from different families, each with
-     a spoken hook, a different on-screen hook (text = the number/what happened, voice = the twist/why; never
-     the same words), the open loop, the rehook and the payoff.
-   - Score every spoken hook with `python3 .claude/skills/ig-reel/hookscore.py hooks.txt` (from the ig-reel skill,
-     26 formulas in its `hooks.json`). Keep only 60+; between those, pick with `hooksmith audit` (50-point rubric,
-     want 35+). Patterns that score well and stay honest: number + contradiction ("Nvidia lost a trillion
-     dollars in a month. Not on earnings."), viewer stake ("If you own an index fund, this was your money."),
-     belief break ("Record profits. The stock still fell nine percent.").
-   - Scene 2 or 3 is the **rehook**: its line opens with a turn ("But...", "Not...", "Turns out...", "Here's the
-     catch..."). The cut into it tears the page (remocn Paper Tear) with the paper-rip sound.
-   - The payoff in the last story scene closes the loop the hook opened.
-   `scripts/hookgate.py` (run by make.sh, and on GitHub) refuses a reel whose hook scores under 60, whose
-   on-screen hook repeats the voice, or that has no rehook. Don't reuse the hook family of the last entry in
-   `runs/log.md`.
+2. **Hook and script.** Most reels are won or lost here. `HOOKS.md` is the channel context; the skills are in
+   `.claude/skills` (see `VENDOR.md`).
+   - **Hooks:** `hooksmith generate` for 3-5 complete hook systems from different families (number + stake,
+     contradiction, belief break, versus flip, viewer callout). Upgrade each with the `viral-hooks` tactics
+     (`references/hook-tactics.md`): a specific number, a power verb, the exact viewer, cut the first three words,
+     a shaped curiosity gap. Two short sentences beat one long one ("Nvidia lost a trillion dollars. Your index
+     fund didn't escape.").
+   - **Score:** `python3 .claude/skills/ig-reel/hookscore.py hooks.txt`. Keep 85+, then pick with `hooksmith audit`
+     (35+/50). Honest only: the viewer stake must be true (index funds do hold the megacaps), no advice, no fake
+     urgency, no number you can't source.
+   - **On-screen hook:** 3-6 words with the number, compressed from the voice, never the same words
+     (`viral-instagram-reels` reels-hook): "−$1T in 30 days."
+   - **Rehook:** scene 2 or 3 opens with a turn ("But the twist:", "Not...", "Turns out..."). The cut tears the page.
+   - **Pace:** one beat per scene, about 3.3 spoken words per second, 7-10 words per line, every story scene 3.5 s
+     or shorter (a change every 2-4 s), beats joined by "but/therefore", never "and then". More scenes, not
+     longer ones: 9-11 story scenes plus the end card make 30-40 s.
+   - **Payoff:** the last story scene echoes the hook's number or subject and closes its loop.
+   - **Gate:** `python3 scripts/reelscore.py plans/<id>.json` scores the HOOK (hookscore) and the SCRIPT (on-screen
+     hook, rehook, pace, but/therefore, payoff loop, numbers, length, one ask) out of 100. A reel is approved only
+     when both are 85+; make.sh and GitHub refuse it otherwise. Report both scores with the reel. Don't reuse the
+     hook family of the last entry in `runs/log.md`.
 3. **Structure.** Pick one not used in the last 5 entries of `runs/log.md`: countdown, versus, myth vs fact, timeline, what-happens-next, single number, escalation -> rehook -> open loop. Spine: opening (number on screen within 1 s) -> escalation -> rehook ("But...") -> payoff -> open loop / follow CTA. Daily reels 30-40 s.
    **Reasons must be reasons.** When the video promises "why" or "N reasons", each reason is a `causeChain` scene that states what caused what (cause → effect → effect on the stock), taken from the sources. A description of what happened ("down 25%", "fell 9%") is not a reason; put such numbers in the hook or a stat chip. Give every reason a `stat` (one big sourced number) and 2 short steps (about 5 words each) so it is readable in 3.5 s.
 4. **Plan.** Write `plans/<id>.json` using scenes from `docs/SCENES.md` (see `plans/nvidia-week-nov6-broadsheet.json`). Leave `palette` at the channel default unless the user asks. Scene 1 is an `open.*` opening (rotate the opening type; `open.logo` for one-company stories). Add company logos per "Logos" below. Captions: max 2 lines of 24 chars, one boxed keyword (`key: true`), `br: true` for line 2, about 2.5 words per second. Every data scene gets a `source` ("Outlet, date").
@@ -50,11 +56,11 @@ Every trading day after the New York close a scheduled task makes one reel about
    closing move on Yahoo Finance or a major outlet.
 2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook
    and plan as usual. Length 30-40 s (the check allows 28-45), in this order: hook -> what happened ->
-   2-3 reasons (each sourced) -> what's next, with a date -> `endCard`. Do the hook pass in step 2 above
-   properly every day; it is where most reels are won or lost. Set `music` by the move's direction. Write the plan to `plans/daily/<date>.json` (date = the New York trading
+   2-3 reasons (each sourced) -> what's next, with a date -> `endCard`. Do the hook and script pass in step 2
+   above properly every day; only a reel that `reelscore.py` approves (85+/85+) goes out. Set `music` by the move's direction. Write the plan to `plans/daily/<date>.json` (date = the New York trading
    day) and give it:
-   - `voice` on each scene: the narrator's line, about 2.5-3 words per second of the scene (raise `seconds`
-     if a line needs it). It carries the story; the caption stays the short on-screen version. Say numbers
+   - `voice` on each scene: the narrator's line, 7-10 words, about 3.3 words per second (the scene length is
+     set from the narrated line). It carries the story; the caption stays the short on-screen version. Say numbers
      the way a newsreader would ("down eight point eight percent", "a hundred and ninety-two billion
      dollars"). See "Voice: hooking and trustworthy" below; the plan check enforces the limits.
    - `post.caption`: the Instagram caption. 2-3 lines, then "Get this week's five, free every Saturday ->
@@ -82,7 +88,7 @@ Every trading day after the New York close a scheduled task makes one reel about
   `VOICE_EXAGGERATION` / `VOICE_CFG` for Chatterbox. `.github/workflows/voice-samples.yml` renders the
   candidates side by side. `VOICE_ENGINE=omnivoice` switches to OmniVoice voice design (its official weights
   are non-commercial, so not for this channel as-is); `elevenlabs` uses the paid API if a key is set.
-  Scenes stretch to fit their line. Local renders are silent previews.
+  Speed 1.22 (brisk). Each scene lasts its line plus 0.25 s. Local renders are silent previews.
 - **Music** (`scripts/music.py`): original music composed per reel to its cuts and played with the
   FluidR3 GM soundfont (MIT), so nothing to license or get flagged: a hit under the hook, a newsroom pulse
   through the story, one bar of drop at the middle (an attention reset), and a resolve on the end card. It
@@ -95,7 +101,7 @@ Every trading day after the New York close a scheduled task makes one reel about
 
 ### Voice: hooking and trustworthy
 
-- Line 1 is the hook, 11 words max, landing inside the opening: the concrete event, the number and the
+- Line 1 is the hook, 10 words max, landing inside the opening: the concrete event, the number and the
   tension ("Nvidia lost a trillion dollars in a month. Not on earnings."). "You/your" is fine in the hook when
   it names the viewer's real stake ("If you own an index fund..."), never as advice.
 - Then plain newsreader sentences: what happened, why (from the sources), what's next. No questions to the

@@ -9,7 +9,7 @@ set -euo pipefail
 PLAN="$1"; shift || true
 ID=$(node -e "console.log(require('./$PLAN').id)")
 
-python3 scripts/hookgate.py "$PLAN"
+python3 scripts/reelscore.py "$PLAN"
 python3 scripts/voice.py "$PLAN"
 npx tsx scripts/prepare.ts "$PLAN" "$@"
 mkdir -p public/sfx

@@ -148,7 +148,7 @@ export const checkPlan = (plan: Plan): string[] => {
     // Narration: a calm newsreader pace (a line that's too long makes the scene drag once it stretches to fit).
     if (s.voice) {
       const vw = s.voice.trim().split(/\s+/).length;
-      if (vw / s.seconds > 3.4) problems.push(`${n}: voice line has ${vw} words for ${s.seconds} s; keep it under ${Math.floor(s.seconds * 3)} words`);
+      if (vw / s.seconds > 4.2) problems.push(`${n}: voice line has ${vw} words for ${s.seconds} s; plan about 3.3 words per second`);
     }
     const said = `${s.voice ?? ''} ${s.caption.map((w) => w.t).join(' ')}`.toLowerCase();
     for (const h of HYPE) if (said.includes(h)) problems.push(`${n}: "${h}" reads as hype or advice; say what happened instead`);

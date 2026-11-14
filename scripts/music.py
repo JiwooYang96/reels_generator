@@ -26,9 +26,9 @@ TPB = 480
 
 MOODS = {
     # key root (MIDI), BPM, progression as (root offset, minor?) per bar
-    "tense": (57, 104, [(0, True), (-4, False), (3, False), (-2, False)]),      # Am  F  C  G
-    "neutral": (62, 100, [(0, True), (-2, False), (-4, False), (-2, False)]),   # Dm  C  Bb C
-    "lift": (60, 108, [(0, False), (7, False), (9, True), (5, False)]),         # C   G  Am F
+    "tense": (57, 118, [(0, True), (-4, False), (3, False), (-2, False)]),      # Am  F  C  G
+    "neutral": (62, 112, [(0, True), (-2, False), (-4, False), (-2, False)]),   # Dm  C  Bb C
+    "lift": (60, 120, [(0, False), (7, False), (9, True), (5, False)]),         # C   G  Am F
 }
 PIANO, PAD, BASS, BELL, TIMP = 0, 89, 33, 14, 47     # GM programs
 KICK, RIM, HAT, SHAKER, CRASH = 36, 37, 42, 70, 49   # GM drum notes (channel 10)
