@@ -8,6 +8,7 @@ each scene to fit its line and places the clips. Each scene says its `voice` tex
 Engines (the ones VoiceStudio / OmniVoice Studio bundles, run directly so they work headless on GitHub):
   kokoro     (default) Kokoro-82M, Apache-2.0 weights, so it is fine for a paid product. British newsreader
              voice "bm_george" (set VOICE_NAME to change, e.g. bm_lewis, bm_daniel). Fast on a CPU.
+  chatterbox Resemble AI Chatterbox (MIT), expressive; VOICE_EXAGGERATION / VOICE_CFG tune the delivery.
   omnivoice  k2-fsa OmniVoice with voice design from VOICE_INSTRUCT. Its official weights are CC-BY-NC
              (non-commercial), so only use it if that licence fits.
   elevenlabs paid API, used only when VOICE_ENGINE=elevenlabs and ELEVENLABS_API_KEY are set.
@@ -69,6 +70,20 @@ def omnivoice_engine():
     return say
 
 
+def chatterbox_engine():
+    # Resemble AI Chatterbox (MIT): more expressive than Kokoro. VOICE_EXAGGERATION 0.5 is calm, 0.7+ punchy;
+    # a lower VOICE_CFG slows and steadies the delivery. Its output carries Resemble's inaudible watermark.
+    from chatterbox.tts import ChatterboxTTS
+
+    model = ChatterboxTTS.from_pretrained(device="cpu")
+    ex = float(os.environ.get("VOICE_EXAGGERATION", "0.5"))
+    cfg = float(os.environ.get("VOICE_CFG", "0.5"))
+
+    def say(text, path):
+        write_wav(path, model.generate(text, exaggeration=ex, cfg_weight=cfg).squeeze(0).numpy(), model.sr)
+    return say
+
+
 def elevenlabs_engine():
     key = os.environ["ELEVENLABS_API_KEY"]
     voice = os.environ.get("ELEVEN_VOICE_ID", "onwK4e9ZLuTAKqWW03F9")
@@ -91,7 +106,8 @@ def load_engine():
     if ENGINE in ("", "none", "off"):
         return None
     try:
-        return {"kokoro": kokoro_engine, "omnivoice": omnivoice_engine, "elevenlabs": elevenlabs_engine}[ENGINE]()
+        return {"kokoro": kokoro_engine, "chatterbox": chatterbox_engine, "omnivoice": omnivoice_engine,
+                "elevenlabs": elevenlabs_engine}[ENGINE]()
     except (ImportError, KeyError) as err:
         print(f"Voice engine '{ENGINE}' is not available here ({err}); silent preview.")
         return None

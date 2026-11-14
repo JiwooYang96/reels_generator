@@ -6,45 +6,57 @@
   "scenes": [
     {
       "type": "open.logo",
-      "seconds": 2.5,
+      "seconds": 3.3,
       "caption": [
         {
-          "t": "Apple"
+          "t": "−$1"
         },
         {
-          "t": "just"
+          "t": "TRILLION",
+          "key": true
         },
         {
-          "t": "passed"
-        },
-        {
-          "t": "NVIDIA.",
-          "key": true,
+          "t": "in",
           "br": true
+        },
+        {
+          "t": "one"
+        },
+        {
+          "t": "month."
         }
       ],
       "props": {
         "ticker": "NVDA",
-        "big": "#2",
-        "sub": "behind Apple this week",
+        "big": "−$1T",
+        "sub": "market value, in a month",
         "tone": "bad"
       },
-      "voice": "Apple just passed Nvidia."
+      "voice": "Nvidia lost a trillion dollars in a month. Not on earnings."
     },
     {
       "type": "versus",
       "seconds": 3.2,
       "caption": [
         {
-          "t": "Apple:"
+          "t": "Apple"
         },
         {
-          "t": "$5.10T.",
+          "t": "is"
+        },
+        {
+          "t": "now"
+        },
+        {
+          "t": "#1.",
           "key": true
         },
         {
-          "t": "Nvidia:",
+          "t": "$5.10T",
           "br": true
+        },
+        {
+          "t": "vs"
         },
         {
           "t": "$4.83T."
@@ -66,7 +78,7 @@
         },
         "winner": "left"
       },
-      "voice": "Apple, five point one trillion. Nvidia, four point eight."
+      "voice": "But here's the twist: Apple is now worth more."
     },
     {
       "type": "counter",
@@ -100,7 +112,7 @@
         "logo": "NVDA",
         "sub": "$1.4T in market value gone"
       },
-      "voice": "Nvidia: down twenty-five percent from its record."
+      "voice": "Nvidia sits twenty-five percent below its record."
     },
     {
       "type": "chapters",
@@ -122,7 +134,7 @@
         ],
         "unlocked": 0
       },
-      "voice": "Three reasons why."
+      "voice": "Three things did it."
     },
     {
       "type": "causeChain",
@@ -324,5 +336,6 @@
   ],
   "post": {
     "caption": "Apple passed Nvidia this week, and Nvidia is 25% off its record. Three reasons why, and the date that decides what's next.\n\nGet this week's five, free every Saturday → link in bio.\n\n#Nvidia #Apple #stocks #investing #bigtech\n\nSources: Yahoo Finance, Forbes (Nov 5-6, 2026). Not investment advice."
-  }
+  },
+  "music": "tense"
 }

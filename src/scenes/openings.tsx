@@ -12,7 +12,8 @@ import type {SceneDef} from './types';
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 const base = z.object({big: z.string(), sub: z.string().optional(), tone: z.enum(['bad', 'good', 'gold']).default('bad')});
 type Base = z.infer<typeof base>;
-const hitAt = (dur: number) => Math.max(8, Math.round(dur * 0.32));
+// The big number lands inside half a second: the hook is read before it is heard.
+const hitAt = (dur: number) => Math.min(14, Math.max(8, Math.round(dur * 0.32)));
 
 const BigText: React.FC<{p: Base; at: number; y?: number}> = ({p, at, y = 880}) => {
   const f = useCurrentFrame();
@@ -212,7 +213,7 @@ export const openLogo: SceneDef<z.infer<typeof logoOpenSchema>> = {
         <div style={{position: 'absolute', left: 90, right: 130, top: 990, textAlign: 'center', fontFamily: FONT, color: `${mix(T.paper, 0.7)}`, fontSize: 40, fontWeight: 800, letterSpacing: 6, opacity: interpolate(f, [8, 14], [0, 1], clamp)}}>
           {p.ticker} · {logoName(p.ticker).toUpperCase()}
         </div>
-        <BigText p={p} at={at} y={1080} />
+        <BigText p={p} at={at} y={1030} />
       </AbsoluteFill>
     );
   },

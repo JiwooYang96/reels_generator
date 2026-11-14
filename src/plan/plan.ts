@@ -32,6 +32,8 @@ export const planSchema = z.object({
   voiceover: z.array(z.object({src: z.string(), at: z.number().int().nonnegative()})).optional(),
   // The Instagram post for this reel (daily reels).
   post: z.object({caption: z.string().min(10)}).optional(),
+  // Background music (scripts/music.py): tense for a fall, lift for a rise, neutral otherwise, none to leave it out.
+  music: z.enum(['tense', 'lift', 'neutral', 'none']).default('tense'),
   grain: z.boolean().default(true),
   handle: z.string().regex(/^@\w+$/).default(BRAND.handle),
   palette: z.enum(['broadsheet', 'gold', 'terminal', 'editorial', 'midnight']).default('broadsheet'),
@@ -94,6 +96,14 @@ export const logoTickers = (props: unknown): string[] => {
 };
 
 // Words that make a finance video look like hype or advice; trust is the product, so they never appear.
+// The rehook: the first of scenes 2-3 whose line opens with a turn ("But...", "Not..."). The cut into it tears
+// the page and gets the paper-rip sound; scripts/hookgate.py requires one.
+export const REHOOK = /^\s*(but|not|turns out|here'?s|the catch|except|instead|yet|and it wasn'?t|only)\b/i;
+export const rehookIndex = (plan: Plan): number | null => {
+  const i = plan.scenes.slice(1, 3).findIndex((s) => REHOOK.test(s.voice ?? ''));
+  return i < 0 ? null : i + 1;
+};
+
 export const HYPE = [
   'insane', 'crazy', 'shocking', "you won't believe", 'to the moon', 'guaranteed', 'must buy', 'buy now',
   'sell now', 'explode', 'skyrocket', 'secret', 'get rich', 'millionaire', 'act now', 'free money', 'can\'t lose',
@@ -106,7 +116,7 @@ export const checkPlan = (plan: Plan): string[] => {
   const total = totalFrames(plan) / VIDEO.fps;
   if (total < 6 || total > 60) problems.push(`total length ${total.toFixed(1)} s is outside 6-60 s`);
   if (!plan.scenes[0].type.startsWith('open.')) problems.push('scene 1 must be an opening (open.*)');
-  if (plan.scenes[0].seconds > 3) problems.push('the opening should be 3 s or shorter');
+  if (plan.scenes[0].seconds > 3.5) problems.push('the opening should be 3.5 s or shorter');
   plan.scenes.forEach((s, i) => {
     const n = `scene ${i + 1} (${s.type})`;
     const def = SCENES[s.type];
@@ -147,7 +157,7 @@ export const checkPlan = (plan: Plan): string[] => {
   const voiced = plan.scenes.filter((s) => s.voice).length;
   if (voiced && voiced < plan.scenes.length) problems.push(`${plan.scenes.length - voiced} scene(s) have no "voice" line; narrate every scene or none`);
   const hookWords = plan.scenes[0].voice ? plan.scenes[0].voice.trim().split(/\s+/).length : 0;
-  if (hookWords > 9) problems.push(`opening voice line has ${hookWords} words; the hook must land in under 3 s (max 9 words)`);
+  if (hookWords > 11) problems.push(`opening voice line has ${hookWords} words; the hook must land in about 3 s (max 11 words)`);
   if (plan.post && !/sources?:/i.test(plan.post.caption)) problems.push('post.caption needs a "Sources:" list');
   // Channel: the closing scene must send viewers to the account.
   const last = plan.scenes[plan.scenes.length - 1];

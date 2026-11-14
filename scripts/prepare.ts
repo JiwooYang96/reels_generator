@@ -2,7 +2,7 @@
 // Usage: npx tsx scripts/prepare.ts plans/<id>.json [--force]
 import fs from 'node:fs';
 import path from 'node:path';
-import {checkPlan, planEvents, planSchema, resolvePlan, totalFrames} from '../src/plan/plan';
+import {checkPlan, planEvents, planSchema, rehookIndex, resolvePlan, totalFrames} from '../src/plan/plan';
 
 const file = process.argv[2];
 const force = process.argv.includes('--force');
@@ -53,6 +53,14 @@ const voiceover = vo
   .filter((v) => scenes[v.i])
   .map((v) => ({src: v.src, at: scenes[v.i].from + 5}));
 (sfx as Record<string, unknown>).voice = voiceover.length > 0;
+// For the music: its mood, where the end card starts (it resolves there), and when the narrator speaks (it ducks).
+const end = scenes.find((s) => s.type === 'endCard');
+Object.assign(sfx, {
+  mood: plan.music,
+  ...(rehookIndex(plan) !== null ? {tear: +(sec(scenes[rehookIndex(plan)!].from) + 0.25).toFixed(3)} : {}),
+  ...(end ? {endCard: sec(end.from)} : {}),
+  vo: vo.filter((v) => scenes[v.i]).map((v) => [sec(scenes[v.i].from + 5), +(sec(scenes[v.i].from + 5) + v.dur).toFixed(3)]),
+});
 fs.writeFileSync(path.join(outDir, 'sfx.json'), JSON.stringify(sfx, null, 2));
 fs.writeFileSync(path.join(outDir, 'props.json'), JSON.stringify({...plan, audio: `sfx/${plan.id}.wav`, voiceover}, null, 2));
 
