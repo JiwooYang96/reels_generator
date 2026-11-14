@@ -27,10 +27,11 @@ ROOT = Path(__file__).resolve().parent.parent
 CACHE = ROOT / "public/illustrations"
 MODEL = "@cf/black-forest-labs/flux-1-schnell"
 
-STYLE = ("Hand-drawn editorial newspaper illustration of {subject}. Colored pencil with black ink cross-hatching, "
-         "visible pencil strokes, warm cream paper grain, muted palette of ink black, {accent} and warm sepia. "
-         "Single subject, centered, isolated on a plain off-white background with generous margins. "
-         "No text, no letters, no numbers, no logos, no people, no faces.")
+# FLUX schnell has no negative prompt: naming "text" or "pencils" tends to draw them, so the style says only
+# what we want, and subjects avoid signs and labels.
+STYLE = ("Vintage editorial newspaper illustration of {subject}. Fine crosshatched black ink linework with soft "
+         "hand-colored washes of {accent} and warm sepia, like a hand-tinted engraving. Centered on blank cream "
+         "paper with wide empty margins, quiet and detailed.")
 ACCENTS = {"red": "faded oxblood red", "gold": "mustard gold", "teal": "faded teal", "blue": "faded navy blue",
            "green": "sage green", "violet": "dusty violet"}
 
@@ -112,8 +113,8 @@ def run_test(outdir):
     Path(outdir).mkdir(parents=True, exist_ok=True)
     tests = [
         ("an empty leather executive chair pushed back from a wooden desk in a dark boardroom", "red"),
-        ("a 1920s brass stock ticker machine spilling a long curl of paper tape onto a floor", "gold"),
-        ("a silicon computer chip wafer cracked down the middle, with a falling red arrow beside it", "teal"),
+        ("a 1920s brass stock ticker machine on a wooden stand, a long curl of blank paper tape spilling onto the floor", "gold"),
+        ("a round silicon wafer covered in tiny square chips, split by a jagged crack across the middle", "teal"),
     ]
     for n, (subj, acc) in enumerate(tests, 1):
         f = draw(subj, acc, seed=n)
