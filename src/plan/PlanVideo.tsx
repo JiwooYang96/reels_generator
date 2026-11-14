@@ -21,7 +21,7 @@ export const PlanVideo: React.FC<Plan> = (plan) => {
           <Sequence key={i} from={s.from} durationInFrames={s.dur} name={`${i + 1} ${s.type}`}>
             <Background theme={s.theme} />
             <Visual p={s.props} dur={s.dur} theme={s.theme} />
-            <Caption theme={s.theme} words={s.caption.map((w) => ({...w, at: w.at ?? 0}))} />
+            {s.caption.length ? <Caption theme={s.theme} words={s.caption.map((w) => ({...w, at: w.at ?? 0}))} /> : null}
             {s.source ? <Source theme={s.theme} text={`Source: ${s.source}`} /> : null}
             <Handle theme={s.theme} text={plan.handle} />
           </Sequence>

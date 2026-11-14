@@ -14,7 +14,7 @@ export const sceneSchema = z.object({
   type: z.string(),
   seconds: z.number().min(1).max(8),
   theme: z.enum(['dark', 'light']).optional(),
-  caption: z.array(wordSchema).min(1),
+  caption: z.array(wordSchema).default([]), // only endCard may leave it empty
   source: z.string().optional(),
   // What the narrator says over this scene. Defaults to the caption words.
   voice: z.string().optional(),
@@ -129,8 +129,9 @@ export const checkPlan = (plan: Plan): string[] => {
     for (const t of logoTickers(s.props)) {
       if (!hasLogo(t)) problems.push(`${n}: no logo for ${t}; run "python3 scripts/logos.py add ${t}" or remove it`);
     }
+    if (!s.caption.length && s.type !== 'endCard') problems.push(`${n}: needs a caption`);
     const keys = s.caption.filter((w) => w.key).length;
-    if (keys === 0) problems.push(`${n}: caption needs one boxed keyword (key: true)`);
+    if (keys === 0 && s.caption.length) problems.push(`${n}: caption needs one boxed keyword (key: true)`);
     if (keys > 2) problems.push(`${n}: ${keys} boxed keywords; max 2`);
     const wps = s.caption.length / s.seconds;
     if (wps > 3.2) problems.push(`${n}: ${wps.toFixed(1)} words per second is too fast to read; max 3.2`);
