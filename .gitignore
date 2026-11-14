@@ -1,6 +1,0 @@
-node_modules/
-out/
-public/sfx/*.wav
-public/vo/
-.DS_Store
-*.log
