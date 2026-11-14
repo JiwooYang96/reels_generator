@@ -63,9 +63,8 @@ def draw(subject, accent="red", seed=None):
     if not (acct and token):
         print("illustrate: CF_ACCOUNT_ID / CF_API_TOKEN not set; skipping")
         return None
+    # The model takes only prompt and steps (no seed); `seed` just varies the cache key for a fresh draw.
     body = {"prompt": p, "steps": 8}
-    if seed is not None:
-        body["seed"] = seed
     req = urllib.request.Request(f"https://api.cloudflare.com/client/v4/accounts/{acct}/ai/run/{MODEL}",
                                  data=json.dumps(body).encode(), method="POST",
                                  headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"})
