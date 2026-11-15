@@ -1,0 +1,22 @@
+{
+ "updated": "2026-11-15T07:19+00:00",
+ "rules": {
+  "doMore": [],
+  "avoid": [],
+  "notes": [
+   "0 settled reels so far: patterns become rules at 8+. Until then, keep rotating.",
+   "No scored reels with data yet."
+  ],
+  "experiments": [
+   "Hook family 'number' has fewer than 2 reels; A/B it against the current best.",
+   "Hook family 'stake' has fewer than 2 reels; A/B it against the current best.",
+   "Hook family 'contrarian' has fewer than 2 reels; A/B it against the current best."
+  ]
+ },
+ "patterns": [],
+ "ab": [],
+ "calibration": {
+  "n": 0,
+  "note": "No scored reels with data yet."
+ }
+}
