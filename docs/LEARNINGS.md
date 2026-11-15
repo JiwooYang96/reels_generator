@@ -1,6 +1,6 @@
 # What works on @fivebeforemonday
 
-_Updated 2026-11-15T07:19+00:00 by `scripts/reelanalyze.py` from Instagram insights. The daily task reads this before writing._
+_Updated 2026-11-15T07:44+00:00 by `scripts/reelanalyze.py` from Instagram insights. The daily task reads this before writing._
 
 ## Rules from our own data
 
@@ -14,8 +14,8 @@ _Updated 2026-11-15T07:19+00:00 by `scripts/reelanalyze.py` from Instagram insig
 ## Next experiments (A/B as trial reels, see docs/LEARNING.md)
 
 - Hook family 'number' has fewer than 2 reels; A/B it against the current best.
-- Hook family 'stake' has fewer than 2 reels; A/B it against the current best.
 - Hook family 'contrarian' has fewer than 2 reels; A/B it against the current best.
+- Hook family 'versus' has fewer than 2 reels; A/B it against the current best.
 
 ## Reels, best first
 
