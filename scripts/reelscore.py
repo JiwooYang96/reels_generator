@@ -81,6 +81,25 @@ def script_score(plan):
     return pts, notes, total
 
 
+def learned(plan):
+    """What our own reels taught us (data/learnings.json, scripts/reelanalyze.py): a warning, not a gate."""
+    f = Path(__file__).resolve().parent.parent / "data/learnings.json"
+    if not f.exists():
+        return
+    rules = json.loads(f.read_text()).get("rules", {})
+    fam = (plan.get("hookFamily") or "").lower()
+    mine = {"hook family": fam, "opening": plan["scenes"][0]["type"], "music": plan.get("music", "tense"),
+            "structure": (plan.get("structure") or "").split(" (")[0]}
+    for a in rules.get("avoid", []):
+        v = mine.get(a["feature"], "")
+        if v and str(a["value"]).lower() in v.lower():
+            print(f"LEARNED: our data says avoid this ({a['text']}). Pick another unless this is an A/B test.")
+    for d in rules.get("doMore", []):
+        v = mine.get(d["feature"], "")
+        if v and str(d["value"]).lower() in v.lower():
+            print(f"LEARNED: matches what works ({d['text']}).")
+
+
 def main(path, floor=85):
     plan = json.load(open(path))
     hook = plan["scenes"][0].get("voice")
@@ -95,6 +114,7 @@ def main(path, floor=85):
         print(f"         flag: {f}")
     print(f"SCRIPT {s:5.1f}")
     print("\n".join(notes))
+    learned(plan)
     ok = h >= floor and s >= floor and not flags
     print(f"{'APPROVED' if ok else 'NOT APPROVED'}: hook {h:.0f}, script {s:.0f} (both need {floor}+)")
     if not ok:

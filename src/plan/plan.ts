@@ -31,7 +31,10 @@ export const planSchema = z.object({
   // Filled in by scripts/prepare.ts from the ElevenLabs narration (scripts/voice.py): one clip per scene.
   voiceover: z.array(z.object({src: z.string(), at: z.number().int().nonnegative()})).optional(),
   // The Instagram post for this reel (daily reels).
-  post: z.object({caption: z.string().min(10)}).optional(),
+  // trial: post as a trial reel (non-followers first). "auto" = Instagram shares it to followers if it does well.
+  post: z.object({caption: z.string().min(10), trial: z.enum(['auto', 'manual']).optional()}).optional(),
+  // A/B test: two plans with the same group and variants A and B (same story, different hook). See docs/LEARNING.md.
+  ab: z.object({group: z.string().min(3), variant: z.enum(['A', 'B']), testing: z.string().optional()}).optional(),
   // Background music (scripts/music.py): tense for a fall, lift for a rise, neutral otherwise, none to leave it out.
   music: z.enum(['tense', 'lift', 'neutral', 'none']).default('tense'),
   grain: z.boolean().default(true),

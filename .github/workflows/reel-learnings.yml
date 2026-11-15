@@ -1,0 +1,37 @@
+name: Reel learnings
+
+# Every day after FiveBeforeMonday's reel-stats.yml (12:17 UTC) saves the Instagram insights, this grades every
+# reel and updates docs/LEARNINGS.md + data/learnings.json (what the daily task reads before writing) and
+# data/report.json (the weekly dashboard). Retention points from app screenshots live in data/retention/.
+on:
+  schedule:
+    - cron: "47 12 * * *"
+  push:
+    branches: [main]
+    paths: ["data/retention/**", "scripts/reelanalyze.py"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: reel-learnings
+
+jobs:
+  analyse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Analyse
+        run: |
+          git clone -q --depth 1 https://github.com/JiwooYang96/FiveBeforeMonday.git /tmp/fbm
+          python3 scripts/reelanalyze.py /tmp/fbm | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Save
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/learnings.json data/report.json docs/LEARNINGS.md
+          git diff --cached --quiet || (git commit -m "Reel learnings $(date -u +%F)" && git pull --rebase && git push)

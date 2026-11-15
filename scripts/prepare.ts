@@ -72,6 +72,11 @@ Object.assign(sfx, {
   vo: vo.filter((v) => scenes[v.i]).map((v) => [sec(scenes[v.i].from + 5), +(sec(scenes[v.i].from + 5) + v.dur).toFixed(3)]),
 });
 fs.writeFileSync(path.join(outDir, 'sfx.json'), JSON.stringify(sfx, null, 2));
+// The reel's timeline in seconds, for the performance analyser (scripts/reelmeta.py): where each scene starts and ends.
+fs.writeFileSync(path.join(outDir, 'timeline.json'), JSON.stringify(scenes.map((s, i) => ({
+  i, type: s.type, from: sec(s.from), to: sec(s.from + s.dur),
+  voice: plan.scenes[i]?.voice ?? '', caption: (plan.scenes[i]?.caption ?? []).map((w) => w.t).join(' '),
+})), null, 1));
 fs.writeFileSync(path.join(outDir, 'props.json'), JSON.stringify({...plan, audio: `sfx/${plan.id}.wav`, voiceover}, null, 2));
 
 console.log(`plan ok: ${plan.id}, ${scenes.length} scenes, ${sfx.duration.toFixed(1)} s`);

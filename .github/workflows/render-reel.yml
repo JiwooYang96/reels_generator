@@ -123,10 +123,14 @@ jobs:
           git clone -q --depth 1 "https://x-access-token:${TOKEN}@github.com/JiwooYang96/FiveBeforeMonday.git" fbm
           mkdir -p fbm/reels
           cp out/reel.mp4 "fbm/reels/$DATE.mp4"
+          # meta: what the reel was made of (hook, scores, scenes, timeline) for the performance analyser.
+          python3 scripts/reelmeta.py "$PLAN" > /tmp/meta.json
           node -e '
             const p = require("./" + process.env.PLAN);
             const caption = (p.post && p.post.caption) || p.title || "";
-            const out = {video: `reels/${process.env.DATE}.mp4`, caption, posted: null};
+            const trial = {auto: "SS_PERFORMANCE", manual: "MANUAL"}[(p.post && p.post.trial) || ""];
+            const out = {video: `reels/${process.env.DATE}.mp4`, caption, ...(trial ? {trial} : {}), posted: null,
+                         meta: JSON.parse(require("fs").readFileSync("/tmp/meta.json", "utf8"))};
             require("fs").writeFileSync(`fbm/reels/${process.env.DATE}.json`, JSON.stringify(out, null, 2) + "\n");'
           cd fbm
           git config user.name "five-before-monday-bot"

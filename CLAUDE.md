@@ -54,6 +54,8 @@ Every trading day after the New York close a scheduled task makes one reel about
 
 1. Find the day's movers: search "stock market today" and the biggest big-tech movers, and confirm each
    closing move on Yahoo Finance or a major outlet.
+   Then read `docs/LEARNINGS.md` (our own reels' results, updated daily): follow its DO MORE / AVOID rules, and
+   if it lists a next experiment and the story is strong, make today an A/B trial-reel test (`docs/LEARNING.md`).
 2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook
    and plan as usual. Length 30-40 s (the check allows 28-45), in this order: hook -> what happened ->
    2-3 reasons (each sourced) -> what's next, with a date -> `endCard`. Use 1-2 drawings (see "Illustrations"):
@@ -81,6 +83,13 @@ Every trading day after the New York close a scheduled task makes one reel about
    (`gh run list -R JiwooYang96/reels_generator -w render-reel.yml`) and report what failed.
 6. Write the day's note to FiveBeforeMonday `engine/data/daily/<date>.json` (format in that folder's README)
    and push it to main there, so the weekly issue leads with the right story.
+
+## Learning from results
+
+`docs/LEARNING.md`: each posted reel is graded daily on Instagram's numbers (3-second hold for the hook, average
+watch time for the middle, shares and saves for the payoff) and the patterns go to `docs/LEARNINGS.md`, which the
+daily task reads. `reelscore.py` prints `LEARNED:` lines when a plan repeats what our data says to avoid. Retention
+graph screenshots from the user are saved with `scripts/reelanalyze.py retention ...`. Hook A/B tests run as trial reels.
 
 ## Sound
 
