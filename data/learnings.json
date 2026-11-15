@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T08:41+00:00",
+ "updated": "2026-11-15T19:07+00:00",
  "rules": {
   "doMore": [],
   "avoid": [],
@@ -14,7 +14,25 @@
   ]
  },
  "patterns": [],
- "ab": [],
+ "ab": [
+  {
+   "group": "2026-11-15-netflix",
+   "testing": "hook: number vs contrarian",
+   "settled": false,
+   "winner": "special-2026-11-15-netflix-b",
+   "winnerHook": "Netflix didn't kill Blockbuster. You've heard it wrong.",
+   "winnerFamily": "contrarian",
+   "loser": "special-2026-11-15-netflix-a",
+   "loserHook": "Netflix, yours for $50 million. You'd have said no.",
+   "loserFamily": "number",
+   "hold3": [
+    0,
+    0
+   ],
+   "margin": 0.0,
+   "clear": false
+  }
+ ],
  "calibration": {
   "n": 0,
   "note": "No scored reels with data yet."
