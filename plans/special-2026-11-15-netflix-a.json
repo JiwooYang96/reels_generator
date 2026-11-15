@@ -1,0 +1,336 @@
+{
+  "id": "special-2026-11-15-netflix-a",
+  "title": "Sunday special: Blockbuster could have bought Netflix for $50M",
+  "structure": "escalation -> rehook -> open loop (special edition)",
+  "hookFamily": "number / identity",
+  "music": "neutral",
+  "ab": {
+    "group": "2026-11-15-netflix",
+    "variant": "A",
+    "testing": "hook: number vs contrarian"
+  },
+  "post": {
+    "caption": "In 2000 Netflix's founders offered to sell to Blockbuster for $50 million. Blockbuster passed, and it wasn't crazy: Netflix lost $57M that year. The fatal move came later: Blockbuster Online reached 2 million subscribers by 2006, then a fight over the CEO's bonus pushed him out and the online push was cut. Bankrupt by 2010.\n\nSunday special. Get this week's five, free every Saturday → link in bio.\n\n#Netflix #Blockbuster #investing #stockmarket #history\n\nSources: Marketplace (Reed Hastings' book excerpt), Fortune, CNBC, The Motley Fool, Newsweek, CompaniesMarketCap (Netflix value at the Nov 13, 2026 close). Not investment advice.",
+    "trial": "auto"
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "Netflix",
+          "br": true
+        },
+        {
+          "t": "for"
+        },
+        {
+          "t": "$50M?",
+          "key": true
+        }
+      ],
+      "props": {
+        "subject": "a tiny red paper boat sailing past a huge blue ship that is tilting and sinking in calm water",
+        "style": "riso",
+        "big": "$50M",
+        "sub": "Netflix's asking price, 2000",
+        "tone": "bad",
+        "ticker": "NFLX"
+      },
+      "voice": "Netflix, yours for $50 million. You'd have said no.",
+      "seconds": 3.2
+    },
+    {
+      "type": "timeline",
+      "caption": [
+        {
+          "t": "2000"
+        },
+        {
+          "t": "to",
+          "br": true
+        },
+        {
+          "t": "2010.",
+          "key": true
+        }
+      ],
+      "source": "CNBC & Fortune",
+      "props": {
+        "items": [
+          {
+            "label": "2000",
+            "value": "Passes on Netflix at $50M"
+          },
+          {
+            "label": "2004",
+            "value": "Launches Blockbuster Online"
+          },
+          {
+            "label": "2007",
+            "value": "CEO out, online push cut"
+          },
+          {
+            "label": "2010",
+            "value": "Files for bankruptcy"
+          }
+        ],
+        "note": "The real mistake came after 2000",
+        "noteHighlight": "after 2000"
+      },
+      "voice": "Turns out, the real mistake came years later.",
+      "seconds": 3.2
+    },
+    {
+      "type": "headline",
+      "caption": [
+        {
+          "t": "They",
+          "br": true
+        },
+        {
+          "t": "laughed",
+          "key": true
+        },
+        {
+          "t": "at"
+        },
+        {
+          "t": "$50M."
+        }
+      ],
+      "source": "Fortune, Apr 14 2023",
+      "props": {
+        "outlet": "Fortune",
+        "date": "Apr 14, 2023",
+        "text": "Blockbuster ‘laughed us out of the room,’ recalls Netflix cofounder",
+        "highlight": "laughed us out of the room"
+      },
+      "voice": "Blockbuster laughed at the fifty million price.",
+      "seconds": 3.2
+    },
+    {
+      "type": "versus",
+      "caption": [
+        {
+          "t": "$5B"
+        },
+        {
+          "t": "vs",
+          "br": true
+        },
+        {
+          "t": "$50M.",
+          "key": true
+        }
+      ],
+      "source": "Hastings via Marketplace; Motley Fool",
+      "props": {
+        "left": {
+          "name": "Blockbuster",
+          "value": "$5B",
+          "caption": "9,000 stores"
+        },
+        "right": {
+          "name": "Netflix",
+          "value": "$50M",
+          "caption": "losing $57M a year",
+          "logo": "NFLX"
+        },
+        "winner": "left"
+      },
+      "voice": "Blockbuster was a hundred times bigger than Netflix.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "2M",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "online"
+        },
+        {
+          "t": "subscribers."
+        }
+      ],
+      "source": "CNBC, Sep 2020",
+      "props": {
+        "n": 1,
+        "title": "Blockbuster nearly won",
+        "stat": {
+          "value": "2M",
+          "label": "Blockbuster Online subscribers, 2006"
+        },
+        "steps": [
+          "Went online in 2004",
+          "Netflix co-founder: very scary"
+        ]
+      },
+      "voice": "But in 2004 Blockbuster went online, and nearly won.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "A",
+          "br": true
+        },
+        {
+          "t": "$7.6M",
+          "key": true
+        },
+        {
+          "t": "bonus"
+        },
+        {
+          "t": "fight."
+        }
+      ],
+      "source": "CNBC, Sep 2020",
+      "props": {
+        "n": 2,
+        "title": "A fight over pay",
+        "stat": {
+          "value": "$7.6M",
+          "label": "CEO bonus an investor opposed"
+        },
+        "steps": [
+          "Investor pushes CEO out, 2007",
+          "New boss cuts online push"
+        ]
+      },
+      "voice": "Then a bonus fight pushed its CEO out.",
+      "seconds": 3.2
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "Bankrupt",
+          "br": true
+        },
+        {
+          "t": "by"
+        },
+        {
+          "t": "2010.",
+          "key": true
+        }
+      ],
+      "source": "CNBC, Sep 2020",
+      "props": {
+        "subject": "rows of bare empty metal shelves in a dim, deserted shop, one shopping basket left on the floor",
+        "style": "riso"
+      },
+      "voice": "Online got cut. By 2010, Blockbuster was bankrupt.",
+      "seconds": 3.2
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "9,000"
+        },
+        {
+          "t": "stores",
+          "br": true
+        },
+        {
+          "t": "to"
+        },
+        {
+          "t": "1.",
+          "key": true
+        }
+      ],
+      "source": "Fortune, Apr 14 2023",
+      "props": {
+        "label": "Blockbuster stores",
+        "sublabel": "at its peak vs. today",
+        "oldValue": "9,000",
+        "newValue": "1"
+      },
+      "voice": "Nine thousand stores. Today, exactly one is left.",
+      "seconds": 3.2
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Netflix",
+          "br": true
+        },
+        {
+          "t": "now:"
+        },
+        {
+          "t": "~$255B.",
+          "key": true
+        }
+      ],
+      "source": "CompaniesMarketCap, Nov 13 2026",
+      "props": {
+        "label": "Netflix market value, Nov 13 close",
+        "to": 255,
+        "prefix": "$",
+        "suffix": "B",
+        "tone": "gold",
+        "sub": "about 5,000 times the $50M asking price",
+        "logo": "NFLX"
+      },
+      "voice": "Netflix is worth about two hundred fifty-five billion now.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "The"
+        },
+        {
+          "t": "$50M",
+          "key": true
+        },
+        {
+          "t": "no",
+          "br": true
+        },
+        {
+          "t": "wasn't"
+        },
+        {
+          "t": "it."
+        }
+      ],
+      "source": "CNBC & Fortune",
+      "props": {
+        "n": 3,
+        "title": "The lesson",
+        "stat": {
+          "value": "$50M",
+          "label": "the offer it refused"
+        },
+        "steps": [
+          "Saying no was defensible",
+          "Quitting online was fatal"
+        ]
+      },
+      "voice": "The no didn't sink it. Quitting online did.",
+      "seconds": 3.2
+    },
+    {
+      "type": "endCard",
+      "seconds": 6,
+      "theme": "light",
+      "props": {
+        "variant": "free"
+      },
+      "voice": "That's one of this week's five numbers. Get all five, free, every Saturday. Link in bio."
+    }
+  ]
+}
