@@ -86,6 +86,8 @@ def load(fbm):
         if not (q.get("posted") or {}).get("id"):
             continue
         st = stats["reels"].get(f.stem, {})
+        if st.get("gone"):
+            continue                      # deleted from Instagram
         last = st.get("latest") or {}
         m = q.get("meta") or {}
         L = num(m.get("seconds"))
@@ -130,8 +132,10 @@ def third(pool, k, v, low=True):
     vals = sorted(x[k] for x in pool if x[k] is not None)
     if v is None or len(vals) < 3:
         return False
+    if vals[0] == vals[-1]:
+        return False                      # everyone is the same (e.g. 0 shares): no best or worst third
     cut = vals[len(vals) // 3] if low else vals[-(len(vals) // 3) - 1]
-    return v <= cut if low else v >= cut
+    return (v <= cut and v < vals[-1]) if low else (v >= cut and v > vals[0])
 
 
 def diagnose(r, pool):
