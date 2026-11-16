@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T08:04+00:00",
+ "updated": "2026-11-16T15:44+00:00",
  "rules": {
   "doMore": [],
   "avoid": [],
@@ -8,9 +8,9 @@
    "No scored reels with data yet."
   ],
   "experiments": [
-   "Hook family 'number' has fewer than 2 reels; A/B it against the current best.",
    "Hook family 'stake' has fewer than 2 reels; A/B it against the current best.",
-   "Hook family 'contrarian' has fewer than 2 reels; A/B it against the current best."
+   "Hook family 'contrarian' has fewer than 2 reels; A/B it against the current best.",
+   "Hook family 'versus' has fewer than 2 reels; A/B it against the current best."
   ]
  },
  "patterns": [],
@@ -26,11 +26,11 @@
    "loserHook": "Netflix, yours for $50 million. You'd have said no.",
    "loserFamily": "number",
    "hold3": [
-    0,
+    50,
     0
    ],
-   "margin": 0.0,
-   "clear": false
+   "margin": 50.0,
+   "clear": true
   }
  ],
  "calibration": {
