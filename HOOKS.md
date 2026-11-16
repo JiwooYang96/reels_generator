@@ -114,7 +114,7 @@ Frame 0 already shows text or a number in 8 of 11.
 
 ### This week's takeaways for us
 
-- 9 of the 11 winners show the whole hook (text and often a red number) at frame 0. The one exception is the $8M-bet reel, which starts almost blank; our new frame-0 opening puts us on the right side of this.
+- 8 of the 11 winners show the hook as text (often with a red number) at frame 0. Of the other three, one opens on a video-call grid, one shows the text only from 0.5 s, and the $8M-bet reel starts almost blank; our new frame-0 opening puts us on the right side of this.
 - The big number sits in a red badge or headline block next to the event ("-9.6%", "-$750 billion", "-$6,364"). Our open.illustration does this; keep the number big and red with the event named in the caption.
 - Formula that fits us best: "[Company] stock falls -[X]% after [event], wiping out -$[Y]". Our version: on-screen "-10% after [event]" with the spoken "[Company] just [event] and the stock fell [N] percent."
 - Two-beat hook: shock number first, twist by 3 s ("lost -$6,364... but made +$1,262 this week"). This matches our rehook at scene 2; land it by 3 s.
