@@ -233,8 +233,17 @@ def build_pack(top):
                 (PACKDIR / f"{tag}-{t}.jpg").unlink(missing_ok=True)
             text = ""
             if whisper:
-                segs, _ = whisper.transcribe(str(vid), clip_timestamps=[0, 8], vad_filter=False)
-                text = " ".join(s.text.strip() for s in segs if s.start < 8).strip()
+                try:
+                    # ffmpeg decodes the first 8 s to 16 kHz mono; whisper gets the samples (no PyAV involved).
+                    import numpy as np
+                    raw = subprocess.run(["ffmpeg", "-v", "error", "-t", "8", "-i", str(vid), "-f", "s16le", "-ac", "1",
+                                          "-ar", "16000", "-"], capture_output=True, check=True).stdout
+                    audio = np.frombuffer(raw, np.int16).astype(np.float32) / 32768.0
+                    if audio.size:
+                        segs, _ = whisper.transcribe(audio, vad_filter=False)
+                        text = " ".join(s.text.strip() for s in segs).strip()
+                except Exception as err:
+                    text = f"(no transcript: {str(err)[:60]})"
             dur = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(vid)],
                                  capture_output=True, text=True).stdout.strip()
             index.append({"n": n, "image": f"{tag}.jpg", "url": p.get("url"), "username": p.get("ownerUsername"),
