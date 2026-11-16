@@ -26,7 +26,7 @@ sys.path.insert(0, str(ROOT / "vendor" / "head-of-content"))
 DATA = ROOT / "data" / "hookmine"
 ACCOUNTS = DATA / "accounts.txt"
 HOOKS = ROOT / "HOOKS.md"
-HASHTAGS = ["stockmarket", "stocks", "stocknews", "investing", "wallstreet", "nvidia", "stockmarketnews", "finance"]
+HASHTAGS = ["stockmarket", "stocks", "stocknews", "wallstreet", "nvidia", "stockmarketnews", "stocktrading", "nasdaq"]
 DAYS, PER_TAG, PER_ACCOUNT, ANALYSE = 14, 40, 12, 8
 START, END = "<!-- hookmine:start -->", "<!-- hookmine:end -->"
 
@@ -41,9 +41,9 @@ ALSO add these keys to the same JSON object (our channel makes faceless stock-ne
 
 
 # Hashtags pull in off-topic reels (comedy, film): keep only those whose caption is about stocks or markets.
-ON_TOPIC = re.compile(r"\b(stocks?|shares?|market|nasdaq|s&p|dow|earnings|invest\w*|trad(e|ing|er)s?|wall street|"
-                      r"nvidia|nvda|tesla|tsla|apple|aapl|microsoft|amazon|meta|alphabet|google|ai bubble|fed|"
-                      r"interest rates?|recession|ipo|dividends?|portfolio|crash|rally|billion|trillion|valuation)\b", re.I)
+ON_TOPIC = re.compile(r"\b(stocks?|shares|stock market|nasdaq|s&p|sp500|dow jones|earnings|wall street|ticker|"
+                      r"nvidia|nvda|tesla|tsla|aapl|msft|amzn|googl|palantir|pltr|amd|nifty|sensex|"
+                      r"market cap|ipo|fed|rate cut|bull market|bear market|sell-?off|day ?trad\w*|options)\b", re.I)
 
 
 def on_topic(p):
