@@ -63,22 +63,39 @@ def views(p):
     return p.get("videoViewCount") or p.get("videoPlayCount") or 0
 
 
-def fetch():
+def apify_tokens():
+    return [t for t in (os.environ.get("APIFY_TOKEN"), os.environ.get("APIFY_TOKEN_2")) if t]
+
+
+def run_actor(actor, run_input):
+    """Run an Apify actor, moving to the backup account (APIFY_TOKEN_2) when the first is out of credit."""
     from apify_client import ApifyClient
-    client = ApifyClient(os.environ["APIFY_TOKEN"])
+    last = None
+    for i, token in enumerate(apify_tokens()):
+        client = ApifyClient(token)
+        try:
+            run = client.actor(actor).call(run_input=run_input)
+            return list(client.dataset(run["defaultDatasetId"]).iterate_items())
+        except Exception as err:
+            last = err
+            msg = str(err).lower()
+            if any(w in msg for w in ("usage", "credit", "limit", "402", "403", "quota", "blocked")):
+                print(f"apify account {i + 1} unavailable ({str(err)[:80]}); trying the next")
+                continue
+            raise
+    raise RuntimeError(f"every Apify account failed: {str(last)[:160]}")
+
+
+def fetch():
     items = []
     try:
-        run = client.actor("apify/instagram-hashtag-scraper").call(run_input={
-            "hashtags": HASHTAGS, "resultsType": "reels", "resultsLimit": PER_TAG})
-        got = list(client.dataset(run["defaultDatasetId"]).iterate_items())
+        got = run_actor("apify/instagram-hashtag-scraper", {"hashtags": HASHTAGS, "resultsType": "reels", "resultsLimit": PER_TAG})
         for g in got:
             g["_source"] = "hashtag"
         items += got
         print(f"hashtags: {len(got)} reels")
     except Exception as err:   # one source failing must not lose the other
         print("hashtags failed:", str(err)[:200])
-    # Tracked accounts cost several times more Apify credit (profile + post pages) than hashtags; the free plan's
-    # $5 a month covers hashtags weekly, so accounts only run with HOOKMINE_TRACKED=1.
     accounts = [a.strip().lstrip("@") for a in ACCOUNTS.read_text().split() if a.strip()] if ACCOUNTS.exists() else []
     if accounts and os.environ.get("HOOKMINE_TRACKED") == "1":
         try:
@@ -216,8 +233,17 @@ def build_pack(top):
                 (PACKDIR / f"{tag}-{t}.jpg").unlink(missing_ok=True)
             text = ""
             if whisper:
-                segs, _ = whisper.transcribe(str(vid), clip_timestamps=[0, 8], vad_filter=False)
-                text = " ".join(s.text.strip() for s in segs if s.start < 8).strip()
+                try:
+                    # ffmpeg decodes the first 8 s to 16 kHz mono; whisper gets the samples (no PyAV involved).
+                    import numpy as np
+                    raw = subprocess.run(["ffmpeg", "-v", "error", "-t", "8", "-i", str(vid), "-f", "s16le", "-ac", "1",
+                                          "-ar", "16000", "-"], capture_output=True, check=True).stdout
+                    audio = np.frombuffer(raw, np.int16).astype(np.float32) / 32768.0
+                    if audio.size:
+                        segs, _ = whisper.transcribe(audio, vad_filter=False)
+                        text = " ".join(s.text.strip() for s in segs).strip()
+                except Exception as err:
+                    text = f"(no transcript: {str(err)[:60]})"
             dur = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(vid)],
                                  capture_output=True, text=True).stdout.strip()
             index.append({"n": n, "image": f"{tag}.jpg", "url": p.get("url"), "username": p.get("ownerUsername"),
@@ -329,8 +355,8 @@ def main(dry=False):
         write_hooks(run)
         print(section(run))
         return
-    if not os.environ.get("APIFY_TOKEN"):
-        sys.exit("APIFY_TOKEN is not set (add it as a GitHub secret).")
+    if not apify_tokens():
+        sys.exit("APIFY_TOKEN is not set (add it as a GitHub secret; APIFY_TOKEN_2 is the backup account).")
     reels = rank(fetch())
     grow_accounts(reels)
     top = reels[:PACK]
