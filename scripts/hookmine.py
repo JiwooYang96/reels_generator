@@ -27,7 +27,7 @@ DATA = ROOT / "data" / "hookmine"
 ACCOUNTS = DATA / "accounts.txt"
 HOOKS = ROOT / "HOOKS.md"
 HASHTAGS = ["stockmarket", "stocks", "stocknews", "investing", "wallstreet", "nvidia", "stockmarketnews", "finance"]
-DAYS, PER_TAG, PER_ACCOUNT, ANALYSE = 14, 40, 12, 10
+DAYS, PER_TAG, PER_ACCOUNT, ANALYSE = 14, 40, 12, 8
 START, END = "<!-- hookmine:start -->", "<!-- hookmine:end -->"
 
 EXTRA = '''
@@ -112,26 +112,55 @@ def rank(items):
 def analyse(top):
     import analyze_videos
     # Google retires model names; GEMINI_MODEL overrides the default without touching the vendored script.
-    analyze_videos.GEMINI_MODEL = os.environ.get("GEMINI_MODEL") or "gemini-3.8-flash"
-    # Guards so one slow video can't stall the whole run: Gemini can't fetch Instagram's CDN links, so go
-    # straight to download + upload, give file processing 2 minutes and each analysis 150 s.
+    # Google retires and overloads model names: try GEMINI_MODEL, then every other "flash" model the key can use,
+    # retrying a busy model (503) after a pause. Gemini can't fetch Instagram's CDN links, so upload directly.
     import signal
+    import time
+    from google import genai
 
     def _timeout(*_):
         raise TimeoutError("analysis took too long")
     signal.signal(signal.SIGALRM, _timeout)
+    preferred = [m for m in [os.environ.get("GEMINI_MODEL"), "gemini-3.8-flash"] if m]
+    try:
+        names = [m.name.split("/")[-1] for m in genai.Client(api_key=os.environ["GEMINI_API_KEY"]).models.list()]
+        flash = sorted([n for n in names if "flash" in n and "image" not in n and "tts" not in n and "live" not in n], reverse=True)
+        print("gemini models available:", ", ".join(flash[:8]))
+    except Exception as err:
+        flash = []
+        print("could not list models:", str(err)[:120])
+    models = list(dict.fromkeys(preferred + flash))
     orig_analyse, orig_wait = analyze_videos.analyze_video, analyze_videos.wait_for_processing
 
     def guarded(client, src, caption):
         if isinstance(src, str):
             raise RuntimeError("upload instead of a link")
-        signal.alarm(150)
-        try:
-            return orig_analyse(client, src, caption)
-        finally:
-            signal.alarm(0)
+        last = None
+        for model in models[:4]:
+            for attempt in range(2):
+                analyze_videos.GEMINI_MODEL = model
+                signal.alarm(240)
+                try:
+                    out = orig_analyse(client, src, caption)
+                    print(f"    model {model} ok")
+                    return out
+                except TimeoutError as err:
+                    last = err
+                    break                      # slow model: try the next one
+                except Exception as err:
+                    last = err
+                    msg = str(err)
+                    if "503" in msg or "UNAVAILABLE" in msg or "429" in msg:
+                        time.sleep(20 * (attempt + 1))
+                        continue               # busy: retry once, then the next model
+                    if "404" in msg or "NOT_FOUND" in msg:
+                        break
+                    raise
+                finally:
+                    signal.alarm(0)
+        raise RuntimeError(f"all models failed: {str(last)[:160]}")
     analyze_videos.analyze_video = guarded
-    analyze_videos.wait_for_processing = lambda client, file, timeout=120: orig_wait(client, file, 120)
+    analyze_videos.wait_for_processing = lambda client, file, timeout=150: orig_wait(client, file, 150)
     analyze_videos.VIDEO_ANALYSIS_PROMPT = analyze_videos.VIDEO_ANALYSIS_PROMPT.replace(
         "Focus on ACTIONABLE insights", EXTRA.replace("{", "{{").replace("}", "}}") + "\n\nFocus on ACTIONABLE insights")
     return analyze_videos.analyze_videos(top, "instagram", max_videos=ANALYSE)
