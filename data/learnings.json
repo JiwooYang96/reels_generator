@@ -1,40 +1,275 @@
 {
- "updated": "2026-11-16T15:44+00:00",
+ "updated": "2026-11-16T22:32+00:00",
  "rules": {
   "doMore": [],
   "avoid": [],
   "notes": [
-   "0 settled reels so far: patterns become rules at 8+. Until then, keep rotating.",
-   "No scored reels with data yet."
+   "4 settled reels so far: patterns become rules at 8+. Until then, keep rotating.",
+   "Every scored reel got hook 100, so the hook score can't tell good hooks from bad ones here. Judge hooks by real 3-second hold until the rubric is tightened."
   ],
   "experiments": [
+   "Hook family 'number' has fewer than 2 reels; A/B it against the current best.",
    "Hook family 'stake' has fewer than 2 reels; A/B it against the current best.",
-   "Hook family 'contrarian' has fewer than 2 reels; A/B it against the current best.",
-   "Hook family 'versus' has fewer than 2 reels; A/B it against the current best."
+   "Hook family 'contrarian' has fewer than 2 reels; A/B it against the current best."
   ]
  },
- "patterns": [],
- "ab": [
+ "patterns": [
   {
-   "group": "2026-11-15-netflix",
-   "testing": "hook: number vs contrarian",
-   "settled": false,
-   "winner": "special-2026-11-15-netflix-b",
-   "winnerHook": "Netflix didn't kill Blockbuster. You've heard it wrong.",
-   "winnerFamily": "contrarian",
-   "loser": "special-2026-11-15-netflix-a",
-   "loserHook": "Netflix, yours for $50 million. You'd have said no.",
-   "loserFamily": "number",
-   "hold3": [
-    50,
-    0
-   ],
-   "margin": 50.0,
-   "clear": true
+   "feature": "structure",
+   "value": "story",
+   "n": 1,
+   "nRest": 3,
+   "score": 72,
+   "scoreRest": 43,
+   "hold3": 45,
+   "hold3Rest": 30,
+   "diff": 29,
+   "confidence": "too early"
+  },
+  {
+   "feature": "end card",
+   "value": "paid",
+   "n": 1,
+   "nRest": 3,
+   "score": 72,
+   "scoreRest": 43,
+   "hold3": 45,
+   "hold3Rest": 30,
+   "diff": 29,
+   "confidence": "too early"
+  },
+  {
+   "feature": "kind",
+   "value": "daily",
+   "n": 2,
+   "nRest": 2,
+   "score": 40,
+   "scoreRest": 60,
+   "hold3": 25,
+   "hold3Rest": 43,
+   "diff": -20,
+   "confidence": "too early"
+  },
+  {
+   "feature": "kind",
+   "value": "special",
+   "n": 2,
+   "nRest": 2,
+   "score": 60,
+   "scoreRest": 40,
+   "hold3": 43,
+   "hold3Rest": 25,
+   "diff": 20,
+   "confidence": "too early"
+  },
+  {
+   "feature": "hook family",
+   "value": "identity",
+   "n": 2,
+   "nRest": 2,
+   "score": 60,
+   "scoreRest": 40,
+   "hold3": 43,
+   "hold3Rest": 25,
+   "diff": 20,
+   "confidence": "too early"
+  },
+  {
+   "feature": "opening",
+   "value": "open.illustration",
+   "n": 2,
+   "nRest": 2,
+   "score": 60,
+   "scoreRest": 40,
+   "hold3": 43,
+   "hold3Rest": 25,
+   "diff": 20,
+   "confidence": "too early"
+  },
+  {
+   "feature": "music",
+   "value": "tense",
+   "n": 2,
+   "nRest": 2,
+   "score": 40,
+   "scoreRest": 60,
+   "hold3": 25,
+   "hold3Rest": 43,
+   "diff": -20,
+   "confidence": "too early"
+  },
+  {
+   "feature": "music",
+   "value": "neutral",
+   "n": 2,
+   "nRest": 2,
+   "score": 60,
+   "scoreRest": 40,
+   "hold3": 43,
+   "hold3Rest": 25,
+   "diff": 20,
+   "confidence": "too early"
+  },
+  {
+   "feature": "drawings",
+   "value": "no drawings",
+   "n": 2,
+   "nRest": 2,
+   "score": 40,
+   "scoreRest": 60,
+   "hold3": 25,
+   "hold3Rest": 43,
+   "diff": -20,
+   "confidence": "too early"
+  },
+  {
+   "feature": "drawings",
+   "value": "with drawings",
+   "n": 2,
+   "nRest": 2,
+   "score": 60,
+   "scoreRest": 40,
+   "hold3": 43,
+   "hold3Rest": 25,
+   "diff": 20,
+   "confidence": "too early"
+  },
+  {
+   "feature": "hook family",
+   "value": "stake",
+   "n": 1,
+   "nRest": 3,
+   "score": 38,
+   "scoreRest": 54,
+   "hold3": 32,
+   "hold3Rest": 34,
+   "diff": -16,
+   "confidence": "too early"
+  },
+  {
+   "feature": "opening",
+   "value": "open.chair",
+   "n": 1,
+   "nRest": 3,
+   "score": 38,
+   "scoreRest": 54,
+   "hold3": 32,
+   "hold3Rest": 34,
+   "diff": -16,
+   "confidence": "too early"
+  },
+  {
+   "feature": "structure",
+   "value": "countdown",
+   "n": 1,
+   "nRest": 3,
+   "score": 38,
+   "scoreRest": 54,
+   "hold3": 32,
+   "hold3Rest": 34,
+   "diff": -16,
+   "confidence": "too early"
+  },
+  {
+   "feature": "end card",
+   "value": "free-alt",
+   "n": 1,
+   "nRest": 3,
+   "score": 38,
+   "scoreRest": 54,
+   "hold3": 32,
+   "hold3Rest": 34,
+   "diff": -16,
+   "confidence": "too early"
+  },
+  {
+   "feature": "hook family",
+   "value": "viewer",
+   "n": 1,
+   "nRest": 3,
+   "score": 42,
+   "scoreRest": 53,
+   "hold3": 17,
+   "hold3Rest": 39,
+   "diff": -11,
+   "confidence": "too early"
+  },
+  {
+   "feature": "opening",
+   "value": "open.burst",
+   "n": 1,
+   "nRest": 3,
+   "score": 42,
+   "scoreRest": 53,
+   "hold3": 17,
+   "hold3Rest": 39,
+   "diff": -11,
+   "confidence": "too early"
+  },
+  {
+   "feature": "structure",
+   "value": "what-happens-next",
+   "n": 1,
+   "nRest": 3,
+   "score": 42,
+   "scoreRest": 53,
+   "hold3": 17,
+   "hold3Rest": 39,
+   "diff": -11,
+   "confidence": "too early"
+  },
+  {
+   "feature": "length",
+   "value": ">35s",
+   "n": 1,
+   "nRest": 3,
+   "score": 42,
+   "scoreRest": 53,
+   "hold3": 17,
+   "hold3Rest": 39,
+   "diff": -11,
+   "confidence": "too early"
+  },
+  {
+   "feature": "length",
+   "value": "25-35s",
+   "n": 3,
+   "nRest": 1,
+   "score": 53,
+   "scoreRest": 42,
+   "hold3": 39,
+   "hold3Rest": 17,
+   "diff": 11,
+   "confidence": "too early"
+  },
+  {
+   "feature": "end card",
+   "value": "free",
+   "n": 2,
+   "nRest": 2,
+   "score": 45,
+   "scoreRest": 55,
+   "hold3": 29,
+   "hold3Rest": 39,
+   "diff": -10,
+   "confidence": "too early"
+  },
+  {
+   "feature": "structure",
+   "value": "myth vs fact",
+   "n": 1,
+   "nRest": 3,
+   "score": 48,
+   "scoreRest": 51,
+   "hold3": 40,
+   "hold3Rest": 32,
+   "diff": -3,
+   "confidence": "too early"
   }
  ],
+ "ab": [],
  "calibration": {
-  "n": 0,
-  "note": "No scored reels with data yet."
+  "n": 4,
+  "note": "Every scored reel got hook 100, so the hook score can't tell good hooks from bad ones here. Judge hooks by real 3-second hold until the rubric is tightened."
  }
 }
