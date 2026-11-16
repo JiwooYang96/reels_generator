@@ -27,7 +27,7 @@ jobs:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          pip install -q apify-client google-genai requests
+          pip install -q "apify-client<2" google-genai requests   # the vendored scripts read run["defaultDatasetId"] (v1 API)
           set -o pipefail
           python3 scripts/hookmine.py | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Save
