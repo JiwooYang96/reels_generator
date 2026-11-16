@@ -1,0 +1,316 @@
+{
+  "id": "daily-2026-11-16",
+  "title": "Nvidia falls 4% the day before its $109B earnings test",
+  "structure": "build-up (3 hits: board, China rule, Tuesday's test)",
+  "hookFamily": "number + stake",
+  "music": "tense",
+  "post": {
+    "caption": "Nvidia stock fell 4.1% today to $156.14, one day before earnings. Its board says it is not considering bringing Jensen Huang back, the US moved to close a China chip loophole, and analysts expect $109 billion in revenue on Tuesday.\n\nGet this week's five, free every Saturday → link in bio.\n\n#Nvidia #NVDA #NvidiaEarnings #stockmarket #semiconductors\n\nSources: Yahoo Finance (Nov 16 close), CNBC via The Next Web, Reuters (LSEG data, analyst estimates), StockTitan (Commerce Department rule), Nov 16, 2026. Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.logo",
+      "caption": [
+        {
+          "t": "−4.1%"
+        },
+        {
+          "t": "before",
+          "br": true
+        },
+        {
+          "t": "the"
+        },
+        {
+          "t": "TEST.",
+          "key": true
+        }
+      ],
+      "props": {
+        "ticker": "NVDA",
+        "big": "−4.1%",
+        "sub": "the day before earnings",
+        "tone": "bad"
+      },
+      "voice": "Nvidia lost 4% before tomorrow's earnings. Your fund too.",
+      "seconds": 3.2
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "−$1.9T",
+          "key": true
+        },
+        {
+          "t": "since",
+          "br": true
+        },
+        {
+          "t": "October."
+        }
+      ],
+      "source": "Reuters (LSEG data), Nov 16 2026",
+      "props": {
+        "label": "Nvidia market value lost",
+        "from": 0,
+        "to": 1.9,
+        "decimals": 1,
+        "sign": "−",
+        "prefix": "$",
+        "suffix": "T",
+        "tone": "bad",
+        "sub": "$5.8T in early Oct to $3.9T Friday",
+        "logo": "NVDA"
+      },
+      "voice": "It's lost $1.9 trillion in value since October.",
+      "seconds": 2.9
+    },
+    {
+      "type": "chapters",
+      "caption": [
+        {
+          "t": "But"
+        },
+        {
+          "t": "3",
+          "key": true
+        },
+        {
+          "t": "hits",
+          "br": true
+        },
+        {
+          "t": "today."
+        }
+      ],
+      "props": {
+        "items": [
+          "The board's no",
+          "A China chip rule",
+          "Tuesday's $109B test"
+        ],
+        "unlocked": 0
+      },
+      "voice": "But today it took three hits at once.",
+      "seconds": 2.9
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "180,000",
+          "key": true
+        },
+        {
+          "t": "signed.",
+          "br": true
+        },
+        {
+          "t": "Board:"
+        },
+        {
+          "t": "no."
+        }
+      ],
+      "source": "CNBC via The Next Web, Nov 16 2026",
+      "props": {
+        "n": 1,
+        "title": "The board's no",
+        "stat": {
+          "value": "180,000",
+          "label": "petition signatures for Huang's return"
+        },
+        "steps": [
+          "Board not weighing his return",
+          "Investigation comes first"
+        ],
+        "logo": "NVDA"
+      },
+      "voice": "First: 180,000 signed for Huang. Board said no.",
+      "seconds": 2.9
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "The"
+        },
+        {
+          "t": "door",
+          "br": true
+        },
+        {
+          "t": "stays"
+        },
+        {
+          "t": "SHUT.",
+          "key": true
+        }
+      ],
+      "source": "CNBC via The Next Web, Nov 16 2026",
+      "props": {
+        "subject": "a tall heavy wooden double door firmly closed at the end of a long empty corridor, a pile of sealed envelopes on the floor in front of it"
+      },
+      "voice": "CNBC says its focus is the investigation instead.",
+      "seconds": 2.9
+    },
+    {
+      "type": "chapters",
+      "caption": [
+        {
+          "t": "Then"
+        },
+        {
+          "t": "hit",
+          "br": true
+        },
+        {
+          "t": "No."
+        },
+        {
+          "t": "2.",
+          "key": true
+        }
+      ],
+      "props": {
+        "items": [
+          "The board's no",
+          "A China chip rule",
+          "Tuesday's $109B test"
+        ],
+        "unlocked": 1
+      },
+      "voice": "That's when Washington made it worse.",
+      "seconds": 2.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Nasdaq"
+        },
+        {
+          "t": "−2.5%.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "StockTitan & Yahoo Finance, Nov 16 2026",
+      "props": {
+        "n": 2,
+        "title": "A China chip rule",
+        "stat": {
+          "value": "−2.5%",
+          "label": "Nasdaq at the close"
+        },
+        "steps": [
+          "US curbs remote chip access",
+          "Chinese renters lose Nvidia power"
+        ],
+        "logo": "NVDA"
+      },
+      "voice": "A new rule stops China renting Nvidia chips abroad.",
+      "seconds": 3.2
+    },
+    {
+      "type": "chapters",
+      "caption": [
+        {
+          "t": "The"
+        },
+        {
+          "t": "big",
+          "br": true
+        },
+        {
+          "t": "one:"
+        },
+        {
+          "t": "$109B.",
+          "key": true
+        }
+      ],
+      "props": {
+        "items": [
+          "The board's no",
+          "A China chip rule",
+          "Tuesday's $109B test"
+        ],
+        "unlocked": 2
+      },
+      "voice": "But the biggest test hasn't happened yet.",
+      "seconds": 2.6
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "$109B",
+          "key": true
+        },
+        {
+          "t": "expected.",
+          "br": true
+        }
+      ],
+      "source": "Reuters, Nov 16 2026",
+      "props": {
+        "label": "Analysts' Q3 revenue estimate",
+        "from": 0,
+        "to": 109,
+        "prefix": "$",
+        "suffix": "B",
+        "tone": "gold",
+        "sub": "about 90% earnings growth expected",
+        "logo": "NVDA"
+      },
+      "voice": "Therefore analysts want $109 billion in revenue.",
+      "seconds": 2.6
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "The"
+        },
+        {
+          "t": "$109B",
+          "key": true
+        },
+        {
+          "t": "test:",
+          "br": true
+        },
+        {
+          "t": "Tuesday."
+        }
+      ],
+      "source": "Reuters, Nov 16 2026",
+      "props": {
+        "day": "TUE",
+        "date": "Nov 17",
+        "event": "Nvidia earnings · after the bell",
+        "note": "First results since Huang resigned"
+      },
+      "voice": "Tuesday after the bell: Nvidia's first results without Huang.",
+      "seconds": 3.2
+    },
+    {
+      "type": "endCard",
+      "seconds": 6,
+      "theme": "light",
+      "props": {
+        "variant": "save",
+        "title": "Nvidia's 3 hits before earnings",
+        "items": [
+          "−4.1% today, to $156.14",
+          "−$1.9T since early October",
+          "Board: Huang isn't coming back",
+          "Tue: the $109B revenue test"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday."
+    }
+  ]
+}
