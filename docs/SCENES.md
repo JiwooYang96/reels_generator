@@ -89,10 +89,12 @@ Default theme: dark. Source line: not needed.
 - `style` (optional): "pencil" | "riso" | "hatch", default "pencil"
 - `seed` (optional): string,number
 - `src` (optional): string,null
+- `file` (optional): string
 - `big`: string
 - `sub` (optional): string
 - `tone` (optional): "bad" | "good" | "gold", default "bad"
 - `ticker` (optional): string
+- `layout` (optional): "stack" | "flip"
 
 ## `illustration`
 
@@ -104,6 +106,7 @@ Default theme: light. Source line: not needed.
 - `style` (optional): "pencil" | "riso" | "hatch", default "pencil"
 - `seed` (optional): string,number
 - `src` (optional): string,null
+- `file` (optional): string
 
 ## `causeChain`
 
@@ -274,9 +277,11 @@ Default theme: light. Source line: required.
 
 ## `endCard`
 
-Closing promo card (required last scene of daily reels): logo, benefit line, site, "link in bio". `variant`: free (default) | free-alt | paid.
+Closing card (required last scene of daily reels). `variant: save` (daily default): "SAVE THIS" + `title` + 2-4 numbered recap `items`, a screenshot-worthy summary. free | free-alt | paid: logo, benefit line, site, "link in bio".
 
 Default theme: light. Source line: not needed.
 
-- `variant` (optional): "free" | "free-alt" | "paid", default "free"
+- `variant` (optional): "save" | "free" | "free-alt" | "paid", default "free"
 - `url` (optional): string, default "fivebeforemonday.com"
+- `title` (optional): string, max 32 chars
+- `items` (optional): array of string, 2-4 items

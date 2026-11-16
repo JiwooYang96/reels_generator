@@ -357,9 +357,15 @@
       "type": "endCard",
       "seconds": 6,
       "theme": "light",
-      "voice": "That's one of this week's five numbers. Get all five, free, every Saturday. Link in bio.",
+      "voice": "Save this one. All five numbers, free every Saturday.",
       "props": {
-        "variant": "free"
+        "variant": "save",
+        "title": "Nvidia's −$1T month",
+        "items": [
+          "−$1T in 30 days",
+          "3 reasons: power, rates, debt",
+          "Earnings: Nov 17"
+        ]
       }
     }
   ],

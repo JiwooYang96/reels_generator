@@ -35,16 +35,29 @@ Versions are pinned (Remotion 4.0.540, zod 4.6.7, skills in `skills-lock.json`).
      urgency, no number you can't source.
    - **On-screen hook:** 3-6 words with the number, compressed from the voice, never the same words
      (`viral-instagram-reels` reels-hook): "−$1T in 30 days."
-   - **Rehook:** scene 2 or 3 opens with a turn ("But the twist:", "Not...", "Turns out..."). The cut tears the page.
+   - **The 8 blocks** (every reel, in order): hook -> lead -> body 1 -> open loop 1 -> body 2 -> open loop 2 ->
+     body 3 -> CTA. Our analytics showed the gaps: people skip after the hook (no lead) and leave mid-video
+     (one rehook, then a run of facts).
+     - **Lead:** scene 2 is a second mark of value, not set-up: a new hard number ($, %, x, or a big figure, not a
+       year) that the hook didn't show. Context and dates come later.
+     - **Open loop 1:** scene 2, 3 or 4 opens with a turn ("But the twist:", "Not...", "Turns out..."). The cut
+       tears the page.
+     - **Open loop 2:** a second turn in the back half ("That's when it got worse.", "But the strangest part:"),
+       or a `chapters` progress card that shows what's still locked.
+     - **CTA:** the save card (see the end card below): a one-screen recap worth a screenshot.
    - **Pace:** one beat per scene, about 3.3 spoken words per second, 7-10 words per line, every story scene 3.5 s
      or shorter (a change every 2-4 s), beats joined by "but/therefore", never "and then". More scenes, not
      longer ones: 9-11 story scenes plus the end card make 30-40 s.
    - **Payoff:** the last story scene echoes the hook's number or subject and closes its loop.
    - **Gate:** `python3 scripts/reelscore.py plans/<id>.json` scores the HOOK (hookscore) and the SCRIPT (on-screen
-     hook, rehook, pace, but/therefore, payoff loop, numbers, length, one ask) out of 100. A reel is approved only
+     hook, lead, open loop 1 and 2, pace, but/therefore, payoff loop, numbers, length, one ask) out of 100. A reel is approved only
      when both are 85+; make.sh and GitHub refuse it otherwise. Report both scores with the reel. Don't reuse the
      hook family of the last entry in `runs/log.md`.
-3. **Structure.** Pick one not used in the last 5 entries of `runs/log.md`: countdown, versus, myth vs fact, timeline, what-happens-next, single number, escalation -> rehook -> open loop. Spine: opening (number on screen within 1 s) -> escalation -> rehook ("But...") -> payoff -> open loop / follow CTA. Daily reels 30-40 s.
+3. **Structure.** Pick one not used in the last 5 entries of `runs/log.md`: countdown, versus, myth vs fact, timeline, what-happens-next, single number, escalation -> rehook -> open loop. Spine: opening (number on screen within 1 s) -> lead (a new number) -> body -> open loop 1 ("But...") -> body -> open loop 2 -> body / payoff -> save card. Daily reels 30-40 s.
+   **Build-up trial:** about once a week, try the build-up form instead of a new scene type every beat: a `chapters` card
+   with the 3 beats appears after the lead (`unlocked: 0`) and comes back between bodies (`unlocked: 1`, then `2`), so
+   one picture grows through the reel and the save card completes it. Set `"structure": "build-up (...)"` so the
+   analyser can compare it.
    **Reasons must be reasons.** When the video promises "why" or "N reasons", each reason is a `causeChain` scene that states what caused what (cause → effect → effect on the stock), taken from the sources. A description of what happened ("down 25%", "fell 9%") is not a reason; put such numbers in the hook or a stat chip. Give every reason a `stat` (one big sourced number) and 2 short steps (about 5 words each) so it is readable in 3.5 s.
 4. **Plan.** Write `plans/<id>.json` using scenes from `docs/SCENES.md` (see `plans/nvidia-week-nov6-broadsheet.json`). Leave `palette` at the channel default unless the user asks. Scene 1 is an `open.*` opening (rotate the opening type; `open.logo` for one-company stories). Add company logos per "Logos" below. Captions: max 2 lines of 24 chars, one boxed keyword (`key: true`), `br: true` for line 2, about 2.5 words per second. Every data scene gets a `source` ("Outlet, date").
 5. **Make.** `scripts/make.sh plans/<id>.json`. It checks the plan (fix every problem it prints), builds the sound, renders `out/<id>.mp4` and `out/<id>-sheet.png`. About 1 minute.
@@ -60,8 +73,9 @@ Every trading day after the New York close a scheduled task makes one reel about
    Then read `docs/LEARNINGS.md` (our own reels' results, updated daily): follow its DO MORE / AVOID rules, and
    if it lists a next experiment and the story is strong, make today an A/B trial-reel test (`docs/LEARNING.md`).
 2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook
-   and plan as usual. Length 30-40 s (the check allows 28-45), in this order: hook -> what happened ->
-   2-3 reasons (each sourced) -> what's next, with a date -> `endCard`. Use 1-2 drawings (see "Illustrations"):
+   and plan as usual. Length 30-40 s (the check allows 28-45), in this order (the 8 blocks): hook -> lead (a second number) -> what happened ->
+   2-3 reasons (each sourced; open loop 1 before the first, open loop 2 before the last) -> what's next,
+   with a date -> `endCard` (save card). Use 1-2 drawings (see "Illustrations"):
    usually `open.illustration` as the hook (a metaphor for the story + the big number + the company logo pinned
    on) and/or one `illustration` beat. Do the hook and script pass in step 2
    above properly every day; only a reel that `reelscore.py` approves (85+/85+) goes out. Set `music` by the move's direction. Write the plan to `plans/daily/<date>.json` (date = the New York trading
@@ -72,9 +86,12 @@ Every trading day after the New York close a scheduled task makes one reel about
      dollars"). See "Voice: hooking and trustworthy" below; the plan check enforces the limits.
    - `post.caption`: the Instagram caption. 2-3 lines, then "Get this week's five, free every Saturday ->
      link in bio.", 3-5 hashtags, a "Sources:" list, "Not investment advice." No links.
-   - Last scene `endCard` (6 s, theme light, no caption) with `variant` by New York weekday: Mon/Thu `free`,
-     Tue `free-alt`, Wed/Fri `paid`. Its `voice` is exactly `END_VOICE[variant]` from
-     `src/scenes/endcard.tsx`. Never: "smash", "don't miss", "before it's too late", "guaranteed", made-up
+   - Last scene `endCard` (6 s, theme light, no caption), `variant: "save"`, with `title` (names the story, max
+     32 chars, e.g. "Blockbuster's 3 mistakes") and `items` (2-4 recap lines, max 30 chars each, the story's beats
+     with their numbers, in order). It is the screenshot: someone who saves it should have the whole story. Its
+     `voice` is exactly `END_VOICE.save` from `src/scenes/endcard.tsx`. The newsletter ask is in the caption, on the
+     line after the story: "Get this week's five, free every Saturday -> link in bio." On Wed/Fri make that caption
+     line the paid one ("The full why, with charts, lands Sunday for members -> link in bio."). Never: "smash", "don't miss", "before it's too late", "guaranteed", made-up
      subscriber counts or deadlines.
 3. `scripts/make.sh plans/daily/<date>.json` for a preview (it is silent here: the voice model runs on
    GitHub), read the sheet, fix until clean. GitHub refuses a plan that fails the check.

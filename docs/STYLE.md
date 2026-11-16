@@ -82,10 +82,12 @@ the hook. Don't enlarge it, and don't put it on the opening or the CTA.
 
 ## End card (every daily reel)
 
-The last 6 s promote the newsletter, calmly: logo lockup, one specific benefit line, the highlighted
-"Free every Saturday" (or the founding price on paid days), the red url pill and "LINK IN BIO". No caption
-on top, no hype, no fake urgency. Copy lives in `END_COPY`/`END_VOICE` in `src/scenes/endcard.tsx`;
-change it there, not in plans. Variants: `free` (default), `free-alt` (A/B test), `paid` (Wed/Fri).
+The last 6 s are the **save card** (`variant: "save"`): corner brackets like a screenshot frame, a red
+"SAVE THIS" tag, the story's title and 2-4 numbered recap lines, then "5 numbers, free every Saturday". It asks
+for a save (Instagram weighs saves heavily, and we had none), not a click: almost nobody taps "link in bio" from
+a reel, so the newsletter ask moves to the post caption. No hype, no fake urgency. Copy lives in
+`END_COPY`/`END_VOICE` in `src/scenes/endcard.tsx`; change it there, not in plans. The older promo variants
+(`free`, `free-alt`, `paid`: logo, url pill, "LINK IN BIO") stay for specials and A/B tests.
 
 ## Checklist before delivering
 
