@@ -69,6 +69,7 @@ def meta(path):
                               and s["props"].get("style")), variety.drawing_style(plan)),
         "openingLayout": sc[0]["props"].get("layout") or (variety.opening_layout(plan) if sc[0]["type"] == "open.illustration" else None),
         "firstFrameFix": True,
+        "blocks": reelscore.blocks(plan),
         "ab": plan.get("ab"),
         "trial": (plan.get("post") or {}).get("trial"),
     }

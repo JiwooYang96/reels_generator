@@ -174,6 +174,12 @@ export const checkPlan = (plan: Plan): string[] => {
   if (plan.post) {
     if (last.type !== 'endCard') problems.push('daily reels must end with an endCard scene (see docs/STYLE.md "End card")');
     if (plan.scenes.filter((s) => s.type === 'endCard').length > 1) problems.push('only one endCard, at the end');
+    // The 8 blocks: the reel closes on a save-worthy recap, and the click ask lives in the caption.
+    if (last.type === 'endCard') {
+      if (last.props.variant !== 'save') problems.push('end card: use variant "save" with a title and 2-4 recap items (docs/STYLE.md "End card")');
+      else if (!last.props.title || !last.props.items) problems.push('end card (save): needs a title and 2-4 recap items');
+    }
+    if (!/link in bio|fivebeforemonday\.com/i.test(plan.post.caption)) problems.push('post.caption: put the newsletter ask there ("... -> link in bio."), since the end card asks for a save');
     if (total < 28 || total > 45) problems.push(`daily reel is ${total.toFixed(1)} s; plan 30-40 s (allowed 28-45)`);
   }
 
