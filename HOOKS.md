@@ -39,7 +39,17 @@ person's private life beyond what major outlets report. Never say the content is
 <!-- hookmine:start -->
 ## Winning hooks in our niche (auto, weekly)
 
-_Updated 2026-11-16 by `scripts/hookmine.py`: the stock/finance reels that beat their own account's normal views most in the last 14 days (201 reels checked), hooks read by Gemini. Adapt the formulas; never copy a line, a claim or a number._
+_Updated 2026-11-16 by `scripts/hookmine.py`: the stock/finance reels that beat their own account's normal views most in the last 14 days (54 reels checked), hooks read by Gemini. Adapt the formulas; never copy a line, a claim or a number._
 
-No analysed reels yet (needs APIFY_TOKEN and GEMINI_API_KEY).
+Techniques this week: bold-claim x1, relatable-pain x1.
+
+- **bold-claim**, 1,223,315 views (12.34x its account), [@hardyandkishan](https://www.instagram.com/p/DfobFdTTRuu/)
+  - On screen: "Not even a single weak candle in November 💀📈"
+  - Frame 0: A young man sitting in a dark room wearing a green t-shirt with 'BEING GREEDY...', looking sideways, with a NIFTY 50 graphic widget above showing +12.68% and white bottom text.
+  - Formula: Not even a single [negative event] in [timeframe/asset] [emoji]
+- **relatable-pain**, 952,284 views (9.6x its account), [@harmony.buys.houses](https://www.instagram.com/p/Dfn1ppaCNNh/)
+  - On screen: "My toxic trait is spending money because I know I'll make more. I don't know where it'll come from, but I will"
+  - Frame 0: A dark balcony railing overlooking illuminated tropical palm trees and pathways at night, with centered white text
+  - Formula: My toxic trait is [irresponsible habit] because I know [unjustified optimistic belief]
+
 <!-- hookmine:end -->
