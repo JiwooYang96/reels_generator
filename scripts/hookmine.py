@@ -113,6 +113,25 @@ def analyse(top):
     import analyze_videos
     # Google retires model names; GEMINI_MODEL overrides the default without touching the vendored script.
     analyze_videos.GEMINI_MODEL = os.environ.get("GEMINI_MODEL") or "gemini-3.8-flash"
+    # Guards so one slow video can't stall the whole run: Gemini can't fetch Instagram's CDN links, so go
+    # straight to download + upload, give file processing 2 minutes and each analysis 150 s.
+    import signal
+
+    def _timeout(*_):
+        raise TimeoutError("analysis took too long")
+    signal.signal(signal.SIGALRM, _timeout)
+    orig_analyse, orig_wait = analyze_videos.analyze_video, analyze_videos.wait_for_processing
+
+    def guarded(client, src, caption):
+        if isinstance(src, str):
+            raise RuntimeError("upload instead of a link")
+        signal.alarm(150)
+        try:
+            return orig_analyse(client, src, caption)
+        finally:
+            signal.alarm(0)
+    analyze_videos.analyze_video = guarded
+    analyze_videos.wait_for_processing = lambda client, file, timeout=120: orig_wait(client, file, 120)
     analyze_videos.VIDEO_ANALYSIS_PROMPT = analyze_videos.VIDEO_ANALYSIS_PROMPT.replace(
         "Focus on ACTIONABLE insights", EXTRA.replace("{", "{{").replace("}", "}}") + "\n\nFocus on ACTIONABLE insights")
     return analyze_videos.analyze_videos(top, "instagram", max_videos=ANALYSE)

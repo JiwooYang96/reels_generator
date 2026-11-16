@@ -29,7 +29,7 @@ jobs:
         run: |
           pip install -q "apify-client<2" google-genai requests   # the vendored scripts read run["defaultDatasetId"] (v1 API)
           set -o pipefail
-          python3 scripts/hookmine.py | tee -a "$GITHUB_STEP_SUMMARY"
+          python3 -u scripts/hookmine.py | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Save
         run: |
           git config user.name "github-actions[bot]"
