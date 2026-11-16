@@ -3,7 +3,7 @@ name: Hook mining (weekly)
 # Sundays 21:13 UTC (Monday 06:13 Seoul): finds this fortnight's top stock/finance reels (APIFY_TOKEN) and saves a
 # "hook pack" artifact: frames at 0-3 s + a Whisper transcript of the first 8 s per reel. The Monday 08:07 Seoul
 # Claude task "Weekly hook analysis" reads it and rewrites HOOKS.md's "Winning hooks in our niche".
-# The pack is other creators' work, so it is a 21-day artifact, never committed.
+# The pack is other creators' work, so it goes to the PRIVATE fbm-metrics repo (hookpack/), never to this public one.
 on:
   schedule:
     - cron: "13 21 * * 0"
@@ -32,12 +32,18 @@ jobs:
           pip install -q "apify-client<2" google-genai requests faster-whisper pillow   # vendored scripts read run["defaultDatasetId"] (v1 API)
           set -o pipefail
           python3 -u scripts/hookmine.py | tee -a "$GITHUB_STEP_SUMMARY"
-      - name: Keep the hook pack (21 days)
-        uses: actions/upload-artifact@v4
-        with:
-          name: hookpack
-          path: hookpack/
-          retention-days: 21
+      - name: Hand the hook pack to the private repo
+        env:
+          TOKEN: ${{ secrets.FBM_PUSH_TOKEN }}
+        run: |
+          git clone -q --depth 1 "https://x-access-token:${TOKEN}@github.com/JiwooYang96/fbm-metrics.git" /tmp/fm
+          rm -rf /tmp/fm/hookpack && mkdir -p /tmp/fm/hookpack && cp -r hookpack/. /tmp/fm/hookpack/
+          cd /tmp/fm
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add hookpack
+          git diff --cached --quiet || (git commit -qm "Hook pack $(date -u +%F)" && git push -q)
+          echo "hook pack: $(ls hookpack | wc -l) files in fbm-metrics/hookpack"
       - name: Save
         run: |
           git config user.name "github-actions[bot]"

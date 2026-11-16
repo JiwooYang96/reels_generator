@@ -6,7 +6,7 @@ Usage: python3 scripts/hookmine.py                       # needs APIFY_TOKEN; bu
 
 How the reels get read: GitHub (hookmine.yml) downloads the top reels and saves, per reel, the frames at
 0 / 0.5 / 1 / 2 / 3 s as one strip image plus a Whisper transcript of the first 8 s (hookpack/, kept as a
-21-day workflow artifact, never committed: it is other creators' work). The Monday "weekly hook analysis"
+pushed to the private fbm-metrics repo under hookpack/, never to this public repo: it is other creators' work). The Monday "weekly hook analysis"
 Claude task looks at every strip and transcript, writes hookpack/analysis.json and runs `apply`. Gemini
 (GEMINI_API_KEY + HOOKMINE_GEMINI=1) can still read whole videos as an optional extra.
 
@@ -34,7 +34,7 @@ DATA = ROOT / "data" / "hookmine"
 ACCOUNTS = DATA / "accounts.txt"
 HOOKS = ROOT / "HOOKS.md"
 HASHTAGS = ["stockmarket", "stocks", "stocknews", "wallstreet", "nvidia", "stockmarketnews", "stocktrading", "nasdaq"]
-DAYS, PER_TAG, PER_ACCOUNT, ANALYSE, PACK = 14, 40, 12, 8, 30
+DAYS, PER_TAG, PER_ACCOUNT, ANALYSE, PACK = 14, 25, 8, 8, 25
 PACKDIR = ROOT / "hookpack"
 STRIP_AT = [0, 0.5, 1, 2, 3]
 START, END = "<!-- hookmine:start -->", "<!-- hookmine:end -->"
@@ -77,8 +77,10 @@ def fetch():
         print(f"hashtags: {len(got)} reels")
     except Exception as err:   # one source failing must not lose the other
         print("hashtags failed:", str(err)[:200])
+    # Tracked accounts cost several times more Apify credit (profile + post pages) than hashtags; the free plan's
+    # $5 a month covers hashtags weekly, so accounts only run with HOOKMINE_TRACKED=1.
     accounts = [a.strip().lstrip("@") for a in ACCOUNTS.read_text().split() if a.strip()] if ACCOUNTS.exists() else []
-    if accounts:
+    if accounts and os.environ.get("HOOKMINE_TRACKED") == "1":
         try:
             import fetch_instagram
             got = fetch_instagram.fetch_instagram(accounts, "reels", PER_ACCOUNT, DAYS)
