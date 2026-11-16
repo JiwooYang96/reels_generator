@@ -39,7 +39,7 @@ person's private life beyond what major outlets report. Never say the content is
 <!-- hookmine:start -->
 ## Winning hooks in our niche (auto, weekly)
 
-_Updated 2026-11-16 by `scripts/hookmine.py`: the stock/finance reels that beat their own account's normal views most in the last 14 days (154 reels checked), hooks read by Gemini. Adapt the formulas; never copy a line, a claim or a number._
+_Updated 2026-11-16 by `scripts/hookmine.py`: the stock/finance reels that beat their own account's normal views most in the last 14 days (326 reels checked), hooks read by Gemini. Adapt the formulas; never copy a line, a claim or a number._
 
 No analysed reels yet (needs APIFY_TOKEN and GEMINI_API_KEY).
 <!-- hookmine:end -->
