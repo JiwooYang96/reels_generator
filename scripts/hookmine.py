@@ -40,6 +40,16 @@ ALSO add these keys to the same JSON object (our channel makes faceless stock-ne
     "seconds": <video length in seconds>'''
 
 
+# Hashtags pull in off-topic reels (comedy, film): keep only those whose caption is about stocks or markets.
+ON_TOPIC = re.compile(r"\b(stocks?|shares?|market|nasdaq|s&p|dow|earnings|invest\w*|trad(e|ing|er)s?|wall street|"
+                      r"nvidia|nvda|tesla|tsla|apple|aapl|microsoft|amazon|meta|alphabet|google|ai bubble|fed|"
+                      r"interest rates?|recession|ipo|dividends?|portfolio|crash|rally|billion|trillion|valuation)\b", re.I)
+
+
+def on_topic(p):
+    return bool(ON_TOPIC.search((p.get("caption") or "") + " " + " ".join(p.get("hashtags") or [])))
+
+
 def views(p):
     return p.get("videoViewCount") or p.get("videoPlayCount") or 0
 
@@ -77,7 +87,7 @@ def rank(items):
     for p in items:
         key = p.get("shortCode") or p.get("id")
         ts = p.get("timestamp")
-        if not key or key in seen or not p.get("videoUrl") or not views(p):
+        if not key or key in seen or not p.get("videoUrl") or not views(p) or not on_topic(p):
             continue
         try:
             if ts and datetime.fromisoformat(ts.replace("Z", "+00:00")) < cutoff:
@@ -101,6 +111,8 @@ def rank(items):
 
 def analyse(top):
     import analyze_videos
+    # Google retires model names; GEMINI_MODEL overrides the default without touching the vendored script.
+    analyze_videos.GEMINI_MODEL = os.environ.get("GEMINI_MODEL") or "gemini-3.8-flash"
     analyze_videos.VIDEO_ANALYSIS_PROMPT = analyze_videos.VIDEO_ANALYSIS_PROMPT.replace(
         "Focus on ACTIONABLE insights", EXTRA.replace("{", "{{").replace("}", "}}") + "\n\nFocus on ACTIONABLE insights")
     return analyze_videos.analyze_videos(top, "instagram", max_videos=ANALYSE)
