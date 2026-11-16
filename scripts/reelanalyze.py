@@ -29,6 +29,7 @@ ROOT = Path(__file__).resolve().parent.parent
 RET = ROOT / "data" / "retention"
 SETTLE_H = 48          # insights lag up to 48 h
 MIN_RULES = 8          # settled reels before any pattern becomes a rule
+MIN_AB_REACH = 30      # accounts reached per variant before an A/B result can count as clear
 WEIGHTS = {"hold3": 0.30, "watchPct": 0.30, "shareRate": 0.20, "saveRate": 0.10, "outlier": 0.10}
 
 
@@ -276,7 +277,9 @@ def ab_results(reels):
             "winner": w["key"], "winnerHook": w["meta"].get("hookVoice"), "winnerFamily": fam(w["meta"]),
             "loser": l["key"], "loserHook": l["meta"].get("hookVoice"), "loserFamily": fam(l["meta"]),
             "hold3": [round(w["hold3"]), round(l["hold3"])], "margin": round(margin, 1),
-            "clear": margin >= 5,
+            "reach": [w["reach"], l["reach"]],
+            "clear": margin >= 5 and min((r["reach"] or 0) for r in rs) >= MIN_AB_REACH,
+            "tooSmall": min((r["reach"] or 0) for r in rs) < MIN_AB_REACH,
         })
     return out
 
