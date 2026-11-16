@@ -1,0 +1,191 @@
+"""Weekly competitor hook mining: what is winning right now in stock / finance reels, so our hooks follow real data.
+
+Usage: python3 scripts/hookmine.py            # needs APIFY_TOKEN and GEMINI_API_KEY (GitHub secrets)
+       python3 scripts/hookmine.py --dry      # no API calls: rebuild HOOKS.md's section from the last saved run
+
+1. Fetch the last 14 days of reels from niche hashtags (apify/instagram-hashtag-scraper) and from the tracked
+   accounts in data/hookmine/accounts.txt (apify/instagram-scraper, via vendor/head-of-content, MIT).
+2. Rank by views against each account's own median (the outlier multiple), not raw views.
+3. The top videos go to Gemini 2.5 Flash (vendor/head-of-content/analyze_videos.py) with our extra questions:
+   what is on screen at frame 0, the on-screen hook text, and the spoken first line.
+4. Save data/hookmine/<date>.json and rewrite the "Winning hooks in our niche" section of HOOKS.md, which the
+   daily reel task reads. Owners of hashtag outliers join accounts.txt (up to 30) so the tracked list grows.
+
+Cost: Apify free plan credit covers a weekly run (~150 results); Gemini free tier covers ~10 video analyses.
+"""
+import json
+import os
+import re
+import statistics
+import sys
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "vendor" / "head-of-content"))
+DATA = ROOT / "data" / "hookmine"
+ACCOUNTS = DATA / "accounts.txt"
+HOOKS = ROOT / "HOOKS.md"
+HASHTAGS = ["stockmarket", "stocks", "stocknews", "investing", "wallstreet", "nvidia", "stockmarketnews", "finance"]
+DAYS, PER_TAG, PER_ACCOUNT, ANALYSE = 14, 40, 12, 10
+START, END = "<!-- hookmine:start -->", "<!-- hookmine:end -->"
+
+EXTRA = '''
+
+ALSO add these keys to the same JSON object (our channel makes faceless stock-news reels, so we need them):
+    "first_frame": "<exactly what is visible at the very first frame, before anything moves: text, picture, number, face, blank?>",
+    "onscreen_hook": "<the on-screen text in the first 2 seconds, verbatim, or empty>",
+    "spoken_first_line": "<the first spoken sentence verbatim, or empty>",
+    "topic": "<company / market event the video is about>",
+    "seconds": <video length in seconds>'''
+
+
+def views(p):
+    return p.get("videoViewCount") or p.get("videoPlayCount") or 0
+
+
+def fetch():
+    from apify_client import ApifyClient
+    client = ApifyClient(os.environ["APIFY_TOKEN"])
+    items = []
+    try:
+        run = client.actor("apify/instagram-hashtag-scraper").call(run_input={
+            "hashtags": HASHTAGS, "resultsType": "reels", "resultsLimit": PER_TAG})
+        got = list(client.dataset(run["defaultDatasetId"]).iterate_items())
+        for g in got:
+            g["_source"] = "hashtag"
+        items += got
+        print(f"hashtags: {len(got)} reels")
+    except Exception as err:   # one source failing must not lose the other
+        print("hashtags failed:", str(err)[:200])
+    accounts = [a.strip().lstrip("@") for a in ACCOUNTS.read_text().split() if a.strip()] if ACCOUNTS.exists() else []
+    if accounts:
+        try:
+            import fetch_instagram
+            got = fetch_instagram.fetch_instagram(accounts, "reels", PER_ACCOUNT, DAYS)
+            for g in got:
+                g["_source"] = "tracked"
+            items += got
+        except BaseException as err:  # the vendored script calls sys.exit on missing tokens
+            print("tracked accounts failed:", str(err)[:200])
+    return items
+
+
+def rank(items):
+    cutoff = datetime.now(timezone.utc) - timedelta(days=DAYS)
+    seen, reels = set(), []
+    for p in items:
+        key = p.get("shortCode") or p.get("id")
+        ts = p.get("timestamp")
+        if not key or key in seen or not p.get("videoUrl") or not views(p):
+            continue
+        try:
+            if ts and datetime.fromisoformat(ts.replace("Z", "+00:00")) < cutoff:
+                continue
+        except ValueError:
+            pass
+        seen.add(key)
+        reels.append(p)
+    by_owner = {}
+    for p in reels:
+        by_owner.setdefault((p.get("ownerUsername") or "").lower(), []).append(views(p))
+    all_med = statistics.median([views(p) for p in reels]) if reels else 1
+    for p in reels:
+        own = by_owner.get((p.get("ownerUsername") or "").lower(), [])
+        med = statistics.median(own) if len(own) >= 3 else all_med
+        p["_multiple"] = round(views(p) / max(med, 1), 2)
+    # An outlier is unusual for its own account AND has real reach.
+    reels.sort(key=lambda p: (p["_multiple"] * min(1, views(p) / 20000)), reverse=True)
+    return reels
+
+
+def analyse(top):
+    import analyze_videos
+    analyze_videos.VIDEO_ANALYSIS_PROMPT = analyze_videos.VIDEO_ANALYSIS_PROMPT.replace(
+        "Focus on ACTIONABLE insights", EXTRA.replace("{", "{{").replace("}", "}}") + "\n\nFocus on ACTIONABLE insights")
+    return analyze_videos.analyze_videos(top, "instagram", max_videos=ANALYSE)
+
+
+def grow_accounts(reels):
+    have = [a.strip() for a in ACCOUNTS.read_text().split()] if ACCOUNTS.exists() else []
+    for p in reels[:20]:
+        u = (p.get("ownerUsername") or "").lower()
+        if u and u not in have and u != "fivebeforemonday" and p.get("_source") == "hashtag" and views(p) >= 20000:
+            have.append(u)
+    ACCOUNTS.write_text("\n".join(have[:30]) + "\n")
+
+
+def section(run):
+    res = [r for r in run.get("analysed", []) if r.get("analysis")]
+    lines = [START, "## Winning hooks in our niche (auto, weekly)", "",
+             f"_Updated {run['date']} by `scripts/hookmine.py`: the stock/finance reels that beat their own account's "
+             f"normal views most in the last {DAYS} days ({run.get('fetched', 0)} reels checked), hooks read by Gemini. "
+             "Adapt the formulas; never copy a line, a claim or a number._", ""]
+    if not res:
+        lines += ["No analysed reels yet (needs APIFY_TOKEN and GEMINI_API_KEY).", END]
+        return "\n".join(lines)
+    tech = {}
+    ff = []
+    for r in res:
+        a = r["analysis"]
+        t = (a.get("hook") or {}).get("technique") or "?"
+        tech[t] = tech.get(t, 0) + 1
+        ff.append(a.get("first_frame") or "")
+    lines.append("Techniques this week: " + ", ".join(f"{k} x{v}" for k, v in sorted(tech.items(), key=lambda kv: -kv[1])) + ".")
+    lines.append("")
+    for r in res:
+        a, h = r["analysis"], r["analysis"].get("hook") or {}
+        lines.append(f"- **{h.get('technique', '?')}**, {r.get('views') or 0:,} views ({r.get('_multiple', '?')}x its account), "
+                     f"[@{r.get('username')}]({r.get('url')})")
+        if a.get("onscreen_hook"):
+            lines.append(f"  - On screen: \"{a['onscreen_hook']}\"")
+        if a.get("spoken_first_line"):
+            lines.append(f"  - Said: \"{a['spoken_first_line']}\"")
+        if a.get("first_frame"):
+            lines.append(f"  - Frame 0: {a['first_frame']}")
+        if h.get("replicable_formula"):
+            lines.append(f"  - Formula: {h['replicable_formula']}")
+    lines += ["", END]
+    return "\n".join(lines)
+
+
+def write_hooks(run):
+    text = HOOKS.read_text()
+    block = section(run)
+    if START in text:
+        text = re.sub(re.escape(START) + r".*?" + re.escape(END), lambda _: block, text, flags=re.S)
+    else:
+        text = text.rstrip() + "\n\n" + block + "\n"
+    HOOKS.write_text(text)
+
+
+def main(dry=False):
+    DATA.mkdir(parents=True, exist_ok=True)
+    date = datetime.now(timezone.utc).date().isoformat()
+    if dry:
+        runs = sorted(DATA.glob("20*.json"))
+        run = json.loads(runs[-1].read_text()) if runs else {"date": date, "analysed": []}
+        write_hooks(run)
+        print(section(run))
+        return
+    for k in ("APIFY_TOKEN", "GEMINI_API_KEY"):
+        if not os.environ.get(k):
+            sys.exit(f"{k} is not set (add it as a GitHub secret).")
+    reels = rank(fetch())
+    grow_accounts(reels)
+    top = reels[:ANALYSE + 4]
+    analysed = analyse(top)
+    mult = {(p.get("shortCode") or p.get("id")): p["_multiple"] for p in top}
+    for r in analysed:
+        r["_multiple"] = mult.get(r.get("post_id"))
+    run = {"date": date, "fetched": len(reels), "hashtags": HASHTAGS,
+           "top": [{"url": p.get("url"), "owner": p.get("ownerUsername"), "views": views(p), "multiple": p["_multiple"],
+                    "caption": (p.get("caption") or "")[:200]} for p in reels[:30]],
+           "analysed": analysed}
+    (DATA / f"{date}.json").write_text(json.dumps(run, indent=1, ensure_ascii=False) + "\n")
+    write_hooks(run)
+    print(f"hookmine: {len(reels)} reels, {len([r for r in analysed if r.get('analysis')])} analysed -> HOOKS.md")
+
+
+if __name__ == "__main__":
+    main(dry="--dry" in sys.argv)

@@ -19,6 +19,16 @@ const Torn: React.FC<{start: number; dir: 'entering' | 'exiting'; children: Reac
   return <C presentationProgress={p} presentationDirection={dir} passedProps={tear.props}>{children}</C>;
 };
 
+// Frame 0 must already show the whole hook: viewers decide to skip before anything finishes animating in, and a
+// blank first frame looks like a video that hasn't started. So the opening scene plays from OPEN_HEAD frames in
+// (its entrance already done) with a slow camera push for motion, and its caption words are all up at once.
+export const OPEN_HEAD = 36;
+const Push: React.FC<{dur: number; children: React.ReactNode}> = ({dur, children}) => {
+  const f = useCurrentFrame();
+  const z = 1.06 - 0.06 * Math.min(1, f / Math.max(1, dur));
+  return <AbsoluteFill style={{scale: `${z}`}}>{children}</AbsoluteFill>;
+};
+
 export const PlanVideo: React.FC<Plan> = (plan) => {
   // Swap the palette in before any scene reads the tokens.
   applyPalette(plan.palette);
@@ -29,11 +39,17 @@ export const PlanVideo: React.FC<Plan> = (plan) => {
       {scenes.map((s, i) => {
         const def = SCENES[s.type];
         const Visual = def.Component;
+        const open = i === 0;
+        const visual = <Visual p={s.props} dur={s.dur} theme={s.theme} />;
         const body = (
           <AbsoluteFill>
             <Background theme={s.theme} />
-            <Visual p={s.props} dur={s.dur} theme={s.theme} />
-            {s.caption.length ? <Caption theme={s.theme} words={s.caption.map((w) => ({...w, at: w.at ?? 0}))} /> : null}
+            {open ? (
+              <Push dur={s.dur}>
+                <Sequence from={-OPEN_HEAD} layout="none">{visual}</Sequence>
+              </Push>
+            ) : visual}
+            {s.caption.length ? <Caption theme={s.theme} words={s.caption.map((w) => ({...w, at: open ? -OPEN_HEAD : w.at ?? 0}))} /> : null}
             {s.source ? <Source theme={s.theme} text={`Source: ${s.source}`} /> : null}
             <Handle theme={s.theme} text={plan.handle} />
           </AbsoluteFill>

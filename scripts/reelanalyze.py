@@ -172,6 +172,10 @@ FEATURES = {
     "structure": lambda m: (m.get("structure") or "").split(" (")[0] or None,
     "music": lambda m: m.get("music"),
     "drawings": lambda m: "with drawings" if m.get("illustrations") else "no drawings",
+    "voice": lambda m: m.get("narrator"),
+    "drawing style": lambda m: m.get("drawingStyle") if m.get("illustrations") else None,
+    "opening layout": lambda m: m.get("openingLayout"),
+    "first frame": lambda m: "hook on frame 0" if m.get("firstFrameFix") else "blank frame 0",
     "length": lambda m: None if not m.get("seconds") else "<25s" if m["seconds"] < 25 else "25-35s" if m["seconds"] <= 35 else ">35s",
 }
 

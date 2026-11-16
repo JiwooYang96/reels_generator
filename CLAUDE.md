@@ -20,8 +20,10 @@ Versions are pinned (Remotion 4.0.540, zod 4.6.7, skills in `skills-lock.json`).
 ## Topic -> video
 
 1. **Research.** WebSearch the topic's latest news (last 24-48 h). Open at least 2 pages with WebFetch; a snippet is not a source. **Find the real story first**: search the company by name in plain words ("why <company> stock fell today") and go with the reason the coverage gives: earnings or guidance, a deal, an analyst call, a product, regulation, rates or data, occasionally people news. Don't assume a kind of story. Name the concrete event in the hook rather than an abstraction. Check the news hit the market in the window you're covering. Pick one fresh, concrete number and a twist.
-2. **Hook and script.** Most reels are won or lost here. `HOOKS.md` is the channel context; the skills are in
-   `.claude/skills` (see `VENDOR.md`).
+2. **Hook and script.** Most reels are won or lost here. `HOOKS.md` is the channel context, and its "Winning
+   hooks in our niche" section (rewritten every Monday by `scripts/hookmine.py` from the stock/finance reels that
+   beat their accounts' normal views) shows what is working right now: adapt those formulas, never copy a line
+   or a claim. The skills are in `.claude/skills` (see `VENDOR.md`).
    - **Hooks:** `hooksmith generate` for 3-5 complete hook systems from different families (number + stake,
      contradiction, belief break, versus flip, viewer callout). Upgrade each with the `viral-hooks` tactics
      (`references/hook-tactics.md`): a specific number, a power verb, the exact viewer, cut the first three words,
@@ -84,6 +86,17 @@ Every trading day after the New York close a scheduled task makes one reel about
 6. Write the day's note to FiveBeforeMonday `engine/data/daily/<date>.json` (format in that folder's README)
    and push it to main there, so the weekly issue leads with the right story.
 
+## Frame 0 and variety
+
+- **Frame 0 shows the hook.** Viewers skip before anything animates in, and a blank first frame looks like a
+  video that hasn't started. `PlanVideo` plays the opening scene from 36 frames in (entrance done) with a slow
+  push, and the opening caption is fully up at frame 0. `scripts/firstframe.py` (run by make.sh) refuses a reel
+  whose frame 0 is nearly empty. Keep openings big: picture and number fill the space between caption and handle.
+- **Variety** (`scripts/variety.py`, deterministic per reel id): the narrator rotates between af_heart (most
+  days), af_bella and bf_emma; daily drawings rotate pencil / riso / hatch when a scene leaves `style` out;
+  `open.illustration` alternates `layout` stack / flip. Set `narrator`, `style` or `layout` in a plan to pin one.
+  The analyser records all three, so the learnings show which works.
+
 ## Learning from results
 
 `docs/LEARNING.md`: each posted reel is graded daily on Instagram's numbers (3-second hold for the hook, average
@@ -95,7 +108,7 @@ graph screenshots from the user are saved with `scripts/reelanalyze.py retention
 
 - **Narration** (`scripts/voice.py`): one clip per scene from its `voice` line, read by Kokoro (open-source,
   Apache-2.0, free, runs on GitHub's CPU) or Chatterbox (MIT, more expressive). Repo variables pick it:
-  `VOICE_ENGINE` (`kokoro` / `chatterbox`), `VOICE_NAME` for Kokoro (channel voice `af_heart`, picked by ear; others `am_michael`, `bm_george`...),
+  `VOICE_ENGINE` (`kokoro` / `chatterbox`), `VOICE_NAME` for Kokoro (channel voice `af_heart`, picked by ear; it now rotates with af_bella and bf_emma, see "Frame 0 and variety"; `VOICE_FIXED=1` keeps VOICE_NAME every day),
   `VOICE_EXAGGERATION` / `VOICE_CFG` for Chatterbox. `.github/workflows/voice-samples.yml` renders the
   candidates side by side. `VOICE_ENGINE=omnivoice` switches to OmniVoice voice design (its official weights
   are non-commercial, so not for this channel as-is); `elevenlabs` uses the paid API if a key is set.

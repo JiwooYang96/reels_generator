@@ -1,0 +1,38 @@
+name: Hook mining (weekly)
+
+# Sundays 21:13 UTC (Monday 06:13 Seoul), before the weekly review: finds this fortnight's top stock/finance
+# reels, has Gemini read their hooks, and rewrites the "Winning hooks in our niche" section of HOOKS.md that the
+# daily reel task reads. Needs the APIFY_TOKEN and GEMINI_API_KEY secrets.
+on:
+  schedule:
+    - cron: "13 21 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: hookmine
+
+jobs:
+  mine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Mine
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          pip install -q apify-client google-genai requests
+          set -o pipefail
+          python3 scripts/hookmine.py | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Save
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add HOOKS.md data/hookmine
+          git diff --cached --quiet || (git commit -m "Hook mining $(date -u +%F)" && git pull --rebase && git push)

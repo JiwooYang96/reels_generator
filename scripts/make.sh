@@ -25,3 +25,5 @@ if [ "$MOOD" != none ] && command -v fluidsynth >/dev/null; then
 fi
 python3 scripts/sfx.py "public/sfx/$ID.wav" "out/$ID/sfx.json"
 scripts/render.sh PlanVideo "$ID" --props="out/$ID/props.json"
+# Frame 0 must already show the hook (no blank page while things animate in).
+python3 scripts/firstframe.py "out/$ID.mp4"

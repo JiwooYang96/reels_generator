@@ -110,6 +110,8 @@ def draw(subject, style="pencil", seed=None):
 
 def run_plan(path):
     plan = json.load(open(path))
+    import variety
+    house = variety.drawing_style(plan)   # rotates pencil / riso / hatch day to day when a scene leaves style out
     bad = []
     for i, s in enumerate(plan["scenes"]):
         if s["type"] not in ILLUSTRATED:
@@ -131,7 +133,7 @@ def run_plan(path):
         if s["props"].get("file"):
             srcs[i] = s["props"]["file"]
             continue
-        f = draw(s["props"]["subject"], s["props"].get("style", "pencil"), s["props"].get("seed"))
+        f = draw(s["props"]["subject"], s["props"].get("style") or house, s["props"].get("seed"))
         if f:
             png = f.with_suffix(".png")
             if not png.exists():

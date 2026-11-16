@@ -17,6 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 import reelscore  # noqa: E402
+import variety  # noqa: E402
 
 
 def meta(path):
@@ -62,6 +63,12 @@ def meta(path):
         "seconds": timeline[-1]["to"] if timeline else None,
         "timing": timing,
         "timeline": timeline,
+        "narrator": ((ROOT / "out" / plan["id"] / "narrator.txt").read_text().strip()
+                     if (ROOT / "out" / plan["id"] / "narrator.txt").exists() else variety.narrator(plan)),
+        "drawingStyle": next((s["props"].get("style") for s in sc if s["type"] in ("illustration", "open.illustration")
+                              and s["props"].get("style")), variety.drawing_style(plan)),
+        "openingLayout": sc[0]["props"].get("layout") or (variety.opening_layout(plan) if sc[0]["type"] == "open.illustration" else None),
+        "firstFrameFix": True,
         "ab": plan.get("ab"),
         "trial": (plan.get("post") or {}).get("trial"),
     }
