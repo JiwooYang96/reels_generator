@@ -34,7 +34,7 @@ jobs:
           python3 -u scripts/hookmine.py | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Hand the hook pack to the private repo
         env:
-          TOKEN: ${{ secrets.FBM_PUSH_TOKEN }}
+          TOKEN: ${{ secrets.HOOKPACK_TOKEN || secrets.FBM_PUSH_TOKEN }}   # HOOKPACK_TOKEN: fine-grained, fbm-metrics contents read/write
         run: |
           git clone -q --depth 1 "https://x-access-token:${TOKEN}@github.com/JiwooYang96/fbm-metrics.git" /tmp/fm
           rm -rf /tmp/fm/hookpack && mkdir -p /tmp/fm/hookpack && cp -r hookpack/. /tmp/fm/hookpack/
