@@ -51,6 +51,8 @@ Trial reels go to non-followers first; with `"trial": "auto"` Instagram shares t
   `"post": {"caption": ..., "trial": "auto"}`.
 - Push them as **two separate commits and pushes** (render-reel.yml renders one plan per push); both queue and post
   together at 6:31pm. That day there is no separate normal reel.
-- If the account can't post trial reels, instagram.py posts them as normal reels and records `posted.trial: null`;
-  then stop A/B testing and tell the user.
+- **Only with trial reels.** Never post two near-identical public reels: on Nov 15 the Netflix A/B pair went out as
+  normal reels (trial refused) and each reached 2 accounts, against 40-115 for our other reels, consistent with
+  Instagram treating them as duplicates. Until the account has trial reels (about 1,000 followers), test one idea
+  per day across different stories instead (the analyser compares them), never two copies of one story.
 - The analyser reports the winner by 3-second hold (then watch time). A clear win is 5+ points.
