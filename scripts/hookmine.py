@@ -26,8 +26,8 @@ sys.path.insert(0, str(ROOT / "vendor" / "head-of-content"))
 DATA = ROOT / "data" / "hookmine"
 ACCOUNTS = DATA / "accounts.txt"
 HOOKS = ROOT / "HOOKS.md"
-HASHTAGS = ["stockmarket", "stocks", "stocknews", "investing", "wallstreet", "nvidia", "stockmarketnews", "finance"]
-DAYS, PER_TAG, PER_ACCOUNT, ANALYSE = 14, 40, 12, 10
+HASHTAGS = ["stockmarket", "stocks", "stocknews", "wallstreet", "nvidia", "stockmarketnews", "stocktrading", "nasdaq"]
+DAYS, PER_TAG, PER_ACCOUNT, ANALYSE = 14, 40, 12, 8
 START, END = "<!-- hookmine:start -->", "<!-- hookmine:end -->"
 
 EXTRA = '''
@@ -38,6 +38,16 @@ ALSO add these keys to the same JSON object (our channel makes faceless stock-ne
     "spoken_first_line": "<the first spoken sentence verbatim, or empty>",
     "topic": "<company / market event the video is about>",
     "seconds": <video length in seconds>'''
+
+
+# Hashtags pull in off-topic reels (comedy, film): keep only those whose caption is about stocks or markets.
+ON_TOPIC = re.compile(r"\b(stocks?|shares|stock market|nasdaq|s&p|sp500|dow jones|earnings|wall street|ticker|"
+                      r"nvidia|nvda|tesla|tsla|aapl|msft|amzn|googl|palantir|pltr|amd|nifty|sensex|"
+                      r"market cap|ipo|fed|rate cut|bull market|bear market|sell-?off|day ?trad\w*|options)\b", re.I)
+
+
+def on_topic(p):
+    return bool(ON_TOPIC.search((p.get("caption") or "") + " " + " ".join(p.get("hashtags") or [])))
 
 
 def views(p):
@@ -77,7 +87,7 @@ def rank(items):
     for p in items:
         key = p.get("shortCode") or p.get("id")
         ts = p.get("timestamp")
-        if not key or key in seen or not p.get("videoUrl") or not views(p):
+        if not key or key in seen or not p.get("videoUrl") or not views(p) or not on_topic(p):
             continue
         try:
             if ts and datetime.fromisoformat(ts.replace("Z", "+00:00")) < cutoff:
@@ -101,6 +111,56 @@ def rank(items):
 
 def analyse(top):
     import analyze_videos
+    # Google retires model names; GEMINI_MODEL overrides the default without touching the vendored script.
+    # Google retires and overloads model names: try GEMINI_MODEL, then every other "flash" model the key can use,
+    # retrying a busy model (503) after a pause. Gemini can't fetch Instagram's CDN links, so upload directly.
+    import signal
+    import time
+    from google import genai
+
+    def _timeout(*_):
+        raise TimeoutError("analysis took too long")
+    signal.signal(signal.SIGALRM, _timeout)
+    preferred = [m for m in [os.environ.get("GEMINI_MODEL"), "gemini-3.8-flash"] if m]
+    try:
+        names = [m.name.split("/")[-1] for m in genai.Client(api_key=os.environ["GEMINI_API_KEY"]).models.list()]
+        flash = sorted([n for n in names if "flash" in n and "image" not in n and "tts" not in n and "live" not in n], reverse=True)
+        print("gemini models available:", ", ".join(flash[:8]))
+    except Exception as err:
+        flash = []
+        print("could not list models:", str(err)[:120])
+    models = list(dict.fromkeys(preferred + flash))
+    orig_analyse, orig_wait = analyze_videos.analyze_video, analyze_videos.wait_for_processing
+
+    def guarded(client, src, caption):
+        if isinstance(src, str):
+            raise RuntimeError("upload instead of a link")
+        last = None
+        for model in models[:4]:
+            for attempt in range(2):
+                analyze_videos.GEMINI_MODEL = model
+                signal.alarm(240)
+                try:
+                    out = orig_analyse(client, src, caption)
+                    print(f"    model {model} ok")
+                    return out
+                except TimeoutError as err:
+                    last = err
+                    break                      # slow model: try the next one
+                except Exception as err:
+                    last = err
+                    msg = str(err)
+                    if "503" in msg or "UNAVAILABLE" in msg or "429" in msg:
+                        time.sleep(20 * (attempt + 1))
+                        continue               # busy: retry once, then the next model
+                    if "404" in msg or "NOT_FOUND" in msg:
+                        break
+                    raise
+                finally:
+                    signal.alarm(0)
+        raise RuntimeError(f"all models failed: {str(last)[:160]}")
+    analyze_videos.analyze_video = guarded
+    analyze_videos.wait_for_processing = lambda client, file, timeout=150: orig_wait(client, file, 150)
     analyze_videos.VIDEO_ANALYSIS_PROMPT = analyze_videos.VIDEO_ANALYSIS_PROMPT.replace(
         "Focus on ACTIONABLE insights", EXTRA.replace("{", "{{").replace("}", "}}") + "\n\nFocus on ACTIONABLE insights")
     return analyze_videos.analyze_videos(top, "instagram", max_videos=ANALYSE)
