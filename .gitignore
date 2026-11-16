@@ -4,3 +4,4 @@ public/sfx/*.wav
 public/vo/
 .DS_Store
 *.log
+__pycache__/
