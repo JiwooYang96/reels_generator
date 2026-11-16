@@ -21,8 +21,9 @@ Versions are pinned (Remotion 4.0.540, zod 4.6.7, skills in `skills-lock.json`).
 
 1. **Research.** WebSearch the topic's latest news (last 24-48 h). Open at least 2 pages with WebFetch; a snippet is not a source. **Find the real story first**: search the company by name in plain words ("why <company> stock fell today") and go with the reason the coverage gives: earnings or guidance, a deal, an analyst call, a product, regulation, rates or data, occasionally people news. Don't assume a kind of story. Name the concrete event in the hook rather than an abstraction. Check the news hit the market in the window you're covering. Pick one fresh, concrete number and a twist.
 2. **Hook and script.** Most reels are won or lost here. `HOOKS.md` is the channel context, and its "Winning
-   hooks in our niche" section (rewritten every Monday by `scripts/hookmine.py` from the stock/finance reels that
-   beat their accounts' normal views) shows what is working right now: adapt those formulas, never copy a line
+   hooks in our niche" section (rewritten every Monday: `scripts/hookmine.py` collects the stock/finance reels that
+   beat their accounts' normal views as frames + first-8-s transcripts, and the "Weekly hook analysis" Claude task
+   reads them) shows what is working right now: adapt those formulas, never copy a line
    or a claim. The skills are in `.claude/skills` (see `VENDOR.md`).
    - **Hooks:** `hooksmith generate` for 3-5 complete hook systems from different families (number + stake,
      contradiction, belief break, versus flip, viewer callout). Upgrade each with the `viral-hooks` tactics

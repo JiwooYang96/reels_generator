@@ -1,8 +1,9 @@
 name: Hook mining (weekly)
 
-# Sundays 21:13 UTC (Monday 06:13 Seoul), before the weekly review: finds this fortnight's top stock/finance
-# reels, has Gemini read their hooks, and rewrites the "Winning hooks in our niche" section of HOOKS.md that the
-# daily reel task reads. Needs the APIFY_TOKEN and GEMINI_API_KEY secrets.
+# Sundays 21:13 UTC (Monday 06:13 Seoul): finds this fortnight's top stock/finance reels (APIFY_TOKEN) and saves a
+# "hook pack" artifact: frames at 0-3 s + a Whisper transcript of the first 8 s per reel. The Monday 08:07 Seoul
+# Claude task "Weekly hook analysis" reads it and rewrites HOOKS.md's "Winning hooks in our niche".
+# The pack is other creators' work, so it is a 21-day artifact, never committed.
 on:
   schedule:
     - cron: "13 21 * * 0"
@@ -27,9 +28,16 @@ jobs:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          pip install -q "apify-client<2" google-genai requests   # the vendored scripts read run["defaultDatasetId"] (v1 API)
+          sudo apt-get install -y -qq ffmpeg >/dev/null
+          pip install -q "apify-client<2" google-genai requests faster-whisper pillow   # vendored scripts read run["defaultDatasetId"] (v1 API)
           set -o pipefail
           python3 -u scripts/hookmine.py | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Keep the hook pack (21 days)
+        uses: actions/upload-artifact@v4
+        with:
+          name: hookpack
+          path: hookpack/
+          retention-days: 21
       - name: Save
         run: |
           git config user.name "github-actions[bot]"
