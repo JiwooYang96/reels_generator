@@ -1,5 +1,6 @@
 // Validates a plan, prints editor-style problems, and writes the render props + sound events.
 // Usage: npx tsx scripts/prepare.ts plans/<id>.json [--force]
+import {createHash} from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import {checkPlan, planEvents, planSchema, rehookIndex, resolvePlan, totalFrames} from '../src/plan/plan';
@@ -43,6 +44,13 @@ const ill: Record<string, string> = fs.existsSync(illPath) ? JSON.parse(fs.readF
 for (const [i, src] of Object.entries(ill)) {
   const sc = plan.scenes[Number(i)];
   if (sc) (sc.props as Record<string, unknown>).src = src;
+}
+
+// Variety (scripts/variety.py does the same for voice and drawing style): the opening layout alternates by reel.
+const pick = (salt: string, n: number) => Number(BigInt('0x' + createHash('sha1').update(`${salt}:${plan.id}`).digest('hex')) % BigInt(n));
+for (const sc of plan.scenes) {
+  const pr = sc.props as Record<string, unknown>;
+  if (sc.type === 'open.illustration' && !pr.layout) pr.layout = ['stack', 'flip'][pick('layout', 2)];
 }
 
 const scenes = resolvePlan(plan);

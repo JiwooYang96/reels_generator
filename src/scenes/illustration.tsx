@@ -67,6 +67,8 @@ const openIllSchema = z.object({
   sub: z.string().optional(),
   tone: z.enum(['bad', 'good', 'gold']).default('bad'),
   ticker: z.string().regex(/^[A-Z.]{1,6}$/).optional(),
+  // stack: drawing on top, number under it. flip: number on top, drawing under it. Rotated by day when left out.
+  layout: z.enum(['stack', 'flip']).optional(),
 });
 export const openIllustration: SceneDef<z.infer<typeof openIllSchema>> = {
   schema: openIllSchema,
@@ -81,23 +83,29 @@ export const openIllustration: SceneDef<z.infer<typeof openIllSchema>> = {
     const n = pop(f, at, 10);
     const c = toneColor(p.tone);
     const lg = pop(f, 8, 10);
+    // Big: the drawing and the number fill the frame between the caption (top) and the handle (bottom).
+    const flip = p.layout === 'flip';
+    // The handle sits at y 1386 and the caption ends near y 400, so everything lives in between.
+    const sheetTop = flip ? 690 : 395;
+    const size = flip ? 660 : 700;
+    const numTop = flip ? 405 : 1075;
     return (
       <div style={{position: 'absolute', inset: 0, translate: `${sh.x}px ${sh.y}px`, scale: `${punch(f, at)}`}}>
-        <Sheet src={p.src} subject={p.subject} seed={String(p.seed ?? p.subject)} top={400} size={630} />
+        <Sheet src={p.src} subject={p.subject} seed={String(p.seed ?? p.subject)} top={sheetTop} size={size} />
         {!p.src && p.ticker ? (
-          <div style={{position: 'absolute', left: 340, top: 520, opacity: lg, scale: `${interpolate(lg, [0, 1], [1.4, 1])}`}}>
-            <Logo ticker={p.ticker} size={400} />
+          <div style={{position: 'absolute', left: 300, top: sheetTop + 140, opacity: lg, scale: `${interpolate(lg, [0, 1], [1.4, 1])}`}}>
+            <Logo ticker={p.ticker} size={480} />
           </div>
         ) : null}
         {p.src && p.ticker ? (
-          <div style={{position: 'absolute', left: 740, top: 400, opacity: lg, rotate: `${interpolate(lg, [0, 1], [-30, 8])}deg`, scale: `${interpolate(lg, [0, 1], [1.6, 1])}`}}>
-            <Logo ticker={p.ticker} size={130} />
+          <div style={{position: 'absolute', left: 800, top: sheetTop - 20, opacity: lg, rotate: `${interpolate(lg, [0, 1], [-30, 8])}deg`, scale: `${interpolate(lg, [0, 1], [1.6, 1])}`}}>
+            <Logo ticker={p.ticker} size={150} />
           </div>
         ) : null}
-        <Rings at={at} cx={540} cy={1170} color={c} from={120} to={520} />
-        <div style={{position: 'absolute', left: 90, right: 130, top: 1060, textAlign: 'center', fontFamily: FONT}}>
-          <div style={{fontSize: fit(p.big, 820, 210), ...HEAVY, letterSpacing: -6, color: c, scale: `${interpolate(n, [0, 1], [2.2, 1])}`, opacity: n, whiteSpace: 'nowrap'}}>{p.big}</div>
-          {p.sub ? <div style={{fontSize: 44, fontWeight: 800, color: mix(T.paper, 0.95), marginTop: 6, opacity: interpolate(f, [at + 8, at + 16], [0, 1], clamp)}}>{p.sub}</div> : null}
+        <Rings at={at} cx={540} cy={numTop + 110} color={c} from={120} to={520} />
+        <div style={{position: 'absolute', left: 90, right: 90, top: numTop, textAlign: 'center', fontFamily: FONT}}>
+          <div style={{fontSize: fit(p.big, 860, 205), ...HEAVY, letterSpacing: -6, color: c, scale: `${interpolate(n, [0, 1], [2.2, 1])}`, opacity: n, whiteSpace: 'nowrap', lineHeight: 1}}>{p.big}</div>
+          {p.sub ? <div style={{fontSize: 46, fontWeight: 800, color: mix(T.paper, 0.95), marginTop: 10, opacity: interpolate(f, [at + 8, at + 16], [0, 1], clamp)}}>{p.sub}</div> : null}
         </div>
       </div>
     );

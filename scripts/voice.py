@@ -125,9 +125,17 @@ def duration(path):
 
 
 def main(plan_path):
+    global VOICE_NAME
     plan = json.loads(Path(plan_path).read_text())
     vo_json = Path("out") / plan["id"] / "vo.json"
     vo_json.parent.mkdir(parents=True, exist_ok=True)
+    # Kokoro voice rotates by reel (scripts/variety.py) so the channel doesn't sound identical every day;
+    # plan["narrator"] pins one, VOICE_FIXED=1 keeps VOICE_NAME.
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import variety
+    VOICE_NAME = variety.narrator(plan)
+    (vo_json.parent / "narrator.txt").write_text(VOICE_NAME)
+    print(f"narrator: {VOICE_NAME}")
     say = load_engine()
     if say is None:
         vo_json.unlink(missing_ok=True)

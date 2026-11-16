@@ -81,9 +81,12 @@ export const totalFrames = (plan: Plan) => plan.scenes.reduce((n, s) => n + Math
 // Absolute-frame sound events for the whole video: every scene's own events, plus the cut frames.
 export const planEvents = (scenes: ResolvedScene[]): {events: Ev[]; cuts: number[]} => {
   const events: Ev[] = [];
-  scenes.forEach((s) => {
+  scenes.forEach((s, i) => {
+    // The opening plays from 36 frames in (OPEN_HEAD in PlanVideo), so its sounds move with it, never before 0.
+    const head = i === 0 ? 36 : 0;
     for (const e of SCENES[s.type].events(s.props, s.dur)) {
-      events.push(e.kind === 'ticks' ? {...e, at: e.at + s.from, end: e.end + s.from} : {...e, at: e.at + s.from});
+      const at = Math.max(0, e.at - head) + s.from;
+      events.push(e.kind === 'ticks' ? {...e, at, end: Math.max(at + 1, e.end - head + s.from)} : {...e, at});
     }
   });
   return {events, cuts: scenes.slice(1).map((s) => s.from)};
