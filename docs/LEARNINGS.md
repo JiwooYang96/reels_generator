@@ -1,6 +1,6 @@
 # What works on @fivebeforemonday
 
-_Updated 2026-11-17T14:43+00:00 by `scripts/reelanalyze.py` from Instagram insights. The daily task reads this before writing._
+_Updated 2026-11-17T21:20+00:00 by `scripts/reelanalyze.py` from Instagram insights. The daily task reads this before writing._
 
 ## Rules from our own data
 
@@ -22,8 +22,8 @@ _Updated 2026-11-17T14:43+00:00 by `scripts/reelanalyze.py` from Instagram insig
 | Grade | Reel | Views | 3-s hold | Avg watch | Shares/reach | Diagnosis |
 | --- | --- | --- | --- | --- | --- | --- |
 | B 72 | [special-2026-11-15-buffett](https://www.instagram.com/reel/Dfu-OfNFTHY/) | 128 | 45% | 7.6s (24%) | 0.0% | Watched but not shared: the payoff or the reason to send it is weak. |
+| B 60 | [2026-11-16](https://www.instagram.com/reel/Df0-19MCpd4/) | 3 | 33% | 38.0s (112%) | 0.0% | still settling (<48 h) Watched but not shared: the payoff or the reason to send it is weak. |
 | C 48 | [special-2026-11-15-wayne](https://www.instagram.com/reel/DfvC3bpiEao/) | 93 | 40% | 6.1s (20%) | 1.2% | MIDDLE problem: hook held (40%) but the average viewer left at 6.1s, scene 3 (timeline, 6-8s): "Twelve days after co-founding Apple, he quit.". Held well but low reach: distribution (topic, cover, timing), not the hook. |
-| C 42 | [2026-11-14](https://www.instagram.com/reel/Dfut4Y9FHOz/) | 52 | 17% | 9.8s (27%) | 0.0% | HOOK problem: only 17% stayed past 3 s. Check the first frame, the cover and line 1. Watched but not shared: the payoff or the reason to send it is weak. |
-| C 40 | [2026-11-16](https://www.instagram.com/reel/Df0-19MCpd4/) | 3 | 67% | 3.0s (9%) | 0.0% | still settling (<48 h) MIDDLE problem: hook held (67%) but the average viewer left at 3.0s, scene 1 (open.logo, 0-3s): "Nvidia lost 4% before tomorrow's earnings. Your fund too.". Held well but low reach: distribution (topic, cover, timing), not the hook. |
+| C 42 | [2026-11-14](https://www.instagram.com/reel/Dfut4Y9FHOz/) | 52 | 17% | 9.6s (27%) | 0.0% | HOOK problem: only 17% stayed past 3 s. Check the first frame, the cover and line 1. Watched but not shared: the payoff or the reason to send it is weak. |
 | D 38 | [2026-11-14b](https://www.instagram.com/reel/DfuyzhSCE0A/) | 114 | 32% | 7.0s (21%) | 0.0% | HOOK problem: only 32% stayed past 3 s. Check the first frame, the cover and line 1. |
-| D 30 | [special-2026-11-16-netflix](https://www.instagram.com/reel/Dfza0XTnBBG/) | 6 | 0% | 7.9s (26%) | 0.0% | still settling (<48 h) HOOK problem: only 0% stayed past 3 s. Check the first frame, the cover and line 1. Watched but not shared: the payoff or the reason to send it is weak. |
+| D 20 | [special-2026-11-16-netflix](https://www.instagram.com/reel/Dfza0XTnBBG/) | 6 | 0% | 7.1s (23%) | 0.0% | still settling (<48 h) HOOK problem: only 0% stayed past 3 s. Check the first frame, the cover and line 1. |
