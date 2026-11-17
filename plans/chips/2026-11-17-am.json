@@ -64,7 +64,7 @@
         "tone": "bad",
         "sub": "Oct 6 to Nov 3, 2026"
       },
-      "voice": "They've lost three point seven trillion since October.",
+      "voice": "They've lost three point seven trillion dollars since early October.",
       "seconds": 2.8
     },
     {
@@ -146,7 +146,7 @@
           "Fewer chip orders feared"
         ]
       },
-      "voice": "Why? After the midterms, investors feared slower data-centre building.",
+      "voice": "Why? Midterm fears that data-centre building slows.",
       "seconds": 3.4
     },
     {
@@ -171,8 +171,40 @@
         "oldValue": "13,218",
         "newValue": "9,011"
       },
-      "voice": "The index fell from thirteen thousand to nine.",
+      "voice": "The chip index fell from thirteen thousand to nine thousand.",
       "seconds": 2.8
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Biggest"
+        },
+        {
+          "t": "chip"
+        },
+        {
+          "t": "fund:",
+          "br": true
+        },
+        {
+          "t": "−12%.",
+          "key": true
+        }
+      ],
+      "source": "IBTimes, Nov 6 2026",
+      "props": {
+        "label": "iShares Semiconductor ETF (SOXX), Nov 5",
+        "from": 0,
+        "to": 12.15,
+        "decimals": 2,
+        "sign": "−",
+        "suffix": "%",
+        "tone": "bad",
+        "sub": "closed at $131.90"
+      },
+      "voice": "The biggest chip fund dropped twelve percent in a single day.",
+      "seconds": 2.9
     },
     {
       "type": "causeChain",
