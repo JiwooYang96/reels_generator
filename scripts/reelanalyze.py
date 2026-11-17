@@ -177,6 +177,7 @@ FEATURES = {
     "opening layout": lambda m: m.get("openingLayout"),
     "first frame": lambda m: "hook on frame 0" if m.get("firstFrameFix") else "blank frame 0",
     "end card": lambda m: m.get("endCard"),
+    "look": lambda m: m.get("palette"),
     "8 blocks": lambda m: None if "blocks" not in m else ("lead + 2 loops" if m["blocks"].get("lead") and m["blocks"].get("loop2") else "missing blocks"),
     "length": lambda m: None if not m.get("seconds") else "<25s" if m["seconds"] < 25 else "25-35s" if m["seconds"] <= 35 else ">35s",
 }

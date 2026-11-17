@@ -7,7 +7,7 @@ name: Render and queue the daily reel
 on:
   push:
     branches: [main]
-    paths: ["plans/daily/*.json"]
+    paths: ["plans/daily/*.json", "plans/chips/*.json"]
   pull_request:
     paths: ["scripts/**", "src/**", "public/sfx/lib/**", ".github/workflows/render-reel.yml"]
   workflow_dispatch:
@@ -68,11 +68,13 @@ jobs:
         run: |
           PLAN="$INPUT"
           if [ "${{ github.event_name }}" = "pull_request" ]; then PLAN=tests/sound-test.json; fi
-          if [ -z "$PLAN" ]; then PLAN=$(git diff --name-only HEAD~1 HEAD -- 'plans/daily/*.json' | tail -1); fi
+          if [ -z "$PLAN" ]; then PLAN=$(git diff --name-only HEAD~1 HEAD -- 'plans/daily/*.json' 'plans/chips/*.json' | tail -1); fi
           [ -n "$PLAN" ] || { echo "No daily plan in this push."; exit 1; }
           echo "plan=$PLAN" >> "$GITHUB_OUTPUT"
           echo "date=$(basename "$PLAN" .json)" >> "$GITHUB_OUTPUT"
           echo "id=$(node -e "console.log(require('./$PLAN').id)")" >> "$GITHUB_OUTPUT"
+          # Which account: plans/chips/ -> @5beforemonday, queued in reels-chips/ (src/brand.ts ACCOUNTS).
+          case "$PLAN" in plans/chips/*) echo "queue=reels-chips" >> "$GITHUB_OUTPUT";; *) echo "queue=reels" >> "$GITHUB_OUTPUT";; esac
 
       - name: Narrate and render
         env:
@@ -118,24 +120,25 @@ jobs:
           TOKEN: ${{ secrets.FBM_PUSH_TOKEN }}
           PLAN: ${{ steps.plan.outputs.plan }}
           DATE: ${{ steps.plan.outputs.date }}
+          Q: ${{ steps.plan.outputs.queue }}
         run: |
           if [ -z "$TOKEN" ]; then echo "FBM_PUSH_TOKEN is not set; the video is in this run's artifacts."; exit 1; fi
           git clone -q --depth 1 "https://x-access-token:${TOKEN}@github.com/JiwooYang96/FiveBeforeMonday.git" fbm
-          mkdir -p fbm/reels
-          cp out/reel.mp4 "fbm/reels/$DATE.mp4"
+          mkdir -p "fbm/$Q"
+          cp out/reel.mp4 "fbm/$Q/$DATE.mp4"
           # meta: what the reel was made of (hook, scores, scenes, timeline) for the performance analyser.
           python3 scripts/reelmeta.py "$PLAN" > /tmp/meta.json
           node -e '
             const p = require("./" + process.env.PLAN);
             const caption = (p.post && p.post.caption) || p.title || "";
             const trial = {auto: "SS_PERFORMANCE", manual: "MANUAL"}[(p.post && p.post.trial) || ""];
-            const out = {video: `reels/${process.env.DATE}.mp4`, caption, ...(trial ? {trial} : {}), posted: null,
+            const out = {video: `${process.env.Q}/${process.env.DATE}.mp4`, caption, ...(trial ? {trial} : {}), posted: null,
                          meta: JSON.parse(require("fs").readFileSync("/tmp/meta.json", "utf8"))};
-            require("fs").writeFileSync(`fbm/reels/${process.env.DATE}.json`, JSON.stringify(out, null, 2) + "\n");'
+            require("fs").writeFileSync(`fbm/${process.env.Q}/${process.env.DATE}.json`, JSON.stringify(out, null, 2) + "\n");'
           cd fbm
           git config user.name "five-before-monday-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add reels
-          git commit -m "Queue reel $DATE"
-          git push
-          echo "Queued reels/$DATE.mp4 for 6:31pm New York." >> "$GITHUB_STEP_SUMMARY"
+          git add "$Q"
+          git commit -m "Queue reel $Q/$DATE"
+          for i in 1 2 3; do git push && break; git pull -q --rebase; done  # two accounts can queue at once
+          echo "Queued $Q/$DATE.mp4 for 6:31pm New York." >> "$GITHUB_STEP_SUMMARY"
