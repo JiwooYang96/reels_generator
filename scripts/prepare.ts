@@ -1,6 +1,7 @@
 // Validates a plan, prints editor-style problems, and writes the render props + sound events.
 // Usage: npx tsx scripts/prepare.ts plans/<id>.json [--force]
 import {createHash} from 'node:crypto';
+import {accountFor} from '../src/brand';
 import fs from 'node:fs';
 import path from 'node:path';
 import {checkPlan, planEvents, planSchema, rehookIndex, resolvePlan, totalFrames} from '../src/plan/plan';
@@ -13,6 +14,16 @@ if (!file) {
 }
 
 const raw = JSON.parse(fs.readFileSync(file, 'utf8'));
+// Accounts (src/brand.ts): a plan for an account with a palette rotation and no "palette" of its own gets the
+// day's palette, picked from the reel id like the rest of the variety (scripts/variety.py palette() matches).
+const acct = accountFor(raw.handle);
+if (!raw.palette && acct.palettes.length > 1) {
+  // Round-robin by the date in the id (each look gets the same number of days); hash for ids without a date.
+  const m = /(\d{4})-(\d{2})-(\d{2})/.exec(String(raw.id));
+  const day = m ? Math.floor(Date.UTC(+m[1], +m[2] - 1, +m[3]) / 86400000) + 719163 : null; // = Python date.toordinal()
+  const h = day ?? Number(BigInt('0x' + createHash('sha1').update(`palette:${raw.id}`).digest('hex')) % 1000000n);
+  raw.palette = acct.palettes[h % acct.palettes.length];
+}
 const parsed = planSchema.safeParse(raw);
 if (!parsed.success) {
   console.error('PLAN INVALID:');

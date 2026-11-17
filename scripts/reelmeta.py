@@ -67,6 +67,8 @@ def meta(path):
                      if (ROOT / "out" / plan["id"] / "narrator.txt").exists() else variety.narrator(plan)),
         "drawingStyle": next((s["props"].get("style") for s in sc if s["type"] in ("illustration", "open.illustration")
                               and s["props"].get("style")), variety.drawing_style(plan)),
+        "account": plan.get("handle") or "@fivebeforemonday",
+        "palette": variety.palette(plan),
         "openingLayout": sc[0]["props"].get("layout") or (variety.opening_layout(plan) if sc[0]["type"] == "open.illustration" else None),
         "firstFrameFix": True,
         "blocks": reelscore.blocks(plan),

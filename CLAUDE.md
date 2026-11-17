@@ -68,7 +68,8 @@ Versions are pinned (Remotion 4.0.540, zod 4.6.7, skills in `skills-lock.json`).
 
 Every trading day after the New York close a scheduled task makes one reel about the day's hottest move:
 
-1. Find the day's movers: search "stock market today" and the biggest big-tech movers, and confirm each
+1. Find the day's movers: search "stock market today" and the biggest big-tech movers (not chip stocks: they
+   belong to @5beforemonday, see "Second account"), and confirm each
    closing move on Yahoo Finance or a major outlet.
    Then read `docs/LEARNINGS.md` (our own reels' results, updated daily): follow its DO MORE / AVOID rules, and
    if it lists a next experiment and the story is strong, make today an A/B trial-reel test (`docs/LEARNING.md`).
@@ -103,6 +104,24 @@ Every trading day after the New York close a scheduled task makes one reel about
    (`gh run list -R JiwooYang96/reels_generator -w render-reel.yml`) and report what failed.
 6. Write the day's note to FiveBeforeMonday `engine/data/daily/<date>.json` (format in that folder's README)
    and push it to main there, so the weekly issue leads with the right story.
+
+## Second account: @5beforemonday (chips)
+
+A second Instagram account covers **chips and semiconductors**: Nvidia, AMD, Broadcom, TSMC, Micron, Intel,
+Qualcomm, Arm, ASML, Marvell, Applied Materials, Lam Research, SK Hynix, Samsung's chip arm and the AI
+data-centre suppliers around them. @fivebeforemonday keeps the rest of big tech and **no longer covers chip
+stocks**, so the two accounts never tell the same story (two near-identical reels each reached 2 accounts on
+Nov 15; Instagram treats copies as unoriginal).
+
+- Plans go in `plans/chips/<New York date>.json` with `"handle": "@5beforemonday"`. The render job queues them in
+  FiveBeforeMonday `reels-chips/`, and post-reel.yml posts them with the `IG_ACCESS_TOKEN_2` secret.
+- **Looks:** leave `palette` out. The account rotates terminal / gold / editorial / midnight / broadsheet by date
+  (`src/brand.ts` ACCOUNTS, `scripts/variety.py palette()`), one each day, so the analyser can compare them
+  fairly ("look" feature). Drawing style and narrator rotate as usual.
+- Everything else is the same: the 8 blocks, 85+/85+ gate, save card, sources, accuracy and illustration rules.
+  The caption's ask is the same newsletter ("Get this week's five, free every Saturday -> link in bio.").
+- Never post one account's reel, or a near-copy of it, on the other. Different stories, different days.
+- `runs/log.md` rows for this account start with `chips:`.
 
 ## Frame 0 and variety
 
