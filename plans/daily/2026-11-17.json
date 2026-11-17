@@ -1,0 +1,324 @@
+{
+  "id": "daily-2026-11-17",
+  "title": "Salesforce sinks 9.4% a day before Anthropic's IPO",
+  "structure": "countdown (3 reasons)",
+  "hookFamily": "contradiction (no news) + stake",
+  "music": "tense",
+  "post": {
+    "caption": "Salesforce stock fell 9.4% today with no company news, leading a software sell-off a day before Anthropic prices its IPO. ServiceNow, Atlassian and Workday fell too. The odd part: about 45% of Salesforce's $11.3B investment portfolio is its Anthropic stake.\n\nGet this week's five, free every Saturday → link in bio.\n\n#Salesforce #CRM #AnthropicIPO #softwarestocks #stockmarket\n\nSources: Seeking Alpha via TradingView (Nov 17 close), Yahoo Finance / TIKR (Nov 17), TipRanks (Nov 17), Decrypt via Yahoo Finance (IPO terms, Nov 10). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "−9.4%",
+          "key": true
+        },
+        {
+          "t": "before",
+          "br": true
+        },
+        {
+          "t": "the"
+        },
+        {
+          "t": "IPO."
+        }
+      ],
+      "props": {
+        "subject": "a heavy iron anchor plunging into dark water while a bright hot-air balloon rises into the sky above it",
+        "big": "−9.4%",
+        "sub": "no news, a day before Anthropic's IPO",
+        "tone": "bad",
+        "ticker": "CRM"
+      },
+      "voice": "Salesforce lost 9.4% on no news. Your index fund owns it.",
+      "seconds": 3.4
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Up"
+        },
+        {
+          "t": "to"
+        },
+        {
+          "t": "$64.4B",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "raised."
+        }
+      ],
+      "source": "Decrypt via Yahoo Finance, Nov 10 2026",
+      "props": {
+        "label": "Anthropic IPO, top of the range",
+        "from": 0,
+        "to": 64.4,
+        "decimals": 1,
+        "prefix": "$",
+        "suffix": "B",
+        "tone": "gold",
+        "sub": "prices Wed, trades Thu as ANT"
+      },
+      "voice": "Anthropic's IPO prices tomorrow: up to $64.4 billion.",
+      "seconds": 3.2
+    },
+    {
+      "type": "barRank",
+      "caption": [
+        {
+          "t": "But"
+        },
+        {
+          "t": "not"
+        },
+        {
+          "t": "just",
+          "br": true
+        },
+        {
+          "t": "Salesforce.",
+          "key": true
+        }
+      ],
+      "source": "Seeking Alpha via TradingView, Nov 17 2026",
+      "props": {
+        "title": "Software at Tuesday's close",
+        "bars": [
+          {
+            "label": "Salesforce",
+            "value": -9.4,
+            "display": "−9.4%",
+            "highlight": true,
+            "logo": "CRM"
+          },
+          {
+            "label": "ServiceNow",
+            "value": -6.5,
+            "display": "−6.5%",
+            "logo": "NOW"
+          },
+          {
+            "label": "Workday",
+            "value": -5.8,
+            "display": "−5.8%",
+            "logo": "WDAY"
+          },
+          {
+            "label": "Adobe",
+            "value": -4.3,
+            "display": "−4.3%",
+            "logo": "ADBE"
+          }
+        ]
+      },
+      "voice": "But it wasn't just Salesforce. ServiceNow fell 6.5%.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Reason"
+        },
+        {
+          "t": "1:"
+        },
+        {
+          "t": "cash.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Yahoo Finance (TIKR), Nov 17 2026",
+      "props": {
+        "n": 1,
+        "title": "Selling to buy the IPO",
+        "stat": {
+          "value": "−17%",
+          "label": "Salesforce around SpaceX's June IPO"
+        },
+        "steps": [
+          "Funds raise cash for Anthropic",
+          "Seat software sells first"
+        ],
+        "logo": "CRM"
+      },
+      "voice": "Reason one: funds sell software to buy the IPO.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Reason"
+        },
+        {
+          "t": "2:"
+        },
+        {
+          "t": "AI",
+          "br": true
+        },
+        {
+          "t": "agents.",
+          "key": true
+        }
+      ],
+      "source": "Seeking Alpha via TradingView, Nov 17 2026",
+      "props": {
+        "n": 2,
+        "title": "AI agents vs paid seats",
+        "stat": {
+          "value": "−6.5%",
+          "label": "ServiceNow, same fear"
+        },
+        "steps": [
+          "AI agents automate the work",
+          "Fewer seats, less pricing power"
+        ],
+        "logo": "CRM"
+      },
+      "voice": "Reason two: AI agents could shrink paid software seats.",
+      "seconds": 3.3
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "Fewer"
+        },
+        {
+          "t": "seats",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "to"
+        },
+        {
+          "t": "sell."
+        }
+      ],
+      "props": {
+        "subject": "rows of empty office swivel chairs in a quiet open-plan office at dusk, one chair rolling away"
+      },
+      "voice": "Therefore fewer seats could mean less pricing power.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "It"
+        },
+        {
+          "t": "owns",
+          "br": true
+        },
+        {
+          "t": "a"
+        },
+        {
+          "t": "piece.",
+          "key": true
+        }
+      ],
+      "source": "Yahoo Finance (TIKR), Nov 17 2026",
+      "props": {
+        "n": 3,
+        "title": "The strangest part",
+        "stat": {
+          "value": "~45%",
+          "label": "of its $11.3B portfolio is Anthropic"
+        },
+        "steps": [
+          "Salesforce owns Anthropic stock",
+          "Still sold off on the IPO"
+        ],
+        "logo": "CRM"
+      },
+      "voice": "But the strangest part: Salesforce owns Anthropic stock.",
+      "seconds": 3.4
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "−18.9%",
+          "key": true
+        },
+        {
+          "t": "this",
+          "br": true
+        },
+        {
+          "t": "year."
+        }
+      ],
+      "source": "TipRanks, Nov 17 2026",
+      "props": {
+        "label": "Salesforce stock, year to date",
+        "from": 0,
+        "to": 18.9,
+        "decimals": 1,
+        "sign": "−",
+        "suffix": "%",
+        "tone": "bad",
+        "sub": "after Tuesday's 9.4% drop",
+        "logo": "CRM"
+      },
+      "voice": "Today's 9.4% leaves it down 18.9% this year.",
+      "seconds": 3.2
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "Its"
+        },
+        {
+          "t": "answer:",
+          "br": true
+        },
+        {
+          "t": "Dec"
+        },
+        {
+          "t": "2.",
+          "key": true
+        }
+      ],
+      "source": "Yahoo Finance (TIKR), Nov 17 2026",
+      "props": {
+        "day": "WED",
+        "date": "Dec 2",
+        "event": "Salesforce earnings",
+        "note": "Last quarter: 6% organic growth"
+      },
+      "voice": "Salesforce answers with earnings on December 2.",
+      "seconds": 3.0
+    },
+    {
+      "type": "endCard",
+      "seconds": 6,
+      "theme": "light",
+      "props": {
+        "variant": "save",
+        "title": "Salesforce's IPO-eve drop",
+        "items": [
+          "−9.4% Tue, no company news",
+          "Anthropic IPO: up to $64.4B",
+          "Anthropic: ~45% of its $11.3B",
+          "−18.9% YTD; earnings Dec 2"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday."
+    }
+  ]
+}
