@@ -1,0 +1,304 @@
+{
+  "id": "chips-2026-11-17",
+  "handle": "@5beforemonday",
+  "title": "Nvidia beat by $7B. Still 36% under its peak.",
+  "structure": "versus (record quarter vs a stock still down a third)",
+  "hookFamily": "versus flip + stake",
+  "music": "lift",
+  "post": {
+    "caption": "Nvidia stock rose after earnings: fiscal Q3 sales hit a record $115.8B, about $7B above the $108.8B Wall Street expected, and the Q4 guide of $130B beat the $125.3B forecast. Shares rose 3.7% after hours, yet closed Tuesday at $155.46, 36% under their 52-week high.\nThe guide assumes zero China data-centre compute revenue, and gross margin is guided to 71-72% from 74.9%.\n\nGet this week's five, free every Saturday → link in bio.\n\n#nvda #nvidia #semiconductors #nvidiaearnings #chipstocks\n\nSources: Nvidia Q3 FY2027 results (Nov 17, 2026), BigGo Finance (estimates, Nov 17), Yahoo Finance (after-hours prices, Nov 17), The Motley Fool (close and 52-week range, Nov 17), Nasdaq (last year's Q4 report date). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "+$7B"
+        },
+        {
+          "t": "beat.",
+          "key": true
+        },
+        {
+          "t": "Still",
+          "br": true
+        },
+        {
+          "t": "−36%."
+        }
+      ],
+      "props": {
+        "subject": "a shiny gold trophy cup standing in a deep crack in a stone floor",
+        "big": "+$7B",
+        "sub": "Q3 sales beat, Nov 17",
+        "tone": "good",
+        "ticker": "NVDA"
+      },
+      "voice": "$7 billion beat. Your fund's Nvidia: still 36% down.",
+      "seconds": 3.3
+    },
+    {
+      "type": "compareBars",
+      "caption": [
+        {
+          "t": "Next"
+        },
+        {
+          "t": "quarter:",
+          "br": true
+        },
+        {
+          "t": "$130B.",
+          "key": true
+        }
+      ],
+      "source": "Nvidia; BigGo Finance (consensus), Nov 17 2026",
+      "props": {
+        "title": "Q4 revenue: guide vs forecast",
+        "bars": [
+          {
+            "label": "Analysts",
+            "value": 125.3,
+            "display": "$125.3B"
+          },
+          {
+            "label": "Nvidia guide",
+            "value": 130,
+            "display": "$130B",
+            "highlight": true,
+            "logo": "NVDA"
+          }
+        ],
+        "badge": "+$4.7B"
+      },
+      "voice": "Next quarter's guide: a hundred thirty billion, above forecasts.",
+      "seconds": 3.2
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Data"
+        },
+        {
+          "t": "centres:",
+          "br": true
+        },
+        {
+          "t": "+110%.",
+          "key": true
+        }
+      ],
+      "source": "Nvidia Q3 FY2027 results, Nov 17 2026",
+      "props": {
+        "label": "Data-centre revenue, fiscal Q3",
+        "from": 0,
+        "to": 107.6,
+        "decimals": 1,
+        "prefix": "$",
+        "suffix": "B",
+        "tone": "good",
+        "sub": "up 110% from a year ago"
+      },
+      "voice": "Data-centre sales hit a hundred seven point six billion.",
+      "seconds": 3.2
+    },
+    {
+      "type": "scoreboard",
+      "caption": [
+        {
+          "t": "But"
+        },
+        {
+          "t": "shares:",
+          "br": true
+        },
+        {
+          "t": "+3.7%.",
+          "key": true
+        }
+      ],
+      "source": "Yahoo Finance, Nov 17 2026, 5:45pm ET",
+      "props": {
+        "title": "After hours, Nov 17",
+        "rows": [
+          {
+            "name": "Nvidia",
+            "value": "+3.7%",
+            "up": true,
+            "hero": true,
+            "logo": "NVDA"
+          },
+          {
+            "name": "TSMC",
+            "value": "+2%",
+            "up": true,
+            "logo": "TSM"
+          },
+          {
+            "name": "AMD",
+            "value": "+1%",
+            "up": true,
+            "logo": "AMD"
+          },
+          {
+            "name": "Broadcom",
+            "value": "+1%",
+            "up": true,
+            "logo": "AVGO"
+          }
+        ],
+        "footnote": "AMD, Broadcom: \"more than 1%\", as reported"
+      },
+      "voice": "But shares rose only 3.7 percent after hours.",
+      "seconds": 2.9
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "$243"
+        },
+        {
+          "t": "to",
+          "br": true
+        },
+        {
+          "t": "$155.",
+          "key": true
+        }
+      ],
+      "source": "The Motley Fool, Nov 17 2026",
+      "props": {
+        "label": "Nvidia share price",
+        "sublabel": "52-week high vs Tuesday's close",
+        "oldValue": "$243.37",
+        "newValue": "$155.46",
+        "logo": "NVDA"
+      },
+      "voice": "Because it closed at one fifty-five, from two forty-three.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Margins"
+        },
+        {
+          "t": "SLIP.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Nvidia; BigGo Finance, Nov 17 2026",
+      "props": {
+        "n": 1,
+        "title": "Thinner margins ahead",
+        "stat": {
+          "value": "~72%",
+          "label": "Q4 gross margin guide (71-72%), from 74.9%"
+        },
+        "steps": [
+          "Margin guide steps down",
+          "Less profit per sale"
+        ],
+        "logo": "NVDA"
+      },
+      "voice": "One catch: margins guided down to about 72 percent.",
+      "seconds": 3.3
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "China:"
+        },
+        {
+          "t": "$0.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "props": {
+        "subject": "an empty wooden rowing boat drifting away from a stone pier into thick grey fog"
+      },
+      "voice": "But the strangest part: the guide counts zero China.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Zero"
+        },
+        {
+          "t": "CHINA.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "BigGo Finance, Nov 17 2026",
+      "props": {
+        "n": 2,
+        "title": "China left out",
+        "stat": {
+          "value": "$0",
+          "label": "China data-centre compute in the Q4 guide"
+        },
+        "steps": [
+          "China compute assumed zero",
+          "Guide still beats by $4.7B"
+        ],
+        "logo": "NVDA"
+      },
+      "voice": "Even without China, the guide still beats forecasts.",
+      "seconds": 2.9
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "The"
+        },
+        {
+          "t": "$130B",
+          "key": true
+        },
+        {
+          "t": "test:",
+          "br": true
+        },
+        {
+          "t": "Feb."
+        }
+      ],
+      "source": "Nvidia, Nov 17 2026; Nasdaq",
+      "props": {
+        "day": "FEB",
+        "date": "Feb 2027",
+        "event": "Nvidia Q4 results: the $130B test",
+        "note": "Last year's Q4 report came Feb 25",
+        "cta": "Follow @5beforemonday →"
+      },
+      "voice": "Nvidia's next test: that hundred-thirty-billion quarter, in February.",
+      "seconds": 2.9
+    },
+    {
+      "type": "endCard",
+      "theme": "light",
+      "props": {
+        "variant": "save",
+        "title": "Nvidia's beat in 4 numbers",
+        "items": [
+          "$115.8B sales, +$7B vs est.",
+          "Q4 guide $130B vs $125.3B",
+          "+3.7% after hours",
+          "Still 36% under its high"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday.",
+      "seconds": 6
+    }
+  ]
+}
