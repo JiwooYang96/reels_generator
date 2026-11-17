@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T22:32+00:00",
+ "updated": "2026-11-17T14:43+00:00",
  "rules": {
   "doMore": [],
   "avoid": [],
@@ -8,9 +8,9 @@
    "Every scored reel got hook 100, so the hook score can't tell good hooks from bad ones here. Judge hooks by real 3-second hold until the rubric is tightened."
   ],
   "experiments": [
-   "Hook family 'number' has fewer than 2 reels; A/B it against the current best.",
    "Hook family 'stake' has fewer than 2 reels; A/B it against the current best.",
-   "Hook family 'contrarian' has fewer than 2 reels; A/B it against the current best."
+   "Hook family 'contrarian' has fewer than 2 reels; A/B it against the current best.",
+   "Hook family 'versus' has fewer than 2 reels; A/B it against the current best."
   ]
  },
  "patterns": [
