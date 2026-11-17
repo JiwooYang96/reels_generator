@@ -1,0 +1,281 @@
+{
+  "id": "chips-2026-11-17-am",
+  "handle": "@5beforemonday",
+  "palette": "terminal",
+  "title": "Chips' worst day since 2020. Tonight Nvidia reports.",
+  "structure": "escalation -> rehook -> open loop (first chips reel)",
+  "hookFamily": "number + stake",
+  "music": "tense",
+  "post": {
+    "caption": "Chip stocks crashed 12.25% on Nov 5, their biggest one-day drop since March 2020, and have lost about $3.7 trillion in value since early October. Memory got hit hardest: SanDisk fell 22%, Micron 17.5%. Tonight at 5pm ET, Nvidia reports its quarter.\n\nGet this week's five, free every Saturday → link in bio.\n\n#semiconductors #chipstocks #NVDA #Micron #AMD\n\nSources: IBTimes (Nov 6, 2026), Heygotrade citing Yahoo Finance and Investing.com (Nov 2026), Nvidia (earnings call, Nov 17, 2026). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "−12%"
+        },
+        {
+          "t": "in"
+        },
+        {
+          "t": "ONE",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "day."
+        }
+      ],
+      "props": {
+        "subject": "a tall stack of thin round silicon wafers toppling sideways off the edge of a table",
+        "big": "−12.25%",
+        "sub": "chip index, Nov 5",
+        "tone": "bad"
+      },
+      "voice": "Chips' worst day since 2020. Your fund lost too.",
+      "seconds": 3.1
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "−$3.7T",
+          "key": true
+        },
+        {
+          "t": "since",
+          "br": true
+        },
+        {
+          "t": "October."
+        }
+      ],
+      "source": "Heygotrade citing Yahoo Finance, Nov 2026",
+      "props": {
+        "label": "Chip & memory stocks' value lost",
+        "from": 0,
+        "to": 3.7,
+        "decimals": 1,
+        "sign": "−",
+        "prefix": "$",
+        "suffix": "T",
+        "tone": "bad",
+        "sub": "Oct 6 to Nov 3, 2026"
+      },
+      "voice": "They've lost three point seven trillion since October.",
+      "seconds": 2.8
+    },
+    {
+      "type": "barRank",
+      "caption": [
+        {
+          "t": "Memory"
+        },
+        {
+          "t": "hit",
+          "br": true
+        },
+        {
+          "t": "HARDEST.",
+          "key": true
+        }
+      ],
+      "source": "IBTimes, Nov 6 2026",
+      "props": {
+        "title": "Nov 5 close: the biggest chip losers",
+        "bars": [
+          {
+            "label": "SanDisk",
+            "value": -22,
+            "display": "−22%",
+            "highlight": true
+          },
+          {
+            "label": "Micron",
+            "value": -17.46,
+            "display": "−17.5%",
+            "logo": "MU"
+          },
+          {
+            "label": "AMD",
+            "value": -17.3,
+            "display": "−17.3%",
+            "logo": "AMD"
+          },
+          {
+            "label": "Lam Research",
+            "value": -16.36,
+            "display": "−16.4%",
+            "logo": "LRCX"
+          },
+          {
+            "label": "Nvidia",
+            "value": -9.3,
+            "display": "−9.3%",
+            "logo": "NVDA"
+          }
+        ]
+      },
+      "voice": "But memory was hit hardest: SanDisk fell twenty-two percent.",
+      "seconds": 3.1
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Midterm"
+        },
+        {
+          "t": "SHOCK.",
+          "key": true
+        }
+      ],
+      "source": "IBTimes citing UBS, Nov 6 2026",
+      "props": {
+        "n": 1,
+        "title": "The midterm shock",
+        "stat": {
+          "value": "30%",
+          "label": "of planned 2028 US data-centre additions at risk (UBS)"
+        },
+        "steps": [
+          "New Congress, tougher scrutiny",
+          "Data-centre building may slow",
+          "Fewer chip orders feared"
+        ]
+      },
+      "voice": "Why? After the midterms, investors feared slower data-centre building.",
+      "seconds": 3.4
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "13,218"
+        },
+        {
+          "t": "to",
+          "br": true
+        },
+        {
+          "t": "9,011.",
+          "key": true
+        }
+      ],
+      "source": "Investing.com via Heygotrade; IBTimes, Nov 2026",
+      "props": {
+        "label": "Chip index (SOX)",
+        "sublabel": "Oct 6 close vs Nov 5 close",
+        "oldValue": "13,218",
+        "newValue": "9,011"
+      },
+      "voice": "The index fell from thirteen thousand to nine.",
+      "seconds": 2.8
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Phones"
+        },
+        {
+          "t": "MISSED.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "IBTimes, Nov 6 2026",
+      "props": {
+        "n": 2,
+        "title": "Weak phone chips",
+        "stat": {
+          "value": "−9.5%",
+          "label": "Qualcomm, Nov 5"
+        },
+        "steps": [
+          "Phone-chip sales missed",
+          "Arm's outlook underwhelmed",
+          "Selling spread wider"
+        ],
+        "logo": "QCOM"
+      },
+      "voice": "Then weak phone-chip sales at Qualcomm made it worse.",
+      "seconds": 3.4
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "The"
+        },
+        {
+          "t": "test:",
+          "br": true
+        },
+        {
+          "t": "TONIGHT.",
+          "key": true
+        }
+      ],
+      "props": {
+        "subject": "a single brass key lying on dark velvet under a narrow spotlight"
+      },
+      "voice": "But the real test lands tonight, at five Eastern.",
+      "seconds": 3.1
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "After"
+        },
+        {
+          "t": "−12%:",
+          "br": true
+        },
+        {
+          "t": "5pm",
+          "key": true
+        },
+        {
+          "t": "ET."
+        }
+      ],
+      "source": "Nvidia, earnings call Nov 17 2026",
+      "props": {
+        "n": 3,
+        "title": "Nvidia reports, 5pm ET",
+        "stat": {
+          "value": "5pm",
+          "label": "Eastern, Nov 17: fiscal Q3 results"
+        },
+        "steps": [
+          "After a 12% chip crash",
+          "Nvidia's quarter lands",
+          "Every chip stock reads it"
+        ],
+        "logo": "NVDA"
+      },
+      "voice": "After that crash, all chips wait on Nvidia tonight.",
+      "seconds": 3.1
+    },
+    {
+      "type": "endCard",
+      "theme": "light",
+      "props": {
+        "variant": "save",
+        "title": "The chip crash in 4 numbers",
+        "items": [
+          "−12.25% in one day, Nov 5",
+          "−$3.7T lost since Oct 6",
+          "Micron −17.5% on Nov 5",
+          "Nvidia reports 5pm ET"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday.",
+      "seconds": 6
+    }
+  ]
+}
