@@ -1,0 +1,315 @@
+{
+  "id": "chips-2026-11-18",
+  "handle": "@5beforemonday",
+  "title": "Nvidia beat. AMD got the rally.",
+  "structure": "myth vs fact (the beat should lift the beater; the cheap stock should win)",
+  "hookFamily": "contradiction + stake",
+  "music": "lift",
+  "post": {
+    "caption": "AMD stock jumped 5.3% to $530.14 on Wednesday while Nvidia stock fell 2.9% to $150.96, its lowest close since June 2025, the day after Nvidia's record $115.8B quarter.\nSince Nov 6, Nvidia is down 19.1% and AMD up 18.1%, even though Nvidia trades at 9.7x expected earnings and AMD at 33.1x. AMD also closed its $2.9B Taalas inference-chip deal.\n\nGet this week's five, free every Saturday → link in bio.\n\n#amd #nvda #semiconductors #chipstocks #nvidiaearnings\n\nSources: The Motley Fool (closes, Nov 18), Techi (Nov 18), Yahoo Finance (Nov 18), Stock Titan (Nov 18), Blockonomi (Nov 18), Ad-hoc News (Nov 18), MPA Mag (Fed dates, Nov 10). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "NVDA"
+        },
+        {
+          "t": "−2.9%.",
+          "key": true
+        },
+        {
+          "t": "AMD",
+          "br": true
+        },
+        {
+          "t": "+5.3%."
+        }
+      ],
+      "props": {
+        "subject": "a wooden seesaw on a grassy hill, a heavy stack of gold coins pressing one end to the ground while a small red cube rises high on the other end",
+        "big": "+5.3%",
+        "sub": "AMD on Nvidia's day after, Nov 18",
+        "tone": "good",
+        "ticker": "AMD"
+      },
+      "voice": "Your Nvidia beat by nearly $7 billion. AMD won.",
+      "seconds": 3.2
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "Nvidia:"
+        },
+        {
+          "t": "$150.96.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "The Motley Fool; Techi, Nov 18 2026",
+      "props": {
+        "label": "Nvidia share price",
+        "sublabel": "Lowest close since June 2025",
+        "oldValue": "$155.46",
+        "newValue": "$150.96",
+        "logo": "NVDA"
+      },
+      "voice": "Nvidia closed at $150.96, lowest since June 2025.",
+      "seconds": 3.2
+    },
+    {
+      "type": "scoreboard",
+      "caption": [
+        {
+          "t": "But"
+        },
+        {
+          "t": "AMD:",
+          "br": true
+        },
+        {
+          "t": "+5.3%.",
+          "key": true
+        }
+      ],
+      "source": "The Motley Fool, Nov 18 2026 close",
+      "props": {
+        "title": "Close, Wed Nov 18",
+        "rows": [
+          {
+            "name": "AMD",
+            "value": "+5.3%",
+            "up": true,
+            "hero": true,
+            "logo": "AMD"
+          },
+          {
+            "name": "Broadcom",
+            "value": "+3.6%",
+            "up": true,
+            "logo": "AVGO"
+          },
+          {
+            "name": "Nvidia",
+            "value": "−2.9%",
+            "up": false,
+            "logo": "NVDA"
+          }
+        ],
+        "footnote": "AMD $530.14 · Broadcom $354.08 · Nvidia $150.96"
+      },
+      "voice": "But AMD jumped 5.3 percent, to $530.",
+      "seconds": 3.2
+    },
+    {
+      "type": "versus",
+      "caption": [
+        {
+          "t": "−19%"
+        },
+        {
+          "t": "vs",
+          "br": true
+        },
+        {
+          "t": "+18%.",
+          "key": true
+        }
+      ],
+      "source": "Techi, Nov 18 2026",
+      "props": {
+        "left": {
+          "name": "Nvidia",
+          "value": "−19.1%",
+          "caption": "since Nov 6",
+          "logo": "NVDA"
+        },
+        "right": {
+          "name": "AMD",
+          "value": "+18.1%",
+          "caption": "since Nov 6",
+          "logo": "AMD"
+        },
+        "winner": "right"
+      },
+      "voice": "Since November 6, Nvidia fell 19%. AMD rose 18%.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "AI"
+        },
+        {
+          "t": "fears",
+          "br": true
+        },
+        {
+          "t": "EASE.",
+          "key": true
+        }
+      ],
+      "source": "Yahoo Finance; Ad-hoc News, Nov 18 2026",
+      "props": {
+        "n": 1,
+        "title": "Nvidia's beat calms AI fears",
+        "stat": {
+          "value": "$115.8B",
+          "label": "Nvidia Q3 sales, ~$7B over the $109B forecast"
+        },
+        "steps": [
+          "AI-demand worries ease",
+          "AMD rebounds from a 13% slide"
+        ],
+        "logo": "AMD"
+      },
+      "voice": "Reason one: Nvidia's beat eased AI-demand fears, Yahoo reports.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "A"
+        },
+        {
+          "t": "$2.9B",
+          "key": true
+        },
+        {
+          "t": "deal.",
+          "br": true
+        }
+      ],
+      "source": "Yahoo Finance; Ad-hoc News, Nov 18 2026",
+      "props": {
+        "n": 2,
+        "title": "AMD closes the Taalas deal",
+        "stat": {
+          "value": "$2.9B",
+          "label": "Taalas, an AI inference-chip designer"
+        },
+        "steps": [
+          "Inference-chip maker bought",
+          "Joins AMD's Instinct roadmap"
+        ],
+        "logo": "AMD"
+      },
+      "voice": "Reason two: AMD closed its $2.9 billion Taalas deal.",
+      "seconds": 3.2
+    },
+    {
+      "type": "compareBars",
+      "caption": [
+        {
+          "t": "9.7x"
+        },
+        {
+          "t": "vs",
+          "br": true
+        },
+        {
+          "t": "33.1x.",
+          "key": true
+        }
+      ],
+      "source": "Techi, Nov 18 2026 (forward P/E)",
+      "props": {
+        "title": "Price vs expected earnings",
+        "bars": [
+          {
+            "label": "Nvidia",
+            "value": 9.7,
+            "display": "9.7x",
+            "logo": "NVDA"
+          },
+          {
+            "label": "AMD",
+            "value": 33.1,
+            "display": "33.1x",
+            "highlight": true,
+            "logo": "AMD"
+          }
+        ],
+        "badge": "3.4x"
+      },
+      "voice": "But the strangest part: Nvidia is the cheaper stock.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Loss"
+        },
+        {
+          "t": "No. 5.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Yahoo Finance; Motley Fool; Blockonomi, Nov 18 2026",
+      "props": {
+        "n": 3,
+        "title": "Nvidia's own weight",
+        "stat": {
+          "value": "5",
+          "label": "straight daily losses for Nvidia"
+        },
+        "steps": [
+          "CEO exit, China scrutiny",
+          "AMD seen catching up"
+        ],
+        "logo": "NVDA"
+      },
+      "voice": "Reason three: Nvidia's CEO exit and China scrutiny weigh.",
+      "seconds": 3.2
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "Next"
+        },
+        {
+          "t": "test:",
+          "br": true
+        },
+        {
+          "t": "Dec 9.",
+          "key": true
+        }
+      ],
+      "source": "MPA Mag (CME FedWatch), Nov 10 2026",
+      "props": {
+        "day": "DEC",
+        "date": "Dec 9, 2026",
+        "event": "Fed rate decision",
+        "note": "Futures priced a December hike at 100%",
+        "cta": "Follow @5beforemonday →"
+      },
+      "voice": "Nvidia and AMD's next test: the Fed, December 9.",
+      "seconds": 3.2
+    },
+    {
+      "type": "endCard",
+      "theme": "light",
+      "props": {
+        "variant": "save",
+        "title": "Nvidia beat. AMD won.",
+        "items": [
+          "Nvidia −2.9% to $150.96",
+          "AMD +5.3% to $530.14",
+          "Since Nov 6: −19% vs +18%",
+          "P/E: 9.7x vs AMD's 33.1x"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday.",
+      "seconds": 6
+    }
+  ]
+}
