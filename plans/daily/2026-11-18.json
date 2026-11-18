@@ -1,0 +1,298 @@
+{
+  "id": "daily-2026-11-18",
+  "title": "Amazon's $18B Anthropic bet, now $289B at the IPO price",
+  "structure": "what-happens-next",
+  "hookFamily": "number-shock / bet payoff + stake",
+  "music": "lift",
+  "post": {
+    "caption": "Amazon stock and the Anthropic IPO: Anthropic priced at $83 a share tonight, above its $70-78 range, and starts trading Thursday as ANT. At $83, Amazon's roughly $18B investment is worth about $289B, counting shares due to it later (24/7 Wall St. math on Reuters figures). Alphabet's stake: about $147B.\n\nThe full why, with charts, lands Sunday for members → link in bio.\n\n#Amazon #AMZN #AnthropicIPO #IPO #stockmarket\n\nSources: Reuters via MarketScreener (IPO price, Nov 18), 24/7 Wall St. via Yahoo Finance (stake values), Motley Fool (AMZN midday move, Nov 18), Forbes (stakes, Nov 18), Benzinga via TradingView (AWS pledge), Yahoo Finance (IPO history, Nov 18). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "$18B"
+        },
+        {
+          "t": "in,"
+        },
+        {
+          "t": "$289B",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "now."
+        }
+      ],
+      "props": {
+        "subject": "a tiny acorn on a wooden table beside a towering oak tree whose leaves are gold coins",
+        "big": "$289B",
+        "sub": "Amazon's Anthropic stake at $83",
+        "tone": "good",
+        "ticker": "AMZN"
+      },
+      "voice": "Amazon's $18 billion became $289 billion. Your fund's still in.",
+      "seconds": 3.4
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "Priced"
+        },
+        {
+          "t": "at"
+        },
+        {
+          "t": "$83.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Reuters via MarketScreener, Nov 18 2026",
+      "props": {
+        "label": "Anthropic IPO price per share",
+        "sublabel": "top of range → final price",
+        "oldValue": "$78",
+        "newValue": "$83"
+      },
+      "voice": "Anthropic's IPO priced at $83, above the $78 top.",
+      "seconds": 3.2
+    },
+    {
+      "type": "versus",
+      "caption": [
+        {
+          "t": "But"
+        },
+        {
+          "t": "Google"
+        },
+        {
+          "t": "holds",
+          "br": true
+        },
+        {
+          "t": "$147B.",
+          "key": true
+        }
+      ],
+      "source": "24/7 Wall St. via Yahoo Finance, stakes at $83",
+      "props": {
+        "left": {
+          "name": "Amazon",
+          "value": "$289B",
+          "caption": "~$18B invested",
+          "logo": "AMZN"
+        },
+        "right": {
+          "name": "Alphabet",
+          "value": "$147B",
+          "caption": "~$33B invested",
+          "logo": "GOOGL"
+        },
+        "winner": "left"
+      },
+      "voice": "But Google's stake is worth $147 billion too.",
+      "seconds": 3.3
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Amazon"
+        },
+        {
+          "t": "+2.8%",
+          "key": true
+        },
+        {
+          "t": "by",
+          "br": true
+        },
+        {
+          "t": "noon."
+        }
+      ],
+      "source": "Motley Fool, Nov 18 2026, 12:09 pm ET",
+      "props": {
+        "label": "Amazon stock, Wednesday midday",
+        "from": 0,
+        "to": 2.8,
+        "decimals": 1,
+        "sign": "+",
+        "suffix": "%",
+        "tone": "good",
+        "sub": "$265.08 at 12:09 pm ET",
+        "logo": "AMZN"
+      },
+      "voice": "Therefore Amazon stock was up 2.8% by midday.",
+      "seconds": 3.0
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Reason"
+        },
+        {
+          "t": "1:"
+        },
+        {
+          "t": "15%",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "owner."
+        }
+      ],
+      "source": "Forbes / Motley Fool, Nov 18 2026",
+      "props": {
+        "n": 1,
+        "title": "A 15% owner",
+        "stat": {
+          "value": "~15%",
+          "label": "Amazon's estimated stake"
+        },
+        "steps": [
+          "$8B of notes, 2023-24",
+          "Now 1.92B shares at $83"
+        ],
+        "logo": "AMZN"
+      },
+      "voice": "Reason one: Amazon owns about 15% of Anthropic.",
+      "seconds": 3.0
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Reason"
+        },
+        {
+          "t": "2:"
+        },
+        {
+          "t": "cloud",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "bills."
+        }
+      ],
+      "source": "Benzinga via TradingView, Nov 18 2026",
+      "props": {
+        "n": 2,
+        "title": "Its cloud customer too",
+        "stat": {
+          "value": "$110B+",
+          "label": "AWS purchases pledged to 2036"
+        },
+        "steps": [
+          "Anthropic runs on Amazon's cloud",
+          "Pledged through April 2036"
+        ],
+        "logo": "AMZN"
+      },
+      "voice": "Two: Anthropic pledged at least $110 billion to AWS.",
+      "seconds": 3.3
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "12"
+        },
+        {
+          "t": "of"
+        },
+        {
+          "t": "12",
+          "key": true
+        },
+        {
+          "t": "slipped.",
+          "br": true
+        }
+      ],
+      "source": "Yahoo Finance, Nov 18 2026",
+      "props": {
+        "label": "Biggest US IPOs since 2008 that fell below their first trade within a year",
+        "from": 0,
+        "to": 12,
+        "suffix": " of 12",
+        "tone": "bad",
+        "sub": "SpaceX, SK hynix, Cerebras: below first trades"
+      },
+      "voice": "But the twelve biggest IPOs since 2008 all slipped.",
+      "seconds": 3.1
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "Below"
+        },
+        {
+          "t": "day"
+        },
+        {
+          "t": "one.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "props": {
+        "subject": "a bright paper hot-air balloon slowly drifting down toward city rooftops at dusk"
+      },
+      "voice": "Each fell below its first trade within a year.",
+      "seconds": 3.0
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "Thursday:"
+        },
+        {
+          "t": "ANT",
+          "key": true
+        },
+        {
+          "t": "trades.",
+          "br": true
+        }
+      ],
+      "props": {
+        "day": "THU",
+        "date": "Nov 19",
+        "event": "Anthropic trades as ANT",
+        "note": "Amazon's stake at $83: about $289B",
+        "cta": "On the Nasdaq · first trade Thursday"
+      },
+      "voice": "Thursday ANT trades. Amazon's $289 billion rides on it.",
+      "seconds": 3.4
+    },
+    {
+      "type": "endCard",
+      "seconds": 6,
+      "theme": "light",
+      "caption": [],
+      "props": {
+        "variant": "save",
+        "title": "Amazon's Anthropic jackpot",
+        "items": [
+          "$18B in → ~$289B at $83",
+          "IPO priced $83, above $78",
+          "Google's stake: ~$147B",
+          "12/12 big IPOs slipped later"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday."
+    }
+  ]
+}
