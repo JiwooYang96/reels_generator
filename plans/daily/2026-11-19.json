@@ -1,0 +1,300 @@
+{
+  "id": "daily-2026-11-19",
+  "title": "Anthropic +17% on day one, its owners Amazon and Alphabet fell",
+  "structure": "timeline (IPO price -> open -> close -> owners' close)",
+  "hookFamily": "versus flip + stake",
+  "music": "tense",
+  "post": {
+    "caption": "Anthropic stock's first day: the biggest IPO ever closed at $97.17, up 17% from its $83 price, after opening up 34%. Its two biggest outside owners fell: Amazon −3.9%, Alphabet −3.5%, as the S&P 500 lost 2% for a sixth straight drop.\n\nGet this week's five, free every Saturday → link in bio.\n\n#Anthropic #AnthropicIPO #Amazon #Alphabet #stockmarket\n\nSources: Yahoo Finance live blog (closes, open, first-minute buying, Nov 19), Motley Fool (index closes, Alphabet close, Nov 19), Forbes (stake sizes, record IPO, Nov 19), CNBC via Stock Titan (proxy selling, Nov 19), Reuters via Korea Times (December hike odds, Nov 19). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "+17%",
+          "key": true
+        },
+        {
+          "t": "debut."
+        },
+        {
+          "t": "Owners",
+          "br": true
+        },
+        {
+          "t": "fell."
+        }
+      ],
+      "props": {
+        "subject": "a small paper rocket shooting upward over the sea while two heavy iron anchors sink below the waves",
+        "big": "+17%",
+        "sub": "Anthropic's first close vs its $83 IPO price",
+        "tone": "good"
+      },
+      "voice": "Anthropic's IPO rose 17%. But your index fund didn't.",
+      "seconds": 3.4
+    },
+    {
+      "type": "scoreboard",
+      "caption": [
+        {
+          "t": "Amazon"
+        },
+        {
+          "t": "−3.9%,",
+          "key": true
+        },
+        {
+          "t": "Google",
+          "br": true
+        },
+        {
+          "t": "−3.5%."
+        }
+      ],
+      "source": "Yahoo Finance / Motley Fool, Nov 19 2026 close",
+      "props": {
+        "title": "Thursday's close",
+        "rows": [
+          {
+            "name": "Anthropic (ANT)",
+            "value": "+17.1%",
+            "up": true
+          },
+          {
+            "name": "Amazon",
+            "value": "−3.87%",
+            "up": false,
+            "hero": true,
+            "logo": "AMZN"
+          },
+          {
+            "name": "Alphabet",
+            "value": "−3.46%",
+            "up": false,
+            "logo": "GOOGL"
+          },
+          {
+            "name": "S&P 500",
+            "value": "−2.02%",
+            "up": false
+          }
+        ],
+        "footnote": "ANT vs $83 IPO price · others vs Wednesday close"
+      },
+      "voice": "Amazon fell 3.9%, Alphabet 3.5%. They're its biggest owners.",
+      "seconds": 3.3
+    },
+    {
+      "type": "timeline",
+      "caption": [
+        {
+          "t": "Opened"
+        },
+        {
+          "t": "at"
+        },
+        {
+          "t": "$111.50.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Yahoo Finance, Nov 19 2026",
+      "props": {
+        "items": [
+          {
+            "label": "IPO",
+            "value": "$83"
+          },
+          {
+            "label": "OPEN",
+            "value": "$111.50"
+          },
+          {
+            "label": "LOW",
+            "value": "$92.72"
+          },
+          {
+            "label": "CLOSE",
+            "value": "$97.17"
+          }
+        ],
+        "note": "Opening trade, 11:48 am ET: $12B of stock",
+        "noteHighlight": "$12B"
+      },
+      "voice": "Priced at $83, it opened at $111.50.",
+      "seconds": 3.0
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "But"
+        },
+        {
+          "t": "half"
+        },
+        {
+          "t": "the",
+          "br": true
+        },
+        {
+          "t": "pop",
+          "key": true
+        },
+        {
+          "t": "faded."
+        }
+      ],
+      "source": "Yahoo Finance, Nov 19 2026",
+      "props": {
+        "label": "Anthropic vs its $83 IPO price",
+        "from": 34.3,
+        "to": 17.1,
+        "decimals": 1,
+        "sign": "+",
+        "suffix": "%",
+        "tone": "bad",
+        "sub": "+34.3% at the open → +17.1% at the close"
+      },
+      "voice": "But by the close, half the pop was gone.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Reason"
+        },
+        {
+          "t": "1:"
+        },
+        {
+          "t": "proxies",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "sold."
+        }
+      ],
+      "source": "CNBC via Stock Titan / Forbes, Nov 19 2026",
+      "props": {
+        "n": 1,
+        "title": "The proxies got sold",
+        "stat": {
+          "value": "$159B",
+          "label": "Amazon's stake at $83 (Forbes)"
+        },
+        "steps": [
+          "Seen as Anthropic proxies",
+          "Profits taken as ANT traded"
+        ],
+        "logo": "AMZN"
+      },
+      "voice": "CNBC reports investors took profits in the Anthropic proxies.",
+      "seconds": 3.3
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "Worst"
+        },
+        {
+          "t": "start"
+        },
+        {
+          "t": "since",
+          "br": true
+        },
+        {
+          "t": "2008.",
+          "key": true
+        }
+      ],
+      "props": {
+        "subject": "a champagne cork flying high into the air while the tall bottle tips over and spills across a white tablecloth"
+      },
+      "voice": "No big IPO since 2008 dropped this fast.",
+      "seconds": 3.4
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Then"
+        },
+        {
+          "t": "rates",
+          "key": true
+        },
+        {
+          "t": "hit.",
+          "br": true
+        }
+      ],
+      "source": "Reuters via Korea Times / Yahoo Finance, Nov 19 2026",
+      "props": {
+        "n": 2,
+        "title": "A rate hike back in play",
+        "stat": {
+          "value": "5.05%",
+          "label": "10-year Treasury yield"
+        },
+        "steps": [
+          "December hike seen near-certain",
+          "Dow fell 1,101 points"
+        ]
+      },
+      "voice": "That's when rates hit: a December hike looks near-certain.",
+      "seconds": 3.4
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "17%"
+        },
+        {
+          "t": "meets"
+        },
+        {
+          "t": "the",
+          "br": true
+        },
+        {
+          "t": "Fed.",
+          "key": true
+        }
+      ],
+      "props": {
+        "day": "WED",
+        "date": "Dec 9",
+        "event": "Fed rate decision",
+        "note": "ANT +17%. S&P 500: six straight losses."
+      },
+      "voice": "Anthropic's 17% meets the Fed on December ninth.",
+      "seconds": 3.3
+    },
+    {
+      "type": "endCard",
+      "seconds": 6,
+      "theme": "light",
+      "caption": [],
+      "props": {
+        "variant": "save",
+        "title": "Anthropic up, its owners down",
+        "items": [
+          "IPO $83 → opened $111.50",
+          "Closed $97.17, +17.1%",
+          "Amazon −3.9%, Alphabet −3.5%",
+          "Next: Fed decision Dec 9"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday."
+    }
+  ]
+}
