@@ -1,6 +1,6 @@
 # What works on @fivebeforemonday
 
-_Updated 2026-11-18T20:54+00:00 by `scripts/reelanalyze.py` from Instagram insights. The daily task reads this before writing._
+_Updated 2026-11-19T20:58+00:00 by `scripts/reelanalyze.py` from Instagram insights. The daily task reads this before writing._
 
 ## Rules from our own data
 
@@ -8,7 +8,7 @@ _Updated 2026-11-18T20:54+00:00 by `scripts/reelanalyze.py` from Instagram insig
 
 ## Notes
 
-- 5 settled reels so far: patterns become rules at 8+. Until then, keep rotating.
+- 6 settled reels so far: patterns become rules at 8+. Until then, keep rotating.
 - Every scored reel got hook 100, so the hook score can't tell good hooks from bad ones here. Judge hooks by real 3-second hold until the rubric is tightened.
 
 ## Next experiments (A/B as trial reels, see docs/LEARNING.md)
@@ -21,10 +21,11 @@ _Updated 2026-11-18T20:54+00:00 by `scripts/reelanalyze.py` from Instagram insig
 
 | Grade | Reel | Views | 3-s hold | Avg watch | Shares/reach | Diagnosis |
 | --- | --- | --- | --- | --- | --- | --- |
-| A 75 | [special-2026-11-15-buffett](https://www.instagram.com/reel/Dfu-OfNFTHY/) | 128 | 45% | 7.6s (24%) | 0.0% | Watched but not shared: the payoff or the reason to send it is weak. |
-| B 64 | [2026-11-16](https://www.instagram.com/reel/Df0-19MCpd4/) | 3 | 33% | 38.0s (112%) | 0.0% | still settling (<48 h) Watched but not shared: the payoff or the reason to send it is weak. |
-| C 52 | [2026-11-14](https://www.instagram.com/reel/Dfut4Y9FHOz/) | 52 | 17% | 9.6s (27%) | 0.0% | HOOK problem: only 17% stayed past 3 s. Check the first frame, the cover and line 1. Watched but not shared: the payoff or the reason to send it is weak. |
-| C 52 | [special-2026-11-15-wayne](https://www.instagram.com/reel/DfvC3bpiEao/) | 93 | 40% | 6.1s (20%) | 1.2% | MIDDLE problem: hook held (40%) but the average viewer left at 6.1s, scene 3 (timeline, 6-8s): "Twelve days after co-founding Apple, he quit.". |
-| C 42 | [2026-11-14b](https://www.instagram.com/reel/DfuyzhSCE0A/) | 115 | 32% | 6.9s (21%) | 0.0% | MIDDLE problem: hook held (32%) but the average viewer left at 6.9s, scene 3 (causeChain, 5-8s): "First: US officials reportedly suspect she spied for China.". |
-| C 41 | [2026-11-17](https://www.instagram.com/reel/Df3L0vXj7bY/) | 4 | 100% | 6.4s (18%) | 0.0% | still settling (<48 h) MIDDLE problem: hook held (100%) but the average viewer left at 6.4s, scene 2 (counter, 4-8s): "Anthropic's IPO prices tomorrow: up to $64.4 billion.". Held well but low reach: distribution (topic, cover, timing), not the hook. |
-| D 28 | [special-2026-11-16-netflix](https://www.instagram.com/reel/Dfza0XTnBBG/) | 6 | 0% | 7.1s (23%) | 0.0% | HOOK problem: only 0% stayed past 3 s. Check the first frame, the cover and line 1. |
+| B 71 | [special-2026-11-15-buffett](https://www.instagram.com/reel/Dfu-OfNFTHY/) | 128 | 45% | 7.6s (24%) | 0.0% | Watched but not shared: the payoff or the reason to send it is weak. |
+| B 61 | [2026-11-16](https://www.instagram.com/reel/Df0-19MCpd4/) | 3 | 33% | 33.9s (100%) | 0.0% | Watched but not shared: the payoff or the reason to send it is weak. Held well but low reach: distribution (topic, cover, timing), not the hook. |
+| B 55 | [special-2026-11-15-wayne](https://www.instagram.com/reel/DfvC3bpiEao/) | 93 | 40% | 6.1s (20%) | 1.2% | MIDDLE problem: hook held (40%) but the average viewer left at 6.1s, scene 3 (timeline, 6-8s): "Twelve days after co-founding Apple, he quit.". Winner: high reach and shared. |
+| C 47 | [2026-11-14](https://www.instagram.com/reel/Dfut4Y9FHOz/) | 52 | 17% | 9.6s (27%) | 0.0% | HOOK problem: only 17% stayed past 3 s. Check the first frame, the cover and line 1. Watched but not shared: the payoff or the reason to send it is weak. |
+| C 44 | [2026-11-17](https://www.instagram.com/reel/Df3L0vXj7bY/) | 4 | 100% | 5.5s (15%) | 0.0% | still settling (<48 h) MIDDLE problem: hook held (100%) but the average viewer left at 5.5s, scene 2 (counter, 4-8s): "Anthropic's IPO prices tomorrow: up to $64.4 billion.". Held well but low reach: distribution (topic, cover, timing), not the hook. |
+| C 40 | [2026-11-18](https://www.instagram.com/reel/Df5wpo8CpXc/) | 26 | 45% | 6.8s (17%) | 0.0% | still settling (<48 h) MIDDLE problem: hook held (45%) but the average viewer left at 6.8s, scene 2 (priceSlam, 5-10s): "Anthropic's IPO priced at $83, above the $78 top.". Held well but low reach: distribution (topic, cover, timing), not the hook. |
+| D 39 | [2026-11-14b](https://www.instagram.com/reel/DfuyzhSCE0A/) | 115 | 32% | 6.9s (21%) | 0.0% | HOOK problem: only 32% stayed past 3 s. Check the first frame, the cover and line 1. |
+| D 27 | [special-2026-11-16-netflix](https://www.instagram.com/reel/Dfza0XTnBBG/) | 6 | 0% | 7.1s (23%) | 0.0% | HOOK problem: only 0% stayed past 3 s. Check the first frame, the cover and line 1. |
