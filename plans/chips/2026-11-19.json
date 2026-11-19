@@ -60,7 +60,7 @@
         "newValue": "$489.19",
         "logo": "AMD"
       },
-      "voice": "AMD: $530 yesterday, about $489 late today.",
+      "voice": "Down to about $489 late today.",
       "seconds": 3.2
     },
     {
@@ -118,7 +118,7 @@
         ],
         "logo": "AMD"
       },
-      "voice": "It says blacklisted IEIT kept using newer AMD firmware.",
+      "voice": "It says blacklisted IEIT used AMD firmware.",
       "seconds": 3.2
     },
     {
@@ -173,7 +173,7 @@
         ],
         "logo": "AMD"
       },
-      "voice": "Hunterbrook counts $7.75 billion billed to China: 22%.",
+      "voice": "22% of AMD's sales are billed to China.",
       "seconds": 3.2
     },
     {
@@ -231,7 +231,7 @@
         ],
         "logo": "AMD"
       },
-      "voice": "Singapore: $4.28 billion of sales. New US licenses today.",
+      "voice": "Singapore AI chips now need US licenses.",
       "seconds": 3.2
     },
     {
@@ -262,7 +262,7 @@
         },
         "winner": "none"
       },
-      "voice": "AMD denies wrongdoing. Yesterday's 5% rally is gone anyway.",
+      "voice": "AMD denies it. Yesterday's 5% rally is gone.",
       "seconds": 3.2
     },
     {
