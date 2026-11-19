@@ -1,0 +1,308 @@
+{
+  "id": "chips-2026-11-19",
+  "handle": "@5beforemonday",
+  "title": "AMD fell on a short seller's China report",
+  "structure": "build-up (3 questions: the firmware claim, the China sales, today's rule)",
+  "hookFamily": "belief break + stake",
+  "music": "tense",
+  "post": {
+    "caption": "AMD stock fell about 7.7% on Thursday, from $530.14 to around $489 late in the day, after short seller Hunterbrook alleged that blacklisted Chinese server maker IEIT Systems kept using newer AMD firmware. Hunterbrook is short AMD; AMD says the report misrepresents its business and that it complies with US export law.\nThe report puts AMD's 2025 China and Hong Kong billings at $7.75B (22% of sales), and a US license rule covering Singapore took effect the same day.\n\nGet this week's five, free every Saturday → link in bio.\n\n#amd #semiconductors #chipstocks #exportcontrols\n\nSources: Reuters via MarketScreener (Nov 19), Decrypt (Nov 19), The Motley Fool (Nov 19), 24/7 Wall St. (Nov 19), OfficeChai (Nov 19). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "−7.7%",
+          "key": true
+        },
+        {
+          "t": "on"
+        },
+        {
+          "t": "one",
+          "br": true
+        },
+        {
+          "t": "report."
+        }
+      ],
+      "props": {
+        "subject": "a sharp folded paper dart piercing the side of a tall stack of red poker chips, the chips spilling across a dark wooden table",
+        "big": "−7.7%",
+        "sub": "AMD in late trading, Nov 19",
+        "tone": "bad",
+        "ticker": "AMD"
+      },
+      "voice": "No earnings. Your AMD still lost nearly 8%.",
+      "seconds": 3.2
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "$530"
+        },
+        {
+          "t": "to"
+        },
+        {
+          "t": "$489.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Reuters via MarketScreener; Decrypt, Nov 19 2026 (late trading)",
+      "props": {
+        "label": "AMD share price",
+        "sublabel": "Wed close vs late Thursday trading",
+        "oldValue": "$530.14",
+        "newValue": "$489.19",
+        "logo": "AMD"
+      },
+      "voice": "AMD: $530 yesterday, about $489 late today.",
+      "seconds": 3.2
+    },
+    {
+      "type": "chapters",
+      "caption": [
+        {
+          "t": "But"
+        },
+        {
+          "t": "it's"
+        },
+        {
+          "t": "SHORT.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "props": {
+        "items": [
+          "The firmware claim",
+          "$7.75B of China sales",
+          "Today's new rule"
+        ],
+        "unlocked": 0
+      },
+      "voice": "But the report's author, Hunterbrook, is betting against AMD.",
+      "seconds": 3.0
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "6+",
+          "key": true
+        },
+        {
+          "t": "firmware"
+        },
+        {
+          "t": "versions.",
+          "br": true
+        }
+      ],
+      "source": "The Motley Fool; OfficeChai, Nov 19 2026",
+      "props": {
+        "n": 1,
+        "title": "The firmware claim",
+        "stat": {
+          "value": "6+",
+          "label": "newer AMD firmware versions in IEIT updates, per Hunterbrook"
+        },
+        "steps": [
+          "IEIT blacklisted March 2025",
+          "Report: AMD code kept coming"
+        ],
+        "logo": "AMD"
+      },
+      "voice": "It says blacklisted IEIT kept using newer AMD firmware.",
+      "seconds": 3.2
+    },
+    {
+      "type": "chapters",
+      "caption": [
+        {
+          "t": "Then"
+        },
+        {
+          "t": "No. 2.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "props": {
+        "items": [
+          "The firmware claim",
+          "$7.75B of China sales",
+          "Today's new rule"
+        ],
+        "unlocked": 1
+      },
+      "voice": "Then it turned to AMD's China sales.",
+      "seconds": 2.4
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "$7.75B",
+          "key": true
+        },
+        {
+          "t": "from"
+        },
+        {
+          "t": "China.",
+          "br": true
+        }
+      ],
+      "source": "The Motley Fool (AMD filings, per Hunterbrook), Nov 19 2026",
+      "props": {
+        "n": 2,
+        "title": "The China sales",
+        "stat": {
+          "value": "$7.75B",
+          "label": "AMD 2025 sales billed to China and Hong Kong"
+        },
+        "steps": [
+          "Report cites AMD's filings",
+          "22% of all 2025 sales"
+        ],
+        "logo": "AMD"
+      },
+      "voice": "Hunterbrook counts $7.75 billion billed to China: 22%.",
+      "seconds": 3.2
+    },
+    {
+      "type": "chapters",
+      "caption": [
+        {
+          "t": "But"
+        },
+        {
+          "t": "No. 3:"
+        },
+        {
+          "t": "TODAY.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "props": {
+        "items": [
+          "The firmware claim",
+          "$7.75B of China sales",
+          "Today's new rule"
+        ],
+        "unlocked": 2
+      },
+      "voice": "But the third hit started today.",
+      "seconds": 2.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "$4.28B",
+          "key": true
+        },
+        {
+          "t": "in"
+        },
+        {
+          "t": "Singapore.",
+          "br": true
+        }
+      ],
+      "source": "The Motley Fool; OfficeChai, Nov 19 2026",
+      "props": {
+        "n": 3,
+        "title": "Today's new rule",
+        "stat": {
+          "value": "$4.28B",
+          "label": "AMD 2025 sales billed to Singapore"
+        },
+        "steps": [
+          "US license rule starts Nov 19",
+          "AI chips to Singapore need one"
+        ],
+        "logo": "AMD"
+      },
+      "voice": "Singapore: $4.28 billion of sales. New US licenses today.",
+      "seconds": 3.2
+    },
+    {
+      "type": "versus",
+      "caption": [
+        {
+          "t": "+5.3%"
+        },
+        {
+          "t": "gone.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "The Motley Fool (Nov 18 close); Reuters via MarketScreener, Nov 19 2026",
+      "props": {
+        "left": {
+          "name": "Wed Nov 18",
+          "value": "+5.3%",
+          "caption": "close, $530.14",
+          "logo": "AMD"
+        },
+        "right": {
+          "name": "Thu Nov 19",
+          "value": "−7.7%",
+          "caption": "late trading",
+          "logo": "AMD"
+        },
+        "winner": "none"
+      },
+      "voice": "AMD denies wrongdoing. Yesterday's 5% rally is gone anyway.",
+      "seconds": 3.2
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "Next:"
+        },
+        {
+          "t": "Jan 10.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "OfficeChai, Nov 19 2026",
+      "props": {
+        "day": "JAN",
+        "date": "Jan 10, 2027",
+        "event": "Paused US affiliates rule can return",
+        "note": "Blacklist reach to 50%-owned affiliates",
+        "cta": "Follow @5beforemonday →"
+      },
+      "voice": "AMD watch: January 10, when a blacklist pause ends.",
+      "seconds": 3.2
+    },
+    {
+      "type": "endCard",
+      "theme": "light",
+      "props": {
+        "variant": "save",
+        "title": "AMD's short-report day",
+        "items": [
+          "AMD −7.7%, $530 to $489",
+          "Claim: IEIT used AMD firmware",
+          "$7.75B of sales: China/HK",
+          "Next: Jan 10 rule date"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday.",
+      "seconds": 6
+    }
+  ]
+}
