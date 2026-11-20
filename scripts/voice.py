@@ -128,7 +128,7 @@ def duration(path):
 # "hook": true) 2 s, every other story beat 3.5 s.
 # A clip that runs over is sped up (ffmpeg atempo, pitch kept) by at most MAX_TEMPO; past that the gate in
 # reelscore.py refuses the reel so the line gets rewritten shorter.
-OPEN_CAP, STAKE_CAP, BEAT_CAP, MAX_TEMPO = 1.35, 1.75, 3.25, 1.18
+OPEN_CAP, STAKE_CAP, BEAT_CAP, MAX_TEMPO = 1.3, 1.7, 3.2, 1.18
 
 
 def louder(path):

@@ -175,7 +175,7 @@ export const checkPlan = (plan: Plan): string[] => {
   const lastText = JSON.stringify(last.props) + JSON.stringify(last.caption);
   const defaultsToHandle = (last.type === 'calendarCta' && !('cta' in last.props)) || last.type === 'endCard';
   if (!defaultsToHandle && !lastText.includes(plan.handle)) problems.push(`last scene: end with a follow CTA that names ${plan.handle}`);
-  // Daily reels (they carry an Instagram post) close on the promo end card and run 28-45 s.
+  // Daily reels (they carry an Instagram post) close on the end card and run 22-42 s as planned (narration then sets it).
   if (plan.post) {
     if (last.type !== 'endCard') problems.push('daily reels must end with an endCard scene (see docs/STYLE.md "End card")');
     if (plan.scenes.filter((s) => s.type === 'endCard').length > 1) problems.push('only one endCard, at the end');
@@ -185,7 +185,7 @@ export const checkPlan = (plan: Plan): string[] => {
       else if (!last.props.title || !last.props.items) problems.push('end card (save): needs a title and 2-4 recap items');
     }
     if (!/link in bio|fivebeforemonday\.com/i.test(plan.post.caption)) problems.push('post.caption: put the newsletter ask there ("... -> link in bio."), since the end card asks for a save');
-    if (total < 28 || total > 45) problems.push(`daily reel is ${total.toFixed(1)} s; plan 30-40 s (allowed 28-45)`);
+    if (total < 22 || total > 42) problems.push(`daily reel is ${total.toFixed(1)} s; plan 26-34 s (allowed 22-42)`);
   }
 
   // Balance: numbers hook, explanations inform. Most scenes carry a number; longer videos explain at least once.

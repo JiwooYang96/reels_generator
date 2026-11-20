@@ -17,7 +17,7 @@ hook -> lead -> body 1 -> open loop 1 -> body 2 -> open loop 2 -> body 3 -> CTA 
    5  but/therefore      no beat opens with "And then", "Also", "Next", "So basically"
   10  payoff loop        the last story scene echoes the hook's number or subject   (open loop closed)
   10  numbers            70% of story scenes show a number
-  10  length             30-40 s planned
+  10  length             24-36 s (narrated)
    5  one ask            the only CTA is the end card (no "follow", "comment", "link" earlier)
 """
 import json
@@ -118,7 +118,7 @@ def script_score(plan):
     lens = [max(1.2 if i < nh else 1.8, real.get(i, len(words(s.get("voice"))) / WPS) + 0.25) for i, s in enumerate(story)]
     nh = hook_scenes(sc)
     caps = [OPEN_MAX if i == 0 else STAKE_MAX if (i == 1 and nh == 2) else 3.5 for i in range(len(lens))]
-    slow = [i + 1 for i, d in enumerate(lens) if d > caps[i]]
+    slow = [i + 1 for i, d in enumerate(lens) if d > caps[i] + 0.03]  # rounding slack
     award(15, not slow, ("narrated" if real else "estimated") + f" first shot <= {OPEN_MAX} s, stake shot <= {STAKE_MAX} s, beats <= 3.5 s" + (f" (too long: scenes {slow})" if slow else ""))
     if slow:
         HARD.append(f"scenes {slow} run too long ({', '.join(f'{lens[i - 1]:.1f}s' for i in slow)}): the first shot is a "
@@ -137,7 +137,7 @@ def script_score(plan):
     award(10, with_num >= 0.7 * max(1, len(story) - 1), f"{with_num}/{len(story) - 1} story scenes show a number")
 
     total = sum(lens) + sum(s.get("seconds", 6) for s in sc if s["type"] == "endCard")
-    award(10, 30 <= total <= 40, f"length about {total:.0f} s (want 30-40)")
+    award(10, 24 <= total <= 36, f"length about {total:.0f} s (want 24-36; quicker narration since Nov 20)")
     asks = [i + 1 for i, s in enumerate(story) if ASK.search(s.get("voice", "") + " " + caption(s))]
     award(5, not asks, "one ask, on the end card" + (f" (also in scenes {asks})" if asks else ""))
     return pts, notes, total

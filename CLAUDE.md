@@ -6,7 +6,7 @@ The user gives a topic; you return a finished vertical news short (MP4) with sou
 
 - Account: **@fivebeforemonday** (`src/brand.ts`). Every scene shows the handle automatically; the last scene must be a follow CTA that names it (calendarCta's default CTA does). The plan check enforces this.
 - **Balance numbers and information.** Numbers are the hook, explanations are the value. Alternate them: hook number → proof number → reasons (each a `causeChain` with a big `stat` and 2 short steps) → twist number → dated next event. At least 70% of scenes after the opening show a number, and any video of 5+ scenes explains at least once (`causeChain`, `headline` or `timeline`). The plan check enforces both.
-- Channel palette: `broadsheet` (the default; newspaper paper texture, Instrument Serif headlines, highlighter keywords, navy dark scenes, colour accents). Plans leave `palette` out. **Read `docs/STYLE.md` before planning or adding a scene**: it is the house style (colour meanings, type sizes, motion, sources) and every video must match it. Daily reels run 30-40 s (see "Daily reel"); one-off updates can be shorter.
+- Channel palette: `broadsheet` (the default; newspaper paper texture, Instrument Serif headlines, highlighter keywords, navy dark scenes, colour accents). Plans leave `palette` out. **Read `docs/STYLE.md` before planning or adding a scene**: it is the house style (colour meanings, type sizes, motion, sources) and every video must match it. Daily reels run 24-36 s (see "Daily reel"); one-off updates can be shorter.
 
 ## Setup (fresh session)
 
@@ -47,13 +47,13 @@ Versions are pinned (Remotion 4.0.540, zod 4.6.7, skills in `skills-lock.json`).
      - **CTA:** the save card (see the end card below): a one-screen recap worth a screenshot.
    - **Pace:** one beat per scene, about 3.3 spoken words per second, 7-10 words per line, every story scene 3.5 s
      or shorter (a change every 2-4 s), beats joined by "but/therefore", never "and then". More scenes, not
-     longer ones: 9-11 story scenes plus the end card make 30-40 s.
+     longer ones: 9-11 story scenes plus the end card make 24-36 s.
    - **Payoff:** the last story scene echoes the hook's number or subject and closes its loop.
    - **Gate:** `python3 scripts/reelscore.py plans/<id>.json` scores the HOOK (hookscore) and the SCRIPT (on-screen
      hook, lead, open loop 1 and 2, pace, but/therefore, payoff loop, numbers, length, one ask) out of 100. A reel is approved only
      when both are 85+; make.sh and GitHub refuse it otherwise. Report both scores with the reel. Don't reuse the
      hook family of the last entry in `runs/log.md`.
-3. **Structure.** Pick one not used in the last 5 entries of `runs/log.md`: countdown, versus, myth vs fact, timeline, what-happens-next, single number, escalation -> rehook -> open loop. Spine: opening (number on screen within 1 s) -> lead (a new number) -> body -> open loop 1 ("But...") -> body -> open loop 2 -> body / payoff -> save card. Daily reels 30-40 s.
+3. **Structure.** Pick one not used in the last 5 entries of `runs/log.md`: countdown, versus, myth vs fact, timeline, what-happens-next, single number, escalation -> rehook -> open loop. Spine: opening (number on screen within 1 s) -> lead (a new number) -> body -> open loop 1 ("But...") -> body -> open loop 2 -> body / payoff -> save card. Daily reels 24-36 s (quick narration since Nov 20).
    **Build-up trial:** about once a week, try the build-up form instead of a new scene type every beat: a `chapters` card
    with the 3 beats appears after the lead (`unlocked: 0`) and comes back between bodies (`unlocked: 1`, then `2`), so
    one picture grows through the reel and the save card completes it. Set `"structure": "build-up (...)"` so the
@@ -74,7 +74,7 @@ Every trading day after the New York close a scheduled task makes one reel about
    Then read `docs/LEARNINGS.md` (our own reels' results, updated daily): follow its DO MORE / AVOID rules, and
    if it lists a next experiment and the story is strong, make today an A/B trial-reel test (`docs/LEARNING.md`).
 2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook
-   and plan as usual. Length 30-40 s (the check allows 28-45), in this order (the 8 blocks): hook -> lead (a second number) -> what happened ->
+   and plan as usual. Length 24-36 s narrated, plan 26-34 s (the check allows 22-42), in this order (the 8 blocks): hook -> lead (a second number) -> what happened ->
    2-3 reasons (each sourced; open loop 1 before the first, open loop 2 before the last) -> what's next,
    with a date -> `endCard` (save card). Use 1-2 drawings (see "Illustrations"):
    usually `open.illustration` as the hook (a metaphor for the story + the big number + the company logo pinned
