@@ -123,6 +123,13 @@ Nov 15; Instagram treats copies as unoriginal).
 - Never post one account's reel, or a near-copy of it, on the other. Different stories, different days.
 - `runs/log.md` rows for this account start with `chips:`.
 
+## Scene length (hard rules)
+
+- Opening scene: at most **2.6 s** with its narration (7 spoken words). Every other story beat: at most **3.5 s**
+  (9 words). `scripts/voice.py` speeds a clip that runs over by up to 18% (pitch kept); past that
+  `reelscore.py` prints HARD RULE and refuses the reel whatever its score. Fix it by cutting words or splitting
+  the beat in two scenes, never by slowing down.
+
 ## Frame 0 and variety
 
 - **Frame 0 shows the hook.** Viewers skip before anything animates in, and a blank first frame looks like a
@@ -162,8 +169,9 @@ graph screenshots from the user are saved with `scripts/reelanalyze.py retention
 
 ### Voice: hooking and trustworthy
 
-- Line 1 is the hook, 10 words max, landing inside the opening: the concrete event, the number and the
-  tension ("Nvidia lost a trillion dollars in a month. Not on earnings."). "You/your" is fine in the hook when
+- Line 1 is the hook, **7 words max**: the opening is a 2.5 s punch, not a 4-5 s still (the user found the
+  long openings boring; Nov 17-19 openings ran 3-5 s). The concrete event + the number + the stake, e.g.
+  "Nvidia lost $1 trillion. Your fund too." Anything more goes to scene 2. "You/your" is fine in the hook when
   it names the viewer's real stake ("If you own an index fund..."), never as advice.
 - Then plain newsreader sentences: what happened, why (from the sources), what's next. No questions to the
   viewer, no "guys", no hype ("insane", "skyrocket", "to the moon", "must buy"; the check blocks

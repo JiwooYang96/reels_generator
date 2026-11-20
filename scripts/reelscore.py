@@ -28,6 +28,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / ".claude/skills/ig-reel"))
 from hookscore import run  # noqa: E402
 
+OPEN_MAX = 2.6   # the opening scene: one picture + one number holds attention for about 2.5 s, not 4-5
+HARD = []       # rules a high score can't buy back (the reel is refused whatever the total)
 REHOOK = re.compile(r"^\s*(but|not|turns out|here'?s|the catch|except|instead|yet|and it wasn'?t|only|then it|that'?s when|that'?s where|it gets|wait|until|what happened next|the strange part|the twist)\b", re.I)
 # A "hard" number: money, percent, multiples, scale words, or a figure that isn't just a year.
 NUM = re.compile(r"([$€£¥]?)(\d[\d,]*(?:\.\d+)?)\s?(%|x\b|k\b|m\b|b\b|t\b|bn\b|million\b|billion\b|trillion\b|thousand\b)?", re.I)
@@ -102,8 +104,11 @@ def script_score(plan):
     vo = Path("out") / plan["id"] / "vo.json"
     real = {v["i"]: v["dur"] for v in json.load(open(vo))} if vo.exists() else {}
     lens = [max(1.8, real.get(i, len(words(s.get("voice"))) / WPS) + 0.25) for i, s in enumerate(story)]
-    slow = [i + 1 for i, d in enumerate(lens) if d > 3.5]
-    award(15, not slow, ("narrated" if real else "estimated") + " story scenes all <= 3.5 s" + (f" (too long: scenes {slow})" if slow else ""))
+    slow = [i + 1 for i, d in enumerate(lens) if d > (OPEN_MAX if i == 0 else 3.5)]
+    award(15, not slow, ("narrated" if real else "estimated") + f" opening <= {OPEN_MAX} s, story scenes <= 3.5 s" + (f" (too long: scenes {slow})" if slow else ""))
+    if slow:
+        HARD.append(f"scenes {slow} run too long ({', '.join(f'{lens[i - 1]:.1f}s' for i in slow)}): the opening is a "
+                    f"{OPEN_MAX} s punch (max 7 spoken words), every other beat 3.5 s (max 9 words). Cut words or split the beat.")
     lazy = [i + 1 for i, s in enumerate(sc) if FILLER.search(s.get("voice", ""))]
     award(5, not lazy, "beats joined by but/therefore, not \"and then\"" + (f" (scenes {lazy})" if lazy else ""))
 
@@ -157,8 +162,11 @@ def main(path, floor=85):
     print(f"SCRIPT {s:5.1f}")
     print("\n".join(notes))
     learned(plan)
-    ok = h >= floor and s >= floor and not flags
-    print(f"{'APPROVED' if ok else 'NOT APPROVED'}: hook {h:.0f}, script {s:.0f} (both need {floor}+)")
+    for hard in HARD:
+        print(f"HARD RULE: {hard}")
+    ok = h >= floor and s >= floor and not flags and not HARD
+    print(f"{'APPROVED' if ok else 'NOT APPROVED'}: hook {h:.0f}, script {s:.0f} (both need {floor}+)" +
+          (" and the hard rules above" if HARD else ""))
     if not ok:
         sys.exit(1)
 

@@ -163,7 +163,7 @@ export const checkPlan = (plan: Plan): string[] => {
   const voiced = plan.scenes.filter((s) => s.voice).length;
   if (voiced && voiced < plan.scenes.length) problems.push(`${plan.scenes.length - voiced} scene(s) have no "voice" line; narrate every scene or none`);
   const hookWords = plan.scenes[0].voice ? plan.scenes[0].voice.trim().split(/\s+/).length : 0;
-  if (hookWords > 11) problems.push(`opening voice line has ${hookWords} words; the hook must land in about 3 s (max 11 words)`);
+  if (hookWords > 7) problems.push(`opening voice line has ${hookWords} words; the opening is a 2.5 s punch (max 7 words). Put the stake ("Your fund too.") in scene 2`);
   if (plan.post && !/sources?:/i.test(plan.post.caption)) problems.push('post.caption needs a "Sources:" list');
   // Channel: the closing scene must send viewers to the account.
   const last = plan.scenes[plan.scenes.length - 1];
