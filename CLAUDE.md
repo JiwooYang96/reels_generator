@@ -125,8 +125,9 @@ Nov 15; Instagram treats copies as unoriginal).
 
 ## Scene length (hard rules)
 
-- Opening scene: at most **2.6 s** with its narration (7 spoken words). Every other story beat: at most **3.5 s**
-  (9 words). `scripts/voice.py` speeds a clip that runs over by up to 18% (pitch kept); past that
+- First shot (scene 1): at most **1.6 s** (4 words). Stake shot (scene 2, `"hook": true`): at most **2 s**
+  (5 words). Every other story beat: at most **3.5 s** (9 words). `scripts/voice.py` speeds a clip that runs
+  over by up to 18% (pitch kept); past that
   `reelscore.py` prints HARD RULE and refuses the reel whatever its score. Fix it by cutting words or splitting
   the beat in two scenes, never by slowing down.
 
@@ -156,7 +157,9 @@ graph screenshots from the user are saved with `scripts/reelanalyze.py retention
   `VOICE_EXAGGERATION` / `VOICE_CFG` for Chatterbox. `.github/workflows/voice-samples.yml` renders the
   candidates side by side. `VOICE_ENGINE=omnivoice` switches to OmniVoice voice design (its official weights
   are non-commercial, so not for this channel as-is); `elevenlabs` uses the paid API if a key is set.
-  Speed 1.22 (brisk). Each scene lasts its line plus 0.25 s. Local renders are silent previews.
+  Speed 1.38 (quick; raised from 1.28 on Nov 20 at the user's request). Each clip is compressed, lifted ~5 dB and
+  limited so the narrator sits clearly over the music, which plays at 60% under narration. Each scene lasts its
+  line plus 0.25 s. Local renders are silent previews.
 - **Music** (`scripts/music.py`): original music composed per reel to its cuts and played with the
   FluidR3 GM soundfont (MIT), so nothing to license or get flagged: a hit under the hook, a newsroom pulse
   through the story, one bar of drop at the middle (an attention reset), and a resolve on the end card. It
@@ -169,9 +172,10 @@ graph screenshots from the user are saved with `scripts/reelanalyze.py retention
 
 ### Voice: hooking and trustworthy
 
-- Line 1 is the hook, **7 words max**: the opening is a 2.5 s punch, not a 4-5 s still (the user found the
-  long openings boring; Nov 17-19 openings ran 3-5 s). The concrete event + the number + the stake, e.g.
-  "Nvidia lost $1 trillion. Your fund too." Anything more goes to scene 2. "You/your" is fine in the hook when
+- The hook is **two quick shots**, so the first cut lands by ~1.5 s (winners show a new visual by 0.5-1.5 s,
+  HOOKS.md; the user found 3-5 s openings boring): scene 1 is the punch, **max 4 words** ("Nvidia lost $1
+  trillion."), with the number on screen at frame 0; scene 2 has `"hook": true` and is the stake, **max 5
+  words** ("Your fund too."), on a new visual (a counter, a logo, a picture). Then the lead. "You/your" is fine in the hook when
   it names the viewer's real stake ("If you own an index fund..."), never as advice.
 - Then plain newsreader sentences: what happened, why (from the sources), what's next. No questions to the
   viewer, no "guys", no hype ("insane", "skyrocket", "to the moon", "must buy"; the check blocks

@@ -18,6 +18,8 @@ export const sceneSchema = z.object({
   source: z.string().optional(),
   // What the narrator says over this scene. Defaults to the caption words.
   voice: z.string().optional(),
+  // Scene 2 only: the second shot of a split hook (punch at 0 s, stake cut in at ~1.5 s), see CLAUDE.md "Scene length".
+  hook: z.boolean().optional(),
   props: z.record(z.string(), z.any()),
 });
 
@@ -163,7 +165,10 @@ export const checkPlan = (plan: Plan): string[] => {
   const voiced = plan.scenes.filter((s) => s.voice).length;
   if (voiced && voiced < plan.scenes.length) problems.push(`${plan.scenes.length - voiced} scene(s) have no "voice" line; narrate every scene or none`);
   const hookWords = plan.scenes[0].voice ? plan.scenes[0].voice.trim().split(/\s+/).length : 0;
-  if (hookWords > 7) problems.push(`opening voice line has ${hookWords} words; the opening is a 2.5 s punch (max 7 words). Put the stake ("Your fund too.") in scene 2`);
+  if (hookWords > 4) problems.push(`opening voice line has ${hookWords} words; the first shot is a 1.5 s punch (max 4 words, e.g. "Nvidia lost $1 trillion."). Put the stake in scene 2 with "hook": true`);
+  const stake = plan.scenes[1];
+  if (stake?.hook && stake.voice && stake.voice.trim().split(/\s+/).length > 5) problems.push('scene 2 (hook stake): max 5 spoken words, e.g. "Your fund too."');
+  if (plan.scenes.slice(2).some((s) => s.hook)) problems.push('"hook": true only belongs on scene 2');
   if (plan.post && !/sources?:/i.test(plan.post.caption)) problems.push('post.caption needs a "Sources:" list');
   // Channel: the closing scene must send viewers to the account.
   const last = plan.scenes[plan.scenes.length - 1];

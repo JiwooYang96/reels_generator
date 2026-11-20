@@ -6,7 +6,7 @@
   "scenes": [
     {
       "type": "open.logo",
-      "seconds": 3.2,
+      "seconds": 1.6,
       "caption": [
         {
           "t": "−$1T",
@@ -28,7 +28,35 @@
         "sub": "market value, in a month",
         "tone": "bad"
       },
-      "voice": "Nvidia lost $1 trillion. Your fund too."
+      "voice": "Nvidia lost $1 trillion."
+    },
+    {
+      "type": "counter",
+      "hook": true,
+      "seconds": 1.9,
+      "caption": [
+        {
+          "t": "Your"
+        },
+        {
+          "t": "fund"
+        },
+        {
+          "t": "TOO.",
+          "key": true
+        }
+      ],
+      "source": "Illustrative test",
+      "props": {
+        "label": "Nvidia weight in the S&P 500",
+        "from": 0,
+        "to": 7,
+        "decimals": 0,
+        "suffix": "%",
+        "tone": "bad",
+        "sub": "test plan"
+      },
+      "voice": "Your index fund too."
     },
     {
       "type": "versus",

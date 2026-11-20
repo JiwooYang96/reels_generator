@@ -28,7 +28,17 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / ".claude/skills/ig-reel"))
 from hookscore import run  # noqa: E402
 
-OPEN_MAX = 2.6   # the opening scene: one picture + one number holds attention for about 2.5 s, not 4-5
+OPEN_MAX = 1.6   # first shot: winners cut to a new visual by ~0.5-1.5 s (HOOKS.md); one still for 2.5+ s bores
+STAKE_MAX = 2.0  # the hook's second shot (scene 2 with "hook": true)
+
+
+def hook_scenes(sc):
+    """The hook is scene 1, or scenes 1-2 when scene 2 is its stake shot ("hook": true)."""
+    return 2 if len(sc) > 1 and sc[1].get("hook") else 1
+
+
+def hook_text(sc):
+    return " ".join(s.get("voice", "") for s in sc[:hook_scenes(sc)]).strip()
 HARD = []       # rules a high score can't buy back (the reel is refused whatever the total)
 REHOOK = re.compile(r"^\s*(but|not|turns out|here'?s|the catch|except|instead|yet|and it wasn'?t|only|then it|that'?s when|that'?s where|it gets|wait|until|what happened next|the strange part|the twist)\b", re.I)
 # A "hard" number: money, percent, multiples, scale words, or a figure that isn't just a year.
@@ -36,7 +46,7 @@ NUM = re.compile(r"([$€£¥]?)(\d[\d,]*(?:\.\d+)?)\s?(%|x\b|k\b|m\b|b\b|t\b|bn
 SCALE = {"k": "k", "thousand": "k", "m": "m", "million": "m", "b": "b", "bn": "b", "billion": "b", "t": "t", "trillion": "t"}
 FILLER = re.compile(r"^\s*(and then|also|so basically|basically|anyway)\b", re.I)
 ASK = re.compile(r"\b(follow|comment|link in bio|subscribe|sign up|newsletter)\b", re.I)
-WPS = 3.0  # Kokoro af_heart at speed 1.28, silence trimmed: about 3 words per second (measured)
+WPS = 3.2  # Kokoro at speed 1.38 (1.28 measured 3.0 words per second; scaled)
 
 
 def words(s):
@@ -66,11 +76,12 @@ def blocks(plan):
     """The 8-block check: is there a lead, and where are the open loops? (Also recorded in reel meta.)"""
     sc = plan["scenes"]
     story = [s for s in sc if s["type"] != "endCard"]
-    hook_nums = hard_numbers(sc[0].get("voice", "") + " " + caption(sc[0]))
-    lead_nums = hard_numbers(scene_text(story[1])) - hook_nums if len(story) > 1 else set()
-    loops = [i for i, s in enumerate(story[1:-1], start=1)
+    nh = hook_scenes(sc)
+    hook_nums = hard_numbers(" ".join(s.get("voice", "") + " " + caption(s) for s in sc[:nh]))
+    lead_nums = hard_numbers(scene_text(story[nh])) - hook_nums if len(story) > nh else set()
+    loops = [i for i, s in enumerate(story[nh:-1], start=nh)
              if REHOOK.search(s.get("voice", "")) or s["type"] == "chapters"]
-    early = [i for i in loops if i <= 3]
+    early = [i for i in loops if i <= nh + 2]
     late = [i for i in loops if i >= len(story) / 2 and i not in early[:1]]
     end = sc[-1] if sc[-1]["type"] == "endCard" else None
     return {"lead": bool(lead_nums), "leadNumbers": sorted(lead_nums), "loops": [i + 1 for i in loops],
@@ -81,7 +92,7 @@ def blocks(plan):
 def script_score(plan):
     sc = plan["scenes"]
     story = [s for s in sc if s["type"] != "endCard"]
-    hook = sc[0].get("voice", "")
+    hook = hook_text(sc)
     pts, notes = 0, []
 
     def award(n, ok, why):
@@ -94,21 +105,25 @@ def script_score(plan):
     award(15, 3 <= len(cw) <= 6 and bool(re.search(r"\d", cap)) and cap.lower().strip(" .") not in hook.lower(),
           f"on-screen hook \"{cap}\" ({len(cw)} words; want 3-6 with a number, not the spoken line)")
     b = blocks(plan)
-    award(10, b["lead"], "lead: scene 2 adds a new hard number" + (f" ({', '.join(b['leadNumbers'][:3])})" if b["lead"]
+    award(10, b["lead"], "lead: the scene after the hook adds a new hard number" + (f" ({', '.join(b['leadNumbers'][:3])})" if b["lead"]
           else " (none: make scene 2 a second surprising $/%/x figure, not set-up)"))
-    award(10, b["loop1"], "open loop 1: scene 2, 3 or 4 opens with a turn (But / Not / Turns out...)")
+    award(10, b["loop1"], "open loop 1: one of the 3 scenes after the hook opens with a turn (But / Not / Turns out...)")
     award(10, b["loop2"], "open loop 2: a second turn in the back half" + (f" (turns at scenes {b['loops']})" if b["loops"] else ""))
 
     # Pace: the real narration when it exists (out/<id>/vo.json, after voice.py), else the estimate; each scene
     # lasts its line + 0.25 s, as prepare.ts sets it.
     vo = Path("out") / plan["id"] / "vo.json"
     real = {v["i"]: v["dur"] for v in json.load(open(vo))} if vo.exists() else {}
-    lens = [max(1.8, real.get(i, len(words(s.get("voice"))) / WPS) + 0.25) for i, s in enumerate(story)]
-    slow = [i + 1 for i, d in enumerate(lens) if d > (OPEN_MAX if i == 0 else 3.5)]
-    award(15, not slow, ("narrated" if real else "estimated") + f" opening <= {OPEN_MAX} s, story scenes <= 3.5 s" + (f" (too long: scenes {slow})" if slow else ""))
+    nh = hook_scenes(sc)
+    lens = [max(1.2 if i < nh else 1.8, real.get(i, len(words(s.get("voice"))) / WPS) + 0.25) for i, s in enumerate(story)]
+    nh = hook_scenes(sc)
+    caps = [OPEN_MAX if i == 0 else STAKE_MAX if (i == 1 and nh == 2) else 3.5 for i in range(len(lens))]
+    slow = [i + 1 for i, d in enumerate(lens) if d > caps[i]]
+    award(15, not slow, ("narrated" if real else "estimated") + f" first shot <= {OPEN_MAX} s, stake shot <= {STAKE_MAX} s, beats <= 3.5 s" + (f" (too long: scenes {slow})" if slow else ""))
     if slow:
-        HARD.append(f"scenes {slow} run too long ({', '.join(f'{lens[i - 1]:.1f}s' for i in slow)}): the opening is a "
-                    f"{OPEN_MAX} s punch (max 7 spoken words), every other beat 3.5 s (max 9 words). Cut words or split the beat.")
+        HARD.append(f"scenes {slow} run too long ({', '.join(f'{lens[i - 1]:.1f}s' for i in slow)}): the first shot is a "
+                    f"{OPEN_MAX} s punch (max 4 words), the stake shot (scene 2, \"hook\": true) {STAKE_MAX} s (max 5), every "
+                    "other beat 3.5 s (max 9). Cut words or split the beat.")
     lazy = [i + 1 for i, s in enumerate(sc) if FILLER.search(s.get("voice", ""))]
     award(5, not lazy, "beats joined by but/therefore, not \"and then\"" + (f" (scenes {lazy})" if lazy else ""))
 
@@ -149,7 +164,7 @@ def learned(plan):
 
 def main(path, floor=85):
     plan = json.load(open(path))
-    hook = plan["scenes"][0].get("voice")
+    hook = hook_text(plan["scenes"]) or None
     if not hook:
         print("reel score: silent plan, skipped")
         return

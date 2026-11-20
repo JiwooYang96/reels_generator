@@ -45,7 +45,9 @@ const vo: {i: number; src: string; dur: number}[] = fs.existsSync(voPath) ? JSON
 for (const v of vo) {
   const sc = plan.scenes[v.i];
   // The voice sets the pace: each scene lasts its line plus a 0.25 s beat (no dead air), 1.8-6 s; the end card keeps its length.
-  if (sc && sc.type !== 'endCard') sc.seconds = Math.min(6, Math.max(1.8, +(v.dur + 0.25).toFixed(2)));
+  // The hook's shots (scene 1, and scene 2 when it is the stake shot) may be shorter: the first cut lands by ~1.5 s.
+  const floor = v.i === 0 || sc?.hook ? 1.1 : 1.8;
+  if (sc && sc.type !== 'endCard') sc.seconds = Math.min(6, Math.max(floor, +(v.dur + 0.25).toFixed(2)));
   else if (sc) sc.seconds = Math.max(sc.seconds, +(v.dur + 0.4).toFixed(2));
 }
 
