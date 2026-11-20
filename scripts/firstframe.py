@@ -31,9 +31,10 @@ def frame(mp4, t, out):
 def main(mp4):
     with tempfile.TemporaryDirectory() as d:
         f0 = ink(frame(mp4, 0, Path(d) / "f0.png"))
-        f2 = ink(frame(mp4, 2.0, Path(d) / "f2.png"))
+        # 1.2 s: still inside the first shot (max 1.6 s since the split hook), so we compare the opening with itself
+        f2 = ink(frame(mp4, 1.2, Path(d) / "f2.png"))
     ok = f0 >= MIN_INK and f0 >= 0.6 * f2
-    print(f"FIRST FRAME: ink {f0:.1f}% at 0 s vs {f2:.1f}% at 2 s -> {'OK' if ok else 'TOO EMPTY: the hook must be on screen at frame 0'}")
+    print(f"FIRST FRAME: ink {f0:.1f}% at 0 s vs {f2:.1f}% at 1.2 s -> {'OK' if ok else 'TOO EMPTY: the hook must be on screen at frame 0'}")
     return 0 if ok else 1
 
 

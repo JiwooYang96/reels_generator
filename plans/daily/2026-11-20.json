@@ -1,0 +1,293 @@
+{
+  "id": "daily-2026-11-20",
+  "title": "Intuit −10.8% after selling Mailchimp for a third of its price",
+  "structure": "escalation -> rehook -> open loop",
+  "hookFamily": "number + stake",
+  "music": "tense",
+  "post": {
+    "caption": "Intuit stock fell about 10.8% on Friday (Reuters, afternoon) after it agreed to sell Mailchimp to Bending Spoons for about $3.68 billion, under a third of the roughly $12 billion it paid in 2021, and cut its fiscal 2027 revenue growth forecast to 8-9% from 9-10%.\nCredit Karma's growth outlook fell to 3-7% from 11-13%, on a day the S&P 500 lost 3.6% and closed in a correction.\n\nThe full why, with charts, lands Sunday for members → link in bio.\n\n#Intuit #INTU #Mailchimp #stockmarket #softwarestocks\n\nSources: Reuters via GV Wire and MarketScreener (Nov 20), TipRanks (Nov 20), InvestorsHub via Yahoo Finance (Nov 20), Invezz via TradingView (Nov 20), Yahoo Finance via AOL (Nov 20), TechCrunch (Nov 20). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "−10.8%",
+          "key": true
+        },
+        {
+          "t": "on"
+        },
+        {
+          "t": "a",
+          "br": true
+        },
+        {
+          "t": "1/3-price"
+        },
+        {
+          "t": "sale."
+        }
+      ],
+      "props": {
+        "subject": "an old brass balance scale with a tall tower of gold coins on one pan, tipped up high by a small handful of dull copper coins on the other",
+        "big": "−10.8%",
+        "sub": "Intuit, Friday afternoon (Reuters)",
+        "tone": "bad",
+        "ticker": "INTU"
+      },
+      "voice": "Intuit just lost 10.8%.",
+      "seconds": 1.6
+    },
+    {
+      "type": "counter",
+      "hook": true,
+      "caption": [
+        {
+          "t": "S&P"
+        },
+        {
+          "t": "−3.6%.",
+          "key": true
+        }
+      ],
+      "source": "Reuters, Nov 20 2026 close (preliminary)",
+      "props": {
+        "label": "S&P 500, Friday",
+        "from": 3.0,
+        "to": 3.59,
+        "decimals": 2,
+        "sign": "−",
+        "suffix": "%",
+        "tone": "bad",
+        "sub": "Intuit is in it. A correction close."
+      },
+      "voice": "Your fund didn't escape.",
+      "seconds": 2.0
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "$12B"
+        },
+        {
+          "t": "in."
+        },
+        {
+          "t": "$3.68B",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "out."
+        }
+      ],
+      "source": "TipRanks; InvestorsHub via Yahoo Finance, Nov 20 2026",
+      "props": {
+        "label": "Mailchimp's price tag",
+        "sublabel": "Bought by Intuit in 2021 vs sold to Bending Spoons",
+        "oldValue": "$12B",
+        "newValue": "$3.68B",
+        "logo": "INTU"
+      },
+      "voice": "It paid $12 billion for Mailchimp. Sold for $3.68 billion.",
+      "seconds": 3.4
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "But"
+        },
+        {
+          "t": "growth"
+        },
+        {
+          "t": "got",
+          "br": true
+        },
+        {
+          "t": "cut.",
+          "key": true
+        }
+      ],
+      "source": "InvestorsHub via Yahoo Finance, Nov 20 2026",
+      "props": {
+        "n": 1,
+        "title": "A smaller forecast",
+        "stat": {
+          "value": "8-9%",
+          "label": "fiscal 2027 revenue growth, was 9-10%"
+        },
+        "steps": [
+          "Forecast cut a full point",
+          "Stock sold off at the open"
+        ],
+        "logo": "INTU"
+      },
+      "voice": "But the bigger hit: Intuit cut its growth forecast.",
+      "seconds": 3.3
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Credit"
+        },
+        {
+          "t": "Karma",
+          "key": true
+        },
+        {
+          "t": "slowed.",
+          "br": true
+        }
+      ],
+      "source": "Invezz via TradingView; Yahoo Finance via AOL, Nov 20 2026",
+      "props": {
+        "n": 2,
+        "title": "Credit Karma slowed",
+        "stat": {
+          "value": "3-7%",
+          "label": "Credit Karma growth outlook, was 11-13%"
+        },
+        "steps": [
+          "Morgan Stanley: Credit Karma-led",
+          "Its INTU target: $315 → $310"
+        ]
+      },
+      "voice": "Credit Karma's growth forecast was cut by over half.",
+      "seconds": 3.3
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Next"
+        },
+        {
+          "t": "quarter"
+        },
+        {
+          "t": "missed.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Yahoo Finance via AOL; InvestorsHub via Yahoo Finance, Nov 20 2026",
+      "props": {
+        "n": 3,
+        "title": "A soft next quarter",
+        "stat": {
+          "value": "$3.22",
+          "label": "top of Q2 profit-per-share guide vs $3.73 expected"
+        },
+        "steps": [
+          "Guide: $3.17 to $3.22",
+          "Analysts expected $3.73"
+        ]
+      },
+      "voice": "Next quarter's profit guide fell short of $3.73 expected.",
+      "seconds": 3.4
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Already"
+        },
+        {
+          "t": "−54%",
+          "key": true
+        },
+        {
+          "t": "this",
+          "br": true
+        },
+        {
+          "t": "year."
+        }
+      ],
+      "source": "Yahoo Finance via AOL, Nov 20 2026",
+      "props": {
+        "label": "Intuit stock this year",
+        "from": 0,
+        "to": 54,
+        "sign": "−",
+        "suffix": "%",
+        "tone": "bad",
+        "sub": "roughly, as investors weigh AI's hit to tax prep",
+        "logo": "INTU"
+      },
+      "voice": "But the twist: Intuit was already down 54%.",
+      "seconds": 3.0
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "Profit"
+        },
+        {
+          "t": "still"
+        },
+        {
+          "t": "+56%.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "InvestorsHub via Yahoo Finance, Nov 20 2026",
+      "props": {
+        "subject": "a green sprout pushing up through a crack in a broken clay flowerpot on a windowsill"
+      },
+      "voice": "Yet its quarterly profit per share jumped 56%.",
+      "seconds": 3.0
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "−10.8%"
+        },
+        {
+          "t": "meets"
+        },
+        {
+          "t": "the",
+          "br": true
+        },
+        {
+          "t": "Fed.",
+          "key": true
+        }
+      ],
+      "props": {
+        "day": "WED",
+        "date": "Dec 9",
+        "event": "Fed rate decision",
+        "note": "Hike odds 95.5% (CME FedWatch, via Reuters)"
+      },
+      "voice": "Intuit's 10.8% drop meets the Fed on December ninth.",
+      "seconds": 3.3
+    },
+    {
+      "type": "endCard",
+      "seconds": 6,
+      "theme": "light",
+      "caption": [],
+      "props": {
+        "variant": "save",
+        "title": "Intuit's $12B Mailchimp exit",
+        "items": [
+          "INTU −10.8% on Friday",
+          "Paid $12B, sold $3.68B",
+          "Growth guide cut to 8-9%",
+          "Next: Fed decision Dec 9"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday."
+    }
+  ]
+}

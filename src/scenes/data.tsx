@@ -638,7 +638,7 @@ export const causeChain: SceneDef<z.infer<typeof chainSchema>> = {
           </div>
           {p.stat ? (
             <div style={{display: 'inline-flex', alignItems: 'baseline', gap: 14, marginTop: 26, padding: '10px 22px', borderRadius: 18, background: mix(T.red, 0.12), opacity: fade(f, 8, 8)}}>
-              <span style={{fontSize: 80, ...HEAVY, color: T.red, letterSpacing: -2}}>{p.stat.value}</span>
+              <span style={{fontSize: 80, ...HEAVY, color: T.red, letterSpacing: -2, whiteSpace: 'nowrap'}}>{p.stat.value}</span>
               <span style={{fontSize: 34, fontWeight: 700, color: soft(dark)}}>{p.stat.label}</span>
             </div>
           ) : null}
