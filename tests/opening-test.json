@@ -4,11 +4,60 @@
   "structure": "test",
   "music": "none",
   "scenes": [
-    {"type": "open.illustration", "caption": [{"t": "Netflix"}, {"t": "for", "br": true}, {"t": "$50M?", "key": true}],
-     "props": {"subject": "test", "file": "portraits/warren-buffett.png", "big": "$50M", "sub": "Netflix's asking price, 2000", "tone": "bad", "ticker": "NFLX", "layout": "stack"},
-     "voice": "Netflix, yours for fifty million dollars. You'd have said no.", "seconds": 3.2},
-    {"type": "open.illustration", "caption": [{"t": "Netflix"}, {"t": "for", "br": true}, {"t": "$50M?", "key": true}],
-     "props": {"subject": "test", "file": "portraits/warren-buffett.png", "big": "$50M", "sub": "Netflix's asking price, 2000", "tone": "bad", "ticker": "NFLX", "layout": "flip"},
-     "voice": "But the twist: this is just the flipped layout test.", "seconds": 3.2, "source": "test"}
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "Netflix"
+        },
+        {
+          "t": "for",
+          "br": true
+        },
+        {
+          "t": "$50M?",
+          "key": true
+        }
+      ],
+      "props": {
+        "subject": "test",
+        "file": "portraits/warren-buffett.png",
+        "big": "$50M",
+        "sub": "Netflix's asking price, 2000",
+        "tone": "bad",
+        "ticker": "NFLX",
+        "layout": "stack"
+      },
+      "voice": "Netflix for fifty million? You'd say no.",
+      "seconds": 3.2
+    },
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "Netflix"
+        },
+        {
+          "t": "for",
+          "br": true
+        },
+        {
+          "t": "$50M?",
+          "key": true
+        }
+      ],
+      "props": {
+        "subject": "test",
+        "file": "portraits/warren-buffett.png",
+        "big": "$50M",
+        "sub": "Netflix's asking price, 2000",
+        "tone": "bad",
+        "ticker": "NFLX",
+        "layout": "flip"
+      },
+      "voice": "But the twist: this is just the flipped layout test.",
+      "seconds": 3.2,
+      "source": "test"
+    }
   ]
 }

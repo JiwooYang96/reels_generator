@@ -24,7 +24,7 @@ from pathlib import Path
 
 ENGINE = os.environ.get("VOICE_ENGINE", "kokoro").lower()
 VOICE_NAME = os.environ.get("VOICE_NAME", "af_heart")
-VOICE_SPEED = float(os.environ.get("VOICE_SPEED", "1.28"))  # brisk: short-form pace, still clear
+VOICE_SPEED = float(os.environ.get("VOICE_SPEED", "1.38"))  # brisk: short-form pace, still clear (1.28 until Nov 20; the user asked for quicker)
 VOICE_INSTRUCT = os.environ.get("VOICE_INSTRUCT", "male, british accent, middle-aged, calm, news presenter")
 
 
@@ -124,6 +124,34 @@ def duration(path):
     return round(float(out.stdout.strip()), 3)
 
 
+# Scene caps (each scene lasts its line + 0.25 s): the opening shot is a 1.6 s punch, the hook's stake shot (scene 2,
+# "hook": true) 2 s, every other story beat 3.5 s.
+# A clip that runs over is sped up (ffmpeg atempo, pitch kept) by at most MAX_TEMPO; past that the gate in
+# reelscore.py refuses the reel so the line gets rewritten shorter.
+OPEN_CAP, STAKE_CAP, BEAT_CAP, MAX_TEMPO = 1.3, 1.7, 3.2, 1.18
+
+
+def louder(path):
+    """Make the narrator sit clearly on top of the music on a phone speaker: even out the level (gentle compression),
+    lift it about 5 dB and catch the peaks with a limiter (the user asked for louder narration, Nov 20)."""
+    tmp = path.with_suffix(".loud.wav")
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(path), "-af",
+                    "acompressor=threshold=-20dB:ratio=3:attack=5:release=80:makeup=2,volume=5dB,alimiter=limit=0.95",
+                    str(tmp)], check=True)
+    tmp.replace(path)
+
+
+def fit(path, cap):
+    d = duration(path)
+    if d <= cap:
+        return d
+    tempo = min(MAX_TEMPO, d / cap)
+    tmp = path.with_suffix(".fit.wav")
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(path), "-filter:a", f"atempo={tempo:.3f}", str(tmp)], check=True)
+    tmp.replace(path)
+    return duration(path)
+
+
 def main(plan_path):
     global VOICE_NAME
     plan = json.loads(Path(plan_path).read_text())
@@ -149,7 +177,9 @@ def main(plan_path):
             continue
         path = out_dir / f"{i + 1}.wav"
         say(text, path)
-        clips.append({"i": i, "src": f"vo/{plan['id']}/{i + 1}.wav", "dur": duration(path)})
+        louder(path)
+        cap = None if scene["type"] == "endCard" else (OPEN_CAP if i == 0 else STAKE_CAP if scene.get("hook") else BEAT_CAP)
+        clips.append({"i": i, "src": f"vo/{plan['id']}/{i + 1}.wav", "dur": fit(path, cap) if cap else duration(path)})
         print(f"  scene {i + 1}: {clips[-1]['dur']:.1f}s  {text}")
     vo_json.write_text(json.dumps(clips, indent=2))
     print(f"narration ({ENGINE}): {len(clips)} clips, {sum(c['dur'] for c in clips):.1f}s")

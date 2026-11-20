@@ -6,7 +6,7 @@ The user gives a topic; you return a finished vertical news short (MP4) with sou
 
 - Account: **@fivebeforemonday** (`src/brand.ts`). Every scene shows the handle automatically; the last scene must be a follow CTA that names it (calendarCta's default CTA does). The plan check enforces this.
 - **Balance numbers and information.** Numbers are the hook, explanations are the value. Alternate them: hook number → proof number → reasons (each a `causeChain` with a big `stat` and 2 short steps) → twist number → dated next event. At least 70% of scenes after the opening show a number, and any video of 5+ scenes explains at least once (`causeChain`, `headline` or `timeline`). The plan check enforces both.
-- Channel palette: `broadsheet` (the default; newspaper paper texture, Instrument Serif headlines, highlighter keywords, navy dark scenes, colour accents). Plans leave `palette` out. **Read `docs/STYLE.md` before planning or adding a scene**: it is the house style (colour meanings, type sizes, motion, sources) and every video must match it. Daily reels run 30-40 s (see "Daily reel"); one-off updates can be shorter.
+- Channel palette: `broadsheet` (the default; newspaper paper texture, Instrument Serif headlines, highlighter keywords, navy dark scenes, colour accents). Plans leave `palette` out. **Read `docs/STYLE.md` before planning or adding a scene**: it is the house style (colour meanings, type sizes, motion, sources) and every video must match it. Daily reels run 24-36 s (see "Daily reel"); one-off updates can be shorter.
 
 ## Setup (fresh session)
 
@@ -47,13 +47,13 @@ Versions are pinned (Remotion 4.0.540, zod 4.6.7, skills in `skills-lock.json`).
      - **CTA:** the save card (see the end card below): a one-screen recap worth a screenshot.
    - **Pace:** one beat per scene, about 3.3 spoken words per second, 7-10 words per line, every story scene 3.5 s
      or shorter (a change every 2-4 s), beats joined by "but/therefore", never "and then". More scenes, not
-     longer ones: 9-11 story scenes plus the end card make 30-40 s.
+     longer ones: 9-11 story scenes plus the end card make 24-36 s.
    - **Payoff:** the last story scene echoes the hook's number or subject and closes its loop.
    - **Gate:** `python3 scripts/reelscore.py plans/<id>.json` scores the HOOK (hookscore) and the SCRIPT (on-screen
      hook, lead, open loop 1 and 2, pace, but/therefore, payoff loop, numbers, length, one ask) out of 100. A reel is approved only
      when both are 85+; make.sh and GitHub refuse it otherwise. Report both scores with the reel. Don't reuse the
      hook family of the last entry in `runs/log.md`.
-3. **Structure.** Pick one not used in the last 5 entries of `runs/log.md`: countdown, versus, myth vs fact, timeline, what-happens-next, single number, escalation -> rehook -> open loop. Spine: opening (number on screen within 1 s) -> lead (a new number) -> body -> open loop 1 ("But...") -> body -> open loop 2 -> body / payoff -> save card. Daily reels 30-40 s.
+3. **Structure.** Pick one not used in the last 5 entries of `runs/log.md`: countdown, versus, myth vs fact, timeline, what-happens-next, single number, escalation -> rehook -> open loop. Spine: opening (number on screen within 1 s) -> lead (a new number) -> body -> open loop 1 ("But...") -> body -> open loop 2 -> body / payoff -> save card. Daily reels 24-36 s (quick narration since Nov 20).
    **Build-up trial:** about once a week, try the build-up form instead of a new scene type every beat: a `chapters` card
    with the 3 beats appears after the lead (`unlocked: 0`) and comes back between bodies (`unlocked: 1`, then `2`), so
    one picture grows through the reel and the save card completes it. Set `"structure": "build-up (...)"` so the
@@ -74,7 +74,7 @@ Every trading day after the New York close a scheduled task makes one reel about
    Then read `docs/LEARNINGS.md` (our own reels' results, updated daily): follow its DO MORE / AVOID rules, and
    if it lists a next experiment and the story is strong, make today an A/B trial-reel test (`docs/LEARNING.md`).
 2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook
-   and plan as usual. Length 30-40 s (the check allows 28-45), in this order (the 8 blocks): hook -> lead (a second number) -> what happened ->
+   and plan as usual. Length 24-36 s narrated, plan 26-34 s (the check allows 22-42), in this order (the 8 blocks): hook -> lead (a second number) -> what happened ->
    2-3 reasons (each sourced; open loop 1 before the first, open loop 2 before the last) -> what's next,
    with a date -> `endCard` (save card). Use 1-2 drawings (see "Illustrations"):
    usually `open.illustration` as the hook (a metaphor for the story + the big number + the company logo pinned
@@ -123,6 +123,14 @@ Nov 15; Instagram treats copies as unoriginal).
 - Never post one account's reel, or a near-copy of it, on the other. Different stories, different days.
 - `runs/log.md` rows for this account start with `chips:`.
 
+## Scene length (hard rules)
+
+- First shot (scene 1): at most **1.6 s** (4 words). Stake shot (scene 2, `"hook": true`): at most **2 s**
+  (5 words). Every other story beat: at most **3.5 s** (9 words). `scripts/voice.py` speeds a clip that runs
+  over by up to 18% (pitch kept); past that
+  `reelscore.py` prints HARD RULE and refuses the reel whatever its score. Fix it by cutting words or splitting
+  the beat in two scenes, never by slowing down.
+
 ## Frame 0 and variety
 
 - **Frame 0 shows the hook.** Viewers skip before anything animates in, and a blank first frame looks like a
@@ -149,7 +157,9 @@ graph screenshots from the user are saved with `scripts/reelanalyze.py retention
   `VOICE_EXAGGERATION` / `VOICE_CFG` for Chatterbox. `.github/workflows/voice-samples.yml` renders the
   candidates side by side. `VOICE_ENGINE=omnivoice` switches to OmniVoice voice design (its official weights
   are non-commercial, so not for this channel as-is); `elevenlabs` uses the paid API if a key is set.
-  Speed 1.22 (brisk). Each scene lasts its line plus 0.25 s. Local renders are silent previews.
+  Speed 1.38 (quick; raised from 1.28 on Nov 20 at the user's request). Each clip is compressed, lifted ~5 dB and
+  limited so the narrator sits clearly over the music, which plays at 60% under narration. Each scene lasts its
+  line plus 0.25 s. Local renders are silent previews.
 - **Music** (`scripts/music.py`): original music composed per reel to its cuts and played with the
   FluidR3 GM soundfont (MIT), so nothing to license or get flagged: a hit under the hook, a newsroom pulse
   through the story, one bar of drop at the middle (an attention reset), and a resolve on the end card. It
@@ -162,8 +172,10 @@ graph screenshots from the user are saved with `scripts/reelanalyze.py retention
 
 ### Voice: hooking and trustworthy
 
-- Line 1 is the hook, 10 words max, landing inside the opening: the concrete event, the number and the
-  tension ("Nvidia lost a trillion dollars in a month. Not on earnings."). "You/your" is fine in the hook when
+- The hook is **two quick shots**, so the first cut lands by ~1.5 s (winners show a new visual by 0.5-1.5 s,
+  HOOKS.md; the user found 3-5 s openings boring): scene 1 is the punch, **max 4 words** ("Nvidia lost $1
+  trillion."), with the number on screen at frame 0; scene 2 has `"hook": true` and is the stake, **max 5
+  words** ("Your fund too."), on a new visual (a counter, a logo, a picture). Then the lead. "You/your" is fine in the hook when
   it names the viewer's real stake ("If you own an index fund..."), never as advice.
 - Then plain newsreader sentences: what happened, why (from the sources), what's next. No questions to the
   viewer, no "guys", no hype ("insane", "skyrocket", "to the moon", "must buy"; the check blocks

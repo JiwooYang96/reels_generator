@@ -18,6 +18,8 @@ export const sceneSchema = z.object({
   source: z.string().optional(),
   // What the narrator says over this scene. Defaults to the caption words.
   voice: z.string().optional(),
+  // Scene 2 only: the second shot of a split hook (punch at 0 s, stake cut in at ~1.5 s), see CLAUDE.md "Scene length".
+  hook: z.boolean().optional(),
   props: z.record(z.string(), z.any()),
 });
 
@@ -163,14 +165,17 @@ export const checkPlan = (plan: Plan): string[] => {
   const voiced = plan.scenes.filter((s) => s.voice).length;
   if (voiced && voiced < plan.scenes.length) problems.push(`${plan.scenes.length - voiced} scene(s) have no "voice" line; narrate every scene or none`);
   const hookWords = plan.scenes[0].voice ? plan.scenes[0].voice.trim().split(/\s+/).length : 0;
-  if (hookWords > 11) problems.push(`opening voice line has ${hookWords} words; the hook must land in about 3 s (max 11 words)`);
+  if (hookWords > 4) problems.push(`opening voice line has ${hookWords} words; the first shot is a 1.5 s punch (max 4 words, e.g. "Nvidia lost $1 trillion."). Put the stake in scene 2 with "hook": true`);
+  const stake = plan.scenes[1];
+  if (stake?.hook && stake.voice && stake.voice.trim().split(/\s+/).length > 5) problems.push('scene 2 (hook stake): max 5 spoken words, e.g. "Your fund too."');
+  if (plan.scenes.slice(2).some((s) => s.hook)) problems.push('"hook": true only belongs on scene 2');
   if (plan.post && !/sources?:/i.test(plan.post.caption)) problems.push('post.caption needs a "Sources:" list');
   // Channel: the closing scene must send viewers to the account.
   const last = plan.scenes[plan.scenes.length - 1];
   const lastText = JSON.stringify(last.props) + JSON.stringify(last.caption);
   const defaultsToHandle = (last.type === 'calendarCta' && !('cta' in last.props)) || last.type === 'endCard';
   if (!defaultsToHandle && !lastText.includes(plan.handle)) problems.push(`last scene: end with a follow CTA that names ${plan.handle}`);
-  // Daily reels (they carry an Instagram post) close on the promo end card and run 28-45 s.
+  // Daily reels (they carry an Instagram post) close on the end card and run 22-42 s as planned (narration then sets it).
   if (plan.post) {
     if (last.type !== 'endCard') problems.push('daily reels must end with an endCard scene (see docs/STYLE.md "End card")');
     if (plan.scenes.filter((s) => s.type === 'endCard').length > 1) problems.push('only one endCard, at the end');
@@ -180,7 +185,7 @@ export const checkPlan = (plan: Plan): string[] => {
       else if (!last.props.title || !last.props.items) problems.push('end card (save): needs a title and 2-4 recap items');
     }
     if (!/link in bio|fivebeforemonday\.com/i.test(plan.post.caption)) problems.push('post.caption: put the newsletter ask there ("... -> link in bio."), since the end card asks for a save');
-    if (total < 28 || total > 45) problems.push(`daily reel is ${total.toFixed(1)} s; plan 30-40 s (allowed 28-45)`);
+    if (total < 22 || total > 42) problems.push(`daily reel is ${total.toFixed(1)} s; plan 26-34 s (allowed 22-42)`);
   }
 
   // Balance: numbers hook, explanations inform. Most scenes carry a number; longer videos explain at least once.
