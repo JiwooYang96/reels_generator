@@ -1,0 +1,290 @@
+{
+  "id": "chips-2026-11-20",
+  "handle": "@5beforemonday",
+  "title": "Nvidia −14% on a reported SEC accounting probe",
+  "structure": "countdown (3 questions on the books)",
+  "hookFamily": "contradiction (record sales, record loss) + stake",
+  "music": "tense",
+  "post": {
+    "caption": "Nvidia stock fell 14% on Friday to $125.53, about $491 billion of market value in one session, after Reuters reported that SEC enforcement staff are examining potential accounting issues. Nvidia hadn't commented; the SEC declined to comment.\nIt came three days after record quarterly sales of $115.8 billion. Its quarterly filing (10-Q) is due December 4.\n\nGet this week's five, free every Saturday → link in bio.\n\n#nvidia #nvda #semiconductors #chipstocks\n\nSources: Reuters via The Motley Fool (Nov 20), 24/7 Wall St. (Nov 20), Yahoo Finance (Nov 20), CryptoTicker (Nov 20). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "−14%",
+          "key": true
+        },
+        {
+          "t": "in"
+        },
+        {
+          "t": "one",
+          "br": true
+        },
+        {
+          "t": "day."
+        }
+      ],
+      "props": {
+        "subject": "a heavy golden crown split cleanly in two, lying on a cracked dark marble floor",
+        "big": "−14%",
+        "sub": "Nvidia close, $125.53, Nov 20",
+        "tone": "bad",
+        "ticker": "NVDA"
+      },
+      "voice": "Nvidia lost 14% today.",
+      "seconds": 1.6
+    },
+    {
+      "type": "counter",
+      "hook": true,
+      "caption": [
+        {
+          "t": "−$491B",
+          "key": true
+        },
+        {
+          "t": "gone."
+        }
+      ],
+      "source": "The Motley Fool, Nov 20 2026",
+      "props": {
+        "label": "Nvidia market value lost, Friday",
+        "from": 300,
+        "to": 491,
+        "prefix": "$",
+        "suffix": "B",
+        "sign": "−",
+        "tone": "bad",
+        "sub": "about $3.52T to $3.03T in one session",
+        "logo": "NVDA"
+      },
+      "voice": "Your fund paid too.",
+      "seconds": 2.0
+    },
+    {
+      "type": "versus",
+      "caption": [
+        {
+          "t": "Record"
+        },
+        {
+          "t": "$115.8B",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "first."
+        }
+      ],
+      "source": "CryptoTicker; 24/7 Wall St., Nov 20 2026",
+      "props": {
+        "left": {
+          "name": "Tue Nov 17",
+          "value": "$115.8B",
+          "caption": "record quarterly sales",
+          "logo": "NVDA"
+        },
+        "right": {
+          "name": "Fri Nov 20",
+          "value": "−14%",
+          "caption": "close, $125.53",
+          "logo": "NVDA"
+        },
+        "winner": "none"
+      },
+      "voice": "Three days earlier: record sales of $115.8 billion.",
+      "seconds": 3.2
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "But:"
+        },
+        {
+          "t": "an"
+        },
+        {
+          "t": "SEC",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "probe."
+        }
+      ],
+      "source": "Reuters via The Motley Fool, Nov 20 2026",
+      "props": {
+        "n": 1,
+        "title": "A reported SEC probe",
+        "stat": {
+          "value": "−14%",
+          "label": "Friday, after Reuters' report"
+        },
+        "steps": [
+          "Reuters: SEC eyes accounting",
+          "SEC declined to comment"
+        ],
+        "logo": "NVDA"
+      },
+      "voice": "But Reuters says SEC staff are examining its accounting.",
+      "seconds": 3.3
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "$104B",
+          "key": true
+        },
+        {
+          "t": "via"
+        },
+        {
+          "t": "Singapore.",
+          "br": true
+        }
+      ],
+      "source": "Financial Times via Yahoo Finance, Nov 20 2026",
+      "props": {
+        "n": 2,
+        "title": "Where sales are booked",
+        "stat": {
+          "value": "$104B",
+          "label": "2025 sales booked via Singapore, about half"
+        },
+        "steps": [
+          "FT flagged the billing split",
+          "SEC focus not confirmed"
+        ],
+        "logo": "NVDA"
+      },
+      "voice": "The FT flagged $104 billion booked through Singapore.",
+      "seconds": 3.3
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "$118B",
+          "key": true
+        },
+        {
+          "t": "in"
+        },
+        {
+          "t": "guarantees.",
+          "br": true
+        }
+      ],
+      "source": "The Motley Fool (earnings call), Nov 20 2026",
+      "props": {
+        "n": 3,
+        "title": "Customer financing",
+        "stat": {
+          "value": "$118B",
+          "label": "guarantees, per CFO on the earnings call"
+        },
+        "steps": [
+          "$105B tied to one campus",
+          "Baird: deals under microscope"
+        ],
+        "logo": "NVDA"
+      },
+      "voice": "But the strangest part: $118 billion in customer guarantees.",
+      "seconds": 3.3
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "Nasdaq"
+        },
+        {
+          "t": "−5.3%.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Yahoo Finance, Nov 20 2026 close",
+      "props": {
+        "subject": "a long row of tall glass dominoes toppling one after another across a dark polished floor"
+      },
+      "voice": "The whole AI trade fell. Nasdaq down 5.3%.",
+      "seconds": 3.0
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Week:"
+        },
+        {
+          "t": "−$901B.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "24/7 Wall St. (Dow Jones Market Data), Nov 20 2026",
+      "props": {
+        "label": "Nvidia value lost this week",
+        "from": 500,
+        "to": 901,
+        "prefix": "$",
+        "suffix": "B",
+        "sign": "−",
+        "tone": "bad",
+        "sub": "biggest one-week loss for any company on record",
+        "logo": "NVDA"
+      },
+      "voice": "This week: minus $901 billion, a one-company record.",
+      "seconds": 3.1
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "−14%"
+        },
+        {
+          "t": "meets"
+        },
+        {
+          "t": "Dec 4.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "24/7 Wall St., Nov 20 2026",
+      "props": {
+        "day": "FRI",
+        "date": "Dec 4",
+        "event": "Nvidia quarterly filing (10-Q) due",
+        "note": "Not filed with Nov 17 results",
+        "cta": "Follow @5beforemonday →"
+      },
+      "voice": "The 14% question: its late filing, due December fourth.",
+      "seconds": 3.3
+    },
+    {
+      "type": "endCard",
+      "theme": "light",
+      "caption": [],
+      "props": {
+        "variant": "save",
+        "title": "Nvidia's −14% SEC day",
+        "items": [
+          "NVDA −14% on Friday",
+          "−$491B in one day",
+          "Reuters: SEC probe",
+          "Next: 10-Q due Dec 4"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday.",
+      "seconds": 6
+    }
+  ]
+}
