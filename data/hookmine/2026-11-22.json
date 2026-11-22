@@ -224,5 +224,347 @@
    "caption": "🚨 NVIDIA: DROHT DER NÄCHSTE BILANZSKANDAL? 📉\n\n👉 Folge @investdiversified für Aktien-, Dividenden- & Cashflow-Content!\n🔖 Reposte, teile, speichere und like das Reel!\n\nGuten Morgen Freunde 🙋‍♂️!\n\nBei NV"
   }
  ],
- "analysed": []
+ "analysed": [
+  {
+   "username": "marianaiparrea",
+   "url": "https://www.instagram.com/p/DfiFyOxCiWG/",
+   "views": 2170184,
+   "_multiple": 11.99,
+   "seconds": 118.1,
+   "analysis": {
+    "hook": {
+     "technique": "story-tease",
+     "replicable_formula": "Imagine having to [awkward thing the person in the news did]. Then [the market fallout]. And now [the new twist]."
+    },
+    "first_frame": "Talking-head creator over a large photo of the CEO, label 'Con las manos en la masa', a news headline card with outlet name, and the first caption word, all on screen",
+    "onscreen_hook": "Con las manos en la masa",
+    "spoken_first_line": "Imagínate tener que confesar públicamente que le fuiste infiel a tu esposa.",
+    "why_it_works": "Second-person 'imagine' puts the viewer inside the week's scandal, and a real headline card at 0 s proves it is news. (Uses a real person's photo, which we don't do.)"
+   }
+  },
+  {
+   "username": "lifegoalinvestments",
+   "url": "https://www.instagram.com/p/Df-Q0mrCbcR/",
+   "views": 1906949,
+   "_multiple": 10.54,
+   "seconds": 74.4,
+   "analysis": {
+    "hook": {
+     "technique": "bold-claim",
+     "replicable_formula": "The market is [blunt verb]. [Index] is now [milestone number] for the year, and [N] forces are colliding."
+    },
+    "first_frame": "Selfie outdoors, big white box with 'The Market is F*cking Collapsing' (last word red) already on screen",
+    "onscreen_hook": "The Market is F*cking Collapsing",
+    "spoken_first_line": "The market is collapsing, the NASDAQ is now negative for the year and there are three massive...",
+    "why_it_works": "A blunt alarm at 0 s, then a concrete milestone and a numbered promise ('three pressures') that makes you stay for the list. (Profanity and alarm tone are not ours.)"
+   }
+  },
+  {
+   "username": "itsfinancialeducation",
+   "url": "https://www.instagram.com/p/DgAJUqruqyJ/",
+   "views": 1640465,
+   "_multiple": 9.07,
+   "seconds": 172.7,
+   "analysis": {
+    "hook": {
+     "technique": "contrarian",
+     "replicable_formula": "Is [the sell-off] happening on purpose? [Who] gains [$X] if [rates/prices] fall."
+    },
+    "first_frame": "Dark chart card 'CRASHING ON PURPOSE?' with a rising green line, and a stick figure labelled with a politician's name pulling a lever, 'MY OPINION' tag",
+    "onscreen_hook": "CRASHING ON PURPOSE?",
+    "spoken_first_line": "[Politician] is crashing the stock market on purpose to prevent the government from paying $1 trillion...",
+    "why_it_works": "A hidden-motive question with a big dollar figure turns a sell-off into a puzzle; the animated lever-and-chart is understood instantly. (Speculative political claim; we only report sourced reasons.)"
+   }
+  },
+  {
+   "username": "carswjonah",
+   "url": "https://www.instagram.com/p/Df-fg3szSI6/",
+   "views": 1593689,
+   "_multiple": 8.81,
+   "seconds": 12.9,
+   "analysis": {
+    "hook": {
+     "technique": "relatable-pain",
+     "replicable_formula": "The dip wasn't the dip: [company] [-X%] today."
+    },
+    "first_frame": "Creator holding his head over a broker app screenshot: NVIDIA $127.34, red -12.77% today, caption 'The dip wasn't the dip'",
+    "onscreen_hook": "The dip wasn't the dip",
+    "spoken_first_line": "My bad, I thought the dip was the dip.",
+    "why_it_works": "A self-deprecating line every dip-buyer recognises, with the real red price and % visible at 0 s as the punchline's proof."
+   }
+  },
+  {
+   "username": "mikes.ai",
+   "url": "https://www.instagram.com/p/DfxIaf-CzXC/",
+   "views": 724497,
+   "_multiple": 4.0,
+   "seconds": 75.7,
+   "analysis": {
+    "hook": {
+     "technique": "contrarian",
+     "replicable_formula": "Everyone wanted [company] at $[peak]. Now no one wants it at $[now]."
+    },
+    "first_frame": "Talking head under the company logo and serif headline 'Everyone wanted it at $243', small price card already counting ($188)",
+    "onscreen_hook": "Everyone wanted it at $243",
+    "spoken_first_line": "Everyone wanted it at 243, and now no one wants it at 163.",
+    "why_it_works": "A then-vs-now price pair puts the whole fall in two numbers and flips crowd sentiment; the counting price card moves from frame 0."
+   }
+  },
+  {
+   "username": "capitallgrowth",
+   "url": "https://www.instagram.com/p/DgAoUl9I3RP/",
+   "views": 642319,
+   "_multiple": 3.55,
+   "seconds": 92.3,
+   "analysis": {
+    "hook": {
+     "technique": "bold-claim",
+     "replicable_formula": "[Actor] is [verb]ing this [market move]. The reason: $[big number] in [thing]."
+    },
+    "first_frame": "Dim White House photo; the headline, heatmap and speaker cut-out arrive by 0.5 s (frame 0 is nearly empty)",
+    "onscreen_hook": "TRUMP IS FORCING THIS MARKET CRASH",
+    "spoken_first_line": "Donald Trump is purposely forcing this stock market crash and the reason has everything to do with the $11 trillion in American debt...",
+    "why_it_works": "A loud motive claim stacked on a red heatmap with a date stamp; it works despite a nearly empty frame 0. (Speculative political claim and a real politician's image, which we don't do.)"
+   }
+  },
+  {
+   "username": "thebriandecker",
+   "url": "https://www.instagram.com/p/Df8iKbwR5Nz/",
+   "views": 611634,
+   "_multiple": 3.38,
+   "seconds": 176.6,
+   "analysis": {
+    "hook": {
+     "technique": "contrarian",
+     "replicable_formula": "[Actor] is [doing X] on purpose to avoid paying $[N]. Here are the facts."
+    },
+    "first_frame": "Silhouette over a red stock-board background on top half, creator talking below, caption 'Donald Trump is'",
+    "onscreen_hook": "Trump is crashing the market on purpose",
+    "spoken_first_line": "Donald Trump is crashing a stock market on purpose to prevent the government from paying one trillion dollars...",
+    "why_it_works": "Hidden-motive claim plus 'let me show you the facts' promises proof; a third reel with the same take this week, so the narrative itself was the hook. (Speculative; not for us.)"
+   }
+  },
+  {
+   "username": "geopolitica.in",
+   "url": "https://www.instagram.com/p/Df_iG3Fyid0/",
+   "views": 356808,
+   "_multiple": 1.97,
+   "seconds": 6.2,
+   "analysis": {
+    "hook": {
+     "technique": "visual-shock",
+     "replicable_formula": "[Market] went from green to red in one session: watch [N]% of stocks flip."
+    },
+    "first_frame": "Black frame, red-and-white headline 'Bloodbath in US', a market heatmap still mostly green, and a subtitle line",
+    "onscreen_hook": "Bloodbath in US",
+    "spoken_first_line": "(sound only)",
+    "why_it_works": "A heatmap that visibly turns from green to red in 3 s is the whole story with sound off; the headline tells you what you're watching."
+   }
+  },
+  {
+   "username": "jd_durkin",
+   "url": "https://www.instagram.com/p/Df-vFMVuIzx/",
+   "views": 319142,
+   "_multiple": 1.76,
+   "seconds": 103.3,
+   "analysis": {
+    "hook": {
+     "technique": "number-shock",
+     "replicable_formula": "[Index] lost $[X], its worst week in [period]: everything that happened in [N] seconds."
+    },
+    "first_frame": "Motion-blurred creator on the exchange floor with an empty white title box and a date tag 'Fri 11/20' (headline fills by 0.5 s)",
+    "onscreen_hook": "The S&P 500 lost $2.4 trillion, worst week in over a year",
+    "spoken_first_line": "Stock market got throttled again today. Here's everything you need to know that happened on Wall Street in 60-ish seconds.",
+    "why_it_works": "A dated headline with a red dollar figure plus a 60-second promise; the exchange setting signals real news. Its blank title box at 0 s is the weak spot."
+   }
+  },
+  {
+   "username": "anthony_daloise",
+   "url": "https://www.instagram.com/p/DgAts2uTteo/",
+   "views": 315168,
+   "_multiple": 1.74,
+   "seconds": 48.1,
+   "analysis": {
+    "hook": {
+     "technique": "number-shock",
+     "replicable_formula": "Then $[peak] / Now $[current]: [company] down [X]%. [N] more like it."
+    },
+    "first_frame": "'Then' / 'Now' red and green pills, a ticker card NVDA $243.37 'Previous High', red 'Down: 48.4%', and 'Biggest Stocks on Discount' box, all at 0 s",
+    "onscreen_hook": "Then / Now: $243.37, Down 48.4%",
+    "spoken_first_line": "Everybody wanted Nvidia at 243, but nobody wanted it at 126.",
+    "why_it_works": "Then-vs-now cards with a red percentage give the drop in one glance, and a list promise ('biggest stocks') holds for the next ticker. (Buy-the-dip angle is advice; we only report.)"
+   }
+  },
+  {
+   "username": "notyourdad.co",
+   "url": "https://www.instagram.com/p/Df76fiOSHAr/",
+   "views": 274720,
+   "_multiple": 1.52,
+   "seconds": 78.3,
+   "analysis": {
+    "hook": {
+     "technique": "contrarian",
+     "replicable_formula": "[Positive frame] ([what everyone else sees]). [Company] is down [X]% from its high."
+    },
+    "first_frame": "Talking head under a big serif headline 'Generational opportunity (Stocks are crashing)'",
+    "onscreen_hook": "Generational opportunity (Stocks are crashing)",
+    "spoken_first_line": "Nvidia is down 36% from its high, the lowest it's been this year.",
+    "why_it_works": "Headline contradicts the mood (opportunity vs crash), then a precise drawdown number grounds it. (Advice framing; we'd keep the contradiction, drop the call.)"
+   }
+  },
+  {
+   "username": "sammystockz",
+   "url": "https://www.instagram.com/p/Df24VIih8LV/",
+   "views": 265162,
+   "_multiple": 1.47,
+   "seconds": 61.8,
+   "analysis": {
+    "hook": {
+     "technique": "story-tease",
+     "replicable_formula": "The same [fund/company] that [lost $X] in [month] just [did it again]. Here's how."
+    },
+    "first_frame": "Black frame with a photo card of a fund manager, caption 'Situational Awareness lost everything AGAIN', creator talking below",
+    "onscreen_hook": "Situational Awareness lost everything AGAIN",
+    "spoken_first_line": "The same hedge fund that got liquidated for $40 billion back in July just blew up again, and you will not believe how this happened.",
+    "why_it_works": "A sequel story ('again') with a dollar loss and 'you won't believe how' opens a loop that only the reel closes."
+   }
+  },
+  {
+   "username": "sammystockz",
+   "url": "https://www.instagram.com/p/Df-dmbShNuR/",
+   "views": 199313,
+   "_multiple": 1.1,
+   "seconds": 38.9,
+   "analysis": {
+    "hook": {
+     "technique": "number-shock",
+     "replicable_formula": "$[X] wiped out of [market] today. [Index] down [Y]% this [period]: [milestone]."
+    },
+    "first_frame": "Black frame, X-post screenshot 'MASSIVE WIPEOUT: $2 trillion crash in the US stock market today' over a red heatmap with big-tech logos and % moves",
+    "onscreen_hook": "$2 trillion crash in the US stock market today",
+    "spoken_first_line": "Over $2 trillion has been wiped out of the US stock market today, with the Nasdaq down over 13% this month and in correction territory.",
+    "why_it_works": "Dollar wipeout headline plus a logo heatmap at 0 s, then a second number (13%) and a named milestone (correction) in the first sentence."
+   }
+  },
+  {
+   "username": "invest.withsaurabh",
+   "url": "https://www.instagram.com/p/DgAPC67PuDe/",
+   "views": 162544,
+   "_multiple": 0.9,
+   "seconds": 97.2,
+   "analysis": {
+    "hook": {
+     "technique": "direct-address",
+     "replicable_formula": "[Day + time the viewer's market opens] alert: what [last night's move] means for you."
+    },
+    "first_frame": "Talking head at a desk under a white box 'MONDAY 9:15 AM ALERT' with a siren",
+    "onscreen_hook": "MONDAY 9:15 AM ALERT",
+    "spoken_first_line": "(transcript unreadable: Hindi/Urdu about the US sell-off and Nvidia's fall)",
+    "why_it_works": "A time-stamped alert tied to the viewer's own market open (India) makes overseas news feel urgent and local."
+   }
+  },
+  {
+   "username": "dominiquebroadway",
+   "url": "https://www.instagram.com/p/Df-uBP2y0iZ/",
+   "views": 141624,
+   "_multiple": 0.78,
+   "seconds": 141.8,
+   "analysis": {
+    "hook": {
+     "technique": "direct-address",
+     "replicable_formula": "[Market] just had its worst [period] since [famous event]. Here's what actually happened."
+    },
+    "first_frame": "Talking head under a serif headline 'The Worst Week in the Market Since Covid / But Don't Panic Sale!' with siren icons",
+    "onscreen_hook": "The Worst Week in the Market Since Covid, But Don't Panic Sell!",
+    "spoken_first_line": "Do not sell anything until you watch this. So yes, the market just had its worst week since COVID.",
+    "why_it_works": "Names the viewer's fear and a historic comparison at 0 s, then promises calm context. (We'd keep the comparison, never the 'don't sell' advice.)"
+   }
+  },
+  {
+   "username": "thatdesiaryan",
+   "url": "https://www.instagram.com/p/Df-0zzrB04z/",
+   "views": 109062,
+   "_multiple": 0.6,
+   "seconds": 6.8,
+   "analysis": {
+    "hook": {
+     "technique": "relatable-pain",
+     "replicable_formula": "When you [everyday feeling] but then you check [the red market]."
+    },
+    "first_frame": "Office worker on his phone, caption 'When you lose motivation to work but then you look at your stock portfolio' already on screen; a red stocks app appears at 2 s",
+    "onscreen_hook": "When you lose motivation to work but then you look at your stock portfolio",
+    "spoken_first_line": "(no speech)",
+    "why_it_works": "A relatable office moment that every investor in a red week recognises; readable at 0 s with sound off."
+   }
+  },
+  {
+   "username": "daylotrading",
+   "url": "https://www.instagram.com/p/Df25Nt6O1fk/",
+   "views": 103174,
+   "_multiple": 0.57,
+   "seconds": 12.0,
+   "analysis": {
+    "hook": {
+     "technique": "question",
+     "replicable_formula": "\"How do you know [who] is in control of [company]'s [event]?\""
+    },
+    "first_frame": "Close-up in a dark hoodie, quoted question 'How do you know sellers are in control of NVIDIA earnings?'",
+    "onscreen_hook": "How do you know sellers are in control of NVIDIA earnings?",
+    "spoken_first_line": "(music)",
+    "why_it_works": "A quoted viewer-style question promises an insider tell; the face holds a frozen 'look' that sets up an answer."
+   }
+  },
+  {
+   "username": "daytrading",
+   "url": "https://www.instagram.com/p/DgDEa6rv9dm/",
+   "views": 94176,
+   "_multiple": 0.52,
+   "seconds": 4.1,
+   "analysis": {
+    "hook": {
+     "technique": "relatable-pain",
+     "replicable_formula": "When [people around you] ask why you [invest/trade] this week."
+    },
+    "first_frame": "Letterboxed news clip of a politician gesturing, caption 'When your family and friends ask why you trade'",
+    "onscreen_hook": "When your family and friends ask why you trade",
+    "spoken_first_line": "(news clip audio)",
+    "why_it_works": "Meme caption on a recognisable clip; instant in-group joke for traders. (Footage of a real politician; not for us.)"
+   }
+  },
+  {
+   "username": "ceowatchlist",
+   "url": "https://www.instagram.com/p/DgDkD_0pg2T/",
+   "views": 89507,
+   "_multiple": 0.49,
+   "seconds": 48.9,
+   "analysis": {
+    "hook": {
+     "technique": "number-shock",
+     "replicable_formula": "[Famous investor/fund] just bought $[big number] of this $[price] stock. Which one?"
+    },
+    "first_frame": "Green box in caps 'WATCH OUT!!! WARREN BUFFETT'S COMPANY BUYS $930,000,000 OF THIS $44 STOCK!!!' over a famous investor photo, creator reacting below",
+    "onscreen_hook": "Buffett's company buys $930,000,000 of this $44 stock",
+    "spoken_first_line": "Warren Buffett's company just bought 930 million dollars of this $44 stock and I might have to copy him.",
+    "why_it_works": "A huge dollar figure next to a small share price plus a hidden ticker is a curiosity gap with two numbers. (Hype caps and 'copy him' are not our voice.)"
+   }
+  },
+  {
+   "username": "killua_invests",
+   "url": "https://www.instagram.com/p/DgAioobR4K_/",
+   "views": 81070,
+   "_multiple": 0.45,
+   "seconds": 14.0,
+   "analysis": {
+    "hook": {
+     "technique": "list",
+     "replicable_formula": "[Company] now $[price]. The level to watch: [reveal]. 1 of [N]."
+    },
+    "first_frame": "Plain talking head with a mic; no text at 0 s (the price card with a blurred target appears at 0.5 s, with a 1/5 progress bar)",
+    "onscreen_hook": "NVIDIA, now $125.53, my level hidden then revealed",
+    "spoken_first_line": "If Nvidia drops to this price, if Apple drops to this price...",
+    "why_it_works": "A blurred number that unblurs plus a '1/5' progress bar is a visible open loop. (Price targets are advice; we'd use the reveal for a sourced number.)"
+   }
+  }
+ ],
+ "reader": "claude (frames + transcript)"
 }
