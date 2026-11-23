@@ -125,10 +125,10 @@ def duration(path):
 
 
 # Scene caps (each scene lasts its line + 0.25 s): the opening shot is a 1.6 s punch, the hook's stake shot (scene 2,
-# "hook": true) 2 s, every other story beat 3.5 s.
+# "hook": true) 2 s, every other story beat 4.2 s (room for a whole cause-and-effect sentence, Nov 24).
 # A clip that runs over is sped up (ffmpeg atempo, pitch kept) by at most MAX_TEMPO; past that the gate in
 # reelscore.py refuses the reel so the line gets rewritten shorter.
-OPEN_CAP, STAKE_CAP, BEAT_CAP, MAX_TEMPO = 1.3, 1.7, 3.2, 1.18
+OPEN_CAP, STAKE_CAP, BEAT_CAP, MAX_TEMPO = 1.3, 1.7, 3.9, 1.18
 
 
 def louder(path):

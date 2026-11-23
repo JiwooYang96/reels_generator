@@ -5,7 +5,16 @@ The user gives a topic; you return a finished vertical news short (MP4) with sou
 ## Channel
 
 - Account: **@fivebeforemonday** (`src/brand.ts`). Every scene shows the handle automatically; the last scene must be a follow CTA that names it (calendarCta's default CTA does). The plan check enforces this.
-- **Balance numbers and information.** Numbers are the hook, explanations are the value. Alternate them: hook number → proof number → reasons (each a `causeChain` with a big `stat` and 2 short steps) → twist number → dated next event. At least 70% of scenes after the opening show a number, and any video of 5+ scenes explains at least once (`causeChain`, `headline` or `timeline`). The plan check enforces both.
+- **Story first (Nov 24).** The user found the Nov 20-23 reels "meaningless": a run of numbers glued together with
+  formula turns ("But the strangest part:", "Therefore...", "Your fund still got paid."). The pace was fine; the
+  content wasn't. Every reel now tells ONE story a viewer could retell to a friend in one sentence: what happened,
+  why, and what it means. Write that sentence first as the plan's `"story"` field (12-35 words), then make every
+  scene a step of it, in the order you'd tell it out loud. If a scene doesn't move that sentence forward, cut it.
+- **Numbers carry meaning.** The hook is still a big number, but every number after it says what it means in the
+  same line: compared to what, since when, out of what ("$950 billion, the biggest one-day gain ever", not "Shares
+  closed at a hundred sixty-five dollars."). At most one new number per scene. At least half the scenes after the
+  opening show a number (not every one: explanation beats need room), and any video of 5+ scenes explains at least
+  once (`causeChain`, `headline` or `timeline`). The plan check enforces both.
 - Channel palette: `broadsheet` (the default; newspaper paper texture, Instrument Serif headlines, highlighter keywords, navy dark scenes, colour accents). Plans leave `palette` out. **Read `docs/STYLE.md` before planning or adding a scene**: it is the house style (colour meanings, type sizes, motion, sources) and every video must match it. Daily reels run 24-36 s (see "Daily reel"); one-off updates can be shorter.
 
 ## Setup (fresh session)
@@ -28,37 +37,47 @@ Versions are pinned (Remotion 4.0.540, zod 4.6.7, skills in `skills-lock.json`).
    - **Hooks:** `hooksmith generate` for 3-5 complete hook systems from different families (number + stake,
      contradiction, belief break, versus flip, viewer callout). Upgrade each with the `viral-hooks` tactics
      (`references/hook-tactics.md`): a specific number, a power verb, the exact viewer, cut the first three words,
-     a shaped curiosity gap. Two short sentences beat one long one ("Nvidia lost a trillion dollars. Your index
-     fund didn't escape.").
+     a shaped curiosity gap. Two short sentences beat one long one ("Nvidia added $950 billion. The CEO who quit
+     returned."). The second sentence is the story's twist or cause, not a generic viewer stake: "your fund"
+     lines are allowed only when they say something true and specific, never as filler.
    - **Score:** `python3 .claude/skills/ig-reel/hookscore.py hooks.txt`. Keep 85+, then pick with `hooksmith audit`
      (35+/50). Honest only: the viewer stake must be true (index funds do hold the megacaps), no advice, no fake
-     urgency, no number you can't source.
+     urgency, no number you can't source. (reelscore.py leaves hookscore's "say you" check out of the gate.)
    - **On-screen hook:** 3-6 words with the number, compressed from the voice, never the same words
      (`viral-instagram-reels` reels-hook): "−$1T in 30 days."
-   - **The 8 blocks** (every reel, in order): hook -> lead -> body 1 -> open loop 1 -> body 2 -> open loop 2 ->
-     body 3 -> CTA. Our analytics showed the gaps: people skip after the hook (no lead) and leave mid-video
-     (one rehook, then a run of facts).
-     - **Lead:** scene 2 is a second mark of value, not set-up: a new hard number ($, %, x, or a big figure, not a
-       year) that the hook didn't show. Context and dates come later.
-     - **Open loop 1:** scene 2, 3 or 4 opens with a turn ("But the twist:", "Not...", "Turns out..."). The cut
-       tears the page.
-     - **Open loop 2:** a second turn in the back half ("That's when it got worse.", "But the strangest part:"),
-       or a `chapters` progress card that shows what's still locked.
+   - **The spine** (every reel, in order): hook (2 quick shots) -> lead (a second number, explained) -> THE WHY
+     (the cause, by the third scene after the hook) -> what it changed or undid -> the catch (one real turn) ->
+     what's next / payoff -> save card. Example (Nvidia, Nov 23): "Nvidia added $950 billion." / "The CEO who quit
+     returned." / "Shares jumped 31%, the biggest one-day dollar gain ever." / "Shares had lost 28% in seven days
+     after he resigned." / "On Monday the board voted unanimously to bring him back." / "Still, the stock closed 5%
+     under where it was before he left." / ... / "The 31% rebound faces its first test: that filing, due
+     December 4." (`tests/story-first-nvidia.json`). Each line follows from the one before; together they are the
+     story sentence.
+     - **Lead:** right after the hook, a new hard number with its meaning ("31%, its best day since 2003").
+     - **The why, early:** viewers leave when they don't know why it happened. Say the cause plainly ("because",
+       "after", "as") within the 3 scenes after the hook, attributed to the source.
+     - **One real turn:** a "But / Yet / Still" line only where the facts actually turn (the stock is still below
+       where it started; the deal cost more than it made). Never a formula turn: "But the strangest part:",
+       "But the twist:", "Therefore", "Turns out" with no contradiction are refused as filler.
      - **CTA:** the save card (see the end card below): a one-screen recap worth a screenshot.
-   - **Pace:** one beat per scene, about 3.3 spoken words per second, 7-10 words per line, every story scene 3.5 s
-     or shorter (a change every 2-4 s), beats joined by "but/therefore", never "and then". More scenes, not
-     longer ones: 9-11 story scenes plus the end card make 24-36 s.
+   - **Pace:** keep it quick (narration speed stays 1.38) but give each beat a whole thought: one idea per scene, a
+     full cause-and-effect sentence of up to 12 words, every story scene 4.2 s or shorter. Plain words: if a term
+     needs explaining (10-Q, guidance, short seller), explain it in the same line or skip it. 7-9 story scenes plus
+     the end card make 24-36 s.
    - **Payoff:** the last story scene echoes the hook's number or subject and closes its loop.
+   - **Read it aloud test:** before scoring, read the voice lines alone in order. If a friend couldn't tell you
+     what happened and why, rewrite. A high score never excuses a script that doesn't make sense.
    - **Gate:** `python3 scripts/reelscore.py plans/<id>.json` scores the HOOK (hookscore) and the SCRIPT (on-screen
-     hook, lead, open loop 1 and 2, pace, but/therefore, payoff loop, numbers, length, one ask) out of 100. A reel is approved only
+     hook, story sentence, lead, the why early, numbers explained, one real turn, pace, no filler, payoff loop,
+     numbers, length, one ask) out of 100. A reel is approved only
      when both are 85+; make.sh and GitHub refuse it otherwise. Report both scores with the reel. Don't reuse the
      hook family of the last entry in `runs/log.md`.
-3. **Structure.** Pick one not used in the last 5 entries of `runs/log.md`: countdown, versus, myth vs fact, timeline, what-happens-next, single number, escalation -> rehook -> open loop. Spine: opening (number on screen within 1 s) -> lead (a new number) -> body -> open loop 1 ("But...") -> body -> open loop 2 -> body / payoff -> save card. Daily reels 24-36 s (quick narration since Nov 20).
+3. **Structure.** Pick one not used in the last 5 entries of `runs/log.md`: countdown, versus, myth vs fact, timeline, what-happens-next, single number, escalation -> rehook -> open loop. Spine: opening (number on screen within 1 s) -> lead (a new number, explained) -> the why -> what it changed -> one real turn -> payoff / what's next -> save card. Daily reels 24-36 s (quick narration since Nov 20).
    **Build-up trial:** about once a week, try the build-up form instead of a new scene type every beat: a `chapters` card
    with the 3 beats appears after the lead (`unlocked: 0`) and comes back between bodies (`unlocked: 1`, then `2`), so
    one picture grows through the reel and the save card completes it. Set `"structure": "build-up (...)"` so the
    analyser can compare it.
-   **Reasons must be reasons.** When the video promises "why" or "N reasons", each reason is a `causeChain` scene that states what caused what (cause → effect → effect on the stock), taken from the sources. A description of what happened ("down 25%", "fell 9%") is not a reason; put such numbers in the hook or a stat chip. Give every reason a `stat` (one big sourced number) and 2 short steps (about 5 words each) so it is readable in 3.5 s.
+   **Reasons must be reasons.** When the video promises "why" or "N reasons", each reason is a `causeChain` scene that states what caused what (cause → effect → effect on the stock), taken from the sources. A description of what happened ("down 25%", "fell 9%") is not a reason; put such numbers in the hook or a stat chip. Give every reason a `stat` (one big sourced number) and 2 short steps (about 5 words each) so it is readable in 4 s.
 4. **Plan.** Write `plans/<id>.json` using scenes from `docs/SCENES.md` (see `plans/nvidia-week-nov6-broadsheet.json`). Leave `palette` at the channel default unless the user asks. Scene 1 is an `open.*` opening (rotate the opening type; `open.logo` for one-company stories). Add company logos per "Logos" below. Captions: max 2 lines of 24 chars, one boxed keyword (`key: true`), `br: true` for line 2, about 2.5 words per second. Every data scene gets a `source` ("Outlet, date").
 5. **Make.** `scripts/make.sh plans/<id>.json`. It checks the plan (fix every problem it prints), builds the sound, renders `out/<id>.mp4` and `out/<id>-sheet.png`. About 1 minute.
 6. **Look.** Read `out/<id>-sheet.png`. Check that nothing overlaps or is cut off and that the story reads in order. Adjust the plan and re-run if needed.
@@ -74,14 +93,14 @@ Every trading day after the New York close a scheduled task makes one reel about
    Then read `docs/LEARNINGS.md` (our own reels' results, updated daily): follow its DO MORE / AVOID rules, and
    if it lists a next experiment and the story is strong, make today an A/B trial-reel test (`docs/LEARNING.md`).
 2. Pick the move with the biggest story (not just the biggest %), research it as in step 1 above, then hook
-   and plan as usual. Length 24-36 s narrated, plan 26-34 s (the check allows 22-42), in this order (the 8 blocks): hook -> lead (a second number) -> what happened ->
-   2-3 reasons (each sourced; open loop 1 before the first, open loop 2 before the last) -> what's next,
-   with a date -> `endCard` (save card). Use 1-2 drawings (see "Illustrations"):
+   and plan as usual. Length 24-36 s narrated, plan 26-34 s (the check allows 22-42), in this order (the spine): hook -> lead (a second number, explained) -> why it happened
+   (the cause, early) -> what it changed -> one real turn where the facts turn -> what's next, with a date ->
+   `endCard` (save card). Write the `story` sentence first. Use 1-2 drawings (see "Illustrations"):
    usually `open.illustration` as the hook (a metaphor for the story + the big number + the company logo pinned
    on) and/or one `illustration` beat. Do the hook and script pass in step 2
    above properly every day; only a reel that `reelscore.py` approves (85+/85+) goes out. Set `music` by the move's direction. Write the plan to `plans/daily/<date>.json` (date = the New York trading
    day) and give it:
-   - `voice` on each scene: the narrator's line, 7-10 words, about 3.3 words per second (the scene length is
+   - `voice` on each scene: the narrator's line, a whole thought of up to 12 words, about 3.3 words per second (the scene length is
      set from the narrated line). It carries the story; the caption stays the short on-screen version. Say numbers
      the way a newsreader would ("down eight point eight percent", "a hundred and ninety-two billion
      dollars"). See "Voice: hooking and trustworthy" below; the plan check enforces the limits.
@@ -118,7 +137,7 @@ Nov 15; Instagram treats copies as unoriginal).
 - **Looks:** leave `palette` out. The account rotates terminal / gold / editorial / midnight / broadsheet by date
   (`src/brand.ts` ACCOUNTS, `scripts/variety.py palette()`), one each day, so the analyser can compare them
   fairly ("look" feature). Drawing style and narrator rotate as usual.
-- Everything else is the same: the 8 blocks, 85+/85+ gate, save card, sources, accuracy and illustration rules.
+- Everything else is the same: the story-first spine, 85+/85+ gate, save card, sources, accuracy and illustration rules.
   The caption's ask is the same newsletter ("Get this week's five, free every Saturday -> link in bio.").
 - Never post one account's reel, or a near-copy of it, on the other. Different stories, different days.
 - `runs/log.md` rows for this account start with `chips:`.
@@ -126,7 +145,8 @@ Nov 15; Instagram treats copies as unoriginal).
 ## Scene length (hard rules)
 
 - First shot (scene 1): at most **1.6 s** (4 words). Stake shot (scene 2, `"hook": true`): at most **2 s**
-  (5 words). Every other story beat: at most **3.5 s** (9 words). `scripts/voice.py` speeds a clip that runs
+  (5 words). Every other story beat: at most **4.2 s** (12 words; raised from 3.5 s / 9 words on Nov 24 so a
+  beat can carry a whole cause and effect). `scripts/voice.py` speeds a clip that runs
   over by up to 18% (pitch kept); past that
   `reelscore.py` prints HARD RULE and refuses the reel whatever its score. Fix it by cutting words or splitting
   the beat in two scenes, never by slowing down.
@@ -175,7 +195,7 @@ graph screenshots from the user are saved with `scripts/reelanalyze.py retention
 - The hook is **two quick shots**, so the first cut lands by ~1.5 s (winners show a new visual by 0.5-1.5 s,
   HOOKS.md; the user found 3-5 s openings boring): scene 1 is the punch, **max 4 words** ("Nvidia lost $1
   trillion."), with the number on screen at frame 0; scene 2 has `"hook": true` and is the stake, **max 5
-  words** ("Your fund too."), on a new visual (a counter, a logo, a picture). Then the lead. "You/your" is fine in the hook when
+  words** ("The CEO who quit returned."): the twist or the cause, on a new visual (a counter, a logo, a picture). Then the lead. "You/your" is fine in the hook when
   it names the viewer's real stake ("If you own an index fund..."), never as advice.
 - Then plain newsreader sentences: what happened, why (from the sources), what's next. No questions to the
   viewer, no "guys", no hype ("insane", "skyrocket", "to the moon", "must buy"; the check blocks
