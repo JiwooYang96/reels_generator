@@ -1,0 +1,296 @@
+{
+  "id": "chips-2026-11-23",
+  "handle": "@5beforemonday",
+  "title": "Nvidia +31% and a record $950B as Huang returns as CEO",
+  "structure": "timeline (exit, fall, return)",
+  "hookFamily": "number + stake (record dollar day, your fund)",
+  "music": "lift",
+  "post": {
+    "caption": "Nvidia stock jumped 31.48% on Monday to $165.05 after its board unanimously reinstated Jensen Huang as CEO, adding about $950 billion of market value, the biggest one-day dollar gain on record per 24/7 Wall St.\nIt is still about 5% below its November 11 close, and the board's investigation and the delayed quarterly report are still open.\n\nGet this week's five, free every Saturday → link in bio.\n\n#nvidia #nvda #semiconductors #chipstocks #jensenhuang\n\nSources: The Motley Fool (Nov 23), 24/7 Wall St. via Yahoo Finance (Nov 23), Nvidia 8-K press release (Nov 23), 24/7 Wall St. (Nov 20). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "+31%",
+          "key": true
+        },
+        {
+          "t": "in"
+        },
+        {
+          "t": "one",
+          "br": true
+        },
+        {
+          "t": "day."
+        }
+      ],
+      "props": {
+        "subject": "a cracked golden crown being hoisted back up high on a thick rope pulley above a dark marble floor",
+        "big": "+31%",
+        "sub": "Nvidia close, $165.05, Nov 23",
+        "tone": "good",
+        "ticker": "NVDA"
+      },
+      "voice": "Nvidia added $950 billion.",
+      "seconds": 1.6
+    },
+    {
+      "type": "compareBars",
+      "hook": true,
+      "caption": [
+        {
+          "t": "+$950B.",
+          "key": true
+        },
+        {
+          "t": "A",
+          "br": true
+        },
+        {
+          "t": "record."
+        }
+      ],
+      "source": "24/7 Wall St. (Reuters/LSEG); Motley Fool, Nov 23 2026",
+      "props": {
+        "title": "Biggest one-day value gain ever",
+        "bars": [
+          {
+            "label": "Nvidia",
+            "value": 950,
+            "display": "$950B",
+            "highlight": true,
+            "logo": "NVDA"
+          },
+          {
+            "label": "Old record",
+            "value": 450,
+            "display": "~$450B",
+            "logo": "MSFT"
+          }
+        ],
+        "badge": "2x"
+      },
+      "voice": "Your index fund got paid.",
+      "seconds": 2.0
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "Closed"
+        },
+        {
+          "t": "$165.05.",
+          "key": true
+        }
+      ],
+      "source": "Motley Fool; Yahoo Finance, Nov 23 2026",
+      "props": {
+        "label": "Nvidia close, Monday",
+        "sublabel": "+31.48%, best day since 2003",
+        "oldValue": "$125.53",
+        "newValue": "$165.05",
+        "logo": "NVDA"
+      },
+      "voice": "Shares closed at a hundred sixty-five dollars.",
+      "seconds": 2.8
+    },
+    {
+      "type": "timeline",
+      "caption": [
+        {
+          "t": "But"
+        },
+        {
+          "t": "its"
+        },
+        {
+          "t": "CEO",
+          "br": true
+        },
+        {
+          "t": "quit.",
+          "key": true
+        }
+      ],
+      "source": "Motley Fool, Nov 23 2026",
+      "props": {
+        "items": [
+          {
+            "label": "11/11",
+            "value": "$173.73"
+          },
+          {
+            "label": "11/20",
+            "value": "$125.53"
+          },
+          {
+            "label": "11/23",
+            "value": "$165.05"
+          }
+        ],
+        "note": "Huang resigned; shares fell 28% in 7 days",
+        "noteHighlight": "28%"
+      },
+      "voice": "But twelve days ago, its CEO quit. Down 28%.",
+      "seconds": 3.3
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Rehired"
+        },
+        {
+          "t": "in"
+        },
+        {
+          "t": "11 days.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Nvidia 8-K; Motley Fool, Nov 23 2026",
+      "props": {
+        "n": 1,
+        "title": "The board reversed",
+        "stat": {
+          "value": "11 days",
+          "label": "exit to unanimous rehire vote"
+        },
+        "steps": [
+          "US officials gave input",
+          "Board: no security risk"
+        ],
+        "logo": "NVDA"
+      },
+      "voice": "So the board voted unanimously to rehire him.",
+      "seconds": 3.0
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Still"
+        },
+        {
+          "t": "−5%",
+          "key": true
+        },
+        {
+          "t": "under.",
+          "br": true
+        }
+      ],
+      "source": "Motley Fool, Nov 23 2026",
+      "props": {
+        "label": "Below its Nov 11 close of $173.73",
+        "from": 0,
+        "to": 5,
+        "suffix": "%",
+        "sign": "−",
+        "tone": "bad",
+        "sub": "the day before Nvidia announced the exit",
+        "logo": "NVDA"
+      },
+      "voice": "But the strangest part: it's still 5% under.",
+      "seconds": 3.0
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Target"
+        },
+        {
+          "t": "$250.",
+          "key": true
+        }
+      ],
+      "source": "Motley Fool, Nov 23 2026",
+      "props": {
+        "n": 2,
+        "title": "Analysts came back",
+        "stat": {
+          "value": "$250",
+          "label": "Oppenheimer target, upgraded"
+        },
+        "steps": [
+          "Citi: 'key overhang' gone",
+          "Citi target $240"
+        ],
+        "logo": "NVDA"
+      },
+      "voice": "Therefore analysts upgraded. Oppenheimer now sees $250.",
+      "seconds": 3.0
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "Probe:"
+        },
+        {
+          "t": "still",
+          "key": true
+        },
+        {
+          "t": "open.",
+          "br": true
+        }
+      ],
+      "source": "Nvidia 8-K; Yahoo Finance, Nov 23 2026",
+      "props": {
+        "subject": "a heavy brass padlock still locked on a tall iron gate at dusk, soft fog behind"
+      },
+      "voice": "Still open: the board's probe and a delayed report.",
+      "seconds": 3.3
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "+31%"
+        },
+        {
+          "t": "meets"
+        },
+        {
+          "t": "Dec 4.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "24/7 Wall St., Nov 20 2026",
+      "props": {
+        "day": "FRI",
+        "date": "Dec 4",
+        "event": "Nvidia quarterly filing (10-Q) due",
+        "note": "Board probe still running (Nvidia)",
+        "cta": "Follow @5beforemonday →"
+      },
+      "voice": "The 31% test: its late filing, due December fourth.",
+      "seconds": 3.3
+    },
+    {
+      "type": "endCard",
+      "theme": "light",
+      "caption": [],
+      "props": {
+        "variant": "save",
+        "title": "Nvidia's record CEO comeback",
+        "items": [
+          "NVDA closed +31%",
+          "+$950B, record day",
+          "CEO rehired in 11 days",
+          "Next: 10-Q due Dec 4"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday.",
+      "seconds": 6
+    }
+  ]
+}
