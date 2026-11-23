@@ -1,0 +1,293 @@
+{
+  "id": "daily-2026-11-23",
+  "title": "Oracle +12.3% on Nvidia's CEO return, still 55% under its high",
+  "structure": "versus (then vs now)",
+  "hookFamily": "then-vs-now contrarian + stake (but)",
+  "music": "lift",
+  "post": {
+    "caption": "Oracle stock jumped 12.3% on Monday to $113.68 as Nvidia's board brought back Jensen Huang as CEO and AI stocks rebounded, and after Oracle said Friday its OpenAI financing is secured (Motley Fool).\nThe Nasdaq rose 6.51%, its best day since April 2025, yet Oracle still sits about 55% under its 52-week high of $250.25.\n\nGet this week's five, free every Saturday → link in bio.\n\n#Oracle #ORCL #stockmarket #AIstocks #Nasdaq\n\nSources: Motley Fool (Nov 23), FinanceFeeds after-close report citing AP and CNBC (Nov 23), Yahoo Finance live blog (Nov 23). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "+12.3%",
+          "key": true
+        },
+        {
+          "t": "in"
+        },
+        {
+          "t": "one",
+          "br": true
+        },
+        {
+          "t": "day."
+        }
+      ],
+      "props": {
+        "subject": "a red paper rocket bursting up out of a deep old stone well, trailing paper confetti-free smoke",
+        "big": "+12.3%",
+        "sub": "Oracle, Monday close (FinanceFeeds)",
+        "tone": "good",
+        "ticker": "ORCL"
+      },
+      "voice": "Oracle jumped 12.3%.",
+      "seconds": 1.6
+    },
+    {
+      "type": "counter",
+      "hook": true,
+      "caption": [
+        {
+          "t": "S&P"
+        },
+        {
+          "t": "+4.73%,",
+          "key": true
+        },
+        {
+          "t": "still",
+          "br": true
+        },
+        {
+          "t": "below",
+          "br": false
+        },
+        {
+          "t": "peak."
+        }
+      ],
+      "source": "FinanceFeeds (AP, CNBC), Nov 23 2026 close",
+      "props": {
+        "label": "S&P 500, Monday",
+        "from": 4.0,
+        "to": 4.73,
+        "decimals": 2,
+        "sign": "+",
+        "suffix": "%",
+        "tone": "good",
+        "sub": "Best day since April 2025, still under its record high"
+      },
+      "voice": "But your fund's still down.",
+      "seconds": 2.0
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "$250"
+        },
+        {
+          "t": "then.",
+          "key": true
+        },
+        {
+          "t": "$113.68",
+          "br": true
+        },
+        {
+          "t": "now."
+        }
+      ],
+      "source": "Motley Fool; FinanceFeeds, Nov 23 2026",
+      "props": {
+        "label": "Oracle's share price",
+        "sublabel": "52-week high vs Monday's close",
+        "oldValue": "$250.25",
+        "newValue": "$113.68",
+        "logo": "ORCL"
+      },
+      "voice": "Everyone wanted it at $250. Monday it closed at $113.",
+      "seconds": 3.4
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "But"
+        },
+        {
+          "t": "the"
+        },
+        {
+          "t": "spark",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "was"
+        },
+        {
+          "t": "Nvidia."
+        }
+      ],
+      "source": "Motley Fool; FinanceFeeds, Nov 23 2026",
+      "props": {
+        "n": 1,
+        "title": "Nvidia's CEO came back",
+        "stat": {
+          "value": "11 days",
+          "label": "after he resigned, Huang was reinstated"
+        },
+        "steps": [
+          "Board rehires Huang pre-open",
+          "AI stocks, Oracle too, rebound"
+        ],
+        "logo": "NVDA"
+      },
+      "voice": "But the spark came from Nvidia's boardroom, not Oracle's.",
+      "seconds": 3.3
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Nasdaq"
+        },
+        {
+          "t": "+6.51%.",
+          "key": true
+        }
+      ],
+      "source": "FinanceFeeds (CNBC), Nov 23 2026 close",
+      "props": {
+        "label": "Nasdaq Composite, Monday",
+        "from": 5.0,
+        "to": 6.51,
+        "decimals": 2,
+        "sign": "+",
+        "suffix": "%",
+        "tone": "good",
+        "sub": "Best day since April 9, 2025"
+      },
+      "voice": "The Nasdaq rose 6.5%, its best day since April 2025.",
+      "seconds": 3.3
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "OpenAI"
+        },
+        {
+          "t": "money",
+          "key": true
+        },
+        {
+          "t": "secured.",
+          "br": true
+        }
+      ],
+      "source": "Motley Fool, Nov 23 2026",
+      "props": {
+        "n": 2,
+        "title": "Its own funding fear eased",
+        "stat": {
+          "value": "$5B",
+          "label": "more spent on build-out than operations brought in, last quarter"
+        },
+        "steps": [
+          "Friday: OpenAI financing secured",
+          "Abilene campus nearly done"
+        ],
+        "logo": "ORCL"
+      },
+      "voice": "Therefore Friday's news mattered: OpenAI financing is secured, Oracle says.",
+      "seconds": 3.4
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Still"
+        },
+        {
+          "t": "−55%",
+          "key": true
+        },
+        {
+          "t": "from",
+          "br": true
+        },
+        {
+          "t": "peak."
+        }
+      ],
+      "source": "Motley Fool 52-week range; FinanceFeeds close, Nov 23 2026",
+      "props": {
+        "label": "Oracle vs its 52-week high",
+        "from": 0,
+        "to": 55,
+        "sign": "−",
+        "suffix": "%",
+        "tone": "bad",
+        "sub": "$113.68 close vs $250.25 high",
+        "logo": "ORCL"
+      },
+      "voice": "But the strangest part: it's still 55% under its peak.",
+      "seconds": 3.3
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "\"Mechanical\"",
+          "key": true
+        },
+        {
+          "t": "buying.",
+          "br": true
+        }
+      ],
+      "source": "Nomura via Yahoo Finance, Nov 23 2026",
+      "props": {
+        "subject": "a wind-up tin toy spring bouncing high off a wooden table, with a small brass key in its back"
+      },
+      "voice": "Nomura called the surge mechanical buying that guarantees nothing.",
+      "seconds": 3.3
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "+12.3%"
+        },
+        {
+          "t": "meets"
+        },
+        {
+          "t": "PCE.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "props": {
+        "day": "WED",
+        "date": "Nov 25",
+        "event": "October PCE inflation",
+        "note": "8:30 a.m. ET, per FinanceFeeds"
+      },
+      "voice": "Oracle's 12.3% bounce meets inflation data Wednesday.",
+      "seconds": 3.0
+    },
+    {
+      "type": "endCard",
+      "seconds": 6,
+      "theme": "light",
+      "caption": [],
+      "props": {
+        "variant": "save",
+        "title": "Oracle's 12.3% relief day",
+        "items": [
+          "ORCL +12.3% to $113.68",
+          "Spark: Nvidia rehired CEO",
+          "Still −55% from $250",
+          "Next: PCE data Nov 25"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday."
+    }
+  ]
+}
