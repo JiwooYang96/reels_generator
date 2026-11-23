@@ -34,7 +34,7 @@
         "tone": "good",
         "ticker": "NVDA"
       },
-      "voice": "Nvidia added $950 billion.",
+      "voice": "Nvidia jumped 31%.",
       "seconds": 1.6
     },
     {
@@ -73,7 +73,7 @@
         ],
         "badge": "2x"
       },
-      "voice": "Your index fund got paid.",
+      "voice": "Your fund still got paid.",
       "seconds": 2.0
     },
     {
