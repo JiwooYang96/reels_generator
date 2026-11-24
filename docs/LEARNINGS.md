@@ -1,6 +1,6 @@
 # What works on @fivebeforemonday
 
-_Updated 2026-11-24T00:22+00:00 by `scripts/reelanalyze.py` from Instagram insights. The daily task reads this before writing._
+_Updated 2026-11-24T22:46+00:00 by `scripts/reelanalyze.py` from Instagram insights. The daily task reads this before writing._
 
 ## Rules from our own data
 
