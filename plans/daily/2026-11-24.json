@@ -1,0 +1,257 @@
+{
+  "id": "2026-11-24",
+  "title": "HPE sales +50%, stock −16% as AI servers thin its margins",
+  "story": "HPE's quarterly sales jumped 50% to a record, yet its stock fell 16%, because more of those sales are AI servers built with pricier parts, so it keeps less profit per dollar.",
+  "structure": "myth vs fact (record sales vs falling profit per dollar)",
+  "hookFamily": "contradiction (sales up, stock down)",
+  "music": "tense",
+  "post": {
+    "caption": "HPE stock fell 16% on Tuesday even though quarterly sales jumped 50% to $14.5 billion.\nThe reason: more of its sales are AI servers built with pricier parts, so its gross margin slipped to 38.2%, and its CFO expects it to keep moderating.\nCEO Antonio Neri expects memory and other parts to stay scarce until at least the second half of 2028.\n\nGet this week's five, free every Saturday → link in bio.\n\n#hpe #hewlettpackardenterprise #aiservers #techstocks #earnings\n\nSources: StockTitan (Nov 24), The Motley Fool (Nov 24), StockStory via TradingView (Nov 24), Finwire / Invezz (Nov 24). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "Sales"
+        },
+        {
+          "t": "+50%.",
+          "key": true
+        },
+        {
+          "t": "Stock",
+          "br": true
+        },
+        {
+          "t": "−16%."
+        }
+      ],
+      "props": {
+        "subject": "a huge round cake on a wooden board, sliced into paper-thin slices, crumbs scattered",
+        "big": "−16%",
+        "sub": "HPE close, $40.18, Nov 24",
+        "tone": "bad",
+        "ticker": "HPE"
+      },
+      "voice": "HPE's sales jumped 50%.",
+      "seconds": 1.6
+    },
+    {
+      "type": "counter",
+      "hook": true,
+      "caption": [
+        {
+          "t": "Stock"
+        },
+        {
+          "t": "−16%.",
+          "key": true
+        }
+      ],
+      "source": "StockTitan; Motley Fool, Nov 24 2026",
+      "props": {
+        "label": "HPE shares, Tuesday close",
+        "from": 0,
+        "to": 16.33,
+        "decimals": 2,
+        "suffix": "%",
+        "sign": "−",
+        "tone": "bad",
+        "sub": "the day after record sales",
+        "logo": "HPE"
+      },
+      "voice": "Its stock still lost 16%.",
+      "seconds": 2.0
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "Record"
+        },
+        {
+          "t": "$14.5B",
+          "key": true
+        },
+        {
+          "t": "quarter.",
+          "br": true
+        }
+      ],
+      "source": "StockStory via TradingView; Finwire, Nov 24 2026",
+      "props": {
+        "label": "HPE quarterly sales",
+        "sublabel": "+50% vs a year ago; beat $14.45B forecast",
+        "oldValue": "$9.7B",
+        "newValue": "$14.5B",
+        "logo": "HPE"
+      },
+      "voice": "Sales hit $14.5 billion, half again more than a year ago.",
+      "seconds": 3.3
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "AI"
+        },
+        {
+          "t": "servers"
+        },
+        {
+          "t": "earn",
+          "br": true
+        },
+        {
+          "t": "less.",
+          "key": true
+        }
+      ],
+      "source": "StockStory via TradingView, Nov 24 2026",
+      "props": {
+        "n": 1,
+        "title": "More AI servers, thinner profit",
+        "stat": {
+          "value": "38.2%",
+          "label": "of each sales dollar kept as gross profit"
+        },
+        "steps": [
+          "AI servers: bigger share",
+          "They earn thinner margins"
+        ],
+        "logo": "HPE"
+      },
+      "voice": "Because AI servers earn less, it kept 38 cents per sales dollar.",
+      "seconds": 3.3
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Parts"
+        },
+        {
+          "t": "cost",
+          "br": true
+        },
+        {
+          "t": "more.",
+          "key": true
+        }
+      ],
+      "source": "StockStory via TradingView; Finwire, Nov 24 2026",
+      "props": {
+        "n": 2,
+        "title": "Parts outran prices",
+        "stat": {
+          "value": "−2.2 pts",
+          "label": "gross margin vs last quarter"
+        },
+        "steps": [
+          "Memory chips got pricier",
+          "Costs rose faster than prices"
+        ],
+        "logo": "HPE"
+      },
+      "voice": "Its CFO said part costs outran prices, cutting margin two points.",
+      "seconds": 3.6
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "Thinner"
+        },
+        {
+          "t": "slices",
+          "key": true
+        },
+        {
+          "t": "ahead.",
+          "br": true
+        }
+      ],
+      "props": {
+        "subject": "a long kitchen knife cutting an even thinner slice from a large loaf of bread on a wooden table"
+      },
+      "voice": "She warned that margin will slip further as AI server sales grow.",
+      "seconds": 3.3
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Still"
+        },
+        {
+          "t": "+66%",
+          "key": true
+        },
+        {
+          "t": "this",
+          "br": true
+        },
+        {
+          "t": "year."
+        }
+      ],
+      "source": "StockStory via TradingView, Nov 24 2026",
+      "props": {
+        "label": "HPE shares, year to date",
+        "from": 0,
+        "to": 66,
+        "suffix": "%",
+        "sign": "+",
+        "tone": "good",
+        "sub": "even after Tuesday's 16% fall",
+        "logo": "HPE"
+      },
+      "voice": "Still, even after today's fall, shares are up about 66% this year.",
+      "seconds": 3.3
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "Tight"
+        },
+        {
+          "t": "until"
+        },
+        {
+          "t": "2028.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Finwire / Invezz, Nov 24 2026",
+      "props": {
+        "day": "H2",
+        "date": "2028",
+        "event": "Memory stays scarce until",
+        "note": "CEO Antonio Neri, earnings call",
+        "cta": "Follow @fivebeforemonday →"
+      },
+      "voice": "HPE's CEO expects memory to stay scarce until at least late 2028.",
+      "seconds": 3.6
+    },
+    {
+      "type": "endCard",
+      "theme": "light",
+      "caption": [],
+      "props": {
+        "variant": "save",
+        "title": "HPE: more sales, less profit",
+        "items": [
+          "Sales +50%, stock −16%",
+          "AI servers earn less",
+          "Parts cost outran prices",
+          "Memory tight until 2028"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday.",
+      "seconds": 6
+    }
+  ]
+}
