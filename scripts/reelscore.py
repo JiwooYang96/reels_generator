@@ -3,21 +3,23 @@
 Usage: python3 scripts/reelscore.py plans/<id>.json [--min 85]   (make.sh runs it; exit 1 = not approved)
 
 HOOK (0-100): the spoken hook (scene 1 `voice`) scored by hookscore.py from the ig-reel skill
-  (.claude/skills/ig-reel, MIT): length, concrete markers, stakes, payload up front, a viewer to aim at.
+  (.claude/skills/ig-reel, MIT): length, concrete markers, stakes, payload up front. Its ADDRESS check (say "you")
+  is left out of the gate since Nov 24: on a news channel it bred fake stakes ("Your fund still got paid.") that
+  made the hook mean nothing. A true "you" line is still fine; it just isn't required.
 
-SCRIPT (0-100): the retention rules of the hook/script skills, checked on the plan. The spine is the 8 blocks:
-hook -> lead -> body 1 -> open loop 1 -> body 2 -> open loop 2 -> body 3 -> CTA (save card).
+SCRIPT (0-100): STORY FIRST (Nov 24: the user found reels "meaningless": a run of numbers glued with forced
+"But... / Therefore... / The strangest part:" turns). A viewer must be able to retell the reel in one sentence.
   15  on-screen hook     3-6 words with a number, compressed, not the spoken line   (viral-instagram-reels: reels-hook)
-  10  lead               scene 2 adds a second hard number (a $, %, x or big figure, not just a year) that the
-                         hook didn't show: a second mark of value straight after the hook, not set-up
-  10  open loop 1        scene 2, 3 or 4 opens with a turn: But / Not / Turns out...   (hooksmith rehook)
-  10  open loop 2        a second turn (or a `chapters` progress card) in the back half of the story
-  15  pace               voice about 3+ words/s, every scene <= 3.5 s before the end card
-                         (pattern reset every 2-4 s: viral-short-form retention)
-   5  but/therefore      no beat opens with "And then", "Also", "Next", "So basically"
-  10  payoff loop        the last story scene echoes the hook's number or subject   (open loop closed)
-  10  numbers            70% of story scenes show a number
-  10  length             24-36 s (narrated)
+   5  story sentence     the plan's "story": one plain sentence (12-35 words) with what happened and why
+  10  lead               a scene right after the hook adds a second hard number the hook didn't show
+  10  the why, early     one of the first 3 scenes after the hook gives the cause (because / after / as / why ...)
+  10  numbers explained  80% of narrated numbers come with what they mean (vs, since, record, from, of, under...)
+   5  one real turn      somewhere after the hook a line opens with a turn (But / Yet / Still...) or a chapters card
+  15  pace               every scene within its cap (first shot 1.6 s, stake 2.0 s, beats 4.2 s)
+   5  no filler          no beat opens with "And then", "Also", "Therefore", "The strangest part", "But the twist"
+  10  payoff loop        the last story scene echoes the hook's number or subject
+   5  numbers            at least half of the story scenes show a number (not every one: explanation beats need room)
+   5  length             24-36 s (narrated)
    5  one ask            the only CTA is the end card (no "follow", "comment", "link" earlier)
 """
 import json
@@ -30,6 +32,7 @@ from hookscore import run  # noqa: E402
 
 OPEN_MAX = 1.6   # first shot: winners cut to a new visual by ~0.5-1.5 s (HOOKS.md); one still for 2.5+ s bores
 STAKE_MAX = 2.0  # the hook's second shot (scene 2 with "hook": true)
+BEAT_MAX = 4.2   # every other story beat: room for a whole cause-and-effect sentence (12 words), one idea per scene
 
 
 def hook_scenes(sc):
@@ -40,11 +43,17 @@ def hook_scenes(sc):
 def hook_text(sc):
     return " ".join(s.get("voice", "") for s in sc[:hook_scenes(sc)]).strip()
 HARD = []       # rules a high score can't buy back (the reel is refused whatever the total)
-REHOOK = re.compile(r"^\s*(but|not|turns out|here'?s|the catch|except|instead|yet|and it wasn'?t|only|then it|that'?s when|that'?s where|it gets|wait|until|what happened next|the strange part|the twist)\b", re.I)
+REHOOK = re.compile(r"^\s*(but|still|not|turns out|here'?s|the catch|except|instead|yet|and it wasn'?t|only|then it|that'?s when|that'?s where|it gets|wait|until|what happened next|the strange part|the twist)\b", re.I)
 # A "hard" number: money, percent, multiples, scale words, or a figure that isn't just a year.
 NUM = re.compile(r"([$€£¥]?)(\d[\d,]*(?:\.\d+)?)\s?(%|x\b|k\b|m\b|b\b|t\b|bn\b|million\b|billion\b|trillion\b|thousand\b)?", re.I)
 SCALE = {"k": "k", "thousand": "k", "m": "m", "million": "m", "b": "b", "bn": "b", "billion": "b", "t": "t", "trillion": "t"}
-FILLER = re.compile(r"^\s*(and then|also|so basically|basically|anyway)\b", re.I)
+FILLER = re.compile(r"^\s*(and then|also|so basically|basically|anyway|therefore|so therefore|the strangest part|"
+                    r"but the strangest part|but the twist|here'?s the twist|plot twist)\b", re.I)
+# "Why" language: the cause is said, not only the move.
+WHY = re.compile(r"\b(because|after|as|why|due to|thanks to|driven by|on news|when|which (meant|means|sent|cut|lifted))\b", re.I)
+# A number "explained": the line says what it's compared to or what it means.
+CONTEXT = re.compile(r"\b(than|vs|versus|since|record|ever|biggest|largest|smallest|worst|best|from|of|under|over|above|"
+                     r"below|per|a share|in (one|a) day|in \d+|in \w+ (days?|weeks?|months?|years?)|target|times|half|double|first|most|least|only|still|back to|up to)\b", re.I)
 ASK = re.compile(r"\b(follow|comment|link in bio|subscribe|sign up|newsletter)\b", re.I)
 WPS = 3.2  # Kokoro at speed 1.38 (1.28 measured 3.0 words per second; scaled)
 
@@ -107,8 +116,20 @@ def script_score(plan):
     b = blocks(plan)
     award(10, b["lead"], "lead: the scene after the hook adds a new hard number" + (f" ({', '.join(b['leadNumbers'][:3])})" if b["lead"]
           else " (none: make scene 2 a second surprising $/%/x figure, not set-up)"))
-    award(10, b["loop1"], "open loop 1: one of the 3 scenes after the hook opens with a turn (But / Not / Turns out...)")
-    award(10, b["loop2"], "open loop 2: a second turn in the back half" + (f" (turns at scenes {b['loops']})" if b["loops"] else ""))
+    story_line = (plan.get("story") or "").strip()
+    award(5, 12 <= len(words(story_line)) <= 35, "story sentence: \"story\" retells the reel in one plain sentence (12-35 words)"
+          + ("" if story_line else " (missing: write it first, then make every scene serve it)"))
+    nh0 = hook_scenes(sc)
+    why = [i + 1 for i, s in enumerate(story[nh0:nh0 + 3], start=nh0) if WHY.search(s.get("voice", ""))]
+    award(10, bool(why), "the why, early: one of the 3 scenes after the hook says the cause" +
+          (f" (scene {why[0]})" if why else " (none: say what caused the move by scene 5, not only the move)"))
+    numbered = [s for s in story[nh0:] if hard_numbers(s.get("voice", ""))]
+    bare = [sc.index(s) + 1 for s in numbered if not CONTEXT.search(s.get("voice", ""))]
+    award(10, not numbered or len(bare) <= 0.2 * len(numbered),
+          "numbers explained: each spoken number says what it means (vs, since, record, from, of...)" +
+          (f" (bare numbers in scenes {bare})" if bare else ""))
+    award(5, bool(b["loops"]), "one real turn after the hook (But / Yet / Still..., or a chapters card)" +
+          (f" (scenes {b['loops']})" if b["loops"] else ""))
 
     # Pace: the real narration when it exists (out/<id>/vo.json, after voice.py), else the estimate; each scene
     # lasts its line + 0.25 s, as prepare.ts sets it.
@@ -117,15 +138,15 @@ def script_score(plan):
     nh = hook_scenes(sc)
     lens = [max(1.2 if i < nh else 1.8, real.get(i, len(words(s.get("voice"))) / WPS) + 0.25) for i, s in enumerate(story)]
     nh = hook_scenes(sc)
-    caps = [OPEN_MAX if i == 0 else STAKE_MAX if (i == 1 and nh == 2) else 3.5 for i in range(len(lens))]
+    caps = [OPEN_MAX if i == 0 else STAKE_MAX if (i == 1 and nh == 2) else BEAT_MAX for i in range(len(lens))]
     slow = [i + 1 for i, d in enumerate(lens) if d > caps[i] + 0.03]  # rounding slack
-    award(15, not slow, ("narrated" if real else "estimated") + f" first shot <= {OPEN_MAX} s, stake shot <= {STAKE_MAX} s, beats <= 3.5 s" + (f" (too long: scenes {slow})" if slow else ""))
+    award(15, not slow, ("narrated" if real else "estimated") + f" first shot <= {OPEN_MAX} s, stake shot <= {STAKE_MAX} s, beats <= {BEAT_MAX} s" + (f" (too long: scenes {slow})" if slow else ""))
     if slow:
         HARD.append(f"scenes {slow} run too long ({', '.join(f'{lens[i - 1]:.1f}s' for i in slow)}): the first shot is a "
                     f"{OPEN_MAX} s punch (max 4 words), the stake shot (scene 2, \"hook\": true) {STAKE_MAX} s (max 5), every "
-                    "other beat 3.5 s (max 9). Cut words or split the beat.")
+                    f"other beat {BEAT_MAX} s (max 12). Cut words or split the beat.")
     lazy = [i + 1 for i, s in enumerate(sc) if FILLER.search(s.get("voice", ""))]
-    award(5, not lazy, "beats joined by but/therefore, not \"and then\"" + (f" (scenes {lazy})" if lazy else ""))
+    award(5, not lazy, "no filler openers (\"And then\", \"Therefore\", \"The strangest part\", \"But the twist\")" + (f" (scenes {lazy})" if lazy else ""))
 
     key = {w.lower().strip(".,") for w in words(hook) if re.search(r"\d|^[A-Z]", w) and len(w) > 1} | \
           {w.lower().strip(".,") for w in words(cap) if re.search(r"\d", w)}
@@ -134,10 +155,10 @@ def script_score(plan):
     award(10, any(k and k in last for k in key), f"last story scene closes the loop (echoes one of {sorted(key)[:6]})")
 
     with_num = sum(bool(re.search(r"\d", caption(s) + json.dumps(s.get("props", {})))) for s in story[1:])
-    award(10, with_num >= 0.7 * max(1, len(story) - 1), f"{with_num}/{len(story) - 1} story scenes show a number")
+    award(5, with_num >= 0.5 * max(1, len(story) - 1), f"{with_num}/{len(story) - 1} story scenes show a number")
 
     total = sum(lens) + sum(s.get("seconds", 6) for s in sc if s["type"] == "endCard")
-    award(10, 24 <= total <= 36, f"length about {total:.0f} s (want 24-36; quicker narration since Nov 20)")
+    award(5, 24 <= total <= 36, f"length about {total:.0f} s (want 24-36; quicker narration since Nov 20)")
     asks = [i + 1 for i, s in enumerate(story) if ASK.search(s.get("voice", "") + " " + caption(s))]
     award(5, not asks, "one ask, on the end card" + (f" (also in scenes {asks})" if asks else ""))
     return pts, notes, total
@@ -169,6 +190,9 @@ def main(path, floor=85):
         print("reel score: silent plan, skipped")
         return
     results, h, verdict, flags = run(hook)
+    results.pop("ADDRESS", None)
+    vals = [v[0] for v in results.values()]
+    h = max(0.0, min(100.0, sum(vals) / len(vals) * 0.6 + min(vals) * 0.4 - len(flags) * 15))
     weakest = min(results, key=lambda k: results[k][0])
     s, notes, total = script_score(plan)
     print(f"HOOK   {h:5.1f}  \"{hook}\"  (weakest {weakest}: {results[weakest][1]})")

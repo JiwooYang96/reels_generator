@@ -56,11 +56,11 @@
         "tone": "bad",
         "sub": "test plan"
       },
-      "voice": "Your index fund too."
+      "voice": "Apple just passed it."
     },
     {
       "type": "versus",
-      "seconds": 2.9,
+      "seconds": 3.4,
       "caption": [
         {
           "t": "Apple"
@@ -102,7 +102,7 @@
         },
         "winner": "left"
       },
-      "voice": "But the twist: Apple is now worth more."
+      "voice": "Apple is now worth more: $5.1 trillion vs $4.83 trillion."
     },
     {
       "type": "counter",
@@ -136,11 +136,11 @@
         "logo": "NVDA",
         "sub": "$1.4T in market value gone"
       },
-      "voice": "Nvidia is down a quarter since its October record."
+      "voice": "Nvidia is down 25% since its October record."
     },
     {
       "type": "chapters",
-      "seconds": 1.8,
+      "seconds": 2.1,
       "caption": [
         {
           "t": "3 reasons",
@@ -158,7 +158,7 @@
         ],
         "unlocked": 0
       },
-      "voice": "Three things did it."
+      "voice": "Here's why it fell, Forbes reports."
     },
     {
       "type": "causeChain",
@@ -198,11 +198,11 @@
           "Fewer chips needed?"
         ]
       },
-      "voice": "First: calls to halt new data centers."
+      "voice": "First, calls to halt new data centers."
     },
     {
       "type": "causeChain",
-      "seconds": 2.6,
+      "seconds": 3.4,
       "caption": [
         {
           "t": "2."
@@ -231,11 +231,11 @@
           "Data-center builds could slow"
         ]
       },
-      "voice": "Second: hot jobs data revived rate-hike fears."
+      "voice": "Second, hot jobs data revived rate-hike fears: 165,000 vs 70,000."
     },
     {
       "type": "causeChain",
-      "seconds": 2.9,
+      "seconds": 3.4,
       "caption": [
         {
           "t": "3."
@@ -274,11 +274,11 @@
           "Nvidia's buyers look shakier"
         ]
       },
-      "voice": "Third: its biggest buyers are deep in debt."
+      "voice": "Third, its buyers owe a lot: CoreWeave alone, $35 billion."
     },
     {
       "type": "scoreboard",
-      "seconds": 2.6,
+      "seconds": 3.1,
       "caption": [
         {
           "t": "But"
@@ -314,47 +314,11 @@
         ],
         "footnote": "after a 12% chip plunge on Thursday"
       },
-      "voice": "But on Friday, Nvidia bounced six percent."
-    },
-    {
-      "type": "counter",
-      "seconds": 3.2,
-      "caption": [
-        {
-          "t": "Fell"
-        },
-        {
-          "t": "after"
-        },
-        {
-          "t": "6",
-          "key": true
-        },
-        {
-          "t": "of"
-        },
-        {
-          "t": "10",
-          "br": true
-        },
-        {
-          "t": "reports."
-        }
-      ],
-      "source": "Forbes, Nov 6 2026",
-      "props": {
-        "label": "NVDA after its last 10 earnings reports",
-        "to": 6,
-        "suffix": " of 10",
-        "tone": "bad",
-        "logo": "NVDA",
-        "sub": "times the stock fell"
-      },
-      "voice": "It fell after six of its last ten reports."
+      "voice": "Still, on Friday Nvidia bounced 6% from its lows."
     },
     {
       "type": "calendarCta",
-      "seconds": 2.2,
+      "seconds": 4.0,
       "caption": [
         {
           "t": "The"
@@ -379,7 +343,7 @@
         "event": "Earnings · $108B guide",
         "cta": "Results: Nov 17, after the bell"
       },
-      "voice": "Next test: Nvidia reports November seventeenth."
+      "voice": "Nvidia reports November 17, its first test since the $1 trillion drop."
     },
     {
       "type": "endCard",
@@ -400,5 +364,6 @@
   "post": {
     "caption": "Apple passed Nvidia this week, and Nvidia is 25% off its record. Three reasons why, and the date that decides what's next.\n\nGet this week's five, free every Saturday → link in bio.\n\n#Nvidia #Apple #stocks #investing #bigtech\n\nSources: Yahoo Finance, Forbes (Nov 5-6, 2026). Not investment advice."
   },
-  "music": "tense"
+  "music": "tense",
+  "story": "Nvidia lost $1 trillion in a month as data-center pushback, rate-hike fears and indebted buyers hit it, and Apple passed it in value before November 17 earnings."
 }

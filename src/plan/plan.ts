@@ -26,6 +26,8 @@ export const sceneSchema = z.object({
 export const planSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/, 'id must be lowercase letters, digits and dashes'),
   title: z.string().optional(),
+  // The reel in one plain sentence: what happened, why, what it means (story first, Nov 24). reelscore.py checks it.
+  story: z.string().optional(),
   structure: z.string().optional(),
   hookFamily: z.string().optional(),
   scenes: z.array(sceneSchema).min(2).max(12),
@@ -167,7 +169,7 @@ export const checkPlan = (plan: Plan): string[] => {
   const hookWords = plan.scenes[0].voice ? plan.scenes[0].voice.trim().split(/\s+/).length : 0;
   if (hookWords > 4) problems.push(`opening voice line has ${hookWords} words; the first shot is a 1.5 s punch (max 4 words, e.g. "Nvidia lost $1 trillion."). Put the stake in scene 2 with "hook": true`);
   const stake = plan.scenes[1];
-  if (stake?.hook && stake.voice && stake.voice.trim().split(/\s+/).length > 5) problems.push('scene 2 (hook stake): max 5 spoken words, e.g. "Your fund too."');
+  if (stake?.hook && stake.voice && stake.voice.trim().split(/\s+/).length > 5) problems.push('scene 2 (hook stake): max 5 spoken words, e.g. "Its CEO came back." (the reason or a true stake)');
   if (plan.scenes.slice(2).some((s) => s.hook)) problems.push('"hook": true only belongs on scene 2');
   if (plan.post && !/sources?:/i.test(plan.post.caption)) problems.push('post.caption needs a "Sources:" list');
   // Channel: the closing scene must send viewers to the account.
@@ -191,7 +193,7 @@ export const checkPlan = (plan: Plan): string[] => {
   // Balance: numbers hook, explanations inform. Most scenes carry a number; longer videos explain at least once.
   const body = plan.scenes.slice(1).filter((s) => s.type !== 'chapters');
   const withNumber = body.filter((s) => /\d/.test(JSON.stringify(s.props) + JSON.stringify(s.caption))).length;
-  if (body.length && withNumber / body.length < 0.7) problems.push(`only ${withNumber} of ${body.length} scenes show a number; aim for at least 70% so every beat has a hook`);
+  if (body.length && withNumber / body.length < 0.5) problems.push(`only ${withNumber} of ${body.length} scenes show a number; aim for at least half (explanation beats can go without)`);
   const explains = plan.scenes.filter((s) => ['causeChain', 'headline', 'timeline'].includes(s.type)).length;
   if (plan.scenes.length >= 5 && explains === 0) problems.push('no explanation scene: add a causeChain (or headline/timeline) so the video informs, not just teases');
   plan.scenes.forEach((s, i) => {
