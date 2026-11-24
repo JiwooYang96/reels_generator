@@ -1,0 +1,308 @@
+{
+  "id": "chips-2026-11-24",
+  "handle": "@5beforemonday",
+  "title": "Analog Devices −17%: full factories, flat forecast",
+  "story": "Analog Devices fell 17% after record 42% sales growth because it forecast a flat next quarter: its factories are full and new ones won't make chips until late 2028.",
+  "structure": "what-happens-next (record, wall, next test)",
+  "hookFamily": "number + cause (full factories)",
+  "music": "tense",
+  "post": {
+    "caption": "Analog Devices stock fell 17.37% to $312.95 on Tuesday after record quarterly sales of $4.37B (+42%) came with a flat forecast of about $4.4B for next quarter.\nThe Motley Fool says its factories already run at full capacity, and new capacity won't make chips until the second half of 2028. Margins also dip on pricier parts and holiday shutdowns.\n\nGet this week's five, free every Saturday → link in bio.\n\n#analogdevices #adi #semiconductors #chipstocks #earnings\n\nSources: The Motley Fool (Nov 24), Analog Devices Q4 FY2026 results (8-K, Nov 24), StockTitan market close (Nov 24). Market value loss is an estimate (price drop × shares outstanding). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "−17%",
+          "key": true
+        },
+        {
+          "t": "in"
+        },
+        {
+          "t": "one",
+          "br": true
+        },
+        {
+          "t": "day."
+        }
+      ],
+      "props": {
+        "subject": "a glass jar packed to the brim with tiny silver gears and springs, its lid resting crooked on top because it cannot close",
+        "big": "−17%",
+        "sub": "ADI close $312.95, Nov 24",
+        "tone": "bad",
+        "ticker": "ADI"
+      },
+      "voice": "Analog Devices lost 17%.",
+      "seconds": 1.6
+    },
+    {
+      "type": "versus",
+      "hook": true,
+      "caption": [
+        {
+          "t": "Full"
+        },
+        {
+          "t": "factories,"
+        },
+        {
+          "t": "flat",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "sales."
+        }
+      ],
+      "source": "ADI 8-K results, Nov 24 2026",
+      "props": {
+        "left": {
+          "name": "Last quarter",
+          "value": "$4.37B",
+          "caption": "sales, a record",
+          "logo": "ADI"
+        },
+        "right": {
+          "name": "Next quarter",
+          "value": "$4.4B",
+          "caption": "company forecast",
+          "logo": "ADI"
+        },
+        "winner": "none"
+      },
+      "voice": "Its factories are already full.",
+      "seconds": 2.0
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "−$32B",
+          "key": true
+        },
+        {
+          "t": "in",
+          "br": true
+        },
+        {
+          "t": "one"
+        },
+        {
+          "t": "day."
+        }
+      ],
+      "source": "Motley Fool; ADI share count (est.), Nov 24 2026",
+      "props": {
+        "label": "Market value lost, estimate",
+        "to": 32,
+        "prefix": "$",
+        "suffix": "B",
+        "sign": "−",
+        "tone": "bad",
+        "sub": "$65.80 a share × 483M shares",
+        "logo": "ADI"
+      },
+      "voice": "About thirty-two billion dollars of value vanished in one day.",
+      "seconds": 3.6
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Sales"
+        },
+        {
+          "t": "+42%,",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "a"
+        },
+        {
+          "t": "record."
+        }
+      ],
+      "source": "ADI 8-K results, Nov 24 2026",
+      "props": {
+        "label": "Q4 sales vs a year ago",
+        "to": 42,
+        "suffix": "%",
+        "sign": "+",
+        "tone": "good",
+        "sub": "$4.37B, record quarter",
+        "logo": "ADI"
+      },
+      "voice": "That came right after record sales, up 42% from last year.",
+      "seconds": 3.5
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Plants"
+        },
+        {
+          "t": "maxed",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "out."
+        }
+      ],
+      "source": "Motley Fool, Nov 24 2026",
+      "props": {
+        "n": 1,
+        "title": "Factories are full",
+        "stat": {
+          "value": "Full",
+          "label": "factory capacity, per the Fool"
+        },
+        "steps": [
+          "Plants run at capacity",
+          "Extra orders can't ship"
+        ],
+        "logo": "ADI"
+      },
+      "voice": "Because its plants run at full capacity, extra orders can't ship.",
+      "seconds": 3.6
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "New"
+        },
+        {
+          "t": "chips:"
+        },
+        {
+          "t": "late",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "2028."
+        }
+      ],
+      "source": "Motley Fool, Nov 24 2026",
+      "props": {
+        "n": 2,
+        "title": "New plants take time",
+        "stat": {
+          "value": "2H 2028",
+          "label": "when new capacity makes chips"
+        },
+        "steps": [
+          "Building new capacity",
+          "Output starts 2H 2028"
+        ],
+        "logo": "ADI"
+      },
+      "voice": "Its new plants won't make chips until late 2028.",
+      "seconds": 3.6
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "Margin"
+        },
+        {
+          "t": "squeezed.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "ADI 8-K results, Nov 24 2026",
+      "props": {
+        "label": "Adjusted operating margin",
+        "sublabel": "Q4 actual → Q1 forecast",
+        "oldValue": "52.3%",
+        "newValue": "50.5%",
+        "logo": "ADI"
+      },
+      "voice": "Pricier parts and shutdowns cut its margin forecast to 50.5%, from 52.3%.",
+      "seconds": 3.8
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "In"
+        },
+        {
+          "t": "line."
+        },
+        {
+          "t": "Still",
+          "br": true
+        },
+        {
+          "t": "37x.",
+          "key": true
+        }
+      ],
+      "source": "Motley Fool, Nov 24 2026",
+      "props": {
+        "label": "Price to trailing earnings",
+        "to": 37,
+        "suffix": "x",
+        "tone": "gold",
+        "sub": "after the drop; forecast met estimates",
+        "logo": "ADI"
+      },
+      "voice": "Yet the forecast met estimates. Shares still cost 37 times earnings.",
+      "seconds": 3.5
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "$4.4B",
+          "key": true
+        },
+        {
+          "t": "by",
+          "br": true
+        },
+        {
+          "t": "Jan"
+        },
+        {
+          "t": "30."
+        }
+      ],
+      "props": {
+        "day": "SAT",
+        "date": "Jan 30",
+        "event": "ADI's flat quarter ends: $4.4B forecast",
+        "note": "New capacity: 2H 2028 (Motley Fool)",
+        "cta": "Follow @5beforemonday →"
+      },
+      "voice": "Analog Devices' next test: $4.4 billion of sales by January 30.",
+      "seconds": 3.2
+    },
+    {
+      "type": "endCard",
+      "theme": "light",
+      "caption": [],
+      "props": {
+        "variant": "save",
+        "title": "ADI's full-factory fall",
+        "items": [
+          "ADI −17%, ~$32B lost",
+          "Sales +42%, a record",
+          "Next quarter flat: $4.4B",
+          "New plants: 2H 2028"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday.",
+      "seconds": 6
+    }
+  ]
+}
