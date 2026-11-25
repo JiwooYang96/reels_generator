@@ -1,6 +1,6 @@
 # What works on @fivebeforemonday
 
-_Updated 2026-11-24T22:46+00:00 by `scripts/reelanalyze.py` from Instagram insights. The daily task reads this before writing._
+_Updated 2026-11-25T21:59+00:00 by `scripts/reelanalyze.py` from Instagram insights. The daily task reads this before writing._
 
 ## Rules from our own data
 
@@ -32,3 +32,4 @@ _Updated 2026-11-24T22:46+00:00 by `scripts/reelanalyze.py` from Instagram insig
 | D 36 | [2026-11-19](https://www.instagram.com/reel/Df8Uoc6j2Qn/) | 51 | 22% | 5.6s (17%) | 0.0% | HOOK problem: only 22% stayed past 3 s. Check the first frame, the cover and line 1. |
 | D 36 | [special-2026-11-16-netflix](https://www.instagram.com/reel/Dfza0XTnBBG/) | 6 | 0% | 6.5s (21%) | 0.0% | HOOK problem: only 0% stayed past 3 s. Check the first frame, the cover and line 1. Watched but not shared: the payoff or the reason to send it is weak. |
 | D 27 | [2026-11-20](https://www.instagram.com/reel/Df-0gw_Ey0d/) | 10 | 25% | 4.1s (15%) | 0.0% | HOOK problem: only 25% stayed past 3 s. Check the first frame, the cover and line 1. |
+| D 14 | [2026-11-24](https://www.instagram.com/reel/DgJFm-SFTvb/) | 5 | 0% | 2.5s (9%) | 0.0% | still settling (<48 h) HOOK problem: only 0% stayed past 3 s. Check the first frame, the cover and line 1. |
