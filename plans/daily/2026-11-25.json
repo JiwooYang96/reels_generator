@@ -1,0 +1,290 @@
+{
+  "id": "2026-11-25",
+  "title": "Meta +3.4% in a tech rout as Amazon weighs letting Muse back in",
+  "story": "Meta rose 3.4% while tech sank, because Fortune reported Amazon is in talks to let Meta's AI shopper Muse back onto its store, two months after blocking it.",
+  "structure": "escalation -> rehook -> open loop (blocked, talks, sign-off)",
+  "hookFamily": "versus flip (tech sank, Meta rose)",
+  "music": "lift",
+  "post": {
+    "caption": "Meta stock rose 3.4% on Wednesday while the Nasdaq sank as much as 4.6% in the morning.\nThe reason: Fortune reported that Amazon and Meta are in talks to let Muse, Meta's AI shopping agent, back onto Amazon, two months after Amazon blocked it. The sticking point is ads: Muse shops without seeing them, and ads earn Amazon $68.6 billion a year.\nAny deal needs both CEOs to sign off, and no date is set. Meta still sits about 22% below its September record.\n\nThe full why, with charts, lands Sunday for members → link in bio.\n\n#meta #metastock #amazon #aishopping #techstocks\n\nSources: Fortune via The Next Web (Nov 25), The Company Chronicle (Nov 25), Parameter (Nov 25), JournalArta (Nov 25), Stocktwits via Yahoo Finance (Nov 25). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "Meta"
+        },
+        {
+          "t": "+3.4%",
+          "key": true
+        },
+        {
+          "t": "as tech",
+          "br": true
+        },
+        {
+          "t": "sank."
+        }
+      ],
+      "props": {
+        "subject": "a single bright paper kite rising high into the sky while a row of paper airplanes falls toward the ground",
+        "big": "+3.4%",
+        "sub": "Meta close, $609.89, Nov 25",
+        "tone": "good",
+        "ticker": "META"
+      },
+      "voice": "Meta still rose 3.4%.",
+      "seconds": 1.6
+    },
+    {
+      "type": "headline",
+      "hook": true,
+      "caption": [
+        {
+          "t": "Amazon"
+        },
+        {
+          "t": "may"
+        },
+        {
+          "t": "unblock",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "it."
+        }
+      ],
+      "source": "Fortune via The Next Web, Nov 25 2026",
+      "props": {
+        "outlet": "Fortune",
+        "date": "Nov 25, 2026",
+        "text": "Amazon and Meta in talks to end the Muse blockade",
+        "highlight": "end the Muse blockade"
+      },
+      "voice": "Amazon may stop blocking it.",
+      "seconds": 2.0
+    },
+    {
+      "type": "versus",
+      "caption": [
+        {
+          "t": "Up"
+        },
+        {
+          "t": "while"
+        },
+        {
+          "t": "tech",
+          "br": true
+        },
+        {
+          "t": "sank.",
+          "key": true
+        }
+      ],
+      "source": "The Company Chronicle, Nov 25 2026",
+      "props": {
+        "left": {
+          "name": "Nasdaq",
+          "value": "−4.6%",
+          "caption": "at the morning low; closed −0.6%"
+        },
+        "right": {
+          "name": "Meta",
+          "value": "+3.4%",
+          "caption": "close, $609.89",
+          "logo": "META"
+        },
+        "winner": "right"
+      },
+      "voice": "It climbed while the Nasdaq sank 4.6% from Tuesday's close this morning.",
+      "seconds": 3.6
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Talks"
+        },
+        {
+          "t": "to let"
+        },
+        {
+          "t": "Muse",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "back."
+        }
+      ],
+      "source": "Fortune via The Next Web, Nov 25 2026",
+      "props": {
+        "n": 1,
+        "title": "Why Meta rose",
+        "stat": {
+          "value": "2 months",
+          "label": "since Amazon blocked Muse"
+        },
+        "steps": [
+          "Muse: Meta's AI shopper",
+          "Amazon may let it back"
+        ],
+        "logo": "META"
+      },
+      "voice": "Because Fortune reports Amazon may let Muse, Meta's AI shopper, back in.",
+      "seconds": 3.9
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "Blocked"
+        },
+        {
+          "t": "in"
+        },
+        {
+          "t": "September.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "props": {
+        "subject": "a heavy iron garden gate with a big padlock and chain, a wicker shopping basket waiting outside it on cobblestones"
+      },
+      "voice": "Amazon blocked it in September, saying AI agents break its rules.",
+      "seconds": 3.9
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Half"
+        },
+        {
+          "t": "of"
+        },
+        {
+          "t": "AI orders.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Forter data via CNBC, cited by The Next Web, Nov 25 2026",
+      "props": {
+        "label": "AI-agent orders placed through Muse",
+        "from": 0,
+        "to": 51,
+        "suffix": "%",
+        "tone": "good",
+        "sub": "week to Nov 22; Grok 24%, ChatGPT 22%",
+        "logo": "META"
+      },
+      "voice": "Muse already places 51% of all AI-agent orders, Forter data shows.",
+      "seconds": 3.6
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Muse"
+        },
+        {
+          "t": "skips"
+        },
+        {
+          "t": "the ads.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Fortune via The Next Web; Stocktwits, Nov 25 2026",
+      "props": {
+        "label": "Amazon ad sales a year",
+        "from": 0,
+        "to": 68.6,
+        "decimals": 1,
+        "prefix": "$",
+        "suffix": "B",
+        "tone": "gold",
+        "sub": "nearly 10% of Amazon's revenue",
+        "logo": "AMZN"
+      },
+      "voice": "The snag: Muse skips ads, which bring Amazon $68.6 billion of sales.",
+      "seconds": 3.6
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "Still"
+        },
+        {
+          "t": "22%",
+          "key": true
+        },
+        {
+          "t": "below",
+          "br": true
+        },
+        {
+          "t": "record."
+        }
+      ],
+      "source": "JournalArta; The Company Chronicle, Nov 25 2026",
+      "props": {
+        "label": "Meta share price",
+        "sublabel": "about 22% under its Sept 24 record",
+        "oldValue": "$777.59",
+        "newValue": "$609.89",
+        "logo": "META"
+      },
+      "voice": "Still, Meta remains about 22% below its September record.",
+      "seconds": 3.3
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "Two"
+        },
+        {
+          "t": "CEOs",
+          "key": true
+        },
+        {
+          "t": "decide.",
+          "br": true
+        }
+      ],
+      "props": {
+        "day": "TBD",
+        "date": "No date",
+        "event": "Amazon and Meta CEOs must sign off",
+        "note": "Talks are fluid, people told Fortune"
+      },
+      "voice": "Next, any deal needs sign-off from both Meta's and Amazon's CEOs.",
+      "seconds": 4.0
+    },
+    {
+      "type": "endCard",
+      "theme": "light",
+      "caption": [],
+      "props": {
+        "variant": "save",
+        "title": "Meta vs Amazon's gate",
+        "items": [
+          "Meta +3.4%, tech down",
+          "Amazon may unblock Muse",
+          "Snag: $68.6B in ads",
+          "Both CEOs must sign"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday.",
+      "seconds": 6
+    }
+  ]
+}
