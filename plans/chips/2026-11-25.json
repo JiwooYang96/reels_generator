@@ -1,0 +1,313 @@
+{
+  "id": "chips-2026-11-25",
+  "handle": "@5beforemonday",
+  "title": "Ambarella −19.8%: the memory squeeze",
+  "story": "Ambarella fell 19.8% because memory got so pricey and scarce, partly from AI demand, that its customers cancelled orders, so it now expects sales to drop by over a third.",
+  "structure": "countdown (3 links: memory prices, AI demand, cancelled orders)",
+  "hookFamily": "contradiction (memory boom sinks a chipmaker)",
+  "music": "tense",
+  "post": {
+    "caption": "Ambarella stock fell 19.8% on Wednesday after the camera-chip maker forecast next-quarter sales of $70M to $75M, down from $115.2M and about 35% below Wall Street's estimate.\nCEO Fermi Wang blamed \"the unprecedented rise in memory prices and the scarcity of memory supply\": customers who can't get memory for their devices are cancelling or delaying chip orders. Bank of America cut its target to $30 from $70.\n\nGet this week's five, free every Saturday → link in bio.\n\n#ambarella #amba #semiconductors #memorychips #chipstocks\n\nSources: StockTitan market close (Nov 25), Stocktwits via Yahoo Finance (Nov 25), Invezz (Nov 25), Blockonomi (Nov 25), GuruFocus via Yahoo Finance (Nov 25; next report date is an estimate). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "−19.8%",
+          "key": true
+        },
+        {
+          "t": "in"
+        },
+        {
+          "t": "one",
+          "br": true
+        },
+        {
+          "t": "day."
+        }
+      ],
+      "props": {
+        "subject": "a small wooden rowboat stranded on dry cracked mud, the water drained away toward a giant concrete dam in the distance",
+        "big": "−19.8%",
+        "sub": "AMBA at the close, Nov 25",
+        "tone": "bad",
+        "ticker": "AMBA"
+      },
+      "voice": "Ambarella lost 19.8%.",
+      "seconds": 1.6
+    },
+    {
+      "type": "headline",
+      "hook": true,
+      "caption": [
+        {
+          "t": "No"
+        },
+        {
+          "t": "memory,",
+          "key": true
+        },
+        {
+          "t": "no",
+          "br": true
+        },
+        {
+          "t": "orders."
+        }
+      ],
+      "source": "Stocktwits via Yahoo Finance, Nov 25 2026",
+      "props": {
+        "outlet": "Stocktwits via Yahoo Finance",
+        "date": "Nov 25, 2026",
+        "text": "Ambarella blames \"the scarcity of memory supply\"",
+        "highlight": "scarcity of memory supply"
+      },
+      "voice": "Its customers can't get memory.",
+      "seconds": 2.0
+    },
+    {
+      "type": "versus",
+      "caption": [
+        {
+          "t": "Sales"
+        },
+        {
+          "t": "down"
+        },
+        {
+          "t": "a",
+          "br": true
+        },
+        {
+          "t": "third.",
+          "key": true
+        }
+      ],
+      "source": "Invezz; Stocktwits, Nov 25 2026",
+      "props": {
+        "left": {
+          "name": "Last quarter",
+          "value": "$115.2M",
+          "caption": "sales, reported",
+          "logo": "AMBA"
+        },
+        "right": {
+          "name": "Next quarter",
+          "value": "$70-75M",
+          "caption": "company forecast",
+          "logo": "AMBA"
+        },
+        "winner": "left"
+      },
+      "voice": "It expects sales to fall by over a third next quarter.",
+      "seconds": 3.4
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Memory"
+        },
+        {
+          "t": "scarce",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "and"
+        },
+        {
+          "t": "pricey."
+        }
+      ],
+      "source": "Stocktwits via Yahoo Finance, Nov 25 2026",
+      "props": {
+        "n": 1,
+        "title": "Memory got scarce",
+        "stat": {
+          "value": "Q3",
+          "label": "memory squeeze hit consumer orders"
+        },
+        "steps": [
+          "Memory prices soar",
+          "Supply runs short"
+        ],
+        "logo": "AMBA"
+      },
+      "voice": "Because memory prices soared and supply ran short, the CEO said.",
+      "seconds": 3.6
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "AI"
+        },
+        {
+          "t": "takes"
+        },
+        {
+          "t": "the",
+          "br": true
+        },
+        {
+          "t": "memory.",
+          "key": true
+        }
+      ],
+      "source": "Bank of America via Stocktwits, Nov 25 2026",
+      "props": {
+        "n": 2,
+        "title": "AI wants the memory",
+        "stat": {
+          "value": "AI",
+          "label": "\"strong AI memory demand\", BofA"
+        },
+        "steps": [
+          "AI servers buy memory",
+          "Less left for cameras"
+        ],
+        "logo": "AMBA"
+      },
+      "voice": "Bank of America points to strong AI demand for memory.",
+      "seconds": 3.4
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Orders"
+        },
+        {
+          "t": "cancelled.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Invezz; Stocktwits, Nov 25 2026",
+      "props": {
+        "n": 3,
+        "title": "Customers stop ordering",
+        "stat": {
+          "value": "$72.5M",
+          "label": "forecast midpoint, from $115.2M"
+        },
+        "steps": [
+          "No memory, no device",
+          "Chip orders cancelled"
+        ],
+        "logo": "AMBA"
+      },
+      "voice": "So customers without memory cancelled or delayed their chip orders.",
+      "seconds": 3.6
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "Target"
+        },
+        {
+          "t": "cut",
+          "key": true
+        },
+        {
+          "t": "to",
+          "br": true
+        },
+        {
+          "t": "$30."
+        }
+      ],
+      "source": "Bank of America via Stocktwits, Nov 25 2026",
+      "props": {
+        "label": "BofA price target",
+        "sublabel": "downgraded to Underperform",
+        "oldValue": "$70",
+        "newValue": "$30",
+        "logo": "AMBA"
+      },
+      "voice": "Bank of America cut its price target to thirty dollars, from seventy.",
+      "seconds": 3.6
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Was"
+        },
+        {
+          "t": "−37%",
+          "key": true
+        },
+        {
+          "t": "at",
+          "br": true
+        },
+        {
+          "t": "dawn."
+        }
+      ],
+      "source": "Blockonomi; StockTitan, Nov 25 2026",
+      "props": {
+        "label": "Low before the open",
+        "to": 37.5,
+        "decimals": 1,
+        "suffix": "%",
+        "sign": "−",
+        "tone": "bad",
+        "sub": "$27.80 pre-market; closed −19.8%",
+        "logo": "AMBA"
+      },
+      "voice": "Still, it closed well off its low of minus thirty-seven percent.",
+      "seconds": 3.6
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "Next"
+        },
+        {
+          "t": "test:"
+        },
+        {
+          "t": "Mar",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "2."
+        }
+      ],
+      "props": {
+        "day": "TUE",
+        "date": "Mar 2",
+        "event": "Ambarella's next report (expected)",
+        "note": "Date is an estimate (GuruFocus)",
+        "cta": "Follow @5beforemonday →"
+      },
+      "voice": "Ambarella's next test: its report, expected around March 2.",
+      "seconds": 3.2
+    },
+    {
+      "type": "endCard",
+      "theme": "light",
+      "caption": [],
+      "props": {
+        "variant": "save",
+        "title": "Ambarella's memory squeeze",
+        "items": [
+          "AMBA −19.8% in a day",
+          "Sales seen down a third",
+          "Blame: scarce memory",
+          "Next report: ~March 2"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday.",
+      "seconds": 6
+    }
+  ]
+}

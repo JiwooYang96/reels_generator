@@ -124,6 +124,11 @@
   "tile": "light",
   "source": "nvstly/icons@3ba2624"
  },
+ "AMBA": {
+  "name": "AMBA",
+  "tile": "light",
+  "source": "nvstly/icons@main"
+ },
  "AMC": {
   "name": "AMC Entertainment",
   "tile": "light",
