@@ -1,0 +1,296 @@
+{
+  "id": "chips-2026-11-27",
+  "handle": "@5beforemonday",
+  "title": "Sandisk +16%: one rack test",
+  "story": "Sandisk jumped 16% after Kioxia and Nvidia showed 144 flash drives can stretch an AI rack's memory, but no orders followed and the stock is still 71% under June's peak.",
+  "structure": "versus (the test vs the orders)",
+  "hookFamily": "number + stake (one test)",
+  "music": "lift",
+  "post": {
+    "caption": "Sandisk stock jumped 16% to $85.36 on Black Friday, its best day since July 30, after Kioxia and Nvidia put 144 Kioxia SSDs into an Nvidia GB200 NVL72 rack as about 1.1 petabytes of extended GPU memory.\nSandisk makes its flash with Kioxia in shared factories. No orders followed the test, and the stock is still about 71% below its June 25 peak of $291.88.\n\nGet this week's five, free every Saturday → link in bio.\n\n#sandisk #sndk #semiconductors #nandflash #memorystocks\n\nSources: Current Logic Dispersion Brief (Nov 27), JournalArta (Nov 27), TradingNEWS (Nov 27), StockAnalysis (Nov 27). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "+16%",
+          "key": true
+        },
+        {
+          "t": "in"
+        },
+        {
+          "t": "one",
+          "br": true
+        },
+        {
+          "t": "day."
+        }
+      ],
+      "props": {
+        "subject": "a small stack of flash memory cards lifted high on a rising hot air balloon above rooftops",
+        "big": "+16%",
+        "sub": "SNDK at the close, Nov 27",
+        "tone": "good"
+      },
+      "voice": "Sandisk jumped 16%.",
+      "seconds": 1.6
+    },
+    {
+      "type": "headline",
+      "hook": true,
+      "caption": [
+        {
+          "t": "No"
+        },
+        {
+          "t": "orders,",
+          "key": true
+        },
+        {
+          "t": "one",
+          "br": true
+        },
+        {
+          "t": "test."
+        }
+      ],
+      "source": "JournalArta, Nov 27 2026",
+      "props": {
+        "outlet": "JournalArta",
+        "date": "Nov 27, 2026",
+        "text": "Kioxia and Nvidia placed 144 Kioxia XD8 solid-state drives in an Nvidia GB200 NVL72 system",
+        "highlight": "144 Kioxia XD8 solid-state drives"
+      },
+      "voice": "No orders, only one test.",
+      "seconds": 2.0
+    },
+    {
+      "type": "priceSlam",
+      "caption": [
+        {
+          "t": "Best"
+        },
+        {
+          "t": "day",
+          "key": true
+        },
+        {
+          "t": "since",
+          "br": true
+        },
+        {
+          "t": "July 30."
+        }
+      ],
+      "source": "Current Logic; JournalArta, Nov 27 2026",
+      "props": {
+        "label": "SNDK close",
+        "sublabel": "best day since July 30",
+        "oldValue": "$73.61",
+        "newValue": "$85.36"
+      },
+      "voice": "Shares closed at eighty-five thirty-six, the best day since July thirtieth.",
+      "seconds": 3.9
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "144"
+        },
+        {
+          "t": "drives,",
+          "key": true
+        },
+        {
+          "t": "one",
+          "br": true
+        },
+        {
+          "t": "rack."
+        }
+      ],
+      "source": "JournalArta; Current Logic, Nov 27 2026",
+      "props": {
+        "n": 1,
+        "title": "Flash as AI memory",
+        "stat": {
+          "value": "144",
+          "label": "Kioxia SSDs in one GB200 rack"
+        },
+        "steps": [
+          "Drives plug into the rack",
+          "GPUs get extra memory"
+        ],
+        "logo": "NVDA"
+      },
+      "voice": "After Kioxia put 144 of its drives in Nvidia's AI rack.",
+      "seconds": 3.4
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "A"
+        },
+        {
+          "t": "petabyte",
+          "key": true
+        },
+        {
+          "t": "more",
+          "br": true
+        },
+        {
+          "t": "memory."
+        }
+      ],
+      "source": "TradingNEWS; Current Logic, Nov 27 2026",
+      "props": {
+        "label": "Extra memory for one rack",
+        "to": 1.1,
+        "decimals": 1,
+        "suffix": " PB",
+        "sign": "+",
+        "tone": "good",
+        "sub": "about 1,100 terabytes of raw flash"
+      },
+      "voice": "That added about 1.1 petabytes, over a thousand terabytes, of memory.",
+      "seconds": 3.6
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Shared"
+        },
+        {
+          "t": "factories.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "TradingNEWS, Nov 27 2026",
+      "props": {
+        "n": 2,
+        "title": "Why Sandisk rose",
+        "stat": {
+          "value": "1 JV",
+          "label": "Sandisk and Kioxia share flash fabs"
+        },
+        "steps": [
+          "Same factories as Kioxia",
+          "AI racks could need flash"
+        ]
+      },
+      "voice": "Sandisk makes flash with Kioxia, so AI racks could lift its demand.",
+      "seconds": 3.6
+    },
+    {
+      "type": "headline",
+      "caption": [
+        {
+          "t": "But"
+        },
+        {
+          "t": "no"
+        },
+        {
+          "t": "orders",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "yet."
+        }
+      ],
+      "source": "JournalArta, Nov 27 2026",
+      "props": {
+        "outlet": "JournalArta",
+        "date": "Nov 27, 2026",
+        "text": "No orders followed the test, and both are still evaluating feasibility",
+        "highlight": "No orders followed the test"
+      },
+      "voice": "But no orders followed the test, JournalArta reports.",
+      "seconds": 2.9
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "−71%",
+          "key": true
+        },
+        {
+          "t": "from"
+        },
+        {
+          "t": "June's",
+          "br": true
+        },
+        {
+          "t": "peak."
+        }
+      ],
+      "source": "JournalArta; TradingNEWS, Nov 27 2026",
+      "props": {
+        "label": "Below the June 25 peak",
+        "to": 71,
+        "decimals": 0,
+        "suffix": "%",
+        "sign": "−",
+        "tone": "bad",
+        "sub": "peak close $291.88; now $85.36"
+      },
+      "voice": "And shares sit seventy-one percent under their June twenty-fifth peak.",
+      "seconds": 3.4
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "Next"
+        },
+        {
+          "t": "test:"
+        },
+        {
+          "t": "late",
+          "key": true,
+          "br": true
+        },
+        {
+          "t": "January."
+        }
+      ],
+      "props": {
+        "day": "JAN",
+        "date": "Late Jan",
+        "event": "Sandisk's next quarterly report",
+        "note": "Timing per TradingNEWS; no date set",
+        "cta": "Follow @5beforemonday →"
+      },
+      "voice": "Sandisk's sixteen percent jump meets its next test: late-January earnings.",
+      "seconds": 3.4
+    },
+    {
+      "type": "endCard",
+      "theme": "light",
+      "caption": [],
+      "props": {
+        "variant": "save",
+        "title": "Sandisk's one-test rally",
+        "items": [
+          "SNDK +16% to $85.36",
+          "144 SSDs in an AI rack",
+          "No orders yet",
+          "Still −71% from June"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday.",
+      "seconds": 6
+    }
+  ]
+}
