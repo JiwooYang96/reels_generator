@@ -1,0 +1,257 @@
+{
+  "id": "2026-11-27",
+  "title": "Amazon +3.96% as Thanksgiving online spending beats Adobe's forecast",
+  "story": "Amazon rose nearly 4% on Black Friday after Adobe said Americans spent $7.1 billion online on Thanksgiving, more than it forecast; the next test is Cyber Monday.",
+  "structure": "single number ($7.1B online on Thanksgiving)",
+  "hookFamily": "number + cause (shoppers beat the forecast)",
+  "music": "lift",
+  "post": {
+    "caption": "Amazon stock rose 3.96% on Black Friday after early holiday shopping data came in strong.\nAdobe said Americans spent $7.1 billion online on Thanksgiving Day, up 10.4% from last year and above its own $6.9 billion forecast. Adobe counts every US online store, not Amazon alone, but 87% of Cyber Weekend shoppers told Numerator they plan to buy on Amazon.\nThe next test is Cyber Monday, which Adobe forecasts at $15.1 billion.\n\nThe full why, with charts, lands Sunday for members → link in bio.\n\n#amazon #amazonstock #blackfriday #cybermonday #techstocks\n\nSources: Motley Fool (Nov 27), Adobe Analytics via GuruFocus/TradingView (Nov 27), Finexus (Nov 27). Not investment advice."
+  },
+  "scenes": [
+    {
+      "type": "open.illustration",
+      "caption": [
+        {
+          "t": "Amazon"
+        },
+        {
+          "t": "+4%",
+          "key": true
+        },
+        {
+          "t": "on",
+          "br": true
+        },
+        {
+          "t": "Black Friday."
+        }
+      ],
+      "props": {
+        "subject": "a brown paper shopping bag stuffed with wrapped parcels, lifted into the sky by a bunch of balloons",
+        "big": "+3.96%",
+        "sub": "Amazon close, Nov 27",
+        "tone": "good",
+        "ticker": "AMZN"
+      },
+      "voice": "Amazon jumped nearly 4%.",
+      "seconds": 1.6
+    },
+    {
+      "type": "headline",
+      "hook": true,
+      "caption": [
+        {
+          "t": "Shoppers"
+        },
+        {
+          "t": "beat",
+          "key": true
+        },
+        {
+          "t": "the",
+          "br": true
+        },
+        {
+          "t": "forecast."
+        }
+      ],
+      "source": "Adobe Analytics via GuruFocus, Nov 27 2026",
+      "props": {
+        "outlet": "Adobe data via GuruFocus",
+        "date": "Nov 27, 2026",
+        "text": "Thanksgiving online spending comes in ahead of forecast",
+        "highlight": "ahead of forecast"
+      },
+      "voice": "First day, shoppers beat forecasts.",
+      "seconds": 2.0
+    },
+    {
+      "type": "compareBars",
+      "caption": [
+        {
+          "t": "$7.1B",
+          "key": true
+        },
+        {
+          "t": "online"
+        },
+        {
+          "t": "on Thanksgiving.",
+          "br": true
+        }
+      ],
+      "source": "Adobe Analytics via GuruFocus, Nov 27 2026",
+      "props": {
+        "title": "US online spending, Thanksgiving Day",
+        "bars": [
+          {
+            "label": "Adobe forecast",
+            "value": 6.9,
+            "display": "$6.9B"
+          },
+          {
+            "label": "Actual",
+            "value": 7.1,
+            "display": "$7.1B",
+            "highlight": true
+          }
+        ],
+        "badge": "+$0.2B"
+      },
+      "voice": "Adobe says Americans spent 7.1 billion dollars online on Thanksgiving, above forecast.",
+      "seconds": 3.6
+    },
+    {
+      "type": "causeChain",
+      "caption": [
+        {
+          "t": "Spending"
+        },
+        {
+          "t": "up"
+        },
+        {
+          "t": "10.4%.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Motley Fool; Adobe via GuruFocus, Nov 27 2026",
+      "props": {
+        "n": 1,
+        "title": "Why Amazon rose",
+        "stat": {
+          "value": "+10.4%",
+          "label": "vs Thanksgiving 2025"
+        },
+        "steps": [
+          "Online spending beat forecast",
+          "Amazon shares rose"
+        ],
+        "logo": "AMZN"
+      },
+      "voice": "Shares rose after that data: spending up 10.4% from last year.",
+      "seconds": 3.6
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Most"
+        },
+        {
+          "t": "shop"
+        },
+        {
+          "t": "Amazon.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Numerator survey via Finexus, Nov 27 2026",
+      "props": {
+        "label": "Cyber Weekend shoppers planning to buy on Amazon",
+        "from": 0,
+        "to": 87,
+        "suffix": "%",
+        "tone": "good",
+        "sub": "Walmart 65%, Target 42% (survey)",
+        "logo": "AMZN"
+      },
+      "voice": "And 87% of weekend shoppers plan to buy on Amazon, Numerator found.",
+      "seconds": 3.8
+    },
+    {
+      "type": "counter",
+      "caption": [
+        {
+          "t": "Season"
+        },
+        {
+          "t": "ahead"
+        },
+        {
+          "t": "of plan.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "source": "Adobe Analytics via GuruFocus, Nov 27 2026",
+      "props": {
+        "label": "US online spending, Nov 1-22, vs last year",
+        "from": 0,
+        "to": 9.1,
+        "decimals": 1,
+        "prefix": "+",
+        "suffix": "%",
+        "tone": "good",
+        "sub": "Adobe's full-season forecast: +6.7%"
+      },
+      "voice": "November so far is up 9.1%, faster than Adobe's season forecast.",
+      "seconds": 3.8
+    },
+    {
+      "type": "illustration",
+      "caption": [
+        {
+          "t": "Not"
+        },
+        {
+          "t": "Amazon"
+        },
+        {
+          "t": "alone.",
+          "key": true,
+          "br": true
+        }
+      ],
+      "props": {
+        "subject": "a busy open-air market with many small wooden stalls piled with wrapped parcels"
+      },
+      "voice": "Still, Adobe counts every online store, not Amazon's own sales.",
+      "seconds": 3.6
+    },
+    {
+      "type": "calendarCta",
+      "caption": [
+        {
+          "t": "Next:"
+        },
+        {
+          "t": "Cyber",
+          "key": true
+        },
+        {
+          "t": "Monday.",
+          "br": true
+        }
+      ],
+      "props": {
+        "day": "MON",
+        "date": "Nov 30",
+        "event": "Cyber Monday: Adobe forecasts $15.1B",
+        "note": "Amazon's 3.96% jump meets its first test"
+      },
+      "voice": "Amazon's next test: Cyber Monday, 15.1 billion forecast, more than Black Friday.",
+      "seconds": 4.0
+    },
+    {
+      "type": "endCard",
+      "theme": "light",
+      "caption": [],
+      "props": {
+        "variant": "save",
+        "title": "Amazon's Black Friday jump",
+        "items": [
+          "Amazon +3.96% Friday",
+          "Thanksgiving online $7.1B",
+          "Beat Adobe's $6.9B call",
+          "Next: Cyber Monday $15.1B"
+        ]
+      },
+      "voice": "Save this one. All five numbers, free every Saturday.",
+      "seconds": 6
+    }
+  ]
+}
